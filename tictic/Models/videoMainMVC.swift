@@ -20,9 +20,11 @@ struct videoMainMVC {
     let section:String
     let sound_id:String
     let privacy_type:String
+    let allow_likes:String
     let allow_comments:String
     let allow_duet:String
     let block:String
+    let main_video_id:String
     let duet_video_id:String
     let old_video_id:String
     let created:String

@@ -289,12 +289,14 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
                             let videoLikes = "\(videoObj.value(forKey: "like_count") ?? "")"
                             let videoComments = "\(videoObj.value(forKey: "comment_count") ?? "")"
                             let like = "\(videoObj.value(forKey: "like") ?? "")"
-                            let allowComment = videoObj.value(forKey: "allow_comments") as! String
+                            let allowLikes = videoObj.value(forKey: "allow_likes") as! String
+                            let allowComments = videoObj.value(forKey: "allow_comments") as! String
                             let videoID = videoObj.value(forKey: "id") as! String
                             let videoDesc = videoObj.value(forKey: "description") as! String
                             let allowDuet = videoObj.value(forKey: "allow_duet") as! String
                             let created = videoObj.value(forKey: "created") as! String
                             let views = "\(videoObj.value(forKey: "view") ?? "")"
+                            let main_video_id = videoObj.value(forKey: "main_video_id")
                             let duetVidID = videoObj.value(forKey: "duet_video_id")
                             
                             userID = userObj.value(forKey: "id") as! String
@@ -314,7 +316,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
                             let countryID = countryObj.value(forKey: "id")
                             let countryName = countryObj.value(forKey: "name")
                             
-                            let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "", privacy_type: "", allow_comments: allowComment, allow_duet: allowDuet, block: "", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: soundName ?? "",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+                            let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: soundName ?? "",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                             
                             videosArr.append(video)
                         }
@@ -328,7 +330,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
                     }
                     AppUtility?.stopLoader(view: self.view)
                 } else {
-                    self.showToast(message: "not200", font: .systemFont(ofSize: 12))
+                    //self.showToast(message: "not200", font: .systemFont(ofSize: 12))
                     AppUtility?.stopLoader(view: self.view)
                 }
             }

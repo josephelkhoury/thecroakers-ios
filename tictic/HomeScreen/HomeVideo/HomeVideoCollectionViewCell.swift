@@ -38,6 +38,8 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var musicBtn: UIButton!
     @IBOutlet weak var imgMusicBtn: UIImageView!
     @IBOutlet weak var pauseImgView: UIImageView!
+    @IBOutlet weak var mainVideoBtn: UIButton!
+    @IBOutlet weak var mainVideoLbl: UILabel!
     
     // MARK: - Variables
     
@@ -111,6 +113,24 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         self.commentCountLbl.text = post.comment_count ?? "0".shorten()
         self.liked_count = Int(post.like_count) ?? 0
         
+        if post.allow_likes == "false" {
+            self.likeBtn.isEnabled = false
+            self.likeCountLbl.isHidden = true;
+        }
+        else {
+            self.likeBtn.isEnabled = true
+            self.likeCountLbl.isHidden = false;
+        }
+        
+        if post.allow_comments == "false" {
+            self.commentBtn.isEnabled = false
+            self.commentCountLbl.isHidden = true;
+        }
+        else {
+            self.commentBtn.isEnabled = true
+            self.commentCountLbl.isHidden = false;
+        }
+        
         if post.verified == "0" {
             self.statusProfile.isHidden = true
         }
@@ -121,6 +141,16 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             likeBtn.tintColor = .white
             liked = false
         }
+        
+        if post.main_video_id != "<null>" {
+            mainVideoBtn.isHidden = false;
+            mainVideoLbl.isHidden = false;
+        }
+        else {
+            mainVideoBtn.isHidden = true;
+            mainVideoLbl.isHidden = true;
+        }
+        
         let duetVidID = post.duetVideoID
         
         if duetVidID != "0" {
@@ -336,11 +366,24 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    @IBAction func showMainVideo(_ sender: AnyObject) {
+        if let rootViewController = UIApplication.topViewController() {
+            let storyMain = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyMain.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
+            vc.video_id = self.arrVideo!.main_video_id
+            vc.currentIndex = IndexPath.init(index: 0)
+            vc.isOtherController =  true
+            vc.hidesBottomBarWhenPushed = true
+            rootViewController.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     @IBAction func showReplies(_ sender: AnyObject) {
         if let rootViewController = UIApplication.topViewController() {
             let storyMain = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyMain.instantiateViewController(withIdentifier: "VideoRepliesVC") as! VideoRepliesViewController
             vc.video_id = self.arrVideo!.videoID
+            vc.hidesBottomBarWhenPushed = true
             rootViewController.navigationController?.pushViewController(vc, animated: true)
         }
     }

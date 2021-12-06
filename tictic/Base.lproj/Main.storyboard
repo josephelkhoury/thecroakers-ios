@@ -15357,12 +15357,34 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="28">
+                                                    <state key="normal" image="33">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="29" scale="large"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="postReply:" destination="4Yw-xN-QKk" eventType="touchUpInside" id="a0r-3g-6H7"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cr-p9-YX7">
+                                                    <rect key="frame" x="315" y="153" width="50" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGg-gp-FbR">
+                                                    <rect key="frame" x="317.5" y="112" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="GoC-AL-RvZ"/>
+                                                        <constraint firstAttribute="width" constant="45" id="hyw-Eb-2qG"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="shift" catalog="system">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="29" scale="large"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showMainVideo:" destination="4Yw-xN-QKk" eventType="touchUpInside" id="iDL-m6-7QY"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SoL-L9-juD">
@@ -15486,6 +15508,7 @@
                                                 <constraint firstItem="KM5-g7-CLd" firstAttribute="top" secondItem="Kg7-qk-ziP" secondAttribute="bottom" id="2Iz-FI-gSJ"/>
                                                 <constraint firstItem="ERB-ER-20F" firstAttribute="top" secondItem="4xN-Ps-8nl" secondAttribute="bottom" constant="-4" id="3WF-yB-wNj"/>
                                                 <constraint firstItem="Kg7-qk-ziP" firstAttribute="centerX" secondItem="KM5-g7-CLd" secondAttribute="centerX" constant="-1.5" id="4vD-6F-hou"/>
+                                                <constraint firstItem="5cr-p9-YX7" firstAttribute="top" secondItem="dGg-gp-FbR" secondAttribute="bottom" constant="-4" id="5OJ-W9-vFb"/>
                                                 <constraint firstItem="tLb-O0-XH5" firstAttribute="top" secondItem="6Bg-Ks-S3i" secondAttribute="bottom" constant="-5" id="7PT-XE-6gg"/>
                                                 <constraint firstItem="SoL-L9-juD" firstAttribute="top" secondItem="vRU-qM-jep" secondAttribute="bottom" constant="-40" id="8Wd-xc-Mrg"/>
                                                 <constraint firstItem="SoL-L9-juD" firstAttribute="top" secondItem="KM5-g7-CLd" secondAttribute="bottom" constant="41" id="97x-PQ-R26"/>
@@ -15493,6 +15516,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="ze7-CV-GRp" secondAttribute="bottom" id="9PF-jU-w9T"/>
                                                 <constraint firstItem="ze7-CV-GRp" firstAttribute="leading" secondItem="0O8-5U-j1v" secondAttribute="leading" id="9eC-af-yej"/>
                                                 <constraint firstItem="6Bg-Ks-S3i" firstAttribute="top" secondItem="ERB-ER-20F" secondAttribute="bottom" constant="20" id="E1Y-mz-rj1"/>
+                                                <constraint firstItem="a4j-rw-K0c" firstAttribute="top" secondItem="5cr-p9-YX7" secondAttribute="bottom" constant="20" id="EnF-0M-fZg"/>
                                                 <constraint firstItem="7FT-mY-4YL" firstAttribute="leading" secondItem="0O8-5U-j1v" secondAttribute="leading" constant="5" id="FLD-PG-7KW"/>
                                                 <constraint firstAttribute="trailing" secondItem="a4j-rw-K0c" secondAttribute="trailing" constant="12.5" id="GaS-6w-TBk"/>
                                                 <constraint firstItem="4xN-Ps-8nl" firstAttribute="top" secondItem="j32-JW-wi6" secondAttribute="bottom" constant="20" id="H31-wn-3AQ"/>
@@ -15509,6 +15533,7 @@
                                                 <constraint firstItem="7FT-mY-4YL" firstAttribute="leading" secondItem="2R1-jz-xIK" secondAttribute="leading" id="Xbb-13-ANU"/>
                                                 <constraint firstItem="a4j-rw-K0c" firstAttribute="centerX" secondItem="j32-JW-wi6" secondAttribute="centerX" id="YEC-5H-M4a"/>
                                                 <constraint firstItem="UO4-wu-41a" firstAttribute="top" secondItem="92m-e2-ELl" secondAttribute="bottom" id="aHh-IO-aMy"/>
+                                                <constraint firstItem="dGg-gp-FbR" firstAttribute="centerX" secondItem="5cr-p9-YX7" secondAttribute="centerX" id="aUY-2I-dCF"/>
                                                 <constraint firstItem="92m-e2-ELl" firstAttribute="leading" secondItem="0O8-5U-j1v" secondAttribute="leading" constant="7" id="dhK-86-OqP"/>
                                                 <constraint firstItem="SoL-L9-juD" firstAttribute="leading" secondItem="2R1-jz-xIK" secondAttribute="trailing" constant="62" id="eX9-FI-cqR"/>
                                                 <constraint firstItem="H2M-Gx-k7a" firstAttribute="leading" secondItem="7FT-mY-4YL" secondAttribute="trailing" constant="8" id="enR-bd-6eS"/>
@@ -15519,6 +15544,7 @@
                                                 <constraint firstItem="KM5-g7-CLd" firstAttribute="centerX" secondItem="SoL-L9-juD" secondAttribute="centerX" id="kDv-pb-ghF"/>
                                                 <constraint firstItem="Kg7-qk-ziP" firstAttribute="top" secondItem="tLb-O0-XH5" secondAttribute="bottom" constant="20" id="mB7-Cd-JGh"/>
                                                 <constraint firstItem="H2M-Gx-k7a" firstAttribute="top" secondItem="2R1-jz-xIK" secondAttribute="bottom" constant="-0.5" id="mE4-U9-TTi"/>
+                                                <constraint firstItem="5cr-p9-YX7" firstAttribute="centerX" secondItem="a4j-rw-K0c" secondAttribute="centerX" id="qK6-PQ-st3"/>
                                                 <constraint firstItem="2R1-jz-xIK" firstAttribute="leading" secondItem="0O8-5U-j1v" secondAttribute="leading" constant="5" id="rau-aP-FT9"/>
                                                 <constraint firstItem="ze7-CV-GRp" firstAttribute="top" secondItem="0O8-5U-j1v" secondAttribute="top" id="riC-mA-lTi"/>
                                                 <constraint firstItem="7FT-mY-4YL" firstAttribute="leading" secondItem="4y1-hp-yeR" secondAttribute="leading" id="scM-wk-Ihp"/>
@@ -15542,6 +15568,8 @@
                                             <outlet property="imgMusicBtn" destination="vRU-qM-jep" id="2hD-Me-Pkc"/>
                                             <outlet property="likeBtn" destination="4xN-Ps-8nl" id="Rkv-us-W38"/>
                                             <outlet property="likeCountLbl" destination="ERB-ER-20F" id="8ei-dA-BVo"/>
+                                            <outlet property="mainVideoBtn" destination="dGg-gp-FbR" id="3Pd-os-qgD"/>
+                                            <outlet property="mainVideoLbl" destination="5cr-p9-YX7" id="ajx-1X-s0G"/>
                                             <outlet property="musicBtn" destination="SoL-L9-juD" id="5zS-TD-YdW"/>
                                             <outlet property="musicLbl" destination="H2M-Gx-k7a" id="Ak5-KB-xDw"/>
                                             <outlet property="nameBtn" destination="DDf-Wm-qu9" id="kLW-X2-tfQ"/>
@@ -15589,6 +15617,9 @@
                                         <state key="normal" title="Following">
                                             <color key="titleColor" name="ttWhiteText"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnSelection:" destination="VQa-JW-VwC" eventType="touchUpInside" id="2ah-Yb-OkR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8r-qo-EMu">
                                         <rect key="frame" x="151" y="14" width="103" height="43"/>
@@ -16091,11 +16122,11 @@
         <image name="19" width="5" height="20.666666030883789"/>
         <image name="26" width="22.666666030883789" height="20.333333969116211"/>
         <image name="27" width="19" height="19.333333969116211"/>
-        <image name="28" width="50" height="32"/>
         <image name="29" width="20.333333969116211" height="21.666666030883789"/>
         <image name="30" width="18" height="22.333333969116211"/>
         <image name="31" width="22.666666030883789" height="20.666666030883789"/>
         <image name="32" width="20.333333969116211" height="21"/>
+        <image name="33" width="50" height="32"/>
         <image name="34" width="20.333333969116211" height="22"/>
         <image name="35" width="18" height="22.666666030883789"/>
         <image name="8" width="73.333335876464844" height="36.666667938232422"/>
@@ -16198,6 +16229,7 @@
         <image name="saveVideo" width="160" height="259"/>
         <image name="scanerIcon" width="14.333333015441895" height="14.333333015441895"/>
         <image name="selected" width="64" height="64"/>
+        <image name="shift" catalog="system" width="128" height="106"/>
         <image name="soundsIcon" width="45" height="45"/>
         <image name="speedOffIcon" width="167" height="167"/>
         <image name="threeDotsHor" width="14" height="14"/>

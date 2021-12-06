@@ -10,7 +10,7 @@ import UIKit
 import EFInternetIndicator
 
 
-class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
     //MARK:- Outlets
     @IBOutlet weak var videoCollectionView: UICollectionView!
@@ -29,6 +29,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     var videoEmpty = false
     var isOtherController =  false             //Coming from other controller
     var currentIndex : IndexPath?             //Coming from other controller
+    var video_id = ""
     
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -87,7 +88,6 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         spinner.color = UIColor.white
         spinner.hidesWhenStopped = true
         videoCollectionView.refreshControl = refresher
-
         self.getDataForFeeds()
     }
     
@@ -215,9 +215,8 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
                     if startPoint == "0" {
                         self.videosMainArr.removeAll()
                     }
-                   self.videoResponse(startPoint:startPoint, resMsg: response as! [String : Any])
+                   self.videoResponse(startPoint:startPoint, resMsg:response as! [String : Any])
                 } else {
-         
                    // self.showToast(message: (response?.value(forKey: "msg") as? String)!, font: .systemFont(ofSize: 12))
                 }
             } else {
@@ -232,23 +231,21 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         
         let userID = UserDefaults.standard.string(forKey: "userID")
         let deviceID = UserDefaults.standard.string(forKey: "deviceID")
-        self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12))
+        //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12))
         ApiHandler.sharedInstance.showFollowingVideos(user_id: userID!, device_id: deviceID!, starting_point: startingPoint) { (isSuccess, response) in
             print("res following videos: ",response!)
-                self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12.0))
+            //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12.0))
             if isSuccess {
-                self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12.0))
+                //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12.0))
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     if startPoint == "0" {
                         self.videosMainArr.removeAll()
                     }
                     self.videoResponse(startPoint: startPoint, resMsg: response as! [String : Any])
-                    
                 } else {
                     self.btnRelated.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
                     self.btnFollowing.setTitleColor(UIColor.white, for: .normal)
-                    
-                    self.showToast(message: "Please Follow Someone", font: .systemFont(ofSize: 12))
+                    //self.showToast(message: "Please Follow Someone", font: .systemFont(ofSize: 12))
                 }
             } else {
                 print("response failed getFollowingVideos : ",response!)
@@ -290,11 +287,33 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
             }
         }
     }
+    
+    func getVideo(videoID:String) {
+        ApiHandler.sharedInstance.showVideoDetail(user_id: UserDefaults.standard.string(forKey: "userID")!, video_id: videoID) { (isSuccess, response) in
+            if isSuccess {
+                if response?.value(forKey: "code") as! NSNumber == 200 {
+                    self.videoResponse(startPoint: "0", resMsg: response as! [String : Any])
+                } else {
+                    AppUtility?.stopLoader(view: self.view)
+                    print("!200: ",response as Any)
+                }
+            } else {
+            }
+        }
+    }
 
     //MARK:- API Response
     func videoResponse(startPoint:String,resMsg:[String:Any]) {
-        let resMsg = resMsg["msg"] as! [[String:Any]]
-        for dic in resMsg{
+        var resArray = [[String:Any]]()
+        
+        if resMsg["msg"] is Dictionary<AnyHashable,Any> {
+            resArray.append(resMsg["msg"] as! [String:Any])
+        }
+        else {
+            resArray = resMsg["msg"] as! [[String:Any]]
+        }
+        
+        for dic in resArray {
             let videoDic = dic["Video"] as! NSDictionary
             let userDic = dic["User"] as! NSDictionary
             let soundDic = dic["Sound"] as! NSDictionary
@@ -307,10 +326,12 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
             
             let videoURL = videoDic.value(forKey: "video") as? String
             let desc = videoDic.value(forKey: "description") as? String
+            let allowLikes = videoDic.value(forKey: "allow_likes")
             let allowComments = videoDic.value(forKey: "allow_comments")
             let videoUserID = videoDic.value(forKey: "user_id")
             let videoID = videoDic.value(forKey: "id") as! String
             let allowDuet = videoDic.value(forKey: "allow_duet")
+            let main_video_id = videoDic.value(forKey: "main_video_id")
             let duetVidID = videoDic.value(forKey: "duet_video_id")
             
             //not strings
@@ -332,23 +353,28 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
             let countryID = countryDic.value(forKey: "id")
             let countryName = countryDic.value(forKey: "name")
        
-            let videoObj = videoMainMVC(videoID: videoID, videoUserID: "\(videoUserID!)", fb_id: "", description: desc ?? "", videoURL: videoURL ?? "", videoTHUM: "", videoGIF: "", view: "", section: "", sound_id: "", privacy_type: "", allow_comments: "\(allowComments!)", allow_duet: "\(allowDuet!)", block: "", duet_video_id: "", old_video_id: "", created: "", like: "", favourite: "", comment_count: "\(commentCount!)", like_count: "\(likeCount!)", followBtn: followBtn ?? "", duetVideoID: "\(duetVidID!)", userID: uid ?? "", first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImgPath  ?? "", role: "", username: userName  ?? "", social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: "\(soundName!)", CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+            let videoObj = videoMainMVC(videoID: videoID, videoUserID: "\(videoUserID!)", fb_id: "", description: desc ?? "", videoURL: videoURL ?? "", videoTHUM: "", videoGIF: "", view: "", section: "", sound_id: "", privacy_type: "", allow_likes: "\(allowLikes!)", allow_comments: "\(allowComments!)", allow_duet: "\(allowDuet!)", block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: "", like: "", favourite: "", comment_count: "\(commentCount!)", like_count: "\(likeCount!)", followBtn: followBtn ?? "", duetVideoID: "\(duetVidID!)", userID: uid ?? "", first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImgPath  ?? "", role: "", username: userName  ?? "", social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: "\(soundName!)", CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                 self.videosMainArr.append(videoObj)
         }
-      
         self.videoCollectionView.reloadData()
     }
-    //MARK:- function
     
+    //MARK:- function
     func getDataForFeeds() {
         if isOtherController == true {
             self.viewOptions.isHidden =  true
             btnBack.isHidden = false
             btnLiveUser.isHidden = true
-            self.videoCollectionView.performBatchUpdates(nil, completion: {
-                (result) in
-                self.videoCollectionView.scrollToItem(at:self.currentIndex!, at: .bottom, animated: false)
-            })
+            
+            if self.video_id != "" {
+                self.getVideo(videoID: self.video_id)
+            }
+            else {
+                self.videoCollectionView.performBatchUpdates(nil, completion: {
+                    (result) in
+                    self.videoCollectionView.scrollToItem(at:self.currentIndex!, at: .bottom, animated: false)
+                })
+            }
         } else {
             self.videosMainArr = videoArr
             if self.videosMainArr.count != 0 {
@@ -360,14 +386,14 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     }
     
     func btnLayoutDesign(sender:Int) {
-        self.startPoint = 1
+        self.startPoint = 0
         if sender == 0 {
             print("Select 0")
             let userID = UserDefaults.standard.string(forKey: "userID")
             if userID == nil || userID == "" {
                 loginScreenAppear()
             } else {
-                self.followingButton()
+                followingButton()
             }
         } else {
             self.relatedButton()
@@ -375,7 +401,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         }
     }
     
-    func relatedButton(){
+    func relatedButton() {
         self.btnRelated.setTitleColor(UIColor.white, for: .normal)
         self.btnFollowing.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         self.btnRelated.layer.shadowColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -391,8 +417,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         self.isFollowing = false
     }
     
-    
-    func followingButton(){
+    func followingButton() {
         print("device key: ",UserDefaults.standard.string(forKey: "deviceKey")!)
         self.btnRelated.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         self.btnFollowing.setTitleColor(UIColor.white, for: .normal)
@@ -408,6 +433,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         self.isFollowing = true
         getFollowingVideos(startPoint: "\(startPoint)")
     }
+    
     //MARK:- LoginScreen
     
     func loginScreenAppear() {

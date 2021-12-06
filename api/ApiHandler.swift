@@ -127,9 +127,8 @@ class ApiHandler:NSObject{
             "first_name"  : first_name,
             "last_name"   : last_name,
             "auth_token"  : auth_token,
-            "device_token": device_token
-            
-            
+            "device_token": device_token,
+            "country_id" : country_id
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.registerUser.rawValue)"
         
@@ -446,9 +445,10 @@ class ApiHandler:NSObject{
         ]
         var parameters = [String : String]()
         parameters = [
-            "dob"         : dob,
-            "phone"         : phone,
-            "username"         : username
+            "dob": dob,
+            "phone": phone,
+            "username": username,
+            "country_id": country_id
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.registerUser.rawValue)"
         
@@ -496,10 +496,11 @@ class ApiHandler:NSObject{
         ]
         var parameters = [String : String]()
         parameters = [
-            "dob"         : dob,
-            "email"         : email,
-            "username"         : username,
-            "password"         : password
+            "dob": dob,
+            "email": email,
+            "username": username,
+            "password": password,
+            "country_id": country_id
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.registerUser.rawValue)"
         
@@ -2206,7 +2207,6 @@ class ApiHandler:NSObject{
         parameters = [
             "user_id"    : user_id,
             "video_id"   : video_id
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showVideoDetail.rawValue)"
         
@@ -2246,7 +2246,6 @@ class ApiHandler:NSObject{
             }
         }
     }
-    
     
     //MARK:- showAllNotifications
     func showAllNotifications(user_id:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
