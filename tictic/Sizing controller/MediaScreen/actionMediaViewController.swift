@@ -94,7 +94,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
     
     @IBOutlet weak var progressBar: GTProgressBar!
     
-    var videoLengthSec = 5.0
+    var videoLengthSec = 24.0
     var duetURL:URL!
     
     var arrVideo: videoMainMVC?
@@ -166,7 +166,6 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
             focusTapGestureRecognizer.numberOfTapsRequired = 1
             masterViewOutlet.addGestureRecognizer(focusTapGestureRecognizer)
         }
-        
     }
  
 //    MARK:- UIVIEWS ACTIONS
@@ -185,7 +184,6 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
         }
 
         NextLevel.shared.flipCaptureDevicePosition()
-        
     }
     
     @objc func speedViewAction(sender : UITapGestureRecognizer) {
@@ -261,8 +259,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
     }
     
 //    MARK:- ANIMATION
-    func generalBtnAni(viewName:UIImageView)
-    {
+    func generalBtnAni(viewName:UIImageView) {
         UIView.animate(withDuration: 0.2,
         animations: {
             viewName.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
@@ -273,16 +270,14 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
                 viewName.transform = CGAffineTransform.identity
             }
         })
-
     }
-    
     
     func soundsMarqueeFunc(){
         
     }
     
 //    MARK:- DEVICE CHECKS
-    func devicesChecks(){
+    func devicesChecks() {
         if DeviceType.iPhoneWithHomeButton {
             print("view height ",view.frame.height)
             masterViewHeightConstraint.constant = self.view.frame.height/6.5
@@ -412,7 +407,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
         NextLevel.shared.stop()
     }
     
-    func cameraAudioPermission(){
+    func cameraAudioPermission() {
         
         if NextLevel.authorizationStatus(forMediaType: AVMediaType.video) == .authorized &&
             NextLevel.authorizationStatus(forMediaType: AVMediaType.audio) == .authorized {
@@ -457,25 +452,25 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
     @IBAction func btnDone(_ sender: Any) {
         sessionDoneFunc()
     }
+    
     @IBAction func btnStackViewMove(_ sender: AnyObject) {
-           if sender.tag == 0{
-               UIView.animate(withDuration: 0.5) {
-                   self.HorizontalStackView.constant = 22
-                   self.videoLengthSec = 5.0   //sec
-                   self.configCapSession()
-                   self.view.layoutIfNeeded()
-                  
-               }
-           }else{
-               UIView.animate(withDuration: 0.5) {
+        /*if sender.tag == 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.HorizontalStackView.constant = 22
+                self.videoLengthSec = 5.0   //sec
+                self.configCapSession()
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            UIView.animate(withDuration: 0.5) {
                 self.HorizontalStackView.constant = -26
                 self.videoLengthSec = 24.0  //sec
                 self.configCapSession()
                 self.view.layoutIfNeeded()
-               }
-           }
-           
-       }
+            }
+        }*/
+    }
+    
 //    func sessionDoneFunc(){
 //        //        let nlS =
 //            if let session = NextLevel.shared.session {

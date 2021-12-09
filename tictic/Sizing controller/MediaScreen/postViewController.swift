@@ -97,8 +97,7 @@ class postViewController: UIViewController,UITextViewDelegate {
         }, normalFont: .systemFont(ofSize: 14, weight: UIFont.Weight.light), hashTagFont: .systemFont(ofSize: 14, weight: UIFont.Weight.bold), mentionFont: .systemFont(ofSize: 14, weight: UIFont.Weight.bold))
     }
     
-    func uploadData(){
-        
+    func uploadData() {
         let hashtags = describeTextView.text.hashtags()
         let mentions = describeTextView.text.mentions()
 
@@ -217,7 +216,7 @@ class postViewController: UIViewController,UITextViewDelegate {
                         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
                         
                         
-                    }else{
+                    } else {
                         AppUtility?.stopLoader(view: self.view)
                         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
                         print(dic)
@@ -239,7 +238,7 @@ class postViewController: UIViewController,UITextViewDelegate {
     }
         
     @IBAction func btnPost(_ sender: Any) {
-        if (UserDefaults.standard.string(forKey: "hashtag_id") == "") {
+        if self.topic_id == "" {
             showToast(message: "Please choose a topic for your video", font: .systemFont(ofSize: 12))
             return;
         }

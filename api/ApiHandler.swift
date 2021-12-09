@@ -810,7 +810,6 @@ class ApiHandler:NSObject{
             "user_id"        : user_id,
             "device_id"      : device_id,
             "starting_point" : starting_point
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showRelatedVideos.rawValue)"
         
@@ -906,14 +905,14 @@ class ApiHandler:NSObject{
         }
     }
     //MARK:-showVideosAgainstUserID
-    func showVideosAgainstUserID(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+    func showVideosAgainstUserID(user_id:String, other_user_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let headers: HTTPHeaders = [
             "Api-Key": API_KEY
         ]
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
-            
+            "other_user_id"  : other_user_id
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showVideosAgainstUserID.rawValue)"
         
@@ -963,7 +962,6 @@ class ApiHandler:NSObject{
         parameters = [
             "user_id"        : user_id,
             "other_user_id"  : other_user_id
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showUserDetail.rawValue)"
         
@@ -1011,7 +1009,6 @@ class ApiHandler:NSObject{
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showUserDetail.rawValue)"
         
@@ -1112,8 +1109,6 @@ class ApiHandler:NSObject{
         parameters = [
             "user_id"        : user_id,
             "video_id"       : video_id,
-            
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.likeVideo.rawValue)"
         
@@ -1164,7 +1159,6 @@ class ApiHandler:NSObject{
             "device_id"        : device_id,
             "video_id"         : video_id,
             "user_id"          : user_id
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.watchVideo.rawValue)"
         
@@ -1611,8 +1605,18 @@ class ApiHandler:NSObject{
             "Api-Key":API_KEY
         ]
         var parameters = [String : String]()
+        
+        var uid = ""
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        if userID != "" && userID != nil {
+            uid = userID!
+        } else {
+            uid = ""
+        }
+        
         parameters = [
-            "section": section
+            "section": section,
+            "user_id": uid
         ]
         print(finalUrl)
         AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in

@@ -151,7 +151,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         self.fetchingUserDataFunc()
     }
     
-    func fetchingUserDataFunc(){
+    func fetchingUserDataFunc() {
        // self.userID = UserDefaults.standard.string(forKey: "userID")!  comment:- Arslan
         AppUtility?.startLoader(view: self.view)
         
@@ -304,7 +304,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     //MARK:- Delgate Functions
     
-    @objc func btnFollowFunc(sender : UIButton){
+    @objc func btnFollowFunc(sender : UIButton) {
         print(sender.tag)
         
         let uid = UserDefaults.standard.string(forKey: "userID")
@@ -335,7 +335,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     
     //MARK:- Login screen will appear func
-    func loginScreenAppear(){
+    func loginScreenAppear() {
         let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
         navController.navigationBar.isHidden = true
         navController.modalPresentationStyle = .overFullScreen
@@ -343,7 +343,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         self.present(navController, animated: true, completion: nil)
     }
     
-    @objc func btnCrossTapped(sender : UIButton){
+    @objc func btnCrossTapped(sender : UIButton) {
         print(sender.tag)
         self.remove(index: sender.tag)
     }
@@ -631,7 +631,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     // GET other USER DETAILS By Name
 
-    func showOwnDetailByName(){
+    func showOwnDetailByName() {
         self.userData.removeAll()
         var uid = ""
         let userID = UserDefaults.standard.string(forKey: "userID")
@@ -699,18 +699,18 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     self.userData.append(user)
                     
                     self.setProfileData()
-                }else{
+                } else {
                     print("showOwnDetail API:",response?.value(forKey: "msg") as Any)
                 }
                 
-            }else{
+            } else {
                 print("showOwnDetail API:",response?.value(forKey: "msg") as Any)
             }
         }
     }
     
     // GET other USER DETAILS
-    func getOtherUserDetails(){
+    func getOtherUserDetails() {
         self.userData.removeAll()
         
         var uid = ""
@@ -777,14 +777,14 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         self.videosMainArr.removeAll()
         
         var uid = ""
-        if otherUserID != "" {
-            uid = self.otherUserID
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        if userID != "" && userID != nil {
+            uid = userID!
         } else {
-            uid = self.userID
+            uid = self.otherUserID
         }
-        print("uid: ",uid)
         
-        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
                 print("response: ",response?.allValues)
@@ -955,13 +955,14 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         self.videosMainArr.removeAll()
         
         var uid = ""
-        if otherUserID != "" {
-            uid = self.otherUserID
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        if userID != "" && userID != nil {
+            uid = userID!
         } else {
-            uid = self.userID
+            uid = self.otherUserID
         }
         
-        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
                 print("response: ",response?.allValues)

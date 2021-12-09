@@ -70,7 +70,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     
     //MARK:- SetupView
     
-    func setupView(){
+    func setupView() {
         tblheight.constant = CGFloat(entityDataArr.count * 190)
     }
     
@@ -228,7 +228,6 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     
     //    MARK:- VIDEOS DATA API
     func getVideosData() {
-        print(section)
         entityDataArr.removeAll()
         ApiHandler.sharedInstance.showDiscoverySections(section: section) { (isSuccess, response) in
             if isSuccess {
@@ -260,7 +259,6 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
                         videosArr.removeAll()
                         
                         for j in 0 ..< videosObj.count {
-                            
                             let videosData = videosObj[j] as! NSDictionary
                             
                             let videoObj = videosData.value(forKey: "Video") as! NSDictionary
@@ -288,7 +286,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
                             let videoGif = videoObj.value(forKey: "gif") as! String
                             let videoLikes = "\(videoObj.value(forKey: "like_count") ?? "")"
                             let videoComments = "\(videoObj.value(forKey: "comment_count") ?? "")"
-                            let like = "\(videoObj.value(forKey: "like") ?? "")"
+                            let like = "\(videoObj.value(forKey: "like") ?? 0)"
                             let allowLikes = videoObj.value(forKey: "allow_likes") as! String
                             let allowComments = videoObj.value(forKey: "allow_comments") as! String
                             let videoID = videoObj.value(forKey: "id") as! String
@@ -330,7 +328,6 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
                     }
                     AppUtility?.stopLoader(view: self.view)
                 } else {
-                    //self.showToast(message: "not200", font: .systemFont(ofSize: 12))
                     AppUtility?.stopLoader(view: self.view)
                 }
             }

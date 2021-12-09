@@ -137,7 +137,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         let videoObj = vidObj.value(forKey: "Video") as! NSDictionary
                         let userObj = videoObj.value(forKey: "User") as! NSDictionary
                         let soundObj = videoObj.value(forKey: "Sound") as! NSDictionary
-                        let topicObj = videoObj.value(forKey: "Topic") as! NSDictionary
+                        let topicObj = vidObj.value(forKey: "Topic") as! NSDictionary
                         let countryObj = videoObj.value(forKey: "Country") as! NSDictionary
                         
                         let videoUrl = videoObj.value(forKey: "video") as! String
@@ -177,14 +177,13 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         
                         self.videosDataArr.append(video)
                     }
-                    
                 }
                 
                 AppUtility?.stopLoader(view: self.view)
                 print("videoDataArr: ",self.videosDataArr)
-                if self.videosDataArr.isEmpty{
+                if self.videosDataArr.isEmpty {
                     self.videosWhoopsView.isHidden = false
-                }else{
+                } else {
                     self.videosWhoopsView.isHidden = true
                 }
                 self.videosCV.reloadData()
@@ -193,12 +192,12 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
     }
     
 //    MARK:- sounds API
-    func getSoundsDataAPI(){
+    func getSoundsDataAPI() {
         soundsDataArr.removeAll()
         AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFavouriteSounds(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
-            if isSuccess{
+            if isSuccess {
                 
                 print("response: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -229,9 +228,9 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                 }
                 AppUtility?.stopLoader(view: self.view)
                 print("videoDataArr: ",self.soundsDataArr)
-                if self.soundsDataArr.isEmpty{
+                if self.soundsDataArr.isEmpty {
                     self.soundsWhoopsView.isHidden = false
-                }else{
+                } else {
                     self.soundsWhoopsView.isHidden = true
                 }
                 self.soundsTV.reloadData()
@@ -247,7 +246,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
         ApiHandler.sharedInstance.showFavouriteHashtags(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             
             AppUtility?.stopLoader(view: self.view)
-            if isSuccess{
+            if isSuccess {
                 
                 print("response: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -267,20 +266,18 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         
                         self.hashTagDataArr.append(obj)
                     }
-                    
                 }
                 AppUtility?.stopLoader(view: self.view)
                 print("hashTagDataArr: ",self.hashTagDataArr)
-                if self.hashTagDataArr.isEmpty{
+                if self.hashTagDataArr.isEmpty {
                     self.hashTagWhoopsView.isHidden = false
-                }else{
+                } else {
                     self.hashTagWhoopsView.isHidden = true
                 }
                 self.hashTagTV.reloadData()
             }
         }
     }
-    
 }
 
 //MARK:- fav VIDEOS setup

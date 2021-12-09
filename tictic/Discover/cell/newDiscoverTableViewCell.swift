@@ -79,11 +79,6 @@ class newDiscoverTableViewCell: UITableViewCell,UICollectionViewDataSource,UICol
             vc.isOtherController = true
             vc.currentIndex = indexPath
             vc.hidesBottomBarWhenPushed = true
-           /* let vc =  storyMain.instantiateViewController(withIdentifier: "homeFeedVC") as! homeFeedViewController
-            vc.discoverVideoArr = videosObj
-            vc.indexAt = indexPath
-            vc.currentVidIP = indexPath
-            vc.hidesBottomBarWhenPushed = true*/
             rootViewController.navigationController?.pushViewController(vc, animated: true)
         }
         print("videosObj.count",videosObj.count)
@@ -101,5 +96,4 @@ class newDiscoverTableViewCell: UITableViewCell,UICollectionViewDataSource,UICol
     //MARK: Google Maps
     
     //MARK:- View Life Cycle End here...
-
 }

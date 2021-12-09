@@ -36,10 +36,11 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var commentCountLbl: UILabel!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var musicBtn: UIButton!
+    @IBOutlet weak var sourceRepliesLbl: UILabel!
     @IBOutlet weak var imgMusicBtn: UIImageView!
     @IBOutlet weak var pauseImgView: UIImageView!
-    @IBOutlet weak var mainVideoBtn: UIButton!
-    @IBOutlet weak var mainVideoLbl: UILabel!
+    @IBOutlet weak var replyBtn: UIButton!
+    @IBOutlet weak var replyLbl: UILabel!
     
     // MARK: - Variables
     
@@ -83,7 +84,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         pauseImgView.isHidden = true
         playerView.contentMode = .scaleAspectFill
         self.profileImgView.makeRounded()
-        self.imgMusicBtn.makeRounded()
+        //self.imgMusicBtn.makeRounded()
         self.musicBtn.makeRounded()
         self.videoPlayer()
         
@@ -106,7 +107,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         
         let playerIcon = AppUtility?.detectURL(ipString: post.CDPlayer)
         let CDPlayerUrl = URL(string: playerIcon!)
-        self.imgMusicBtn.sd_setImage(with:CDPlayerUrl, placeholderImage: UIImage(named: ""))
+        //self.imgMusicBtn.sd_setImage(with:CDPlayerUrl, placeholderImage: UIImage(named: ""))
         
         self.musicLbl.text = post.soundName
         self.likeCountLbl.text = post.like_count ?? "0".shorten()
@@ -114,41 +115,43 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         self.liked_count = Int(post.like_count) ?? 0
         
         if post.allow_likes == "false" {
-            self.likeBtn.isEnabled = false
+            self.likeBtn.isHidden = true
             self.likeCountLbl.isHidden = true;
         }
         else {
-            self.likeBtn.isEnabled = true
+            self.likeBtn.isHidden = false
             self.likeCountLbl.isHidden = false;
         }
         
         if post.allow_comments == "false" {
-            self.commentBtn.isEnabled = false
+            self.commentBtn.isHidden = true
             self.commentCountLbl.isHidden = true;
         }
         else {
-            self.commentBtn.isEnabled = true
+            self.commentBtn.isHidden = false
             self.commentCountLbl.isHidden = false;
         }
         
         if post.verified == "0" {
             self.statusProfile.isHidden = true
         }
+        
         if post.like ==  "1" {
-            likeBtn.tintColor = .red
+            //likeBtn.tintColor = .red
+            likeBtn.isSelected = true
             liked = true
         } else {
-            likeBtn.tintColor = .white
+            //likeBtn.tintColor = .white
+            likeBtn.isSelected = false
             liked = false
         }
         
-        if post.main_video_id != "<null>" {
-            mainVideoBtn.isHidden = false;
-            mainVideoLbl.isHidden = false;
-        }
-        else {
-            mainVideoBtn.isHidden = true;
-            mainVideoLbl.isHidden = true;
+        if post.allow_duet == "0" {
+            replyBtn.isHidden = true;
+            replyLbl.isHidden = true;
+        } else {
+            replyBtn.isHidden = false;
+            replyLbl.isHidden = false;
         }
         
         let duetVidID = post.duetVideoID
@@ -157,6 +160,14 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             self.playerView.contentMode = .scaleAspectFit
         } else {
             self.playerView.contentMode = .scaleAspectFill
+        }
+        
+        if self.arrVideo?.main_video_id != "<null>" {
+            musicBtn.isSelected = true
+            sourceRepliesLbl.text = "Original"
+        } else {
+            musicBtn.isSelected = false
+            sourceRepliesLbl.text = "Replies"
         }
         
         self.captionLbl.setText(text: post.description,textColor: .white, withHashtagColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), andMentionColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), andCallBack: { (strng, type) in
@@ -257,16 +268,16 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
                 self.progressView.signal()
                 self.progressView.isHidden = true
                 self.musicBtn.stopRotating()
-                self.imgMusicBtn.stopRotating()
+                //self.imgMusicBtn.stopRotating()
             case .playing:
                 self.pauseImgView.isHidden = true
                 self.progressView.isHidden = true
                 self.musicBtn.startRotating()
-                self.imgMusicBtn.startRotating()
+                //self.imgMusicBtn.startRotating()
                 print("playing")
             }
         }
-        print("video Pause Reason: ",playerView.pausedReason )
+        print("video Pause Reason: ", playerView.pausedReason)
     }
     
     // MARK: - Button Actions
@@ -290,29 +301,28 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         btnLike(senderTag:sender.tag)
     }
     
-    func btnLike(senderTag:Int){
+    func btnLike(senderTag:Int) {
         print("Like btn SenderTag:\(senderTag)")
         let userID = UserDefaults.standard.string(forKey: "userID")
         
         if userID != "" && userID != nil {
             var obj = self.arrVideo
             if self.liked == true {
-              
-                self.likeBtn.tintColor = .white
+                //self.likeBtn.tintColor = .white
+                likeBtn.isSelected = false
                 liked_count = liked_count - 1
                 self.likeCountLbl.text = "\(liked_count!)"
                 obj!.like = "0"
                 obj!.like_count  = "\(liked_count!)"
                 self.liked = false
             } else {
-                
-                self.likeBtn.tintColor = .red
+                //self.likeBtn.tintColor = .red
+                likeBtn.isSelected = true
                 liked_count = liked_count + 1
                 self.likeCountLbl.text = "\(liked_count!)"
                 obj!.like = "1"
                 self.liked = true
                 obj!.like_count  = "\(liked_count!)"
-                
             }
             delegate?.updateObj(obj: obj!, index: senderTag, islike: true)
         } else {
@@ -323,7 +333,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     @IBAction func btnprofile (_ sender: AnyObject) {
         if let rootViewController = UIApplication.topViewController() {
             let storyMain = UIStoryboard(name: "Main", bundle: nil)
-            print("obj user id : ",arrVideo!.userID)
+            print("obj user id : ", arrVideo!.userID)
             let userID = UserDefaults.standard.string(forKey: "userID")
             let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
             vc.isOtherUserVisting = true
@@ -381,10 +391,21 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     @IBAction func showReplies(_ sender: AnyObject) {
         if let rootViewController = UIApplication.topViewController() {
             let storyMain = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyMain.instantiateViewController(withIdentifier: "VideoRepliesVC") as! VideoRepliesViewController
-            vc.video_id = self.arrVideo!.videoID
-            vc.hidesBottomBarWhenPushed = true
-            rootViewController.navigationController?.pushViewController(vc, animated: true)
+            
+            if self.arrVideo?.main_video_id != "<null>" {
+                let vc = storyMain.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
+                vc.video_id = self.arrVideo!.main_video_id
+                vc.currentIndex = IndexPath.init(index: 0)
+                vc.isOtherController =  true
+                vc.hidesBottomBarWhenPushed = true
+                rootViewController.navigationController?.pushViewController(vc, animated: true)
+            }
+            else {
+                let vc = storyMain.instantiateViewController(withIdentifier: "VideoRepliesVC") as! VideoRepliesViewController
+                vc.video_id = self.arrVideo!.videoID
+                vc.hidesBottomBarWhenPushed = true
+                rootViewController.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

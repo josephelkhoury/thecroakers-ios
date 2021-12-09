@@ -14,6 +14,7 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     
     var bgView:UIImageView?
     var homeTouchCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +26,7 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
         UITabBar.appearance().barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
         self.addCenterButtonNew(withImage: UIImage(named: "33")!, highlightImage: UIImage(named: "33")!)
-        
     }
-    
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
@@ -64,13 +63,10 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
         //        MARK:- JK
         
         //        self.addCenterButton()
-        
-        
     }
     
     // Add Custom video making button in tabbar
     private func addCenterButton() {
-        
         button.setImage(UIImage(named: "33"), for: .normal)
         let square = self.tabBar.frame.size.height
         button.frame = CGRect(x: 0, y: 0, width: square, height: square)
@@ -113,8 +109,7 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
         let tabBarIndex = tabBarController.selectedIndex
         
         
-        if tabBarIndex == 0 {
-            
+        if tabBarIndex == 0 {            
             print("index@0")
             // self.tabBar.isTranslucent = true
             // UITabBar.appearance().shadowImage = UIImage()
@@ -189,14 +184,11 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     }
     
     func addCenterButtonNew(withImage buttonImage : UIImage, highlightImage: UIImage) {
-        
         var paddingBottom : CGFloat = 0.0
         
-        if !DeviceType.iPhoneWithHomeButton{
-            
+        if !DeviceType.iPhoneWithHomeButton {
             paddingBottom = 4.0
         }
-        
         
         let button = UIButton(type: .custom)
         button.autoresizingMask = [.flexibleRightMargin, .flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin]
@@ -214,8 +206,7 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
         
         button.addTarget(self, action: #selector(handleTouchTabbarCenter), for: .touchUpInside)
         
-        if let count = self.tabBar.items?.count
-        {
+        if let count = self.tabBar.items?.count {
             let i = floor(Double(count / 2))
             let item = self.tabBar.items![Int(i)]
             item.title = "Inbox"

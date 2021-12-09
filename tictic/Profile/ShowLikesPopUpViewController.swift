@@ -15,7 +15,7 @@ class ShowLikesPopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.lblLikesDescription.text = "\(userData[0].username) recived a total of \n \(userData[0].likesCount) likes all videos"
+        self.lblLikesDescription.text = "\(userData[0].username) received a total of \n \(userData[0].likesCount) likes across all videos"
     }
     
     @IBAction func okPressed(_ sender: UIButton) {

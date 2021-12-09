@@ -134,7 +134,7 @@ class privateVideosViewController: UIViewController,UICollectionViewDelegate,UIC
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func getVideos(){
+    func getVideos() {
         
         //        AppUtility?.stopLoader(view: view)
         
@@ -142,14 +142,15 @@ class privateVideosViewController: UIViewController,UICollectionViewDelegate,UIC
         self.videosArr.removeAll()
         
         var uid = ""
-        if otherUserID != ""{
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        if userID != "" && userID != nil {
+            uid = userID!
+        } else {
             uid = self.otherUserID
-        }else{
-            uid = self.userID
         }
         
         //        AppUtility?.startLoader(view: self.view)
-        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
                 print("response: ",response?.allValues)

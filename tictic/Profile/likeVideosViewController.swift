@@ -22,9 +22,6 @@ class likeVideosViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//                self.setupView()
-
     }
     
     
@@ -221,12 +218,11 @@ class likeVideosViewController: UIViewController,UICollectionViewDelegate,UIColl
                 self.videoCollection.reloadData()
                 
                 
-            }else{
+            } else {
                 AppUtility?.stopLoader(view: self.view)
 //                self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
                 print("showVideosAgainstUserID API:",response?.value(forKey: "msg") as Any)
             }
         }
     }
-
 }
