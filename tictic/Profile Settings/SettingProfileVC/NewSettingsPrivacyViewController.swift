@@ -14,7 +14,7 @@ class NewSettingsPrivacyViewController: UIViewController {
     var arrAccount = [["name":"Manage Account","image":"2-2"],
                       ["name":"Privacy","image":"ic_privacy"],
                       ["name":"Request Verification","image":"ic_verify_request-1"],
-                      ["name":"QR Code","image":"10-10"]],
+                      ["name":"QR Code","image":"10-10"]];
                       //["name":"Balance","image":"8-8"],
                       //["name":"Payout Setting","image":"ic_payout_setting"]
     
