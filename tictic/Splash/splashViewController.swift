@@ -7,28 +7,61 @@
 //
 
 import UIKit
+import AVFoundation
 
 class splashViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView!
     var videosRelatedArr = [videoMainMVC]()
     var objRelatedVideo  = [String:Any]()
+    var avPlayer: AVPlayer!
+    var avPlayerLayer: AVPlayerLayer!
+    var dataLoaded: Bool = false
     
     //MARK:- viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupVideoAnimation()
         self.settingUDID()
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.activityIndicator.hidesWhenStopped =  true
+        super.viewDidAppear(animated)
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.activityIndicator.startAnimating()
-        self.activityIndicator.isHidden =  false
+        super.viewDidDisappear(animated)
     }
     
-    //MARK:- setting UDID
+    func setupVideoAnimation() {
+        let theURL = Bundle.main.url(forResource:"logo_animation", withExtension: "mp4")
+
+        avPlayer = AVPlayer(url: theURL!)
+        avPlayerLayer = AVPlayerLayer(player: avPlayer)
+        avPlayerLayer.videoGravity = .resizeAspectFill
+        avPlayer.volume = 0
+        avPlayer.actionAtItemEnd = .none
+
+        avPlayerLayer.frame = view.layer.bounds
+        view.backgroundColor = .clear
+        view.layer.insertSublayer(avPlayerLayer, at: 0)
+        
+        avPlayer.play()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: avPlayer.currentItem)
+    }
+    
+    @objc func playerItemDidReachEnd(notification: Notification) {
+        if dataLoaded == true {
+            pushToHome()
+        }
+        else {
+            let p: AVPlayerItem = notification.object as! AVPlayerItem
+            p.seek(to: .zero) { (success) in
+            }
+        }
+    }
+    
+    //MARK:- API CALLS
     
     func getAllVideos(relatedVideo:[videoMainMVC],isVideoEmpty:Bool) {
         var userID = UserDefaults.standard.string(forKey: "userID")
@@ -96,20 +129,12 @@ class splashViewController: UIViewController {
                         videoArr.append(videoObj)
                     }
                  
-                    let story = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = story.instantiateViewController(withIdentifier: "TabbarViewController") as! TabbarViewController
-                    let nav = UINavigationController(rootViewController: vc)
-                    nav.navigationBar.isHidden = true
-                    self.view.window?.rootViewController = nav
+                    self.dataLoaded = true
                 }
                 else {
                     videoArr.append(contentsOf: self.videosRelatedArr)
                     
-                    let story = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = story.instantiateViewController(withIdentifier: "TabbarViewController") as! TabbarViewController
-                    let nav = UINavigationController(rootViewController: vc)
-                    nav.navigationBar.isHidden = true
-                    self.view.window?.rootViewController = nav
+                    self.dataLoaded = true
                 }
             } else {
                 print("response failed getAllVideos : ",response!)
@@ -172,5 +197,13 @@ class splashViewController: UIViewController {
                 print("Something went wrong in API registerDevice: ",response!)
             }
         }
+    }
+    
+    func pushToHome() {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let vc = story.instantiateViewController(withIdentifier: "TabbarViewController") as! TabbarViewController
+        let nav = UINavigationController(rootViewController: vc)
+        nav.navigationBar.isHidden = true
+        self.view.window?.rootViewController = nav
     }
 }

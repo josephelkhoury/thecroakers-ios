@@ -47,6 +47,8 @@ class phoneNoViewController: UIViewController,UITextFieldDelegate,CNContactPicke
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.countryDataNotification(_:)), name: NSNotification.Name(rawValue: "countryDataNotification"), object: nil)
         NotificationCenter.default.post(name: Notification.Name("pauseSongNoti"), object: nil)
+        
+        btnEmailAction(self)
     }
     
     @objc func countryDataNotification(_ notification: NSNotification) {
@@ -126,8 +128,6 @@ class phoneNoViewController: UIViewController,UITextFieldDelegate,CNContactPicke
         
         btnPhoneBottomView.isHidden = false
         btnPhone.setTitleColor(UIColor(named: "theme"), for: .normal)
-        
-        
     }
     @IBAction func btnEmailAction(_ sender: Any) {
         btnPhoneBottomView.isHidden = true

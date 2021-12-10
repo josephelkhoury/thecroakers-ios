@@ -238,6 +238,7 @@
 		DCA1410727492ACD004EA1FA /* topicMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1410627492ACD004EA1FA /* topicMVC.swift */; };
 		DCA1410E2749524C004EA1FA /* topicsVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1410D2749524B004EA1FA /* topicsVideoViewController.swift */; };
 		DCA14113274CFA3A004EA1FA /* VideoRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA14112274CFA3A004EA1FA /* VideoRepliesViewController.swift */; };
+		DCC206292763A53D00D26E66 /* logo_animation.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DCC206262763A17400D26E66 /* logo_animation.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -510,6 +511,7 @@
 		DCA1410627492ACD004EA1FA /* topicMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topicMVC.swift; sourceTree = "<group>"; };
 		DCA1410D2749524B004EA1FA /* topicsVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topicsVideoViewController.swift; sourceTree = "<group>"; };
 		DCA14112274CFA3A004EA1FA /* VideoRepliesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRepliesViewController.swift; sourceTree = "<group>"; };
+		DCC206262763A17400D26E66 /* logo_animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = logo_animation.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1413,6 +1415,7 @@
 				DC917F4C274799F200CA918F /* GoogleService-Info.plist */,
 				AE543C5A2270361C00E47594 /* Info.plist */,
 				04CEDA6926983C60007AB5DE /* lottieHeart2.json */,
+				DCC206262763A17400D26E66 /* logo_animation.mp4 */,
 				04CD775D268F1F3100F9B42F /* Assets.xcassets */,
 				5EB236DF25CACC310073D45B /* hashMention.swift */,
 			);
@@ -1563,6 +1566,7 @@
 				AE543C592270361C00E47594 /* LaunchScreen.storyboard in Resources */,
 				AE543C542270361B00E47594 /* Main.storyboard in Resources */,
 				047CFACA2695C13400F609B4 /* 22954-plus-to-tick.json in Resources */,
+				DCC206292763A53D00D26E66 /* logo_animation.mp4 in Resources */,
 				04CEDA6A26983C60007AB5DE /* lottieHeart2.json in Resources */,
 				5E772A122531B5A100966AD1 /* Localizable.strings in Resources */,
 				042CB03926C7CC7B00625968 /* FilterCollectionViewCell.xib in Resources */,

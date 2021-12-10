@@ -2531,32 +2531,10 @@
                     <view key="view" contentMode="scaleToFill" id="R4l-Ux-T8C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="p1H-7W-vVH">
-                                <rect key="frame" x="177.5" y="556" width="20" height="20"/>
-                                <color key="color" name="theme"/>
-                            </activityIndicatorView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iconApp" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-ng-Xa6">
-                                <rect key="frame" x="66" y="234" width="242" height="198"/>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="re0-kv-rdr"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="e9O-ng-Xa6" firstAttribute="centerX" secondItem="re0-kv-rdr" secondAttribute="centerX" id="13w-0p-PmR"/>
-                            <constraint firstItem="re0-kv-rdr" firstAttribute="trailing" secondItem="e9O-ng-Xa6" secondAttribute="trailing" id="23h-l7-YLX"/>
-                            <constraint firstItem="p1H-7W-vVH" firstAttribute="centerX" secondItem="re0-kv-rdr" secondAttribute="centerX" id="3Pu-bN-lcP"/>
-                            <constraint firstItem="e9O-ng-Xa6" firstAttribute="leading" secondItem="re0-kv-rdr" secondAttribute="leading" id="R7c-eE-Ods"/>
-                            <constraint firstItem="e9O-ng-Xa6" firstAttribute="centerY" secondItem="re0-kv-rdr" secondAttribute="centerY" id="Vqg-0T-beg"/>
-                            <constraint firstItem="re0-kv-rdr" firstAttribute="bottom" secondItem="p1H-7W-vVH" secondAttribute="bottom" constant="91" id="jwZ-tQ-zKv"/>
-                            <constraint firstAttribute="bottom" secondItem="e9O-ng-Xa6" secondAttribute="bottom" id="sBv-Rq-WJA"/>
-                            <constraint firstItem="e9O-ng-Xa6" firstAttribute="top" secondItem="R4l-Ux-T8C" secondAttribute="top" id="sJT-gY-vDy"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="puS-Ob-3hk"/>
-                    <connections>
-                        <outlet property="activityIndicator" destination="p1H-7W-vVH" id="MgO-tB-iLg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbV-ue-oOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4670,7 +4648,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LcY-DR-syv">
                                 <rect key="frame" x="0.0" y="68" width="375" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYt-SS-0R3">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYt-SS-0R3">
                                         <rect key="frame" x="0.0" y="5" width="187.5" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Phone">
@@ -4853,7 +4831,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-H9-hBx" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="89" width="337.5" height="39"/>
+                                        <rect key="frame" x="0.0" y="89" width="337.5" height="18.5"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -5183,7 +5161,7 @@
                                 <rect key="frame" x="20" y="0.0" width="335" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3c-Cd-vYD" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="20" width="335" height="39"/>
+                                        <rect key="frame" x="0.0" y="20" width="335" height="18.5"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -16010,7 +15988,7 @@
     </scenes>
     <designables>
         <designable name="6eI-dd-7E5">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="95" height="17"/>
         </designable>
         <designable name="78c-0Q-L9T">
             <size key="intrinsicContentSize" width="1500" height="1500"/>
@@ -16019,13 +15997,13 @@
             <size key="intrinsicContentSize" width="150" height="84"/>
         </designable>
         <designable name="EiP-JG-hoN">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
         </designable>
         <designable name="F2W-H9-hBx">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="62.5" height="18.5"/>
         </designable>
         <designable name="FKv-bv-FPq">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="62.5" height="18.5"/>
         </designable>
         <designable name="H2M-Gx-k7a">
             <size key="intrinsicContentSize" width="37.5" height="16.5"/>
@@ -16043,16 +16021,13 @@
             <size key="intrinsicContentSize" width="64" height="30"/>
         </designable>
         <designable name="dEU-F0-gpN">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="64.5" height="18.5"/>
         </designable>
         <designable name="dek-49-pB7">
             <size key="intrinsicContentSize" width="18" height="17"/>
         </designable>
         <designable name="e3c-Cd-vYD">
-            <size key="intrinsicContentSize" width="335" height="39.220703125"/>
-        </designable>
-        <designable name="g8V-F9-x0H">
-            <size key="intrinsicContentSize" width="30" height="34"/>
+            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
         </designable>
         <designable name="gIi-Kh-0ib">
             <size key="intrinsicContentSize" width="50" height="50"/>
@@ -16061,7 +16036,7 @@
             <size key="intrinsicContentSize" width="18" height="17"/>
         </designable>
         <designable name="hws-AG-qE2">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="66" height="18.5"/>
         </designable>
         <designable name="ivR-Iy-Bml">
             <size key="intrinsicContentSize" width="119" height="18.5"/>
@@ -16070,13 +16045,13 @@
             <size key="intrinsicContentSize" width="26.5" height="18.5"/>
         </designable>
         <designable name="p6A-Lq-p52">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="117.5" height="17"/>
         </designable>
         <designable name="rrU-vZ-3dA">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="88.5" height="17"/>
         </designable>
         <designable name="rxf-cC-L0X">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="66" height="18.5"/>
         </designable>
         <designable name="rzc-30-Z7R">
             <size key="intrinsicContentSize" width="90" height="17"/>
@@ -16172,7 +16147,6 @@
         <image name="icon-microphone off" width="38" height="38"/>
         <image name="icon-rotate" width="38" height="38"/>
         <image name="icon-setting" width="32" height="32"/>
-        <image name="iconApp" width="333.33334350585938" height="258.66665649414062"/>
         <image name="iconSave" width="120" height="120"/>
         <image name="icons8-back" width="100" height="100"/>
         <image name="icons8-checkmark_yes" width="96" height="96"/>

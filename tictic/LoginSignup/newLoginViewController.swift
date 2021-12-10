@@ -63,7 +63,7 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
         }, completion:nil)
     }
     // MARK:- view tap gesture
-    func viewTapGesture(){
+    func viewTapGesture() {
         let tapGoogleView = UITapGestureRecognizer(target: self, action: #selector(self.googleTouchTapped(_:)))
         self.googleView.addGestureRecognizer(tapGoogleView)
         
@@ -75,9 +75,8 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
         
         let tapSIWAView = UITapGestureRecognizer(target: self, action: #selector(self.siwaTouchTapped(_:)))
         self.siwaView.addGestureRecognizer(tapSIWAView)
-        
-        
     }
+    
     @objc func googleTouchTapped(_ sender: UITapGestureRecognizer) {
         GIDSignIn.sharedInstance().presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
