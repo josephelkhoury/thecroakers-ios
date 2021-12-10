@@ -45,8 +45,7 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
         ChatDBhandler.shared.fetchUserInbox(userID: self.senderID) { (isSuccess, conversation) in
             self.arrConversation.removeAll()
             
-            for key in conversation
-            {
+            for key in conversation {
                 let conver = key.value as? [String: Any] ?? [:]
                 self.arrConversation.append(conver)
                 self.arrConversation.sort(by: { ("\($0["timestamp"])") > ("\($1["timestamp"])") })

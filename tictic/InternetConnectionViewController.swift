@@ -25,7 +25,7 @@ class InternetConnectionViewController: UIViewController {
       
     func setupView() {
         self.lblTitle.text = "No internet Connection"
-        self.lblDescription.text = "Make sure your wifi or data is turned on."
+        self.lblDescription.text = "Make sure your wifi or mobile data is turned on."
     }
     
     @IBAction func btnRetryAction(_ sender: Any) {

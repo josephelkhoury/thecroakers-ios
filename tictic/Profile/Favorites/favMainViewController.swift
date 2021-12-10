@@ -11,8 +11,6 @@ import XLPagerTabStrip
 
 class favMainViewController: ButtonBarPagerTabStripViewController {
 
-
-    
     override func viewDidLoad() {
         
         settings.style.buttonBarBackgroundColor = .white
@@ -36,11 +34,8 @@ class favMainViewController: ButtonBarPagerTabStripViewController {
         
         super.viewDidLoad()
 
-        
         // Do any additional setup after loading the view.
     }
-    
-
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 
@@ -56,11 +51,8 @@ class favMainViewController: ButtonBarPagerTabStripViewController {
         return [child1,child2,child3]
     }
     @IBAction func btnBack(_ sender: Any) {
-        
         self.navigationController?.popViewController(animated: true)
-        
     }
-    
 }
 
 

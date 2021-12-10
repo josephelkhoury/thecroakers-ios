@@ -2961,7 +2961,7 @@ class ApiHandler:NSObject{
         let headers: HTTPHeaders = [
             "Api-Key": API_KEY
         ]
-        let finalUrl = "\(self.baseApiPath!)\(Endpoint.addTopicFavourite.rawValue)"
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.addHashtagFavourite.rawValue)"
         var parameters = [String : String]()
         parameters = [
             "hashtag_id"    : hashtag_id,

@@ -46,7 +46,7 @@ class hashtagsVideoViewController: UIViewController {
 //            self.btnFav.image = #imageLiteral(resourceName: "btnFavFilled")
 //        }
         
-        self.addFavTopicAPI()
+        self.addFavHashtagAPI()
     }
     
     //    MARK:- API
@@ -135,7 +135,7 @@ class hashtagsVideoViewController: UIViewController {
         }
     }
     
-    func addFavTopicAPI() {
+    func addFavHashtagAPI() {
         let uid = UserDefaults.standard.string(forKey: "userID")
         guard uid != nil && uid != "" else {
             loginScreenAppear()

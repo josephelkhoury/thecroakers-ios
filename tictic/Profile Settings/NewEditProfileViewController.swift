@@ -27,7 +27,7 @@ class NewEditProfileViewController: UIViewController {
         self.setup()
     }
     
-    func setup(){
+    func setup() {
         let userObj = userData[0]
         let name = (userObj.first_name) + " " + (userObj.last_name)
         self.profileImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -49,24 +49,31 @@ class NewEditProfileViewController: UIViewController {
         vc.userData = self.userData
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func btnUsernameAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
         vc.type = 1
         vc.userData = self.userData
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func btnCopyLinkAction(_ sender: Any) {
-        
     }
+    
     @IBAction func btnBioAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
         vc.type = 2
         vc.userData = self.userData
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func btnWebAction(_ sender: Any) {
-        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
+        vc.type = 3
+        vc.userData = self.userData
+        navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func btnImageAction(_ sender: Any) {
         // Your action
         ImagePickerManager().pickImage(self){ image in
@@ -82,7 +89,7 @@ class NewEditProfileViewController: UIViewController {
     @IBAction func btnVideoAction(_ sender: Any) {
     }
     
-    func addUserImgAPI(){
+    func addUserImgAPI() {
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.addUserImage(user_id: UserDefaults.standard.string(forKey: "userID")!, profile_pic: ["file_data":self.profilePicData]) { (isSuccess, response) in
             if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -99,5 +106,4 @@ class NewEditProfileViewController: UIViewController {
             }
         }
     }
-    
 }

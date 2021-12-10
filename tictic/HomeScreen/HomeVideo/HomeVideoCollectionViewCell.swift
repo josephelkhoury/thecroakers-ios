@@ -85,7 +85,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         playerView.contentMode = .scaleAspectFill
         self.profileImgView.makeRounded()
         //self.imgMusicBtn.makeRounded()
-        self.musicBtn.makeRounded()
+        //self.musicBtn.makeRounded()
         self.videoPlayer()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
@@ -267,12 +267,12 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
                 print("paused - progress \(Int(playing * 100))% buffering \(Int(buffering * 100))%")
                 self.progressView.signal()
                 self.progressView.isHidden = true
-                self.musicBtn.stopRotating()
+                //self.musicBtn.stopRotating()
                 //self.imgMusicBtn.stopRotating()
             case .playing:
                 self.pauseImgView.isHidden = true
                 self.progressView.isHidden = true
-                self.musicBtn.startRotating()
+                //self.musicBtn.startRotating()
                 //self.imgMusicBtn.startRotating()
                 print("playing")
             }
@@ -370,6 +370,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             vc.objToShare.removeAll()
             vc.objToShare.append(self.videoURL!)
             vc.currentVideoUrl = self.videoURL!
+            vc.arrVideo = self.arrVideo
             vc.modalPresentationStyle = .overFullScreen
             rootViewController.navigationController?.present(vc, animated: true, completion: nil)
         

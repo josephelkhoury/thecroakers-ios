@@ -12,6 +12,7 @@ import FBSDKShareKit
 import MessageUI
 import Photos
 import SDWebImage
+import Firebase
 
 class shareViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MFMessageComposeViewControllerDelegate {
     
@@ -33,14 +34,19 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
     var currentVideoID = ""
     var followingList = [[String:Any]]()
     var shareUrl = ""
+    var userID = ""
+    var arrVideo: videoMainMVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userID = UserDefaults.standard.string(forKey: "userID")
         
-        if userID != "" && userID != nil{
+        myUser = User.readUserFromArchive()
+        
+        userID = UserDefaults.standard.string(forKey: "userID") ?? ""
+        
+        if userID != "" {
             self.showFollowingUser()
-        }else{
+        } else {
             self.viewFollowingUser.isHidden =  true
             self.heightViewFollowingUser.constant = 0
             self.heightView.constant = 300
@@ -81,8 +87,8 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "share1CVC", for: indexPath) as! share1CollectionViewCell
             cell1.imgView.layer.cornerRadius = 25
             let obj  =  self.followingList[indexPath.row]["FollowingList"] as! [String:Any]
-            let profilePic = AppUtility?.detectURL(ipString: obj["profile_pic_small"] as? String ?? "")
-            cell1.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            let profilePic = AppUtility?.detectURL(ipString: obj["profile_pic"] as? String ?? "")
+            //cell1.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell1.imgView.sd_setImage(with: URL(string:profilePic!), placeholderImage: UIImage(named: "noUserImg"))
             cell1.lblTitle.text! = obj ["username"] as? String ?? "unknown"
             return cell1
@@ -107,8 +113,8 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
                 shareOnWhatsapp()
             
             case "sms":
-                shareOnSMS()
                 print("sms Tapped")
+                shareOnSMS()
             
             case "twitter":
                 print("twitter Tapped")
@@ -134,7 +140,24 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
                 print("DEFAULT")
             }
         } else if collectionView == collectionViewfollowingUser {
-           print("tap on following user to share video")
+            let obj  =  self.followingList[indexPath.row]["FollowingList"] as! [String:Any]
+            if let senderName = myUser![0].username, let receiverID = obj["id"] as? String {
+                let senderID = userID
+                let receiverProfile = (AppUtility?.detectURL(ipString:obj["profile_pic"] as! String))!
+                let receiverName = obj["username"] as! String
+                let time = Date().millisecondsSince1970
+                ChatDBhandler.shared.sendMessage(senderID: senderID, receiverID: receiverID, senderName: senderName, message: self.shareUrl, seen: false, time: time, type: "text") { (isSuccess) in
+                    if isSuccess == true {
+                        self.showToast(message: "Message sent", font: .systemFont(ofSize: 12))
+                    }
+                }
+                ChatDBhandler.shared.userChatInbox(senderID: senderID, receiverID: receiverID, image: receiverProfile, name: receiverName, message: self.shareUrl, type: "text", seen: false, timestamp: time, date: "\(time)", status: "1") { (result) in
+                    if result == true {
+                        ApiHandler.sharedInstance.sendMessageNotification(senderID: senderID, receiverID: receiverID, msg: self.shareUrl, title: senderName) { (isSuccess, response) in
+                        }
+                    }
+                }
+            }
         } else {
             switch share2Arr[indexPath.row] {
         
@@ -486,7 +509,6 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
     
     func saveVideoToAlbum(_ vidUrlString: String, _ completion: ((Error?) -> Void)?) {
         requestAuthorization {
-            
             DispatchQueue.global(qos: .background).async {
                 if let url = URL(string: vidUrlString),
                    let urlData = NSData(contentsOf: url) {
@@ -566,7 +588,6 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
         }
     }
     func showFollowingUser() {
-        
         AppUtility?.startLoader(view: self.view)
         self.followingList.removeAll()
         var otherUserID = UserDefaults.standard.string(forKey: "otherUserID")

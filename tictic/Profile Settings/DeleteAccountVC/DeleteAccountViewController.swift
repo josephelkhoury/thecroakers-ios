@@ -15,7 +15,7 @@ class DeleteAccountViewController: UIViewController {
     @IBOutlet weak var lblTitleText:UILabel!
     @IBOutlet weak var lblText:UILabel!
     var myUser:[User]? {didSet{}}
-    let textDescription = ["If you delete your account.","Your will no longer be able to log in to TicTic with that account.","Your will lose to access to any videos you have posted."," Your will no able to get refund on any item you have purchased."," Information that is not stored in your account, such as chat message, may still be visible to others.","Your account will be deactivated for 30 days. During deactivation, your account wont\'t be visible to public. After 30 days, your account will be then deleted permanently.","Do you want to continue? "]
+    let textDescription = ["If you delete your account:","Your will no longer be able to log in to The Croakers with that account.","Your will lose to access to any videos you have posted."," Your will no able to get refund on any item you have purchased."," Information that is not stored in your account, such as chat message, may still be visible to others.","Your account will be deactivated for 30 days. During deactivation, your account wont\'t be visible to public. After 30 days, your account will be then deleted permanently.","Do you want to continue? "]
     
     //MARK:- viewDidLoad
     
@@ -49,11 +49,11 @@ class DeleteAccountViewController: UIViewController {
                 
                     UserDefaults.standard.set("", forKey: "userID")
                     
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
                 }
-            }else{
+            } else {
                 AppUtility?.stopLoader(view: self.view)
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
             }

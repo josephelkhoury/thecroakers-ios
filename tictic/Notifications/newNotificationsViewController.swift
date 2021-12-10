@@ -25,8 +25,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         getNotifications(startPoint: "\(startPoint)")
     }
     
-    func getNotifications(startPoint:String){
-                
+    func getNotifications(startPoint:String) {
         print("userid: ",UserDefaults.standard.string(forKey: "userID")!)
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showAllNotifications(user_id: UserDefaults.standard.string(forKey: "userID")!, starting_point: "\(startPoint)") { (isSuccess, response) in
@@ -59,13 +58,13 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                     }
                     AppUtility?.stopLoader(view: self.view)
                     self.notificationTblView.reloadData()
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
 //                    self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
                     
                     print("!200",response?.value(forKey: "msg"))
                 }
-            }else{
+            } else {
                 self.showToast(message: "Failed to load notifications", font: .systemFont(ofSize: 12))
                 AppUtility?.stopLoader(view: self.view)
             }
@@ -73,10 +72,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         }
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.notificationsArr.count
     }
     
@@ -88,11 +84,11 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         
         cell.folow_name.text = obj.senderName
         cell.folow_username.text = obj.notificationString
-        if(obj.type == "video_like"){
+        if(obj.type == "video_like") {
             cell.foolow_btn_view.alpha = 1
-        }else if(obj.type == "video_comment"){
+        } else if(obj.type == "video_comment") {
             cell.foolow_btn_view.alpha = 1
-        }else{
+        } else {
             cell.foolow_btn_view.alpha = 0
         }
         
@@ -117,7 +113,6 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 80
     }
     
@@ -130,8 +125,6 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         vc.isOtherUserVisting = true
         vc.otherUserID = obj.sender_id
         navigationController?.pushViewController(vc, animated: true)
-        
-
     }
     
     @objc func btnWatchAction(_ sender : UIButton) {
@@ -139,11 +132,9 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         let indexPath = self.notificationTblView.indexPathForRow(at:buttonPosition)
         let cell = self.notificationTblView.cellForRow(at: indexPath!) as! FollowTableViewCell
         
-        
         self.getVideo(ip:indexPath!)
         
         print("btn watch tapped")
-
     }
     
     @IBAction func btnInbox(_ sender: Any) {
@@ -152,7 +143,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func getVideo(ip:IndexPath){
+    func getVideo(ip:IndexPath) {
         AppUtility?.startLoader(view: self.view)
         let obj = notificationsArr[ip.row]
         ApiHandler.sharedInstance.showVideoDetail(user_id: UserDefaults.standard.string(forKey: "userID")!, video_id: obj.video_id) { (isSuccess, response) in
@@ -216,13 +207,11 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                     vc.isOtherController =  true
                     vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     print("!200: ",response as Any)
                 }
-                
-
-            }else{
+            } else {
                 AppUtility?.startLoader(view: self.view)
               /*  let vc = self.storyboard?.instantiateViewController(withIdentifier: "homeFeedVC") as! homeFeedViewController
                 vc.userVideoArr = self.notiVidDataArr
@@ -242,13 +231,13 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if notificationsArr.isEmpty{
+        if notificationsArr.isEmpty {
             noDataView.isHidden = false
-        }else{
+        } else {
             noDataView.isHidden = true
         }
         
-        if indexPath.row == notificationsArr.count - 4{
+        if indexPath.row == notificationsArr.count - 4 {
             self.startPoint+=1
             print("StartPoint: ",startPoint)
                 self.getNotifications(startPoint: "\(self.startPoint)")

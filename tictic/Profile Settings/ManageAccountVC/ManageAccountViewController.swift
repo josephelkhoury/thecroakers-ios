@@ -27,7 +27,6 @@ class ManageAccountViewController: UIViewController,UITableViewDataSource,UITabl
 
     }
     
-    
     @IBAction func backPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -41,7 +40,7 @@ class ManageAccountViewController: UIViewController,UITableViewDataSource,UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 2
-        }else{
+        } else {
             return 1
         }
     }
@@ -59,7 +58,7 @@ class ManageAccountViewController: UIViewController,UITableViewDataSource,UITabl
                 cell.title.isHidden = true
             }
            
-        }else{
+        } else {
             cell.lblName.text = accountDelete[indexPath.row]["name"]
             cell.title.isHidden = true
         }
@@ -82,16 +81,14 @@ class ManageAccountViewController: UIViewController,UITableViewDataSource,UITabl
             let vc =  storyboard?.instantiateViewController(withIdentifier: "DeleteAccountViewController") as! DeleteAccountViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }
-       
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if  section == 0 {
             return 35
-        }else {
+        } else {
             return 35
         }
-        
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -113,12 +110,11 @@ class ManageAccountViewController: UIViewController,UITableViewDataSource,UITabl
         
         headerView.addSubview(label)
         
-        
         if section == 0 {
             label.text = "Account information"
             return headerView
         
-        }else{
+        } else {
             label.text = "Account control"
             return headerView
         }

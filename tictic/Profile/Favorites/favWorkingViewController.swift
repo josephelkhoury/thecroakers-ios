@@ -42,7 +42,6 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
         return refreshControl
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,14 +67,14 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
             
             videosView.isHidden = true
             hashtagView.isHidden = true
-        } else if itemInfo.title == "Hashtags"{
+        } else if itemInfo.title == "Hashtags" {
             print("Hashtags")
             self.getHashtagsAPI()
             hashtagView.isHidden = false
             
             videosView.isHidden = true
             soundsView.isHidden = true
-        }else{
+        } else {
             print("Videos")
             self.getVideosAPI()
             videosView.isHidden = false
@@ -83,7 +82,6 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
             soundsView.isHidden = true
             hashtagView.isHidden = true
         }
-        
         
         if #available(iOS 10.0, *) {
             soundsTV.refreshControl = refresher
@@ -102,11 +100,11 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
     func requestData() {
         print("requesting data")
         
-        if itemInfo.title == "Videos"{
+        if itemInfo.title == "Videos" {
             getVideosAPI()
-        }else if itemInfo.title == "Sounds"{
+        } else if itemInfo.title == "Sounds" {
             getSoundsDataAPI()
-        }else{
+        } else {
             getHashtagsAPI()
         }
         
@@ -121,17 +119,17 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
     }
     
     //    MARK:- videos API
-    func getVideosAPI(){
+    func getVideosAPI() {
         videosDataArr.removeAll()
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showFavouriteVideos(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
-            if isSuccess{
+            if isSuccess {
                 
                 print("response: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let vidObjMsg = response?.value(forKey: "msg") as! NSArray
                     
-                    for vidObject in vidObjMsg{
+                    for vidObject in vidObjMsg {
                         let vidObj = vidObject as! NSDictionary
                         
                         let videoObj = vidObj.value(forKey: "Video") as! NSDictionary
@@ -248,27 +246,27 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 
-                print("response: ",response?.allValues)
+                print("response: ", response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let hashObjMsg = response?.value(forKey: "msg") as! NSArray
                     
-                    for hashObject in hashObjMsg{
+                    for hashObject in hashObjMsg {
                         let hashObj = hashObject as! NSDictionary
                         
                         let hashtag = hashObj.value(forKey: "Hashtag") as! NSDictionary
                         
                         let id = hashtag.value(forKey: "id") as! String
                         let name = hashtag.value(forKey: "name") as! String
-                        let views = hashtag.value(forKey: "views") as? NSNumber
+                        let views = hashtag.value(forKey: "views") as! String
                         let favourite = hashtag.value(forKey: "favourite") as? NSNumber
                         
-                        let obj = hashTagMVC(id: id, name: name, views: "\(views ?? 0)", favourite: "\(favourite ?? 0)")
+                        let obj = hashTagMVC(id: id, name: name, views: views, favourite: "\(favourite ?? 0)")
                         
                         self.hashTagDataArr.append(obj)
                     }
                 }
                 AppUtility?.stopLoader(view: self.view)
-                print("hashTagDataArr: ",self.hashTagDataArr)
+                print("hashTagDataArr: ", self.hashTagDataArr)
                 if self.hashTagDataArr.isEmpty {
                     self.hashTagWhoopsView.isHidden = false
                 } else {
@@ -313,7 +311,6 @@ extension favWorkingViewController:UICollectionViewDelegate,UICollectionViewData
         return vidCell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
        /* let vc = storyboard?.instantiateViewController(withIdentifier: "homeFeedVC") as! homeFeedViewController
         vc.userVideoArr = videosDataArr
         vc.indexAt = indexPath
@@ -353,8 +350,7 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if tableView == hashTagTV
-        {
+        if tableView == hashTagTV {
             let hashCell = tableView.dequeueReusableCell(withIdentifier: "searchHashtagsTVC") as! searchHashtagsTableViewCell
             
             let hashObj = hashTagDataArr[indexPath.row]
@@ -362,15 +358,14 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
             hashCell.titleLbl.text = hashObj.name
             hashCell.countLbl.text = hashObj.views
             
-            if hashObj.favourite == "1"{
+            if hashObj.favourite == "1" {
                 hashCell.btnFav.setImage(UIImage(named: "btnFavFilled"), for: .normal)
-            }else{
+            } else {
                 hashCell.btnFav.setImage(UIImage(named:"btnFavEmpty"), for: .normal)
             }
             
             hashCell.btnFav.addTarget(self, action: #selector(favWorkingViewController.btnFavHashAction(_:)), for:.touchUpInside)
 
-            
             return hashCell
         }
         
@@ -413,44 +408,41 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
         if tableView == hashTagTV{
             let hashtag = hashTagDataArr[indexPath.row].name
             let vc = storyboard?.instantiateViewController(withIdentifier: "hashtagsVideoVC") as! hashtagsVideoViewController
-            //vc.hashtag = hashtag
+            vc.hashtag = hashtag
             self.navigationController?.pushViewController(vc, animated: true)
-        }else{
+        } else {
             let obj = soundsDataArr[indexPath.row]
             self.playSound(soundUrl: (AppUtility?.detectURL(ipString: obj.audioURL))!,ip: indexPath)
         }
-        
     }
     
     func playSound(soundUrl: String,ip:IndexPath) {
         let cell = soundsTV.cellForRow(at: ip) as! searchSoundTableViewCell
         
-        if isPlaying == true{
+        if isPlaying == true {
             self.isPlaying = false
             cell.selectBtn.isHidden = true
             cell.favBtn.isHidden = true
             cell.btnPlay.image = UIImage(named: "ic_play_icon")
             
             self.audioPlayer?.pause()
-        }else{
+        } else {
             cell.btnPlay.isHidden = true
             DispatchQueue.main.async {
                 cell.loadIndicator.startAnimating()
             }
             
             guard  let url = URL(string: soundUrl)
-            else
-            {
+            else {
                 print("error to get the mp3 file")
                 return
             }
-            do{
+            do {
                 try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
                 try AVAudioSession.sharedInstance().setActive(true)
                 audioPlayer = try AVPlayer(url: url as URL)
                 guard let player = audioPlayer
-                else
-                {
+                else {
                     return
                 }
                 

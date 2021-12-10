@@ -20,7 +20,6 @@ class ChatTableViewCell: UITableViewCell
     @IBOutlet weak var lblLastMessage: UILabel!
     @IBOutlet weak var hiddenView: UIView!
     
-    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -35,5 +34,4 @@ class ChatTableViewCell: UITableViewCell
     {
         super.setSelected(selected, animated: animated)
     }
-
 }

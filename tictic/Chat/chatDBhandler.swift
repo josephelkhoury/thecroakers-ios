@@ -14,7 +14,6 @@ class ChatDBhandler
 {
     static let shared = ChatDBhandler()
     
-    
     //MARK:- send text messages
     func sendMessages(uid: String, merchantId: String, message: String, seen: Bool, time: Any, type: String, completionHandler: @escaping (_ result: Bool) -> Void)
     {
@@ -69,7 +68,6 @@ class ChatDBhandler
                 
                 completionHandler(true)
             }
-            
         }
     }
     
@@ -354,5 +352,4 @@ class ChatDBhandler
         }
         task.resume()
     }
-
 }

@@ -14,10 +14,9 @@ class NewSettingsPrivacyViewController: UIViewController {
     var arrAccount = [["name":"Manage Account","image":"2-2"],
                       ["name":"Privacy","image":"ic_privacy"],
                       ["name":"Request Verification","image":"ic_verify_request-1"],
-                      ["name":"Balance","image":"8-8"],
-                      ["name":"Payout Setting","image":"ic_payout_setting"],
-                      ["name":"QR Code","image":"10-10"]]
-    
+                      ["name":"QR Code","image":"10-10"]],
+                      //["name":"Balance","image":"8-8"],
+                      //["name":"Payout Setting","image":"ic_payout_setting"]
     
     var arrContentActivity = [["name":"Push Notification","image":"1-1"],
                     ["name":"App Lanuage","image":"3-3"]]
@@ -52,11 +51,11 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return arrAccount.count
-        }else if section == 1 {
+        } else if section == 1 {
             return arrContentActivity.count
-        }else if section == 2 {
+        } else if section == 2 {
             return arrAbout.count
-        }else{
+        } else {
             return arrLogin.count
         }
     }
@@ -68,7 +67,7 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
             cell.lblName.text = arrAccount[indexPath.row]["name"]
             cell.lblLanguageTitle.isHidden = true
             cell.nextArr0w.isHidden =  false
-        }else if indexPath.section == 1{
+        } else if indexPath.section == 1 {
             cell.imgIcon.image = UIImage(named: "\(arrContentActivity[indexPath.row]["image"] ?? "30")")
             cell.lblName.text = arrContentActivity[indexPath.row]["name"]
             
@@ -76,28 +75,26 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
                 cell.lblLanguageTitle.isHidden = false
                 cell.nextArr0w.isHidden =  true
             }
-            if indexPath.row == 0{
+            if indexPath.row == 0 {
                 cell.lblLanguageTitle.isHidden = true
                 cell.nextArr0w.isHidden =  false
-
             }
-
-        }else if indexPath.section == 2{
+        } else if indexPath.section == 2 {
             cell.imgIcon.image = UIImage(named: "\(arrAbout[indexPath.row]["image"] ?? "30")")
             cell.lblName.text = arrAbout[indexPath.row]["name"]
             cell.lblLanguageTitle.isHidden = true
             cell.nextArr0w.isHidden =  false
 
-        }else{
+        } else {
             cell.imgIcon.image = UIImage(named: "\(arrLogin[indexPath.row]["image"] ?? "30")")
             cell.lblName.text = arrLogin[indexPath.row]["name"]
             cell.lblLanguageTitle.isHidden = true
             cell.nextArr0w.isHidden =  false
-
         }
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if  section == 0 {
             return 35
@@ -126,21 +123,19 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
         
         headerView.addSubview(label)
         
-        
         if section == 0 {
             label.text = "ACCOUNT"
             return headerView
-        }else if section == 1{
+        } else if section == 1 {
             label.text = "CONTENT & ACTIVITY"
             return headerView
-        }else if section == 2{
+        } else if section == 2 {
             label.text = "ABOUT"
             return headerView
-        }else{
+        } else {
             label.text = "LOGIN"
             return headerView
         }
-        
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -175,20 +170,20 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
                 let vc = storyboard?.instantiateViewController(withIdentifier: "requestVerificationVC") as! requestVerificationViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             case 3:
+                print("QR Code")
+                let vc = storyboard?.instantiateViewController(withIdentifier: "QRCodeViewController") as! QRCodeViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 4:
                 print("Balance")
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyWalletVC") as! MyWalletViewController
                 vc.hidesBottomBarWhenPushed = true
                 vc.userData = self.userData
                 self.navigationController?.pushViewController(vc, animated: true)
-            case 4:
+            case 5:
                 print("Payout Setting")
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "PayoutViewController") as! PayoutViewController
                 vc.hidesBottomBarWhenPushed = true
                 vc.user = self.userData
-                self.navigationController?.pushViewController(vc, animated: true)
-            case 5:
-                print("QR Code")
-                let vc = storyboard?.instantiateViewController(withIdentifier: "QRCodeViewController") as! QRCodeViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
                 print("Share profile")
@@ -251,21 +246,20 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
     
     //MARK:- API Handler
     
-    func logoutUserApi(){
-        
+    func logoutUserApi() {
         let userID = UserDefaults.standard.string(forKey: "userID")
         print("user id: ",userID as Any)
         AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.logout(user_id: userID! ) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
-            if isSuccess{
+            if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     print(response?.value(forKey: "msg") as Any)
                     UserDefaults.standard.set("", forKey: "userID")
-                }else{
+                } else {
                     print("logout API:",response?.value(forKey: "msg") as! String)
                 }
-            }else{
+            } else {
                 print("logout API:",response?.value(forKey: "msg") as Any)
             }
         }

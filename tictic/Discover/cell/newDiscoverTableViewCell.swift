@@ -15,7 +15,7 @@ class newDiscoverTableViewCell: UITableViewCell,UICollectionViewDataSource,UICol
     var arrData = ["night3","night2","night3","night3","night2","night3"]
     @IBOutlet weak var discoverCollectionView: UICollectionView!
     
-    @IBOutlet var entityImageView: UIImageView!
+    @IBOutlet var entityImageView: CustomImageView!
     @IBOutlet weak var lblItemCount: UILabel!
     @IBOutlet weak var hashName : UILabel!
     @IBOutlet weak var hashNameSub : UILabel!

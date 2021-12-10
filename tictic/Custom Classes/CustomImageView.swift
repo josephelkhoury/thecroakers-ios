@@ -10,8 +10,6 @@ import UIKit
 
 @IBDesignable class CustomImageView: UIImageView {
     
-    
-    
     @IBInspectable var cornarRadius:CGFloat = 0.0 {
         
         didSet {
@@ -25,7 +23,7 @@ import UIKit
         didSet {
             if isCircle {
                 layer.cornerRadius  = self.frame.size.width/2
-            }else{
+            } else {
                 layer.cornerRadius = cornarRadius
             }
         }
@@ -93,7 +91,7 @@ import UIKit
         super.layoutSubviews()
         if isCircle {
             layer.cornerRadius  = self.frame.size.width/2
-        }else{
+        } else {
             layer.cornerRadius = cornarRadius
         }
     }

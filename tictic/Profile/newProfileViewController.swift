@@ -308,9 +308,9 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         print(sender.tag)
         
         let uid = UserDefaults.standard.string(forKey: "userID")
-        if uid == "" || uid == nil{
+        if uid == "" || uid == nil {
             loginScreenAppear()
-        }else{
+        } else {
             followUserFunc(cellNo: sender.tag)
             if sender.currentTitle == "following" {
                 sender.setTitle("follow", for: .normal)
@@ -557,7 +557,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //MARK:- API Handler
     
     // GET USER OWN DETAILS
-    func getUserDetails(){
+    func getUserDetails() {
         self.userData.removeAll()
         ApiHandler.sharedInstance.showOwnDetail(user_id: self.userID) { (isSuccess, response) in
             if isSuccess{
@@ -771,7 +771,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     //  GET USERS VIDEOS
     func getUserVideos() {
-
         print("userID test: ",userID)
         self.userVidArr.removeAll()
         self.videosMainArr.removeAll()
@@ -865,15 +864,15 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     // GET LIKED VIDEOS
-    func getLikedVideos(){
+    func getLikedVideos() {
         print("userID test: ",userID)
         self.likeVidArr.removeAll()
         self.videosMainArr.removeAll()
         
         var uid = ""
-        if otherUserID != ""{
+        if otherUserID != "" {
             uid = self.otherUserID
-        }else{
+        } else {
             uid = self.userID
         }
 
@@ -930,9 +929,9 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     }
                 }
                 self.videosMainArr = self.likeVidArr
-                if self.videosMainArr.isEmpty == true{
+                if self.videosMainArr.isEmpty == true {
                     self.whoopsView.isHidden = false
-                }else{
+                } else {
                     self.whoopsView.isHidden = true
                 }
                 self.videosCV.reloadData()
@@ -942,7 +941,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 self.view.layoutIfNeeded()
                 self.videosCV.reloadData()
                 
-            }else{
+            } else {
                 print("showVideosAgainstUserID API:",response?.value(forKey: "msg") as Any)
             }
         }
@@ -1114,19 +1113,19 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     //MARK:- Setup Drop Down
-    func setupDropDowns(){
+    func setupDropDowns() {
         profileDropDown.width = 150
         profileDropDown.anchorView = profileDropDownBtn
         profileDropDown.backgroundColor = .white
         profileDropDown.bottomOffset = CGPoint(x: 0, y: profileDropDownBtn.bounds.height)
         
-        if isOtherUserVisting == true{
+        if isOtherUserVisting == true {
             btnBackOutlet.isHidden = false
             profileDropDown.dataSource = [
                 "Report",
                 "Block"
             ]
-        }else{
+        } else {
             btnBackOutlet.isHidden = true
             profileDropDown.dataSource = [
                 "Edit Profile",
@@ -1230,8 +1229,9 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             }
         }
     }
+    
     //block User
-    func blockUser(){
+    func blockUser() {
         AppUtility?.startLoader(view: self.view)
         let uid = UserDefaults.standard.string(forKey: "userID")
         let otherUid = UserDefaults.standard.string(forKey: "otherUserID")
@@ -1259,35 +1259,35 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.logout(user_id: userID! ) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
-            if isSuccess{
+            if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     print(response?.value(forKey: "msg") as Any)
                     UserDefaults.standard.set("", forKey: "userID")
-                }else{
+                } else {
                     print("logout API:",response?.value(forKey: "msg") as! String)
                 }
-            }else{
+            } else {
                 print("logout API:",response?.value(forKey: "msg") as Any)
             }
         }
     }
     
     //Report user func
-    func reportUser(reportReason: String){
+    func reportUser(reportReason: String) {
         AppUtility?.startLoader(view: self.view)
         
         print("report user id: \(otherUserID) userID: \(UserDefaults.standard.string(forKey: "userID")!)")
         
         ApiHandler.sharedInstance.reportUser(user_id: UserDefaults.standard.string(forKey: "userID")!, report_user_id: otherUserID, report_reason_id: "1", description: reportReason) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
-            if isSuccess{
+            if isSuccess {
                 
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     self.showToast(message: "Report Under Review", font: .systemFont(ofSize: 12))
                 }else{
                     print("reportUser API:",response?.value(forKey: "msg") as Any)
                 }
-            }else{
+            } else {
                 print("reportUser API:",response?.value(forKey: "msg") as Any)
                 
             }

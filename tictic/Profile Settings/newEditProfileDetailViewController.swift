@@ -18,6 +18,7 @@ class newEditProfileDetailViewController: UIViewController,UITextFieldDelegate {
     var userData = [userMVC]()
     var type : Int!
     var myUser:[User]?{didSet{}}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +42,9 @@ class newEditProfileDetailViewController: UIViewController,UITextFieldDelegate {
         case 2:
             print("Bio")
             self.txtField.text = userObj.bio
+        case 3:
+            print("Web")
+            self.txtField.text = userObj.website
         default:
             print("default")
         }
@@ -66,20 +70,20 @@ class newEditProfileDetailViewController: UIViewController,UITextFieldDelegate {
         
         var username = userObj.username
         var firstName = userObj.first_name
+        var userPhone = userObj.userPhone
         let lastName = ""
         let userID = UserDefaults.standard.string(forKey: "userID")!
         var web = userObj.website
         var bio = userObj.bio
         let gender = userObj.gender
         
-
         switch type {
         case 0:
             print("Name")
-            guard (AppUtility?.validateUsername(str: txtField.text!)) == true else {
+            /*guard (AppUtility?.validateUsername(str: txtField.text!)) == true else {
                 self.showToast(message: "Invalid Name", font: .systemFont(ofSize: 12))
                 return
-            }
+            }*/
 
             firstName = txtField.text!
         case 1:
@@ -96,26 +100,23 @@ class newEditProfileDetailViewController: UIViewController,UITextFieldDelegate {
         case 3:
             print("web")
             web = txtField.text!
-
         default:
             print("default")
         }
         
         AppUtility?.startLoader(view: self.view)
         
-        ApiHandler.sharedInstance.editProfile(username: username, user_id: userID , first_name: firstName , last_name: lastName , gender: gender , website: web , bio: bio, phone: (self.myUser?[0].phone)!) { (isSuccess, response) in
+        ApiHandler.sharedInstance.editProfile(username: username, user_id: userID, first_name: firstName, last_name: lastName, gender: gender, website: web, bio: bio, phone: userPhone) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
-                if response?.value(forKey: "code") as! NSNumber == 200{
-
-                    self.showToast(message: "Porfile Upated", font: .systemFont(ofSize: 12))
+                if response?.value(forKey: "code") as! NSNumber == 200 {
+                    self.showToast(message: "Profile Updated", font: .systemFont(ofSize: 12))
                     for controller in self.navigationController!.viewControllers as Array {
                         if controller.isKind(of: newProfileViewController.self) {
                             _ =  self.navigationController!.popToViewController(controller, animated: true)
                             break
                         }
                     }
-                    
                 } else {
                     self.showToast(message: "Unable To Update", font: .systemFont(ofSize: 12))
                     print("!200: ",response as Any)
