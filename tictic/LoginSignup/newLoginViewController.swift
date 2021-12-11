@@ -82,8 +82,8 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().signIn()
     }
-    @objc func phoneTouchTapped(_ sender: UITapGestureRecognizer) {
     
+    @objc func phoneTouchTapped(_ sender: UITapGestureRecognizer) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "phoneNoVC") as! phoneNoViewController
         self.navigationController?.pushViewController(vc, animated: true)
 
@@ -91,6 +91,7 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
 
       //  self.showToast(message: "Comming soon..", font: .systemFont(ofSize: 12))
     }
+    
     @objc func fbTouchTapped(_ sender: UITapGestureRecognizer) {
         let fbLoginManager : LoginManager = LoginManager()
         fbLoginManager.logIn(permissions: ["email"], from: self) { (result, error) in

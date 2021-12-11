@@ -18,7 +18,7 @@ class DiscoverViewController: ButtonBarPagerTabStripViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.lblNavigationTitle.text = "Discover"
+        self.lblNavigationTitle.text = "Trending"
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
         settings.style.buttonBarItemFont = .systemFont(ofSize: 15.0)

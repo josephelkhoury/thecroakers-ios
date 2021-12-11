@@ -114,7 +114,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
         
         previewDoneBtnsViewOutlet.layer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         
-        devicesChecks()
+        //devicesChecks()
         tapGesturesToViews()
         configCapSession()
 //        previewPlayerSetup()
@@ -348,7 +348,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
         configCapSession()
 //        cameraAudioPermission()
 //        self.loadAudio()
-        devicesChecks()
+        //devicesChecks()
         cameraAudioPermission()
         self.audioPlayer?.stop()
         self.audioPlayer?.pause()

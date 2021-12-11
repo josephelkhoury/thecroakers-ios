@@ -10,17 +10,13 @@ import Foundation
 import UIKit
 import Alamofire
 
-
-var BASE_URL = "http://18.130.226.50/mobileapp_api/"
+var BASE_URL = "http://13.40.124.46/mobileapp_api/"
 let API_KEY = "156c4675-9608-4591-1111-00000"
 let profileQRLink = "https://\(BASE_URL)/profile/"
 let API_BASE_URL = BASE_URL+"api/"
 
-
-
 let headers: HTTPHeaders = [
     "Api-Key":API_KEY
-    
 ]
 
 private let SharedInstance = ApiHandler()

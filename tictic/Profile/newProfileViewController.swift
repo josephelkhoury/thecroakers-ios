@@ -120,6 +120,19 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         print("count: ",userItem.count)
     }
     
+    func refresh() {
+        if isOtherUserVisting {
+            if isTagUser == true {
+                self.showOwnDetailByName()
+            } else {
+                self.getOtherUserDetails()
+            }
+        }
+        else {
+            self.getUserDetails()
+        }
+    }
+    
     @objc
     func requestData() {
         print("requesting data")
@@ -130,6 +143,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             self.userItem.insert(obj, at: i)
         }
         
+        self.refresh()
         self.StoreSelectedIndex(index: storeSelectedIP.row)
         let deadline = DispatchTime.now() + .milliseconds(700)
         DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -167,11 +181,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             btnBackOutlet.isHidden = false
             btnLive.isHidden = true
             
-            if isTagUser == true {
-                self.showOwnDetailByName()
-            }else{
-                self.getOtherUserDetails()
-            }
+            self.refresh()
           
           /*  if indexSelected == 0 {
                 self.getUserVideos()
@@ -181,8 +191,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
            
         } else {
             self.userID = UserDefaults.standard.string(forKey: "userID")!
-            btnFollow.isHidden = false
-            self.getUserDetails()
+            //btnFollow.isHidden = false
+            self.refresh()
             self.btnFollowEdit.setTitle("Edit Profile", for: .normal)
             self.btnFollowEdit.backgroundColor = .white
             self.btnFollowEdit.setTitleColor(.black, for: .normal)
@@ -192,7 +202,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             
             if (self.navigationController!.viewControllers.count == 1) {
                 btnBackOutlet.isHidden = true
-                btnLive.isHidden = false
+                //btnLive.isHidden = false
             }
             else {
                 btnBackOutlet.isHidden = false
@@ -206,7 +216,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             lpgr.delegate = self
             lpgr.delaysTouchesBegan = true
             self.videosCV.addGestureRecognizer(lpgr)
-            
         }
         print("videosArr.count: ",videosMainArr.count)
     }
@@ -511,8 +520,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             print("liked")
             AppUtility?.startLoader(view: self.view)
             getLikedVideos()
-            
-            
         } else {
             print("private")
             AppUtility?.startLoader(view: self.view)
@@ -560,8 +567,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     func getUserDetails() {
         self.userData.removeAll()
         ApiHandler.sharedInstance.showOwnDetail(user_id: self.userID) { (isSuccess, response) in
-            if isSuccess{
-               self.view.hideLoading()
+            self.view.hideLoading()
+            if isSuccess {
                 
                 print("response UserDetails : ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -640,9 +647,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
         
         ApiHandler.sharedInstance.showOwnDetailByName(username: self.isTagName, user_id:uid) { (isSuccess, response) in
-            if isSuccess{
-               self.view.hideLoading()
-                
+            self.view.hideLoading()
+            if isSuccess {
                 print("response UserDetails : ", response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
@@ -725,10 +731,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         print("userID: ", self.userID)
         
         ApiHandler.sharedInstance.showOtherUserDetail(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
-            
             self.view.hideLoading()
             if isSuccess {
-                
                 print("response OtherUserDetails: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
@@ -1072,6 +1076,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             }
         }
     }
+    
   //MARK:- Setup Profile Data
     func setProfileData() {
         let user = userData[0]
@@ -1253,7 +1258,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     //Logout User
-    func logoutUserApi(){
+    func logoutUserApi() {
         let userID = UserDefaults.standard.string(forKey: "userID")
         print("user id: ",userID as Any)
         AppUtility?.startLoader(view: view)

@@ -83,7 +83,7 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     @objc
     private func didTouchCenterButton(_ sender: AnyObject) {
         
-        if(UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil){
+        if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
                         
             newLoginScreenAppear()
         } else {
@@ -209,7 +209,7 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
         if let count = self.tabBar.items?.count {
             let i = floor(Double(count / 2))
             let item = self.tabBar.items![Int(i)]
-            item.title = "Inbox"
+            item.title = "Notifications"
         }
     }
     

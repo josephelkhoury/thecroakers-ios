@@ -123,6 +123,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
         videosDataArr.removeAll()
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showFavouriteVideos(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
+            AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 
                 print("response: ",response?.allValues)
@@ -176,8 +177,6 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         self.videosDataArr.append(video)
                     }
                 }
-                
-                AppUtility?.stopLoader(view: self.view)
                 print("videoDataArr: ",self.videosDataArr)
                 if self.videosDataArr.isEmpty {
                     self.videosWhoopsView.isHidden = false
@@ -195,6 +194,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
         AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFavouriteSounds(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
+            AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 
                 print("response: ",response?.allValues)
@@ -224,7 +224,6 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                     }
                     
                 }
-                AppUtility?.stopLoader(view: self.view)
                 print("videoDataArr: ",self.soundsDataArr)
                 if self.soundsDataArr.isEmpty {
                     self.soundsWhoopsView.isHidden = false
@@ -237,12 +236,11 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
     }
     
     //    MARK:- HASHTAGS API
-    func getHashtagsAPI(){
+    func getHashtagsAPI() {
         hashTagDataArr.removeAll()
         AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFavouriteHashtags(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
-            
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 
@@ -265,7 +263,6 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         self.hashTagDataArr.append(obj)
                     }
                 }
-                AppUtility?.stopLoader(view: self.view)
                 print("hashTagDataArr: ", self.hashTagDataArr)
                 if self.hashTagDataArr.isEmpty {
                     self.hashTagWhoopsView.isHidden = false

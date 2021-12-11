@@ -18,6 +18,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     @IBOutlet weak var discoverBannerCollectionView: UICollectionView!
     @IBOutlet weak var discoverTblView: UITableView!
     
+    @IBOutlet var sliderHeight: NSLayoutConstraint!
     @IBOutlet var tblheight: NSLayoutConstraint!
     @IBOutlet weak var bannerPageController: UIPageControl!
     
@@ -71,6 +72,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     //MARK:- SetupView
     
     func setupView() {
+        sliderHeight.constant = 0
         tblheight.constant = CGFloat(entityDataArr.count * 190)
     }
     

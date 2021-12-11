@@ -97,8 +97,8 @@ class dobViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func btnNext(_ sender: Any) {
-        if dob.isEmpty == true {
-            showToast(message: "Select Date", font: .systemFont(ofSize: 12))
+        if country_id.isEmpty == true {
+            showToast(message: "Please select a country", font: .systemFont(ofSize: 12))
         } else {
             let vc = storyboard?.instantiateViewController(withIdentifier: "nameVC") as! nameViewController
             vc.dob = self.dob
