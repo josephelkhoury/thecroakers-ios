@@ -48,7 +48,6 @@ class ChatViewController: UIViewController {
         self.shadoview.layer.masksToBounds = false
     }
     
-    
     @IBAction func flag(_ sender: Any) {
         let actionSheet =  UIAlertController(title: nil, message:nil, preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Report "+StaticData.obj.receiver_name!, style: .default, handler: {

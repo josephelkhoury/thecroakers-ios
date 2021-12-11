@@ -70,6 +70,8 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("commentVideo"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("pauseVideo"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("playVideo"), object: nil)
         self.setupView()
     }
     
@@ -334,7 +336,6 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         if let rootViewController = UIApplication.topViewController() {
             let storyMain = UIStoryboard(name: "Main", bundle: nil)
             print("obj user id : ", arrVideo!.userID)
-            let userID = UserDefaults.standard.string(forKey: "userID")
             let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
             vc.isOtherUserVisting = true
             vc.hidesBottomBarWhenPushed = true
@@ -356,8 +357,11 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
                 vc.video_id = self.arrVideo!.videoID
                 vc.arrVideo = self.arrVideo
                 vc.index =  sender.tag
-                vc.modalPresentationStyle = .overFullScreen
-                rootViewController.navigationController?.present(vc, animated: true, completion: nil)
+                let navController = UINavigationController()
+                navController.viewControllers = [vc]
+                navController.modalPresentationStyle = .overFullScreen
+                navController.navigationBar.isHidden = true
+                rootViewController.navigationController?.present(navController, animated: true, completion: nil)
             }
         }
     }
@@ -413,13 +417,19 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     // MARK:- NotificationCenter
     
     @objc func methodOfReceivedNotification(notification: Notification) {
-        let notif = notification.object as! [String:Any]
-        var obj = self.arrVideo
-        var comentCount:Int =  notif["Count"] as! Int
-        comentCount = comentCount + 1
-        obj?.comment_count = "\(comentCount)"
-        self.commentCountLbl.text = "\(comentCount)"
-        delegate?.updateObj(obj: obj!, index:  notif["SelectedIndex"] as! Int, islike: false)
+        if notification.name.rawValue == "commentVideo" {
+            let notif = notification.object as! [String:Any]
+            var obj = self.arrVideo
+            var comentCount:Int =  notif["Count"] as! Int
+            comentCount = comentCount + 1
+            obj?.comment_count = "\(comentCount)"
+            self.commentCountLbl.text = "\(comentCount)"
+            delegate?.updateObj(obj: obj!, index:  notif["SelectedIndex"] as! Int, islike: false)
+        } else if notification.name.rawValue == "pauseVideo" {
+            pause()
+        } else if notification.name.rawValue == "playVideo" {
+            play()
+        }
     }
 }
 

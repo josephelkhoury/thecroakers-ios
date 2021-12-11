@@ -388,7 +388,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="403.5"/>
                                         <color key="backgroundColor" red="0.96079057459999995" green="0.95676058529999997" blue="0.96078544860000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentsNewTVC" rowHeight="57" id="o87-6R-NDU" customClass="commentsNewTableViewCell" customModule="TheCroakers" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="commentsNewTVC" rowHeight="57" id="o87-6R-NDU" customClass="commentsNewTableViewCell" customModule="TheCroakers" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="57"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o87-6R-NDU" id="XjL-QN-DKl">
@@ -410,12 +410,24 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLv-0m-kH6">
+                                                                    <rect key="frame" x="12" y="13" width="30" height="30"/>
+                                                                    <connections>
+                                                                        <action selector="goToUserProfile:" destination="o87-6R-NDU" eventType="touchUpInside" id="YLi-q8-GN7"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dinosofts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icT-GI-dCZ">
                                                                     <rect key="frame" x="56" y="10" width="54.5" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                     <color key="textColor" red="0.49040704969999999" green="0.49363505839999999" blue="0.51372861859999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJS-kG-LEU">
+                                                                    <rect key="frame" x="56" y="10" width="54.5" height="15"/>
+                                                                    <connections>
+                                                                        <action selector="goToUserProfile:" destination="o87-6R-NDU" eventType="touchUpInside" id="MHy-wT-Ko4"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hj" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lc-fP-paN">
                                                                     <rect key="frame" x="56" y="30" width="305" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -425,13 +437,21 @@
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.95686918499999996" green="0.95685130360000004" blue="0.95686346290000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
+                                                                <constraint firstItem="yLv-0m-kH6" firstAttribute="leading" secondItem="R4L-dw-zzb" secondAttribute="leading" id="4G9-zT-9yd"/>
+                                                                <constraint firstItem="yLv-0m-kH6" firstAttribute="trailing" secondItem="R4L-dw-zzb" secondAttribute="trailing" id="8GA-dL-IOK"/>
+                                                                <constraint firstItem="gJS-kG-LEU" firstAttribute="trailing" secondItem="icT-GI-dCZ" secondAttribute="trailing" id="C0p-1Z-enB"/>
                                                                 <constraint firstItem="R4L-dw-zzb" firstAttribute="leading" secondItem="M4v-mt-end" secondAttribute="leading" constant="12" id="DGg-jC-DCn"/>
+                                                                <constraint firstItem="gJS-kG-LEU" firstAttribute="top" secondItem="icT-GI-dCZ" secondAttribute="top" id="Jco-qY-o6k"/>
                                                                 <constraint firstItem="5lc-fP-paN" firstAttribute="top" secondItem="icT-GI-dCZ" secondAttribute="bottom" constant="5" id="K5S-Mc-Rx4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="5lc-fP-paN" secondAttribute="trailing" constant="14" id="LWN-0h-Ylc"/>
                                                                 <constraint firstItem="R4L-dw-zzb" firstAttribute="top" secondItem="M4v-mt-end" secondAttribute="top" constant="13" id="Loc-92-xAM"/>
                                                                 <constraint firstItem="5lc-fP-paN" firstAttribute="leading" secondItem="icT-GI-dCZ" secondAttribute="leading" id="NyB-9E-T5q"/>
+                                                                <constraint firstItem="yLv-0m-kH6" firstAttribute="bottom" secondItem="R4L-dw-zzb" secondAttribute="bottom" id="a8f-t3-Zrc"/>
                                                                 <constraint firstAttribute="bottom" secondItem="5lc-fP-paN" secondAttribute="bottom" constant="10" id="f4h-ZZ-QI2"/>
+                                                                <constraint firstItem="yLv-0m-kH6" firstAttribute="top" secondItem="R4L-dw-zzb" secondAttribute="top" id="g15-vA-Auy"/>
                                                                 <constraint firstItem="icT-GI-dCZ" firstAttribute="leading" secondItem="M4v-mt-end" secondAttribute="leading" constant="56" id="jSi-ti-igf"/>
+                                                                <constraint firstItem="gJS-kG-LEU" firstAttribute="leading" secondItem="icT-GI-dCZ" secondAttribute="leading" id="kWp-rv-GKf"/>
+                                                                <constraint firstItem="gJS-kG-LEU" firstAttribute="bottom" secondItem="icT-GI-dCZ" secondAttribute="bottom" id="qsn-Ut-8iZ"/>
                                                                 <constraint firstItem="icT-GI-dCZ" firstAttribute="top" secondItem="M4v-mt-end" secondAttribute="top" constant="10" id="wyA-sA-vEf"/>
                                                             </constraints>
                                                         </view>
@@ -15321,8 +15341,8 @@
                                                         <action selector="like:" destination="4Yw-xN-QKk" eventType="touchUpInside" id="I30-zE-qlG"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j32-JW-wi6">
-                                                    <rect key="frame" x="322" y="484" width="36" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Croak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j32-JW-wi6">
+                                                    <rect key="frame" x="321" y="484" width="38" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -15341,7 +15361,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="33">
+                                                    <state key="normal" image="croak">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="29" scale="large"/>
                                                     </state>
@@ -16078,7 +16098,6 @@
         <image name="30" width="22.333333969116211" height="22.333333969116211"/>
         <image name="31" width="22.333333969116211" height="22.333333969116211"/>
         <image name="32" width="22.333333969116211" height="22.333333969116211"/>
-        <image name="33" width="50" height="32"/>
         <image name="34" width="22.333333969116211" height="22.333333969116211"/>
         <image name="35" width="22.333333969116211" height="22.333333969116211"/>
         <image name="8" width="73.333335876464844" height="36.666667938232422"/>
@@ -16110,8 +16129,9 @@
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="chevronRightBold" width="14" height="14"/>
-        <image name="commentIcon" width="1500" height="1500"/>
+        <image name="commentIcon" width="2250" height="2250"/>
         <image name="copySqure" width="14" height="14"/>
+        <image name="croak" width="2250" height="2250"/>
         <image name="cross" width="32" height="32"/>
         <image name="cross2" width="21.5" height="21.5"/>
         <image name="dualCameraIcon" width="60" height="60"/>
@@ -16134,8 +16154,8 @@
         <image name="ic_eye_white" width="21.333333969116211" height="21.333333969116211"/>
         <image name="ic_gift_send" width="54" height="54"/>
         <image name="ic_help" width="21" height="21"/>
-        <image name="ic_like" width="1500" height="1500"/>
-        <image name="ic_like_fill" width="1500" height="1500"/>
+        <image name="ic_like" width="2250" height="2250"/>
+        <image name="ic_like_fill" width="2250" height="2250"/>
         <image name="ic_live" width="21.333333969116211" height="21.333333969116211"/>
         <image name="ic_play_icon" width="21.333333969116211" height="21.333333969116211"/>
         <image name="ic_save_qr" width="20" height="20"/>
@@ -16158,7 +16178,7 @@
         <image name="icons8-left" width="48" height="48"/>
         <image name="imgUser1" width="6000" height="4000"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
-        <image name="location" width="1500" height="1500"/>
+        <image name="location" width="2250" height="2250"/>
         <image name="logo" width="182" height="182"/>
         <image name="messageicon" width="170.66667175292969" height="170.66667175292969"/>
         <image name="more" width="48" height="48"/>
@@ -16178,12 +16198,12 @@
         <image name="recordImg" width="128" height="125.5"/>
         <image name="redLive" width="115" height="69"/>
         <image name="redoIcon" width="102.5" height="102.5"/>
-        <image name="replies" width="1500" height="1500"/>
+        <image name="replies" width="2250" height="2250"/>
         <image name="saveVideo" width="160" height="259"/>
         <image name="scanerIcon" width="14.333333015441895" height="14.333333015441895"/>
         <image name="selected" width="64" height="64"/>
         <image name="soundsIcon" width="45" height="45"/>
-        <image name="source" width="1500" height="1500"/>
+        <image name="source" width="2250" height="2250"/>
         <image name="speedOffIcon" width="167" height="167"/>
         <image name="threeDotsHor" width="14" height="14"/>
         <image name="timerIcon" width="45" height="45"/>

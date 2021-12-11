@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "all replies button-3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "all replies button-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

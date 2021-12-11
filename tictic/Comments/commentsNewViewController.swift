@@ -12,7 +12,7 @@ import Kingfisher
 import NVActivityIndicatorView
 import IQKeyboardManagerSwift
 
-class commentsNewViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
+class commentsNewViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, commentsDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var video_id = ""
@@ -31,6 +31,7 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
     var userFullName = ""
     var arrVideo :videoMainMVC?
     var index = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +49,6 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
         self.hideKeyboardWhenTappedAround()
         
         self.noCommentLbl.isHidden = true
-        
         
         doneDisable()
         getUserInfo()
@@ -69,7 +69,6 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
         super.viewWillAppear(animated)
         changeBackgroundAni()
     }
-    
     
     func changeBackgroundAni() {
 //        let red   = CGFloat(211.0)
@@ -97,6 +96,7 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
             self.cmntTxtfieldBackView.frame.origin.y = 0
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commentsArr.count
     }
@@ -104,33 +104,43 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentsNewTVC") as! commentsNewTableViewCell
         
-        let time = timeMange(ind: indexPath)
+        let time = timeManage(ind: indexPath)
         print("Time in tableview: ",time)
         
-        if self.commentsArr.count <= 0{
+        if self.commentsArr.count <= 0 {
             self.noCommentLbl.isHidden = false
-            
-            
-        }else{
+        } else {
             self.noCommentLbl.isHidden = true
             commentsCount.text = "\(commentsArr.count)" + " comments"
             
+            cell.delegate = self
             let obj = self.commentsArr[indexPath.row]
+            cell.userID = obj.userID
             cell.userName.text = obj.userName
             let cmntWithoutTime = "\(obj.comment)"
             let cmnt = cmntWithoutTime
             cell.comment.text = cmnt
             cell.userImg.sd_setImage(with: URL(string:obj.imgName), placeholderImage: UIImage(named: "noUserImg"))
         }
-        
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    
+    func goToUserProfile(userID: String) {
+        let storyMain = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
+        vc.isOtherUserVisting = true
+        vc.hidesBottomBarWhenPushed = true
+        vc.otherUserID = userID
+        self.navigationController?.pushViewController(vc, animated: true)
+        NotificationCenter.default.post(name: Notification.Name("pauseVideo"), object: nil)
     }
     
     //    MARK:- Get All Comments list
     
     func getComents() {
-        
         commentsArr.removeAll()
         let url : String = self.appDelegate.baseUrl!+self.appDelegate.showVideoComments!
         //        let  sv = HomeViewController.displaySpinner(onView: self.out_view)
@@ -144,7 +154,6 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
         
         let headers: HTTPHeaders = [
             "api-key": "4444-3333-2222-1111"
-            
         ]
         
         AF.request(url, method: .post, parameters: parameter, encoding:JSONEncoding.default, headers:headers).validate().responseJSON(completionHandler: {
@@ -166,10 +175,10 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                     let allComments = (dic["msg"] as? [[String:Any]])!
                     
                     //        MARK:- LBL NO COMMENT HIDDEN
-                    if allComments.count == 0{
+                    if allComments.count == 0 {
                         self.loaderView.stopAnimating()
                         self.noCommentLbl.isHidden = false
-                    }else{
+                    } else {
                         self.loaderView.stopAnimating()
                     }
                     for Dict in allComments {
@@ -181,29 +190,29 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                         var last_name:String! = ""
                         var profile_pic:String! = ""
                         var c_time:String! = ""
-                        if let comm =  commentsDict["comments"] as? String{
+                        if let comm =  commentsDict["comments"] as? String {
                             
                             comments = comm
                             print("Comments:- ",comments!)
                         }
-                        if let created =  commentsDict["created"] as? String{
+                        if let created =  commentsDict["created"] as? String {
                             
                             c_time = created
                         }
-                        if let myID =  commentsDict["video_id"] as? String{
+                        if let myID =  commentsDict["video_id"] as? String {
                             
                             v_id = myID
                         }
-                        if let u_info = commentsDict["user_info"] as? NSDictionary{
-                            if let myFirest =  u_info["first_name"] as? String{
+                        if let u_info = commentsDict["user_info"] as? NSDictionary {
+                            if let myFirest =  u_info["first_name"] as? String {
                                 
                                 first_name = myFirest
                             }
-                            if let myLast =  u_info["last_name"] as? String{
+                            if let myLast =  u_info["last_name"] as? String {
                                 
                                 last_name = myLast
                             }
-                            if let myPic =  u_info["profile_pic"] as? String{
+                            if let myPic =  u_info["profile_pic"] as? String {
                                 
                                 profile_pic = myPic
                             }
@@ -216,12 +225,10 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                         let obj = commentNew(id: "", userName: userName, userID: "", comment: comments, imgName: profile_pic, time: c_time, like: "", like_count: "", vidID: "")
                         
                         self.commentsArr.append(obj)
-
                     }
                     
                     //                    self.comments_array = NSMutableArray(array: self.comments_array.reversed())
                     self.commentsArr = self.commentsArr.reversed()
-                    
                     
                     self.commentsTableView.delegate = self
                     self.commentsTableView.dataSource = self
@@ -232,15 +239,7 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                     //                            self.commentsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
                     //                        }
                     //                    }
-                    
-                    
-                    
-                }else{
-                    
-                    //                    self.alertModule(title:"Error", msg:dic["msg"] as! String)
-                    
-                    print("Error",dic["msg"])
-                    
+                } else {
                 }
                 
             case .failure(let error):
@@ -249,12 +248,9 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                 //                self.alertModule(title:"Error",msg:error.localizedDescription)
             }
         })
-        
-        
     }
     
-    
-    func newGetComments(){
+    func newGetComments() {
         commentsArr.removeAll()
         ApiHandler.sharedInstance.showVideoComments(video_id: self.video_id) { (isSuccess, response) in
             if isSuccess{
@@ -279,11 +275,9 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                         let userName = userDict.value(forKey: "username")
                         let userIMG = userDict.value(forKey: "profile_pic")
                         
-                        
                         let obj = commentNew(id: id, userName: "\(userName!)", userID: userID, comment: comment, imgName: "\(userIMG!)", time: time, like: "\(like!)", like_count: "\(like_count!)", vidID: vidID)
                      
                         self.commentsArr.append(obj)
-                        
                     }
                     
                     self.commentsArr = self.commentsArr.reversed()
@@ -291,17 +285,12 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                     self.commentsTableView.delegate = self
                     self.commentsTableView.dataSource = self
                     self.commentsTableView.reloadData()
-                    
-                }else{
-                    
+                } else {
                     //                    self.alertModule(title:"Error", msg:dic["msg"] as! String)
-                    
                     print("!200",response?.value(forKey: "msg"))
                     self.loaderView.stopAnimating()
                     self.noCommentLbl.isHidden = false
-                    
                 }
-                
             }
         }
         
@@ -314,7 +303,6 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
             NotificationCenter.default.post(name: Notification.Name("reloadVidDetails"), object: nil)
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
             dismiss(animated: true, completion: nil)
-            
         }
     }
     
@@ -359,12 +347,9 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
         newUpdateCommentsOnServer(cmnt: comment!)
         commentTxtField.placeholder = "Add comment..."
         commentTxtField.text = ""
-        
-        
-        
     }
     //    MARK:- UPDATE COMMENTS
-    func updateCommentsOnServer(cmnt:String){
+    func updateCommentsOnServer(cmnt:String) {
         //                     let obj = friends_array[index] as! Home
         
         let url : String = self.appDelegate.baseUrl!+self.appDelegate.postComment!
@@ -401,15 +386,9 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                     
                     self.getComents()
                     print("Updated comments on server::,,,, done 200")
-                    
-                    
-                }else{
-                    
+                } else {
                     //                                                self.alertModule(title:"Error", msg:dic["msg"] as! String)
-                    
                 }
-                
-                
                 
             case .failure(let error):
                 print(error)
@@ -417,10 +396,9 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                 //                                            self.alertModule(title:"Error",msg:error.localizedDescription)
             }
         })
-        
     }
     
-    func newUpdateCommentsOnServer(cmnt:String){
+    func newUpdateCommentsOnServer(cmnt:String) {
         self.loaderView.startAnimating()
         ApiHandler.sharedInstance.postCommentOnVideo(user_id: UserDefaults.standard.string(forKey: "userID")!, comment: cmnt, video_id: self.video_id) { (isSuccess,response,err) in
             if isSuccess{
@@ -431,12 +409,11 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                     NotificationCenter.default.post(name: Notification.Name("commentVideo"), object: data)
                     self.newGetComments()
                     print("Updated comments on server::,,,, done 200")
-                }else{
+                } else {
                     self.loaderView.stopAnimating()
                     print("!200: ",response?.value(forKey: "msg"))
                 }
-                
-            }else{
+            } else {
                 self.showToast(message: err, font: .systemFont(ofSize: 12))
             }
             
@@ -444,7 +421,7 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     //    MARK:- FETCH USER INFO
-    func getUserInfo(){
+    func getUserInfo() {
         
         let url : String = self.appDelegate.baseUrl!+self.appDelegate.get_user_data!
         var userID = UserDefaults.standard.string(forKey: "userID")
@@ -508,14 +485,12 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                         }
                     }
                     
-                }else{
+                } else {
                     
                     //                    self.alertModule(title:"Error", msg:dic["msg"] as! String)
                     print("unable to fetch user data",dic["msg"] as! String)
                 }
-                
-                
-                
+  
             case .failure(let error):
                 print(error)
                 print("unable to fetch user data")
@@ -523,13 +498,11 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
                 //                self.alertModule(title:"Error",msg:error.localizedDescription)
             }
         })
-        
-        
     }
     
     
     //    MARK:- TIME MANAGE
-    func timeMange(ind:IndexPath) -> String{
+    func timeManage(ind:IndexPath) -> String{
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
@@ -567,7 +540,6 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
         print("Time Ago:- ",timeAgo)
         
         return "\(timeAgo)"
-        
     }
     //    MARK:- Dismiss keyboard
     
@@ -580,7 +552,7 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     //    MARK:- COMMENT TIME AGO
-    func timeDiff(privTime: Date) -> String{
+    func timeDiff(privTime: Date) -> String {
         let currentDate = Date()
         let yearsRaw = privTime.years(from: currentDate)
         let monthsRaw = privTime.months(from: currentDate)
@@ -625,9 +597,7 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
         
         return "Just Now"
     }
-    
 }
-
 
 extension Date {
     func originToString(dateFormat: String) -> String {

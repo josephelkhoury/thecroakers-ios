@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "like clicked button-3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "like clicked button-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
