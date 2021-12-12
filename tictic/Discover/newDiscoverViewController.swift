@@ -98,16 +98,16 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         if section == "0" {
             cell.entityImageView.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "topic"))
             cell.entityImageView.isCircle = false
-            cell.hashNameSub.text = "Trending Topic"
+            cell.hashNameSub.text = ""
         }
         else if section == "1" || section == "2" {
             cell.entityImageView.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "noUserImg"))
             cell.entityImageView.isCircle = true
             if section == "1" {
-                cell.hashNameSub.text = "Trending Publisher"
+                cell.hashNameSub.text = ""
             }
             else if section == "2" {
-                cell.hashNameSub.text = "Trending Croaker"
+                cell.hashNameSub.text = ""
             }
         }
         cell.videosObj = entityObj["videosObj"] as! [videoMainMVC]
