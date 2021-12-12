@@ -286,7 +286,6 @@ class ChatDBhandler
     {
         let Chat = Database.database().reference().child("Inbox").child(userID)
         Chat.observe(.value, with: { (snapshot) in
-            
             let data = snapshot.value as? [String: Any] ?? [:]
             completionHandler(true, data)
         }, withCancel: nil)

@@ -48,7 +48,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
     var audioPlayer: AVPlayer?
     var isPlaying = false
     
-    var objArr = [["title":"Users","isSelected":"true"],["title":"Videos","isSelected":"false"],["title":"Sounds","isSelected":"false"],["title":"HashTags","isSelected":"false"]]
+    var objArr = [["title":"Users","isSelected":"true"],["title":"Videos","isSelected":"false"],["title":"Sounds","isSelected":"false"],["title":"Hashtags","isSelected":"false"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +82,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
         }
     }
     
-    func hiddenViews(){
+    func hiddenViews() {
         objectsCV.isHidden = true
         userWhoopsView.isHidden =  true
         videosWhoopsView.isHidden =  true
@@ -90,7 +90,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
         soundsWhoopsView.isHidden =  true
     }
     
-    func delegateSetup(){
+    func delegateSetup() {
         userTV.delegate = self
         userTV.dataSource = self
         userTV.tableFooterView = UIView()
@@ -165,10 +165,11 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSArray
                     
-                    for userObject in userObjMsg{
+                    for userObject in userObjMsg {
                         let userObj = userObject as! NSDictionary
                         
                         let user = userObj.value(forKey: "User") as! NSDictionary
+                        let countryObj = userObj.value(forKey: "Country") as! NSDictionary
                         
                         let userID = (user.value(forKey: "id") as? String)!
                         let userImage = (user.value(forKey: "profile_pic") as? String)!
@@ -185,18 +186,20 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                         let website = (user.value(forKey: "website") as? String)!
                         let wallet = (user.value(forKey: "wallet") as? String)!
                         let paypal = (userObj.value(forKey: "paypal") as? String) ?? ""
+                        
+                        let countryID = (countryObj.value(forKey: "id") as? String)!
+                        let countryName = (countryObj.value(forKey: "name") as? String)!
 
-                        let obj = userMVC(userID: userID, first_name: firstName, last_name: lastName, gender: gender, bio: bio, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "", wallet: wallet, paypal: paypal)
+                        let obj = userMVC(userID: userID, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: countryID, countryName: countryName, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "", wallet: wallet, paypal: paypal)
                         
                         self.userDataArr.append(obj)
                     }
-                    
                 }
                 
                 AppUtility?.stopLoader(view: self.view)
-                if self.userDataArr.isEmpty{
+                if self.userDataArr.isEmpty {
                     self.userWhoopsView.isHidden = false
-                }else{
+                } else {
                     self.userWhoopsView.isHidden = true
                 }
                 self.userTV.reloadData()
@@ -339,10 +342,12 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                         
                         let id = hashtag.value(forKey: "id") as! String
                         let name = hashtag.value(forKey: "name") as! String
+                        let image = hashtag.value(forKey: "image") as! String
+                        let featured = hashtag.value(forKey: "featured") as? NSNumber
                         let views = hashtag.value(forKey: "views") as? NSNumber
                         let favourite = hashtag.value(forKey: "favourite") as? NSNumber
                         
-                        let obj = hashTagMVC(id: id, name: name, views: "\(views ?? 0)", favourite: "\(favourite ?? 0)")
+                        let obj = hashTagMVC(id: id, name: name, image: image, featured: "\(featured ?? 0)", views: "\(views ?? 0)", favourite: "\(favourite ?? 0)")
                         
                         self.hashTagDataArr.append(obj)
                     }
@@ -360,13 +365,14 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
         }
     }
     //    MARK:- Login screen will appear func
-    func loginScreenAppear(){
+    func loginScreenAppear() {
         let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
         navController.navigationBar.isHidden = true
         navController.modalPresentationStyle = .overFullScreen
         
         self.present(navController, animated: true, completion: nil)
     }
+    
     //    MARK:- PLAY AUDIO SETUP
     func playSound(soundUrl: String,ip:IndexPath) {
         let cell = soundsTV.cellForRow(at: ip) as! searchSoundTableViewCell
@@ -419,10 +425,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                 print(error.localizedDescription)
             }
         }
-
-
     }
-
 }
 
 //MARK:- TABLE VIEWS SETUPS
@@ -439,7 +442,7 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if tableView == userTV{
+        if tableView == userTV {
             let userCell = tableView.dequeueReusableCell(withIdentifier: "searchUsersTVC") as! searchUsersTableViewCell
             let userObj = userDataArr[indexPath.row]
             
@@ -454,14 +457,17 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
             
             return userCell
         }
-        else if tableView == hashTagTV
-        {
+        else if tableView == hashTagTV {
             let hashCell = tableView.dequeueReusableCell(withIdentifier: "searchHashtagsTVC") as! searchHashtagsTableViewCell
             
             let hashObj = hashTagDataArr[indexPath.row]
             
             hashCell.titleLbl.text = hashObj.name
             hashCell.countLbl.text = hashObj.views
+            
+            let entity_img = hashObj.image
+            let image = AppUtility?.detectURL(ipString: entity_img)
+            hashCell.hashtagImg.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "topic"))
             
             if hashObj.favourite == "1"{
                 hashCell.btnFav.setImage(UIImage(named: "btnFavFilled"), for: .normal)
@@ -528,7 +534,7 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
             
             if userID == nil || userID == ""{
                 loginScreenAppear()
-            }else{
+            } else {
                 let vc = storyboard?.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
                 vc.isOtherUserVisting = true
                 vc.hidesBottomBarWhenPushed = true
@@ -536,17 +542,16 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
                 navigationController?.pushViewController(vc, animated: true)
             }
             
-        }else if tableView == soundsTV{
-
+        } else if tableView == soundsTV {
             let obj = soundsDataArr[indexPath.row]
             playSound(soundUrl: (AppUtility?.detectURL(ipString: obj.audioURL))!,ip: indexPath)
-        }else if tableView == hashTagTV{
-            let hashtag = hashTagDataArr[indexPath.row].name
+        } else if tableView == hashTagTV {
             let vc = storyboard?.instantiateViewController(withIdentifier: "hashtagsVideoVC") as! hashtagsVideoViewController
-            vc.hashtag = hashtag
+            vc.hashtagArr = hashTagDataArr[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
    /*
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
@@ -620,11 +625,11 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
                         cell.btnFav.setImage(#imageLiteral(resourceName: "btnFavEmpty"), for: .normal)
 //                        self.btnAddFav.setTitle("Add to Favorite", for: .normal)
                         
-                        self.showToast(message: "UnFavorite", font: .systemFont(ofSize: 12))
+                        self.showToast(message: "Removed from favorites", font: .systemFont(ofSize: 12))
                         return
                     }
                     
-                    self.showToast(message: "Added to FAVORITE", font: .systemFont(ofSize: 12))
+                    self.showToast(message: "Added to favorites", font: .systemFont(ofSize: 12))
 //                    self.btnFav.image = #imageLiteral(resourceName: "btnFavFilled")
                     
                     cell.btnFav.setImage(#imageLiteral(resourceName: "btnFavFilled"), for: .normal)
@@ -686,8 +691,6 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
                             NotificationCenter.default.post(name: Notification.Name("loadAudio"), object: ["soundName":soundObj.name])
                             self.appearActionMainScreen()
                         }
-                        
-                        
                     } catch let error as NSError {
                         print(error.localizedDescription)
                     }
@@ -704,7 +707,7 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
     }
 //    MARK:- APPEAR ACTION MAIN SCREEN
     
-    func appearActionMainScreen(){
+    func appearActionMainScreen() {
         
 //        if isPlaying == true{
 //            isPlaying = false
@@ -727,9 +730,9 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
                     print("msg: ",response?.value(forKey: "msg")!)
                     
                     if btnFav.currentImage == UIImage(named: "btnFavEmpty"){
-                        self.showToast(message: "Removed From Favorite", font: .systemFont(ofSize: 12))
+                        self.showToast(message: "Removed from favorites", font: .systemFont(ofSize: 12))
                     }else{
-                        self.showToast(message: "Added to Favorite", font: .systemFont(ofSize: 12))
+                        self.showToast(message: "Added to favorites", font: .systemFont(ofSize: 12))
                     }
                     
                 }else{
@@ -787,7 +790,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
         cell.titleLbl.text = objArr[indexPath.row]["title"]
         
         if indexPath.row == 0 {
-            if self.objArr[indexPath.row]["isSelected"] == "false"{
+            if self.objArr[indexPath.row]["isSelected"] == "false" {
                 cell.bottomLineView.isHidden  = true
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
                 cell.titleLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -798,7 +801,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             }
         }
         if indexPath.row == 1 {
-            if self.objArr[indexPath.row]["isSelected"] == "false"{
+            if self.objArr[indexPath.row]["isSelected"] == "false" {
                 cell.bottomLineView.isHidden  = true
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
                 cell.titleLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -809,7 +812,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             }
         }
         if indexPath.row == 2{
-            if self.objArr[indexPath.row]["isSelected"] == "false"{
+            if self.objArr[indexPath.row]["isSelected"] == "false" {
                 cell.bottomLineView.isHidden  = true
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
                 cell.titleLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -820,7 +823,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             }
         }
         if indexPath.row == 3{
-            if self.objArr[indexPath.row]["isSelected"] == "false"{
+            if self.objArr[indexPath.row]["isSelected"] == "false" {
                 cell.bottomLineView.isHidden  = true
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
                 cell.titleLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -843,16 +846,12 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
                 obj.updateValue("false", forKey: "isSelected")
                 self.objArr.remove(at: i)
                 self.objArr.insert(obj, at: i)
-                
             }
             
             self.objSelectedIndex(index: indexPath.row)
             self.objIndex = indexPath.row
-        }else if collectionView == videosCV{
+        } else if collectionView == videosCV {
             if #available(iOS 13.0, *) {
-              /*  let vc = storyboard?.instantiateViewController(withIdentifier: "homeFeedVC") as! homeFeedViewController
-                vc.userVideoArr = videosDataArr
-                vc.indexAt = indexPath*/
                 let vc =  self.storyboard?.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
                 vc.videosMainArr = self.videosDataArr
                 vc.currentIndex = indexPath
@@ -862,19 +861,16 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             } else {
                 // Fallback on earlier versions
             }
-            
         }
-        
-        
     }
     
-    @objc func objSelectedIndex(index:Int){
+    @objc func objSelectedIndex(index:Int) {
         var obj  =  self.objArr[index]
         obj.updateValue("true", forKey: "isSelected")
         self.objArr.remove(at: index)
         self.objArr.insert(obj, at: index)
         
-        if index == 0{
+        if index == 0 {
             userView.isHidden = false
             
             videosView.isHidden = true
@@ -888,9 +884,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
                 self.isPlaying = false
             }
             
-        }
-        else if index == 1
-        {
+        } else if index == 1 {
             videosView.isHidden = false
             
             
@@ -900,13 +894,11 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             
             getVideosData(keyword: searchTxt, sp: videoStartingPoint)
             
-            if isPlaying == true{
+            if isPlaying == true {
                 audioPlayer?.pause()
                 self.isPlaying = false
             }
-        }
-        else if index == 2
-        {
+        } else if index == 2 {
             soundsView.isHidden = false
             
             userView.isHidden = true
@@ -915,9 +907,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             
             getSoundsData(keyword: searchTxt, sp: soundStartingPoint)
 
-        }
-        else
-        {
+        } else {
             hashTagView.isHidden = false
             
             userView.isHidden = true
@@ -936,8 +926,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        
-        if collectionView == self.videosCV{
+        if collectionView == self.videosCV {
             let noOfCellsInRow = 2
             
             let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -949,7 +938,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             let size = Int((objectsCV.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
             
             return CGSize(width: size, height: 300)
-        }else{
+        } else {
             let noOfCellsInRow = objArr.count
             
             let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -961,9 +950,6 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             let size = Int((objectsCV.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
             
             return CGSize(width: size, height: 28)
-            
         }
     }
-    
-    
 }

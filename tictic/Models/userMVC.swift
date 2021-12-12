@@ -14,6 +14,8 @@ struct userMVC {
     let last_name:String
     let gender:String
     let bio:String
+    let countryID:String
+    let countryName:String
     let website:String
     let dob:String
     let social_id:String

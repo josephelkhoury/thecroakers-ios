@@ -33,6 +33,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     @IBOutlet var userImageOutlet: [UIImageView]!
     @IBOutlet weak var userHeaderName: UILabel!
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var lblCountry: UILabel!
+    @IBOutlet weak var lblBio: UILabel!
     @IBOutlet weak var profileDropDownBtn: UIButton!
     @IBOutlet weak var btnBackOutlet: UIButton!
   //  @IBOutlet weak var btnChatOutlet: UIButton!
@@ -157,10 +159,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
   
         if (self.navigationController!.viewControllers.count == 1) {
             NSLog("self is RootViewController");
-            
             print("self is RootViewController", self.navigationController!.viewControllers.count)
-            
-            self.tabBarController?.tabBar.isHidden = false
+            //self.tabBarController?.tabBar.isHidden = false
         }
         self.fetchingUserDataFunc()
     }
@@ -256,13 +256,10 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         
     }
     @IBAction func profilePicPressed(_ sender: UIButton) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ShareProfileViewController") as! ShareProfileViewController
-  //      let vc = storyboard?.instantiateViewController(withIdentifier: "imagePreviewVC") as! ImagePreviewViewController
+        /*let vc = storyboard?.instantiateViewController(withIdentifier: "ShareProfileViewController") as! ShareProfileViewController
         vc.modalPresentationStyle = .overCurrentContext
-        vc.userData =  self.userData//.userProfile_pic
-    //    vc.isUserPofile = true
-        self.tabBarController!.present(vc, animated: true, completion: nil)
+        vc.userData =  self.userData
+        self.tabBarController!.present(vc, animated: true, completion: nil)*/
     }
     
     @IBAction func btnFollowAction(_ sender: Any) {
@@ -569,11 +566,11 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         ApiHandler.sharedInstance.showOwnDetail(user_id: self.userID) { (isSuccess, response) in
             self.view.hideLoading()
             if isSuccess {
-                
                 print("response UserDetails : ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userObj = userObjMsg.value(forKey: "User") as! NSDictionary
+                    let countryObj = userObjMsg.value(forKey: "Country") as! NSDictionary
                     
                     let privSettingObj = userObjMsg.value(forKey: "PrivacySetting") as! NSDictionary
                     let pushNotiSettingObj = userObjMsg.value(forKey: "PushNotification") as! NSDictionary
@@ -619,9 +616,10 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     let userId = (userObj.value(forKey: "id") as? String)!
                     UserDefaults.standard.setValue(wallet, forKey: "wallet")
                     
-                    print("profile_pic:",userImage)
+                    let countryID = (countryObj.value(forKey: "id") as? String)!
+                    let countryName = (countryObj.value(forKey: "name") as? String)!
                     
-                    let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "",wallet:wallet,paypal:paypal)
+                    let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: countryID, countryName: countryName, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "",wallet:wallet,paypal:paypal)
                     
                     self.userData.append(user)
                     
@@ -653,6 +651,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userObj = userObjMsg.value(forKey: "User") as! NSDictionary
+                    let countryObj = userObjMsg.value(forKey: "Country") as! NSDictionary
                     
                     let privSettingObj = userObjMsg.value(forKey: "PrivacySetting") as! NSDictionary
                     let pushNotiSettingObj = userObjMsg.value(forKey: "PushNotification") as! NSDictionary
@@ -698,9 +697,11 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     let userId = (userObj.value(forKey: "id") as? String)!
                     UserDefaults.standard.setValue(wallet, forKey: "wallet")
                     self.otherUserID =  userId
-                    print("profile_pic:",userImage)
                     
-                    let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "",wallet:wallet,paypal:paypal)
+                    let countryID = (countryObj.value(forKey: "id") as? String)!
+                    let countryName = (countryObj.value(forKey: "name") as? String)!
+                    
+                    let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: countryID, countryName: countryName, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "",wallet:wallet,paypal:paypal)
                     
                     self.userData.append(user)
                     
@@ -737,6 +738,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userObj = userObjMsg.value(forKey: "User") as! NSDictionary
+                    let countryObj = userObjMsg.value(forKey: "Country") as! NSDictionary
                     
                     let userImage = (userObj.value(forKey: "profile_pic") as? String)!
                     let userName = (userObj.value(forKey: "username") as? String)!
@@ -754,11 +756,14 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     let wallet = (userObj.value(forKey: "wallet") as? String)!
                     let paypal = (userObj.value(forKey: "paypal") as? String)!
                     
+                    let countryID = (countryObj.value(forKey: "id") as? String)!
+                    let countryName = (countryObj.value(forKey: "name") as? String)!
+                    
                     UserDefaults.standard.setValue(wallet, forKey: "wallet")
                     
                     let userId = (userObj.value(forKey: "id") as? String)!
                     
-                    let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: followBtn, wallet: wallet,paypal:paypal)
+                    let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: countryID, countryName: countryName, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: followBtn, wallet: wallet,paypal:paypal)
                     
                     self.userData.append(user)
                     self.setProfileData()
@@ -1102,6 +1107,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
         let profilePic = AppUtility?.detectURL(ipString: user.userProfile_pic)
         self.userName.text = "@\(user.username)"
+        self.lblCountry.text = "📍\(user.countryName)"
+        self.lblBio.text = user.bio
         self.userHeaderName.text = user.first_name+" "+user.last_name
         for img in userImageOutlet {
             img.sd_imageIndicator = SDWebImageActivityIndicator.gray

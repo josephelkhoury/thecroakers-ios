@@ -169,7 +169,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             sourceRepliesLbl.text = "Original"
         } else {
             musicBtn.isSelected = false
-            sourceRepliesLbl.text = "Replies"
+            sourceRepliesLbl.text = "Croaks"
         }
         
         self.captionLbl.setText(text: post.description,textColor: .white, withHashtagColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), andMentionColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), andCallBack: { (strng, type) in

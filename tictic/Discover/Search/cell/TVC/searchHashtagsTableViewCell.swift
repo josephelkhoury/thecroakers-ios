@@ -10,6 +10,7 @@ import UIKit
 
 class searchHashtagsTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var hashtagImg: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var countLbl: UILabel!
     

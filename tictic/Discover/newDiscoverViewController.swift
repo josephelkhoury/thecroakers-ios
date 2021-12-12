@@ -120,9 +120,9 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         let obj = entityDataArr[indexPath.row]
         
         if section == "0" {
-            let hashtag = obj["entityName"] as! String
+            let hashtagArr = hashTagMVC(id: "", name: obj["entityName"] as! String, image: obj["entity_img"] as! String, featured: "", views: "", favourite: "")
             let vc = storyboard?.instantiateViewController(withIdentifier: "hashtagsVideoVC") as! hashtagsVideoViewController
-            vc.hashtag = hashtag
+            vc.hashtagArr = hashtagArr
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if section == "1" || section == "2" {

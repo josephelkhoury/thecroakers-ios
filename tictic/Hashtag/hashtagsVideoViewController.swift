@@ -12,6 +12,7 @@ import SDWebImage
 class hashtagsVideoViewController: UIViewController {
     
     @IBOutlet weak var videosCV: UICollectionView!
+    @IBOutlet weak var imgHashtag : UIImageView!
     @IBOutlet var hashtagTitle: [UILabel]!
     @IBOutlet weak var videosCount : UILabel!
     @IBOutlet weak var btnFav : UIImageView!
@@ -19,6 +20,7 @@ class hashtagsVideoViewController: UIViewController {
     
     var hashtagVideosArr = [videoMainMVC]()
     var hashtagData = [String:Any]()
+    var hashtagArr: hashTagMVC?
     var hashtag = ""
     
     var pageNumber = 0
@@ -31,9 +33,18 @@ class hashtagsVideoViewController: UIViewController {
         videosCV.delegate = self
         videosCV.dataSource = self
         
-        for title in hashtagTitle{
-            title.text = hashtag
+        for title in hashtagTitle {
+            title.text = hashtagArr?.name
         }
+        
+        let entity_img = hashtagArr?.image ?? ""
+        let image = AppUtility?.detectURL(ipString: entity_img)
+        imgHashtag.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "topic"))
+        
+        if hashtag == "" {
+            hashtag = hashtagArr!.name
+        }
+        
         getHashtagDataAPI(hashtag: hashtag,starting_point: "\(self.pageNumber)")
     }
     
@@ -41,11 +52,6 @@ class hashtagsVideoViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func btnFav(_ sender: Any) {
-        
-//        if self.hashtagData["favourite"] as! NSNumber == 0{
-//            self.btnFav.image = #imageLiteral(resourceName: "btnFavFilled")
-//        }
-        
         self.addFavHashtagAPI()
     }
     
@@ -61,17 +67,16 @@ class hashtagsVideoViewController: UIViewController {
         
         AppUtility?.startLoader(view: self.view)
         
-        ApiHandler.sharedInstance.showVideosAgainstHashtag(user_id: userID!, hashtag: hashtag,starting_point:starting_point) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstHashtag(user_id: userID!, hashtag: hashtagArr!.name,starting_point:starting_point) { (isSuccess, response) in
             
             AppUtility?.stopLoader(view: self.view)
             
-            if isSuccess{
+            if isSuccess {
                 let code = response?.value(forKey: "code") as! NSNumber
-                
-                if code == 200{
+                if code == 200 {
                     let msgArr = response?.value(forKey: "msg") as! NSArray
                     
-                    for msgObj in msgArr{
+                    for msgObj in msgArr {
                         
                         let videosData = msgObj as! NSDictionary
                         
@@ -120,7 +125,7 @@ class hashtagsVideoViewController: UIViewController {
                     
                     self.videosCount.text = "\(self.hashtagVideosArr.count) Videos"
                     
-                    if self.hashtagData["favourite"] as! NSNumber == 0{
+                    if self.hashtagData["favourite"] as! NSNumber == 0 {
                         self.btnFav.image = #imageLiteral(resourceName: "btnFavEmpty")
                         
                     } else {

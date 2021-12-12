@@ -56,22 +56,17 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     
     //MARK:- tableView delegate
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        if self.arrConversation.count == 0
-        {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.arrConversation.count == 0 {
             self.lblMessage.isHidden = false
             return 0
-        }
-        else
-        {
+        } else {
             self.lblMessage.isHidden = true
             return self.arrConversation.count
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = self.arrConversation[indexPath.row]
         let image = data["pic"] as? String ?? "pic"
         let name = data["name"] as? String ?? "name"
@@ -79,8 +74,7 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
         let type = data["type"] as? String ?? "type"
         
         
-        if type == "text"
-        {
+        if type == "text" {
             let userChatCell = tableView.dequeueReusableCell(withIdentifier: "userChatCell") as! ChatTableViewCell
             userChatCell.imgUser.sd_imageIndicator = SDWebImageActivityIndicator.gray
             userChatCell.imgUser.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "noUserImg"))
@@ -94,9 +88,7 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
             userChatCell.addGestureRecognizer(longGesture)
             
             return userChatCell
-        }
-        else
-        {
+        } else {
             let userChatCell = tableView.dequeueReusableCell(withIdentifier: "userChatCell") as! ChatTableViewCell
             
             userChatCell.imgUser.sd_imageIndicator = SDWebImageActivityIndicator.gray

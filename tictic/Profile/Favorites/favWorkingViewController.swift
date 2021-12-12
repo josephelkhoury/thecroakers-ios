@@ -255,10 +255,12 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         
                         let id = hashtag.value(forKey: "id") as! String
                         let name = hashtag.value(forKey: "name") as! String
+                        let image = hashtag.value(forKey: "image") as! String
+                        let featured = hashtag.value(forKey: "featured") as? NSNumber
                         let views = hashtag.value(forKey: "views") as! String
                         let favourite = hashtag.value(forKey: "favourite") as? NSNumber
                         
-                        let obj = hashTagMVC(id: id, name: name, views: views, favourite: "\(favourite ?? 0)")
+                        let obj = hashTagMVC(id: id, name: name, image: image, featured: "\(featured ?? 0)", views: views, favourite: "\(favourite ?? 0)")
                         
                         self.hashTagDataArr.append(obj)
                     }
@@ -355,6 +357,10 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
             hashCell.titleLbl.text = hashObj.name
             hashCell.countLbl.text = hashObj.views
             
+            let entity_img = hashObj.image
+            let image = AppUtility?.detectURL(ipString: entity_img)
+            hashCell.hashtagImg.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "topic"))
+            
             if hashObj.favourite == "1" {
                 hashCell.btnFav.setImage(UIImage(named: "btnFavFilled"), for: .normal)
             } else {
@@ -396,16 +402,15 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == hashTagTV{
+        if tableView == hashTagTV {
             return 50
         }
         return 80
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == hashTagTV{
-            let hashtag = hashTagDataArr[indexPath.row].name
+        if tableView == hashTagTV {
             let vc = storyboard?.instantiateViewController(withIdentifier: "hashtagsVideoVC") as! hashtagsVideoViewController
-            vc.hashtag = hashtag
+            vc.hashtagArr = hashTagDataArr[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
             let obj = soundsDataArr[indexPath.row]
@@ -473,9 +478,9 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
         
         let btnFavImg = cell.favBtn.currentImage
         
-        if btnFavImg == UIImage(named: "btnFavEmpty"){
+        if btnFavImg == UIImage(named: "btnFavEmpty") {
             cell.favBtn.setImage(UIImage(named: "btnFavFilled"), for: .normal)
-        }else{
+        } else {
             cell.favBtn.setImage(UIImage(named: "btnFavEmpty"), for: .normal)
         }
         

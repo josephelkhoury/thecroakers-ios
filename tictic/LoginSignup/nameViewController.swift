@@ -109,7 +109,6 @@ class nameViewController: UIViewController,UITextFieldDelegate {
                     self.showToast(message: "Registered", font: .systemFont(ofSize: 12))
                     sleep(2)
                     
-                    
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userObj = userObjMsg.value(forKey: "User") as! NSDictionary
                     print("user obj: ",userObj)
@@ -189,7 +188,7 @@ class nameViewController: UIViewController,UITextFieldDelegate {
         print("dob: ",dob)
         print("username: ",username)
         AppUtility?.startLoader(view: self.view)
-        ApiHandler.sharedInstance.registerEmail(email: email, password: pass, dob: dob, username: username, country_id: self.country_id) { (isSuccess, response) in
+        ApiHandler.sharedInstance.registerEmail(email: email, password: pass, dob: dob, username: username, country_id: country_id) { (isSuccess, response) in
             
             print("Response: ",response)
                         if isSuccess{

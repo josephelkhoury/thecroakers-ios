@@ -10,6 +10,8 @@ import Foundation
 struct hashTagMVC {
     let id:String
     let name:String
+    let image:String
+    let featured:String
     let views:String
     let favourite:String
 }

@@ -63,7 +63,6 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
         loaderView.color = #colorLiteral(red: 1, green: 0.5223166943, blue: 0, alpha: 1)
         
         loaderView.startAnimating()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -111,7 +110,7 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
             self.noCommentLbl.isHidden = false
         } else {
             self.noCommentLbl.isHidden = true
-            commentsCount.text = "\(commentsArr.count)" + " comments"
+            commentsCount.text = "\(commentsArr.count)" + (commentsArr.count == 1 ? " comment" : " comments")
             
             cell.delegate = self
             let obj = self.commentsArr[indexPath.row]

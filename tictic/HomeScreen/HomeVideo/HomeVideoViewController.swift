@@ -245,9 +245,8 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
                     }
                     self.videoResponse(startPoint: startPoint, resMsg: response as! [String : Any])
                 } else {
-                    self.btnRelated.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
-                    self.btnFollowing.setTitleColor(UIColor.white, for: .normal)
-                    //self.showToast(message: "Please Follow Someone", font: .systemFont(ofSize: 12))
+                    self.relatedButton()
+                    self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
                 }
             } else {
                 print("response failed getFollowingVideos : ",response!)

@@ -42,13 +42,13 @@ class favMainViewController: ButtonBarPagerTabStripViewController {
         let child1 = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "favWorkingVC") as! favWorkingViewController
         child1.itemInfo = "Videos"
 
-        let child2 = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "favWorkingVC") as! favWorkingViewController
-        child2.itemInfo = "Sounds"
+        /*let child2 = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "favWorkingVC") as! favWorkingViewController
+        child2.itemInfo = "Sounds"*/
         
         let child3 = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "favWorkingVC") as! favWorkingViewController
         child3.itemInfo = "Hashtags"
 
-        return [child1,child2,child3]
+        return [child1,child3]
     }
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
