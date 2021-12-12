@@ -52,8 +52,8 @@ class topicViewController: UIViewController,UITableViewDelegate,UITableViewDataS
                         let id = hashtagDict.value(forKey: "id") as! String
                         let name = hashtagDict.value(forKey: "name") as! String
                         let image = hashtagDict.value(forKey: "image") as! String
-                        let featured = hashtagDict.value(forKey: "featured") as! String
-                        let hashtag = hashTagMVC(id: id, name: name, image: image, featured: featured, views: "", favourite: "")
+                        let featured = hashtagDict.value(forKey: "featured") as? NSNumber
+                        let hashtag = hashTagMVC(id: id, name: name, image: image, featured: "\(featured ?? 0)", views: "", favourite: "")
                         self.hashtagsArr.append(hashtag)
                         self.tableOutlet.reloadData()
                     }
