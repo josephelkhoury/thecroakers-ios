@@ -176,10 +176,10 @@ class postViewController: UIViewController,UITextViewDelegate {
                 print("is not a valid json object")
                 return
             }
-            for key in parameter!.keys{
+            for key in parameter!.keys {
                 let name = String(key)
                 print("key",name)
-                if let val = parameter![name] as? String{
+                if let val = parameter![name] as? String {
                     MultipartFormData.append(val.data(using: .utf8)!, withName: name)
                 }
             }
@@ -187,7 +187,7 @@ class postViewController: UIViewController,UITextViewDelegate {
             MultipartFormData.append(self.videoUrl!, withName: "video")
         }, to: url, method: .post, headers: headers)
             .responseJSON { (response) in
-                switch response.result{
+                switch response.result {
                     
                 case .success(let value):
                     print("progress: ", Progress.current())
@@ -214,16 +214,14 @@ class postViewController: UIViewController,UITextViewDelegate {
                         AppUtility?.stopLoader(view: self.view)
                         print("Dict: ",dic)
                         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-                        
-                        
                     } else {
                         AppUtility?.stopLoader(view: self.view)
                         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
                         print(dic)
-                        
                     }
                 case .failure(let error):
                     AppUtility?.stopLoader(view: self.view)
+                    self.showToast(message: error.localizedDescription, font: .systemFont(ofSize: 12))
                     print("\n\n===========Error===========")
                     print("Error Code: \(error._code)")
                     print("Error Messsage: \(error.localizedDescription)")
@@ -232,18 +230,22 @@ class postViewController: UIViewController,UITextViewDelegate {
                     }
                     debugPrint(error as Any)
                     print("===========================\n\n")
-            
                 }
         }
     }
         
     @IBAction func btnPost(_ sender: Any) {
-        if self.topic_id == "" {
+        if topic_id == nil || topic_id == "" {
             showToast(message: "Please choose a topic for your video", font: .systemFont(ofSize: 12))
+            return;
+        }
+        if country_id == nil || country_id == "" {
+            showToast(message: "Please choose a country for your video", font: .systemFont(ofSize: 12))
             return;
         }
         uploadData()
     }
+    
     @IBAction func commentSwitch(_ sender: UISwitch) {
         if sender.isOn {
             self.allowComments = "true"

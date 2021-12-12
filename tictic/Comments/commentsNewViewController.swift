@@ -120,7 +120,9 @@ class commentsNewViewController: UIViewController,UITableViewDelegate,UITableVie
             let cmntWithoutTime = "\(obj.comment)"
             let cmnt = cmntWithoutTime
             cell.comment.text = cmnt
-            cell.userImg.sd_setImage(with: URL(string:obj.imgName), placeholderImage: UIImage(named: "noUserImg"))
+            let userImgPath = AppUtility?.detectURL(ipString: obj.imgName)
+            let userImgUrl = URL(string: userImgPath!)
+            cell.userImg.sd_setImage(with: userImgUrl, placeholderImage: UIImage(named: "noUserNew"))
         }
         return cell
     }
