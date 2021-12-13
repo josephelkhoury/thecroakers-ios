@@ -178,30 +178,29 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             print("strng: ",strng)
             
             switch type {
-            
-            case .hashtag:
-                if let rootViewController = UIApplication.topViewController() {
-                    let storyMain = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyMain.instantiateViewController(withIdentifier: "hashtagsVideoVC") as! hashtagsVideoViewController
-                    vc.hashtag = strng
-                    vc.hidesBottomBarWhenPushed = true
-                    rootViewController.navigationController?.pushViewController(vc, animated: true)
-                }
-                break
-                
-            case .mention:
-                if let rootViewController = UIApplication.topViewController() {
-                    let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                case .hashtag:
+                    if let rootViewController = UIApplication.topViewController() {
+                        let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = storyMain.instantiateViewController(withIdentifier: "hashtagsVideoVC") as! hashtagsVideoViewController
+                        vc.hashtag = strng
+                        vc.hidesBottomBarWhenPushed = true
+                        rootViewController.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    break
                     
-                    let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
-                    vc.isOtherUserVisting = true
-                    vc.hidesBottomBarWhenPushed = true
-                    vc.isTagName = strng
-                    vc.isTagUser  =  true
-                    vc.otherUserID = "-1"
-                    rootViewController.navigationController?.pushViewController(vc, animated: true)
-                }
-                break
+                case .mention:
+                    if let rootViewController = UIApplication.topViewController() {
+                        let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                        
+                        let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
+                        vc.isOtherUserVisting = true
+                        vc.hidesBottomBarWhenPushed = true
+                        vc.isTagName = strng
+                        vc.isTagUser  =  true
+                        vc.otherUserID = "-1"
+                        rootViewController.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    break
             }
             
         }, normalFont: .systemFont(ofSize: 12, weight: UIFont.Weight.medium), hashTagFont: .systemFont(ofSize: 12, weight: UIFont.Weight.bold), mentionFont: .systemFont(ofSize: 12, weight: UIFont.Weight.bold))
@@ -377,7 +376,6 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             vc.arrVideo = self.arrVideo
             vc.modalPresentationStyle = .overFullScreen
             rootViewController.navigationController?.present(vc, animated: true, completion: nil)
-        
         }
     }
     

@@ -159,8 +159,11 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     //MARK:- Delegate
     
     func updateObj(obj: videoMainMVC, index: Int,islike:Bool) {
-        self.videosMainArr.remove(at: index)
-        self.videosMainArr.insert(obj, at: index)
+        if index < self.videosMainArr.count {
+            self.videosMainArr.remove(at: index)
+            self.videosMainArr.insert(obj, at: index)
+        }
+        
         if islike {
             self.likeVideo(uid: UserDefaults.standard.string(forKey: "userID") as? String ?? "" , videoID: obj.videoID)
         }
@@ -168,7 +171,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     
     //MARK:- Pagination
     
-    func pagination(index:Int){
+    func pagination(index:Int) {
         let vidObj = videosMainArr[index]
         self.watchVideo(video_id: vidObj.videoID)
         print("index@row: ",index)
@@ -279,7 +282,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     func likeVideo(uid:String,videoID:String) {
         ApiHandler.sharedInstance.likeVideo(user_id: uid, video_id: videoID) { (isSuccess, response) in
        
-            if isSuccess{
+            if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     //print("likeVideo response msg: ",response?.value(forKey: "msg"))
                 } else {

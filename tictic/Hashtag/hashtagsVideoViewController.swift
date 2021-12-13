@@ -19,7 +19,7 @@ class hashtagsVideoViewController: UIViewController {
     @IBOutlet weak var btnAddFav : UIButton!
     
     var hashtagVideosArr = [videoMainMVC]()
-    var hashtagData = [String:Any]()
+    var hashtagData: [String:Any]?
     var hashtagArr: hashTagMVC?
     var hashtag = ""
     
@@ -33,17 +33,17 @@ class hashtagsVideoViewController: UIViewController {
         videosCV.delegate = self
         videosCV.dataSource = self
         
+        if hashtag == "" {
+            hashtag = hashtagArr!.name
+        }
+        
         for title in hashtagTitle {
-            title.text = hashtagArr?.name
+            title.text = hashtag
         }
         
         let entity_img = hashtagArr?.image ?? ""
         let image = AppUtility?.detectURL(ipString: entity_img)
         imgHashtag.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "topic"))
-        
-        if hashtag == "" {
-            hashtag = hashtagArr!.name
-        }
         
         getHashtagDataAPI(hashtag: hashtag,starting_point: "\(self.pageNumber)")
     }
@@ -56,18 +56,16 @@ class hashtagsVideoViewController: UIViewController {
     }
     
     //    MARK:- API
-    func getHashtagDataAPI(hashtag:String,starting_point:String){
-        
-        //showToast(message: "Loading Videos...", font: .systemFont(ofSize: 12.0))
+    func getHashtagDataAPI(hashtag:String,starting_point:String) {
         var userID = UserDefaults.standard.string(forKey: "userID")
         
-        if userID == "" || userID == nil{
+        if userID == "" || userID == nil {
             userID = ""
         }
         
         AppUtility?.startLoader(view: self.view)
         
-        ApiHandler.sharedInstance.showVideosAgainstHashtag(user_id: userID!, hashtag: hashtagArr!.name,starting_point:starting_point) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstHashtag(user_id: userID!, hashtag: hashtag,starting_point:starting_point) { (isSuccess, response) in
             
             AppUtility?.stopLoader(view: self.view)
             
@@ -125,12 +123,12 @@ class hashtagsVideoViewController: UIViewController {
                     
                     self.videosCount.text = "\(self.hashtagVideosArr.count) Videos"
                     
-                    if self.hashtagData["favourite"] as! NSNumber == 0 {
+                    if self.hashtagData?["favourite"] as! NSNumber == 0 {
                         self.btnFav.image = #imageLiteral(resourceName: "btnFavEmpty")
                         
                     } else {
                         self.btnFav.image = #imageLiteral(resourceName: "btnFavFilled")
-                        self.btnAddFav.setTitle("Favorite", for: .normal)
+                        self.btnAddFav.setTitle("Remove from Favorites", for: .normal)
                     }
                     self.videosCV.reloadData()
                 } else {
@@ -146,10 +144,13 @@ class hashtagsVideoViewController: UIViewController {
             loginScreenAppear()
             return
         }
+        guard self.hashtagData != nil else {
+            return
+        }
         
         AppUtility?.startLoader(view: self.view)
         
-        ApiHandler.sharedInstance.addHashtagFavourite(user_id: uid!, hashtag_id: self.hashtagData["id"] as! String) { (isSuccess, response) in
+        ApiHandler.sharedInstance.addHashtagFavourite(user_id: uid!, hashtag_id: self.hashtagData?["id"] as! String) { (isSuccess, response) in
             
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
@@ -159,14 +160,14 @@ class hashtagsVideoViewController: UIViewController {
                     
                     if response?.value(forKey: "msg") as? String == "unfavourite" {
                         self.btnFav.image = #imageLiteral(resourceName: "btnFavEmpty")
-                        self.btnAddFav.setTitle("Add to Favorite", for: .normal)
-                        self.showToast(message: "UnFavorite", font: .systemFont(ofSize: 12))
+                        self.btnAddFav.setTitle("Add to Favorites", for: .normal)
+                        self.showToast(message: "Removed from Favorites", font: .systemFont(ofSize: 12))
                         return
                     }
                     
-                    self.showToast(message: "Added to FAVORITE", font: .systemFont(ofSize: 12))
+                    self.showToast(message: "Added to Favorites", font: .systemFont(ofSize: 12))
                     self.btnFav.image = #imageLiteral(resourceName: "btnFavFilled")
-                    self.btnAddFav.setTitle("Favorite", for: .normal)
+                    self.btnAddFav.setTitle("Remove from Favorites", for: .normal)
                     
                 } else {
                     self.showToast(message: "Something went wront try again", font: .systemFont(ofSize: 12))
