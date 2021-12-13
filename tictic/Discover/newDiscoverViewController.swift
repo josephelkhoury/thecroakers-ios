@@ -46,17 +46,21 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         bannerPageController.tintColor = .white
         view.bringSubviewToFront(self.bannerPageController)
         self.scrollViewOutlet.delegate =  self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.countryDataNotification(_:)), name: NSNotification.Name(rawValue: "countryDataNotification"), object: nil)
+        
+        country_id = UserDefaults.standard.string(forKey: "country_id") ?? "0"
+        country_emoji = UserDefaults.standard.string(forKey: "country_emoji") ?? "🌐"
+        setCountryFlag()
+        
         getSliderData()
         getVideosData()
         self.setupView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.countryDataNotification(_:)), name: NSNotification.Name(rawValue: "countryDataNotification"), object: nil)
-        
         AppUtility?.startLoader(view: self.view)
     }
     
-    @objc
-    func requestData() {
+    @objc func requestData() {
         self.entityDataArr.removeAll()
         self.sliderArr.removeAll()
         getVideosData()
@@ -197,6 +201,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     
     @IBAction func btnCountry(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "countryCodeVC") as! countryCodeViewController
+        vc.showWorldwide = "1"
         present(vc, animated: true, completion: nil)
     }
     
@@ -207,6 +212,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
             UserDefaults.standard.set(country.id, forKey: "country_id")
             UserDefaults.standard.set(country.emoji, forKey: "country_emoji")
             setCountryFlag()
+            requestData()
         }
     }
     
@@ -231,7 +237,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     }
     
     //    MARK:- SLIDER DATA API
-    func getSliderData(){
+    func getSliderData() {
         sliderArr.removeAll()
         ApiHandler.sharedInstance.showAppSlider(section: section) { (isSuccess, response) in
             if isSuccess {

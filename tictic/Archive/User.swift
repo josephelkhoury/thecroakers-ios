@@ -115,7 +115,6 @@ class User:NSObject, NSCoding {
         acoder.encode(self.endLat,forKey: "endLat")
         acoder.encode(self.endLong,forKey: "endLong")
         
-        
         acoder.encode(self.id,forKey: "id")
         acoder.encode(self.active,forKey: "active")
         acoder.encode(self.city,forKey: "city")
@@ -153,8 +152,6 @@ class User:NSObject, NSCoding {
         acoder.encode(self.direct_message,forKey: "direct_message")
         acoder.encode(self.video_comment,forKey: "video_comment")
         acoder.encode(self.videos_download,forKey: "videos_download")
-    
-
     }
     //MARK: Archive Methods
         class func archiveFilePath() -> String {

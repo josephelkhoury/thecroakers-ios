@@ -131,16 +131,16 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
         print("Selected view controller: ",viewController)
     }
     
-    func getFBUserData(){
+    func getFBUserData() {
         
         //        let sv = HomeViewController.displaySpinner(onView: self.view)
         AppUtility?.startLoader(view: view)
-        if((AccessToken.current) != nil){
+        if((AccessToken.current) != nil) {
             
             print("access token fb: ",AccessToken.current!)
             
             GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil){
+                if (error == nil) {
                     let dict = result as! [String : AnyObject]
                     print(dict)
                     if let dict = result as? [String : AnyObject]{
@@ -151,7 +151,7 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
                             
                             self.alertModule(title:"Error", msg:"You cannot login with this facebook account because your facebook is not linked with any email")
                             
-                        }else{
+                        } else {
                             
                             //                            MARK:- FB DATA
                             //                            HomeViewController.removeSpinner(spinner: sv)
@@ -198,8 +198,6 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
         controller.presentationContextProvider = self
         
         controller.performRequests()
-        
-        
     }
     
     @available(iOS 13.0, *)
@@ -267,7 +265,7 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
     }
 }
 @available(iOS 13.0, *)
-extension newLoginViewController:GIDSignInDelegate{
+extension newLoginViewController:GIDSignInDelegate {
     
     func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
         //UIActivityIndicatorView.stopAnimating()
@@ -288,7 +286,6 @@ extension newLoginViewController:GIDSignInDelegate{
         if (error == nil) {
             // Perform any operations on signed in user here.
             self.GoogleApi(user: user)
-            
             // ...
         } else {
             
@@ -299,30 +296,24 @@ extension newLoginViewController:GIDSignInDelegate{
             //            }
             print("\(error.localizedDescription)")
         }
-        
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!){
-        
     }
     
-    
-    
-    func GoogleApi(user: GIDGoogleUser!){
+    func GoogleApi(user: GIDGoogleUser!) {
         
         print("user.authentication.accessTokenExpirationDate: ",user.authentication.accessTokenExpirationDate)
         
         //        let sv = HomeViewController.displaySpinner(onView: self.view)
         AppUtility?.startLoader(view: view)
         
-        if(user.profile.email == nil || user.userID == nil || user.profile.email == "" || user.userID == ""){
+        if (user.profile.email == nil || user.userID == nil || user.profile.email == "" || user.userID == "") {
             
             //            HomeViewController.removeSpinner(spinner: sv)
             AppUtility?.stopLoader(view: self.view)
             alertModule(title:"Error", msg:"You cannot signup with this Google account because your Google is not linked with any email.")
-            
-        }else{
-            
+        } else {
             //            HomeViewController.removeSpinner(spinner: sv)
             AppUtility?.stopLoader(view: self.view)
             //SliderViewController.removeSpinner(spinner: sv)
@@ -341,12 +332,11 @@ extension newLoginViewController:GIDSignInDelegate{
             
             print("email: ",email!)
             
-            if user.profile.hasImage
-            {
+            if user.profile.hasImage {
                 let pic = user.profile.imageURL(withDimension: 100)
                 self.profile_pic = pic!.absoluteString
                 
-            }else{
+            } else {
                 self.profile_pic = ""
             }
             
@@ -354,22 +344,20 @@ extension newLoginViewController:GIDSignInDelegate{
 //            let userName = first_name+last_name
             
             self.signUPType = "google"
-
             checkAlreadyRegistered()
-            
         }
     }
     
 //    MARK:- Check already registered
     
-    func checkAlreadyRegistered(){
+    func checkAlreadyRegistered() {
 //        let userName = first_name+last_name
         let deviceToken = UserDefaults.standard.string(forKey: "deviceKey")
         print("Authtoken: ",authToken!)
         print("deviceToken: ",deviceToken!)
         print("social id: ",socialID)
         ApiHandler.sharedInstance.alreadySocialRegisteredUserCheck(social_id: socialID, social: signUPType, auth_token: authToken) { (isSuccess, response) in
-            if isSuccess{
+            if isSuccess {
                 print("response: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
 
@@ -431,17 +419,17 @@ extension newLoginViewController:GIDSignInDelegate{
                     
                     AppUtility?.addDeviceData()
                     
-                    if User.saveUserToArchive(user: [user]){
+                    if User.saveUserToArchive(user: [user]) {
                         self.navigationController?.popToRootViewController(animated: true)
                         self.presentingViewController!.dismiss(animated: true, completion: nil)
                         self.tabBarController?.selectedIndex = 3
 //                         self.showToast(message: "Signin", font: .systemFont(ofSize: 12))
                     }
-                }else{
+                } else {
                     //                    self.alertModule(title: "Not Registered", msg: response?.value(forKey: "msg") as! String)
                     self.registerSocialUser()
                 }
-            }else{
+            } else {
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
             }
         }
@@ -467,7 +455,7 @@ extension newLoginViewController:GIDSignInDelegate{
      }
      */
     
-    func registerSocialUser(){
+    func registerSocialUser() {
         let alert = UIAlertController(title: NSLocalizedString("alert_app_name", comment: ""), message: "Want to create new account?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "Signup", style: .default, handler: { action in
@@ -512,8 +500,6 @@ extension newLoginViewController:GIDSignInDelegate{
     @objc func dismissVCnoti(notification: Notification) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 @available(iOS 13.0, *)
 extension newLoginViewController: ASAuthorizationControllerDelegate {
@@ -530,7 +516,6 @@ extension newLoginViewController: ASAuthorizationControllerDelegate {
             print(passwordCredential)
         default: break
         }
-        
         
         if let userEmail = appleIDCredential.email {
             print("Email: \(userEmail)")
@@ -552,7 +537,6 @@ extension newLoginViewController: ASAuthorizationControllerDelegate {
             print("my id apple: ",my_id)
             //            checkAlreadyRegistered()
             
-            
             if let authorizationCode = appleIDCredential.authorizationCode,
                 let identifyToken = appleIDCredential.identityToken {
                 print("Authorization Code: \(authorizationCode.base64EncodedString())")
@@ -569,7 +553,7 @@ extension newLoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             //                    MARK:- JK
-        }else{
+        } else {
             //Next time get data from backend
             print("id: ",appleIDCredential.user)
             self.signUPType = "apple"
@@ -580,10 +564,7 @@ extension newLoginViewController: ASAuthorizationControllerDelegate {
             UserDefaults.standard.set(self.my_id, forKey: "uid")
             
             checkAlreadyRegistered()
-            
         }
-        
-        
     }
     
     @available(iOS 13.0, *)

@@ -3877,7 +3877,7 @@ class ApiHandler:NSObject{
     }
     
     //MARK:-showCountries
-    func showCountries(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+    func showCountries(user_id:String, showWorldwide:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let headers: HTTPHeaders = [
             "Api-Key":API_KEY,
             "User_Id":user_id,
@@ -3885,7 +3885,8 @@ class ApiHandler:NSObject{
         ]
         var parameters = [String : String]()
         parameters = [
-            "user_id"        : user_id
+            "user_id" : user_id,
+            "worldwide" : showWorldwide
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showCountries.rawValue)"
         

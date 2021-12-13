@@ -69,7 +69,6 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         myUser = User.readUserFromArchive()
         
-        print("myUser: ", myUser![0].username)
         self.senderName = myUser![0].username
         self.senderProfile = (AppUtility?.detectURL(ipString: myUser![0].profile_pic))!
         
@@ -167,8 +166,7 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             }
         }
-        else
-        {
+        else {
             print("Error in pick Image")
         }
     }
@@ -329,11 +327,10 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
         mainMsgsArr.append(contentsOf: arrMessages)
         mainMsgsArr.append(contentsOf: recArrMessages)
         mainMsgsArr.sort(by: { ("\($0["time"]!)") < ("\($1["time"]!)") })
-        
         */
         
         let time = (self.arrMessages[indexPath.row]["time"] as? Double)
-        let date = Date(timeIntervalSince1970: time ?? 0.0/1000)
+        let date = Date(timeIntervalSince1970: (time ?? 0.0)/1000)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yy' 'HH:mm a"
         dateFormatter.amSymbol = "am"

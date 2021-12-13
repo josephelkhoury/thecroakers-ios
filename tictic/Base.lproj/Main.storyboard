@@ -4850,7 +4850,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-H9-hBx" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="89" width="337.5" height="39"/>
+                                        <rect key="frame" x="0.0" y="89" width="337.5" height="17"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -5503,7 +5503,7 @@
                                             <constraint firstAttribute="height" constant="56" id="Uud-KZ-eBj"/>
                                         </constraints>
                                         <color key="tintColor" red="0.95686274510000002" green="0.54901960780000003" blue="0.019607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="barTintColor" red="0.95686274510000002" green="0.54901960780000003" blue="0.019607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="barTintColor" name="theme"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -16051,10 +16051,10 @@
             <size key="intrinsicContentSize" width="150" height="84"/>
         </designable>
         <designable name="EiP-JG-hoN">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
         </designable>
         <designable name="F2W-H9-hBx">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="62.5" height="17"/>
         </designable>
         <designable name="FKv-bv-FPq">
             <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
@@ -16075,7 +16075,7 @@
             <size key="intrinsicContentSize" width="64" height="30"/>
         </designable>
         <designable name="dEU-F0-gpN">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="64.5" height="18.5"/>
         </designable>
         <designable name="dek-49-pB7">
             <size key="intrinsicContentSize" width="18" height="17"/>
@@ -16090,7 +16090,7 @@
             <size key="intrinsicContentSize" width="18" height="17"/>
         </designable>
         <designable name="hws-AG-qE2">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="66" height="18.5"/>
         </designable>
         <designable name="ivR-Iy-Bml">
             <size key="intrinsicContentSize" width="119" height="18.5"/>

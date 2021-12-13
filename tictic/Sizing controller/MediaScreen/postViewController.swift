@@ -300,6 +300,7 @@ class postViewController: UIViewController,UITextViewDelegate {
     
     @objc func countryOptionsList(sender : UITapGestureRecognizer) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "countryCodeVC") as! countryCodeViewController
+        vc.showWorldwide = "1"
         present(vc, animated: true, completion: nil)
     }
     

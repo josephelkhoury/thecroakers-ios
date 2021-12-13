@@ -41,12 +41,9 @@ class ShareProfileViewController: UIViewController,MFMessageComposeViewControlle
         
     }
     
-
     @IBAction func cancelPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
 }
 extension ShareProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
@@ -92,7 +89,7 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
     func shareTextOnFaceBook() {
         let shareContent = ShareLinkContent()
         shareContent.contentURL = URL.init(string: self.shareUrl)!//your link
-        shareContent.quote = "MusicTok APP"
+        shareContent.quote = "The Croakers APP"
         ShareDialog(fromViewController: self, content: shareContent, delegate: self as? SharingDelegate).show()
     }
     
@@ -122,8 +119,8 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     
     //    MARK:- TWITTER SETUPS
-    func shareOnTwitter(){
-        let tweetText = "MusicTok APP\n"
+    func shareOnTwitter() {
+        let tweetText = "The Croakers APP\n"
         let tweetUrl = self.shareUrl
         
         let shareString = "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(tweetUrl)"
@@ -141,7 +138,7 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     //  MARK:- WHATSAPP SETUPS
     
-    func shareOnWhatsapp(){
+    func shareOnWhatsapp() {
         
         let msg = self.shareUrl
         
@@ -161,7 +158,7 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     
     //    MARK:- INSTA SETUP
-    func shareOnInsta(){
+    func shareOnInsta() {
         //let videoImageUrl = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
         
         //        let  sv = HomeViewController.displaySpinner(onView: self.view)
@@ -217,8 +214,7 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     //    MARK:- SMS SETUP
     
-    func shareOnSMS(){
-        
+    func shareOnSMS() {
         let msg = self.shareUrl
         
         if (MFMessageComposeViewController.canSendText()) {
@@ -235,7 +231,7 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
         print("SMS SENT")
     }
     
-    func alertModule(title:String,msg:String){
+    func alertModule(title:String,msg:String) {
         
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         

@@ -366,7 +366,7 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
     }
     
     //    MARK:- INSTA SETUP
-    func shareOnInsta(){
+    func shareOnInsta() {
         AppUtility?.startLoader(view: self.view)
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: self.currentVideoUrl),
@@ -411,7 +411,7 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
         }
     }
     //MARK:- SMS SETUP
-    func shareOnSMS(){
+    func shareOnSMS() {
         let msg = self.shareUrl
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()

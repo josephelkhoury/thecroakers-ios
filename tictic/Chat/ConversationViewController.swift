@@ -10,7 +10,6 @@ import  SDWebImage
 
 class ConversationViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 {
-    
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var lblMessage: UILabel!
     
@@ -44,7 +43,6 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
         AppUtility?.startLoader(view: self.view)
         ChatDBhandler.shared.fetchUserInbox(userID: self.senderID) { (isSuccess, conversation) in
             self.arrConversation.removeAll()
-            
             for key in conversation {
                 let conver = key.value as? [String: Any] ?? [:]
                 self.arrConversation.append(conver)
@@ -72,7 +70,6 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
         let name = data["name"] as? String ?? "name"
         let lastMessage = data["msg"] as? String ?? "message"
         let type = data["type"] as? String ?? "type"
-        
         
         if type == "text" {
             let userChatCell = tableView.dequeueReusableCell(withIdentifier: "userChatCell") as! ChatTableViewCell
@@ -103,7 +100,6 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
             
             return userChatCell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

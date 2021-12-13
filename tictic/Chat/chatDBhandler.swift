@@ -261,9 +261,7 @@ class ChatDBhandler
     {
         let messages = Database.database().reference().child("chat").child(senderID+"-"+receiverID)
         messages.observe(.value, with: { (dataSnapshot) in
-            
-            if let dict = dataSnapshot.value as? [String: Any]
-            {
+            if let dict = dataSnapshot.value as? [String: Any] {
                 completionHandler(true, dict)
             }
             
@@ -282,11 +280,16 @@ class ChatDBhandler
     }
     */
     //MARK:- fetchuser-Chat
-    func fetchUserInbox(userID: String, completionHandler: @escaping (_ result: Bool, _ conversation: [String : Any]) -> Void)
+    func fetchUserInbox(userID: String, completionHandler: @escaping (_ result: Bool, _ conversation: [String: Any]) -> Void)
     {
         let Chat = Database.database().reference().child("Inbox").child(userID)
         Chat.observe(.value, with: { (snapshot) in
-            let data = snapshot.value as? [String: Any] ?? [:]
+            var data = [String: Any]()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let dict = child.value as? [String : Any] ?? [:]
+                data.updateValue(child.value, forKey: dict["rid"] as! String)
+            }
+            //let data = snapshot.value as? [String: Any] ?? [:]
             completionHandler(true, data)
         }, withCancel: nil)
     }
@@ -294,15 +297,13 @@ class ChatDBhandler
     //MARK:- delete coversation
     func deleteConversation(senderID: String, receiverID: String, completionHandler: @escaping (_ result: Bool) -> Void)
     {
-//        AppUtility.shared.showLoader(message: "Please wait...")
-        
         let Chat = Database.database().reference().child("Inbox").child(senderID).child(receiverID)
         Chat.removeValue { (error, dbRef) in
             if error != nil
             {
 //                AppUtility.shared.hideLoader()
                 print("Error in remove chat: ", error!.localizedDescription)
-                AppUtility!.displayAlert(title: "MusicTok", message: error!.localizedDescription)
+                AppUtility!.displayAlert(title: "The Croakers", message: error!.localizedDescription)
                 completionHandler(false)
             }
             let messages = Database.database().reference().child("chat").child(senderID+"-"+receiverID)
@@ -311,7 +312,7 @@ class ChatDBhandler
                 {
 //                    AppUtility.shared.hideLoader()
                     print("Error in remove chat: ", error!.localizedDescription)
-                    AppUtility!.displayAlert(title: "MusicTok", message: error!.localizedDescription)
+                    AppUtility!.displayAlert(title: "The Croakers", message: error!.localizedDescription)
                     completionHandler(false)
                 }
                 

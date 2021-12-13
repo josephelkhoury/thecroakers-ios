@@ -21,6 +21,7 @@ class countryCodeViewController: UIViewController,UITableViewDelegate,UITableVie
     var arrSearch = [[String:Any]]()
     var isSearching = false
     var isCodeShow = true
+    var showWorldwide = "0"
     
     var countryDictionary = [String:[countryMVC]]()
     var countrySectionTitles = [String]()
@@ -55,9 +56,9 @@ class countryCodeViewController: UIViewController,UITableViewDelegate,UITableVie
     //MARK:- API Handler
     
     // GET Countries
-    func getCountries(){
+    func getCountries() {
         countryDictionary.removeAll()
-        ApiHandler.sharedInstance.showCountries(user_id: "") { (isSuccess, response) in
+        ApiHandler.sharedInstance.showCountries(user_id: "", showWorldwide: showWorldwide) { (isSuccess, response) in
             if isSuccess{
                self.view.hideLoading()
                 
