@@ -1595,7 +1595,7 @@ class ApiHandler:NSObject{
     
     //MARK:- showDiscoverySections
     
-    func showDiscoverySections(section:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+    func showDiscoverySections(section:String, country_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showDiscoverySections.rawValue)"
         let headers: HTTPHeaders = [
             "Api-Key":API_KEY
@@ -1612,6 +1612,7 @@ class ApiHandler:NSObject{
         
         parameters = [
             "section": section,
+            "country_id": country_id,
             "user_id": uid
         ]
         print(finalUrl)

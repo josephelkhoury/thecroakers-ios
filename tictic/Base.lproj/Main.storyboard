@@ -4850,7 +4850,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-H9-hBx" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="89" width="337.5" height="17"/>
+                                        <rect key="frame" x="0.0" y="89" width="337.5" height="39"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -5168,10 +5168,10 @@
             </objects>
             <point key="canvasLocation" x="3228" y="883"/>
         </scene>
-        <!--Email Signuo-->
+        <!--Email Signup-->
         <scene sceneID="16c-By-vpf">
             <objects>
-                <viewController storyboardIdentifier="emailSignupVC" title="Email Signuo" id="RFp-L5-hdy" customClass="emailSignupViewController" customModule="TheCroakers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="emailSignupVC" title="Email Signup" id="RFp-L5-hdy" customClass="emailSignupViewController" customModule="TheCroakers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wfc-cE-j3S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5498,7 +5498,7 @@
                                 <rect key="frame" x="0.0" y="-56" width="375" height="116"/>
                                 <subviews>
                                     <searchBar userInteractionEnabled="NO" contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Slc-Wa-Cyt">
-                                        <rect key="frame" x="5" y="59" width="365" height="56"/>
+                                        <rect key="frame" x="5" y="59" width="317" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="Uud-KZ-eBj"/>
                                         </constraints>
@@ -5511,20 +5511,33 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEm-ZA-FPv">
-                                        <rect key="frame" x="5" y="59" width="365" height="56"/>
+                                        <rect key="frame" x="5" y="59" width="317" height="56"/>
                                         <connections>
                                             <action selector="searchBtnAction:" destination="sph-Gt-t4p" eventType="touchUpInside" id="YS6-CL-N0t"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcf-4f-cf6">
+                                        <rect key="frame" x="325" y="66" width="40" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="sG5-j4-og7"/>
+                                        </constraints>
+                                        <state key="normal" title="🌐"/>
+                                        <connections>
+                                            <action selector="btnCountry:" destination="sph-Gt-t4p" eventType="touchUpInside" id="sXc-1y-LQw"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Slc-Wa-Cyt" secondAttribute="trailing" constant="5" id="1hM-7B-T7j"/>
+                                    <constraint firstItem="dcf-4f-cf6" firstAttribute="bottom" secondItem="Slc-Wa-Cyt" secondAttribute="bottom" constant="-7" id="0Qu-xI-xOU"/>
                                     <constraint firstItem="BEm-ZA-FPv" firstAttribute="height" secondItem="Slc-Wa-Cyt" secondAttribute="height" id="5g0-Md-Rw4"/>
                                     <constraint firstAttribute="height" constant="116" id="81b-vB-rxP"/>
                                     <constraint firstItem="Slc-Wa-Cyt" firstAttribute="centerY" secondItem="zqG-cH-teZ" secondAttribute="centerY" multiplier="1.5" id="A5s-PO-8yl"/>
-                                    <constraint firstItem="BEm-ZA-FPv" firstAttribute="centerX" secondItem="Slc-Wa-Cyt" secondAttribute="centerX" id="HV7-ef-rDD"/>
-                                    <constraint firstItem="BEm-ZA-FPv" firstAttribute="width" secondItem="Slc-Wa-Cyt" secondAttribute="width" id="UB2-29-8X0"/>
+                                    <constraint firstItem="dcf-4f-cf6" firstAttribute="leading" secondItem="Slc-Wa-Cyt" secondAttribute="trailing" constant="3" id="F7t-JB-0GA"/>
+                                    <constraint firstItem="BEm-ZA-FPv" firstAttribute="trailing" secondItem="Slc-Wa-Cyt" secondAttribute="trailing" id="HEE-hd-s9r"/>
+                                    <constraint firstAttribute="trailing" secondItem="dcf-4f-cf6" secondAttribute="trailing" constant="10" id="WRa-LD-910"/>
+                                    <constraint firstItem="BEm-ZA-FPv" firstAttribute="leading" secondItem="Slc-Wa-Cyt" secondAttribute="leading" id="YVJ-oA-3Sn"/>
+                                    <constraint firstItem="dcf-4f-cf6" firstAttribute="top" secondItem="Slc-Wa-Cyt" secondAttribute="top" constant="7" id="ajx-aw-lin"/>
                                     <constraint firstItem="Slc-Wa-Cyt" firstAttribute="leading" secondItem="zqG-cH-teZ" secondAttribute="leading" constant="5" id="lxe-ET-goN"/>
                                     <constraint firstItem="BEm-ZA-FPv" firstAttribute="centerY" secondItem="Slc-Wa-Cyt" secondAttribute="centerY" id="rge-Ku-RGr"/>
                                 </constraints>
@@ -5648,15 +5661,9 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="buma" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gv8-N8-E3P">
-                                                                    <rect key="frame" x="55" y="4" width="40.5" height="18"/>
+                                                                    <rect key="frame" x="55" y="4" width="41" height="36"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                     <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@nabuma" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elB-or-M3a">
-                                                                    <rect key="frame" x="55" y="24" width="56.5" height="14.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KO6-JM-rd7">
@@ -5741,10 +5748,9 @@
                                                                 <constraint firstItem="78c-0Q-L9T" firstAttribute="leading" secondItem="kFY-hA-Dhz" secondAttribute="leading" constant="10" id="DuE-xb-aZx"/>
                                                                 <constraint firstAttribute="trailing" secondItem="KO6-JM-rd7" secondAttribute="trailing" constant="15" id="GMS-Es-4Nd"/>
                                                                 <constraint firstAttribute="bottom" secondItem="dtr-ew-519" secondAttribute="bottom" constant="8" id="KxY-Wr-s8J"/>
-                                                                <constraint firstItem="elB-or-M3a" firstAttribute="top" secondItem="gv8-N8-E3P" secondAttribute="bottom" constant="2" id="QuZ-N2-ofu"/>
+                                                                <constraint firstItem="gv8-N8-E3P" firstAttribute="height" secondItem="78c-0Q-L9T" secondAttribute="height" multiplier="0.9" id="TxF-PX-cRa"/>
                                                                 <constraint firstItem="gv8-N8-E3P" firstAttribute="leading" secondItem="78c-0Q-L9T" secondAttribute="trailing" constant="5" id="XWu-V1-O8X"/>
                                                                 <constraint firstItem="78c-0Q-L9T" firstAttribute="top" secondItem="kFY-hA-Dhz" secondAttribute="top" id="dUi-Kj-ecX"/>
-                                                                <constraint firstItem="elB-or-M3a" firstAttribute="leading" secondItem="78c-0Q-L9T" secondAttribute="trailing" constant="5" id="et2-Uc-zyZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="dtr-ew-519" secondAttribute="trailing" id="ewf-No-pQ0"/>
                                                                 <constraint firstItem="gv8-N8-E3P" firstAttribute="top" secondItem="kFY-hA-Dhz" secondAttribute="top" constant="4" id="jYf-wB-Ssa"/>
                                                                 <constraint firstItem="dtr-ew-519" firstAttribute="leading" secondItem="kFY-hA-Dhz" secondAttribute="leading" constant="15" id="o4j-zI-wjt"/>
@@ -5755,7 +5761,6 @@
                                                             <outlet property="discoverCollectionView" destination="dtr-ew-519" id="0jC-SU-F6l"/>
                                                             <outlet property="entityImageView" destination="78c-0Q-L9T" id="yX4-6T-gv9"/>
                                                             <outlet property="hashName" destination="gv8-N8-E3P" id="r3w-YK-E86"/>
-                                                            <outlet property="hashNameSub" destination="elB-or-M3a" id="wtA-21-U3W"/>
                                                             <outlet property="lblItemCount" destination="Kkf-Dm-Azc" id="kJi-C3-huq"/>
                                                             <outlet property="viewCountVideo" destination="0u6-7O-AgW" id="BMX-PP-eA2"/>
                                                         </connections>
@@ -5806,6 +5811,7 @@
                     <navigationItem key="navigationItem" id="Ysu-l3-LEk"/>
                     <connections>
                         <outlet property="bannerPageController" destination="w7N-cQ-Sr7" id="y1F-Cf-UxP"/>
+                        <outlet property="btnCountry" destination="dcf-4f-cf6" id="Nji-Lk-yZI"/>
                         <outlet property="discoverBannerCollectionView" destination="11Y-hd-QDP" id="CKd-Tl-5SA"/>
                         <outlet property="discoverTblView" destination="GLJ-ZF-i0L" id="ja7-Ed-a4A"/>
                         <outlet property="scrollViewOutlet" destination="hbj-KQ-RAA" id="UnG-QV-tCq"/>
@@ -5815,7 +5821,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbM-0y-N4F" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6231" y="884"/>
+            <point key="canvasLocation" x="6229.6000000000004" y="883.80809595202402"/>
         </scene>
         <!--Trending-->
         <scene sceneID="CgO-bJ-OqS">
@@ -16045,13 +16051,13 @@
             <size key="intrinsicContentSize" width="150" height="84"/>
         </designable>
         <designable name="EiP-JG-hoN">
-            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
+            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
         </designable>
         <designable name="F2W-H9-hBx">
-            <size key="intrinsicContentSize" width="62.5" height="17"/>
+            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
         </designable>
         <designable name="FKv-bv-FPq">
-            <size key="intrinsicContentSize" width="62.5" height="17"/>
+            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
         </designable>
         <designable name="H2M-Gx-k7a">
             <size key="intrinsicContentSize" width="37.5" height="16.5"/>
@@ -16069,16 +16075,13 @@
             <size key="intrinsicContentSize" width="64" height="30"/>
         </designable>
         <designable name="dEU-F0-gpN">
-            <size key="intrinsicContentSize" width="64.5" height="18.5"/>
+            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
         </designable>
         <designable name="dek-49-pB7">
             <size key="intrinsicContentSize" width="18" height="17"/>
         </designable>
         <designable name="e3c-Cd-vYD">
             <size key="intrinsicContentSize" width="34.5" height="18.5"/>
-        </designable>
-        <designable name="g8V-F9-x0H">
-            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="gIi-Kh-0ib">
             <size key="intrinsicContentSize" width="50" height="50"/>
@@ -16087,7 +16090,7 @@
             <size key="intrinsicContentSize" width="18" height="17"/>
         </designable>
         <designable name="hws-AG-qE2">
-            <size key="intrinsicContentSize" width="66" height="18.5"/>
+            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
         </designable>
         <designable name="ivR-Iy-Bml">
             <size key="intrinsicContentSize" width="119" height="18.5"/>

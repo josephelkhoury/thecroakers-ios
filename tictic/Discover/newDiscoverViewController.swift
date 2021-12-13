@@ -21,12 +21,16 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     @IBOutlet var sliderHeight: NSLayoutConstraint!
     @IBOutlet var tblheight: NSLayoutConstraint!
     @IBOutlet weak var bannerPageController: UIPageControl!
+    @IBOutlet weak var btnCountry: UIButton!
     
     var entityDataArr = [[String:Any]]()
     var section = "0"
     
     var sliderArr = [sliderMVC]()
     var itemInfo:IndicatorInfo = "View"
+    
+    var country_id = "0"
+    var country_emoji = "🌐"
     
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -45,6 +49,8 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         getSliderData()
         getVideosData()
         self.setupView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.countryDataNotification(_:)), name: NSNotification.Name(rawValue: "countryDataNotification"), object: nil)
         
         AppUtility?.startLoader(view: self.view)
     }
@@ -67,6 +73,10 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         } else {
             scrollViewOutlet.addSubview(refresher)
         }
+        
+        country_id = UserDefaults.standard.string(forKey: "country_id") ?? "0"
+        country_emoji = UserDefaults.standard.string(forKey: "country_emoji") ?? "🌐"
+        setCountryFlag()
     }
     
     //MARK:- SetupView
@@ -98,16 +108,16 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         if section == "0" {
             cell.entityImageView.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "topic"))
             cell.entityImageView.isCircle = false
-            cell.hashNameSub.text = ""
+            //cell.hashNameSub.text = ""
         }
         else if section == "1" || section == "2" {
             cell.entityImageView.sd_setImage(with: URL(string:image!), placeholderImage: UIImage(named: "noUserImg"))
             cell.entityImageView.isCircle = true
             if section == "1" {
-                cell.hashNameSub.text = ""
+                //cell.hashNameSub.text = ""
             }
             else if section == "2" {
-                cell.hashNameSub.text = ""
+                //cell.hashNameSub.text = ""
             }
         }
         cell.videosObj = entityObj["videosObj"] as! [videoMainMVC]
@@ -171,7 +181,6 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     //    MARK:- SEARCH BTN ACTION
     
     @IBAction func searchBtnAction(_ sender: Any) {
-        
         let vc = storyboard?.instantiateViewController(withIdentifier: "discoverSearchVC") as! discoverSearchViewController
         //        let transition = CATransition()
         //        transition.duration = 0.5
@@ -185,6 +194,26 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         navigationController?.pushViewController(vc, animated: false)
         //        present(vc, animated: false, completion: nil)
     }
+    
+    @IBAction func btnCountry(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "countryCodeVC") as! countryCodeViewController
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func countryDataNotification(_ notification: NSNotification) {
+        if let country = notification.userInfo?["country"] as? countryMVC {
+            country_id = country.id
+            country_emoji = country.emoji
+            UserDefaults.standard.set(country.id, forKey: "country_id")
+            UserDefaults.standard.set(country.emoji, forKey: "country_emoji")
+            setCountryFlag()
+        }
+    }
+    
+    func setCountryFlag() {
+        btnCountry.setTitle(country_emoji, for: UIControl.State.normal)
+    }
+    
     //MARK: Segment Control
     
     //MARK: Alert View
@@ -233,7 +262,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     //    MARK:- VIDEOS DATA API
     func getVideosData() {
         entityDataArr.removeAll()
-        ApiHandler.sharedInstance.showDiscoverySections(section: section) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showDiscoverySections(section: section, country_id: country_id) { (isSuccess, response) in
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let videosTopics = response?.value(forKey: "msg") as? NSArray

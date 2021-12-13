@@ -75,11 +75,9 @@ class countryCodeViewController: UIViewController,UITableViewDelegate,UITableVie
                         let short_name = countryDict.value(forKey: "short_name") as! String
                         let phonecode = countryDict.value(forKey: "phonecode") as! String
                         var emoji = countryDict.value(forKey: "emoji") as? String
-                        if (emoji == nil) {
+                        if emoji == nil {
                             emoji = ""
                         }
-                        
-                        print("cKey: ",cKey)
                         
                         if id.isEmpty == false {
                             let cmvc = countryMVC(id: id, name: name, short_name: short_name, phonecode: phonecode, emoji: emoji!)
