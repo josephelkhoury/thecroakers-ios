@@ -55,12 +55,8 @@ class newDiscoverTableViewCell: UITableViewCell,UICollectionViewDataSource,UICol
         let cell =  collectionView.dequeueReusableCell(withReuseIdentifier:"newDiscoverCVC" , for: indexPath) as! newDiscoverCollectionViewCell
         
         let vidObj = videosObj[indexPath.row]
-//        cell.img.sd_setImage(with: URL(string:vidObj.videoGIF), placeholderImage: UIImage(named: "videoPlaceholder"))
-        
         let gifURL : String = (AppUtility?.detectURL(ipString: vidObj.videoGIF))!
-//        let imageURL = UIImage.gifImageWithURL(gifURL)
-//        cell.img.image = imageURL
-        
+
         cell.img.sd_imageIndicator = SDWebImageActivityIndicator.gray
         cell.img.sd_setImage(with: URL(string:(gifURL)), placeholderImage: UIImage(named:"videoPlaceholder"))
 

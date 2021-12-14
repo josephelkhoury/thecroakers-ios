@@ -797,7 +797,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             }else{
                 cell.bottomLineView.isHidden  = false
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
-                cell.titleLbl.textColor = #colorLiteral(red: 0.9568627451, green: 0.5490196078, blue: 0.01960784314, alpha: 1)
+                cell.titleLbl.textColor = #colorLiteral(red: 0.7580462098, green: 0.8360280395, blue: 0.4221232533, alpha: 1)
             }
         }
         if indexPath.row == 1 {
@@ -808,7 +808,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             }else{
                 cell.bottomLineView.isHidden  = false
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
-                cell.titleLbl.textColor = #colorLiteral(red: 0.9568627451, green: 0.5490196078, blue: 0.01960784314, alpha: 1)
+                cell.titleLbl.textColor = #colorLiteral(red: 0.7580462098, green: 0.8360280395, blue: 0.4221232533, alpha: 1)
             }
         }
         if indexPath.row == 2{
@@ -819,7 +819,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             }else{
                 cell.bottomLineView.isHidden  = false
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
-                cell.titleLbl.textColor = #colorLiteral(red: 0.9568627451, green: 0.5490196078, blue: 0.01960784314, alpha: 1)
+                cell.titleLbl.textColor = #colorLiteral(red: 0.7580462098, green: 0.8360280395, blue: 0.4221232533, alpha: 1)
             }
         }
         if indexPath.row == 3{
@@ -830,7 +830,7 @@ extension discoverSearchViewController: UICollectionViewDelegate,UICollectionVie
             }else{
                 cell.bottomLineView.isHidden  = false
                 cell.titleLbl.text = objArr[indexPath.row]["title"]
-                cell.titleLbl.textColor = #colorLiteral(red: 0.9568627451, green: 0.5490196078, blue: 0.01960784314, alpha: 1)
+                cell.titleLbl.textColor = #colorLiteral(red: 0.7580462098, green: 0.8360280395, blue: 0.4221232533, alpha: 1)
             }
         }
         

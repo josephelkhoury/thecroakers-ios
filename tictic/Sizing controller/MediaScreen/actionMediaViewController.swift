@@ -30,7 +30,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
     
     @IBOutlet weak var HorizontalStackView: NSLayoutConstraint!
     @IBOutlet weak var progressViewOutlet: UIView!
-     @IBOutlet weak var masterViewOutlet: UIView!
+    @IBOutlet weak var masterViewOutlet: UIView!
     
     @IBOutlet weak var previewDoneBtnsViewOutlet: UIView!
     @IBOutlet weak var uploadViewOutlet: UIView!
@@ -128,7 +128,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
 
     
 //    MARK:- GESTURES ON VIEWS
-    private func tapGesturesToViews(){
+    private func tapGesturesToViews() {
         let flipViewgesture = UITapGestureRecognizer(target: self, action:  #selector(self.flipViewAction))
         self.flipViewOutlet.addGestureRecognizer(flipViewgesture)
         
@@ -809,7 +809,7 @@ extension actionMediaViewController {
     }
 
 // MARK:- ACTION SHEET FOR CROSS BUTTON
-    func actionSheetFunc(){
+    func actionSheetFunc() {
         // create an actionSheet
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
@@ -903,7 +903,6 @@ extension actionMediaViewController: NextLevelDelegate {
     // session
     func nextLevelSessionWillStart(_ nextLevel: NextLevel) {
         print("nextLevelSessionWillStart")
-        
     }
     
     func nextLevelSessionDidStart(_ nextLevel: NextLevel) {
@@ -927,7 +926,6 @@ extension actionMediaViewController: NextLevelDelegate {
     
     func nextLevelCaptureModeDidChange(_ nextLevel: NextLevel) {
     }
-    
 }
 
 extension actionMediaViewController: NextLevelPreviewDelegate {
@@ -1099,7 +1097,6 @@ extension actionMediaViewController: NextLevelVideoDelegate {
             let photoData = dictionary[NextLevelPhotoJPEGKey] {
             
             PHPhotoLibrary.shared().performChanges({
-                
                 let albumAssetCollection = self.albumAssetCollection(withTitle: NextLevelAlbumTitle)
                 if albumAssetCollection == nil {
                     let changeRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: NextLevelAlbumTitle)
@@ -1251,7 +1248,7 @@ extension actionMediaViewController: NextLevelMetadataOutputObjectsDelegate {
 }
 
 //MARK:- VIDEO PICKER FROM LIBRARY
-extension actionMediaViewController{
+extension actionMediaViewController {
 
     @objc func uploadViewAction(sender : UITapGestureRecognizer) {
         print("upload pressed")
@@ -1260,7 +1257,7 @@ extension actionMediaViewController{
         // [Edit configuration here ...]
         // Build a picker with your configuration
         config.video.compression = AVAssetExportPresetHighestQuality
-//        config.video.fileType = .mov
+        //config.video.fileType = .mov
         config.video.recordingTimeLimit = 24.0
         config.video.libraryTimeLimit = 24.0
         config.video.minimumTimeLimit = 3.0

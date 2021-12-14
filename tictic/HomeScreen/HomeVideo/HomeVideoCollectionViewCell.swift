@@ -75,10 +75,12 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         self.setupView()
     }
     
-    //MARK:- Deniet Notification
+    //MARK:- Deinit Notification
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("commentVideo"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("pauseVideo"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("playVideo"), object: nil)
     }
     
     //MARK:- SetupView
@@ -172,10 +174,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             sourceRepliesLbl.text = "Croaks"
         }
         
-        self.captionLbl.setText(text: post.description,textColor: .white, withHashtagColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), andMentionColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), andCallBack: { (strng, type) in
-            
-            print("type: ",type)
-            print("strng: ",strng)
+        self.captionLbl.setText(text: post.description,textColor: .white, withHashtagColor: #colorLiteral(red: 0.7580462098, green: 0.8360280395, blue: 0.4221232533, alpha: 1), andMentionColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), andCallBack: { (strng, type) in
             
             switch type {
                 case .hashtag:
@@ -206,7 +205,6 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         }, normalFont: .systemFont(ofSize: 12, weight: UIFont.Weight.medium), hashTagFont: .systemFont(ofSize: 12, weight: UIFont.Weight.bold), mentionFont: .systemFont(ofSize: 12, weight: UIFont.Weight.bold))
         
         let numberLines = captionLbl.numberOfLines(textView: captionLbl)
-        print("numberLines",numberLines)
         self.heightTV.constant =  CGFloat(numberLines * 24)
         
         self.videoURL = AppUtility?.detectURL(ipString: self.arrVideo!.videoURL)
@@ -220,7 +218,6 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     }
     
     func play() {
-        print("url", self.videoURL);
         musicLbl.holdScrolling = false
         playerView.play(for: URL(string: self.videoURL!) as! URL,filterName:"",filterIndex:0)
         playerView.isHidden = false
@@ -250,35 +247,28 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     func videoPlayer() {
         playerView.stateDidChanged = { state in
             switch state {
-            case .none:
-                print("none")
-            case .error(let error):
-                
-                print("error - \(error.localizedDescription)")
-                self.progressView.wait()
-                self.progressView.isHidden = false
-                
-                NotificationCenter.default.post(name: Notification.Name("errInPlay"), object: nil, userInfo: ["err":error.localizedDescription])
-                
-            case .loading:
-                print("loading")
-                self.progressView.wait()
-                self.progressView.isHidden = false
-            case .paused(let playing, let buffering):
-                print("paused - progress \(Int(playing * 100))% buffering \(Int(buffering * 100))%")
-                self.progressView.signal()
-                self.progressView.isHidden = true
-                //self.musicBtn.stopRotating()
-                //self.imgMusicBtn.stopRotating()
-            case .playing:
-                self.pauseImgView.isHidden = true
-                self.progressView.isHidden = true
-                //self.musicBtn.startRotating()
-                //self.imgMusicBtn.startRotating()
-                print("playing")
+                case .none:
+                    print("none")
+                case .error(let error):
+                    self.progressView.wait()
+                    self.progressView.isHidden = false
+                    
+                    NotificationCenter.default.post(name: Notification.Name("errInPlay"), object: nil, userInfo: ["err":error.localizedDescription])
+                case .loading:
+                    self.progressView.wait()
+                    self.progressView.isHidden = false
+                case .paused(let playing, let buffering):
+                    self.progressView.signal()
+                    self.progressView.isHidden = true
+                    //self.musicBtn.stopRotating()
+                    //self.imgMusicBtn.stopRotating()
+                case .playing:
+                    self.pauseImgView.isHidden = true
+                    self.progressView.isHidden = true
+                    //self.musicBtn.startRotating()
+                    //self.imgMusicBtn.startRotating()
             }
         }
-        print("video Pause Reason: ", playerView.pausedReason)
     }
     
     // MARK: - Button Actions

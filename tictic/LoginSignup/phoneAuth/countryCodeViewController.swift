@@ -86,7 +86,12 @@ class countryCodeViewController: UIViewController,UITableViewDelegate,UITableVie
                                 cValues.append(cmvc)
                                 self.countryDictionary[cKey] = cValues
                             } else {
-                                self.countryDictionary[cKey] = [cmvc]
+                                if id == "0" {
+                                    self.countryDictionary["#"] = [cmvc]
+                                }
+                                else {
+                                    self.countryDictionary[cKey] = [cmvc]
+                                }
                             }
                         }
                         

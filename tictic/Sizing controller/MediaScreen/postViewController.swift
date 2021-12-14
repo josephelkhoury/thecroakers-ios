@@ -91,7 +91,7 @@ class postViewController: UIViewController,UITextViewDelegate {
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        describeTextView.setText(text: describeTextView.text,textColor: .black, withHashtagColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), andMentionColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), andCallBack: { (strng, type) in
+        describeTextView.setText(text: describeTextView.text,textColor: .black, withHashtagColor: #colorLiteral(red: 0.7580462098, green: 0.8360280395, blue: 0.4221232533, alpha: 1), andMentionColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), andCallBack: { (strng, type) in
             print("type: ",type)
             print("strng: ",strng)
         }, normalFont: .systemFont(ofSize: 14, weight: UIFont.Weight.light), hashTagFont: .systemFont(ofSize: 14, weight: UIFont.Weight.bold), mentionFont: .systemFont(ofSize: 14, weight: UIFont.Weight.bold))
@@ -469,6 +469,39 @@ extension Dictionary {
         }
 
         return String(data: theJSONData, encoding: .ascii)
+    }
+}
+
+extension UITextField {
+    @IBInspectable var doneAccessory: Bool {
+        get {
+            return self.doneAccessory
+        }
+        set (hasDone) {
+            if hasDone{
+                addDoneButtonOnKeyboard()
+            }
+        }
+    }
+
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        self.inputAccessoryView = doneToolbar
+    }
+
+    @objc func doneButtonAction()
+    {
+        self.resignFirstResponder()
     }
 }
 

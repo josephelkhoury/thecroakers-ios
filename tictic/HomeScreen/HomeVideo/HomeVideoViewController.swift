@@ -78,9 +78,12 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         }
     }
     
-    //MARK:- Deniet Notification
+    //MARK:- Deinit Notification
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("errInPlay"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "loginModalAppeared"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     //MARK:- SetupView
@@ -101,7 +104,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         if isFollowing == true {
             getFollowingVideos(startPoint: "\(startPoint)")
         } else {
-            self.getAllVideos(startPoint: "\(startPoint)")
+            getAllVideos(startPoint: "\(startPoint)")
         }
         let deadline = DispatchTime.now() + .milliseconds(700)
         DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -210,9 +213,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         print("deviceid: ",deviceID)
         
         ApiHandler.sharedInstance.showRelatedVideos(device_id: deviceID!, user_id: userID!, starting_point: startingPoint) { (isSuccess, response) in
-            print("res Related video : ",response!)
-            print("isSuccess : ",isSuccess)
-          //  self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12))
+            //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12))
             if isSuccess {
                 self.spinner.startAnimating()
 
@@ -238,7 +239,6 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         let deviceID = UserDefaults.standard.string(forKey: "deviceID")
         //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12))
         ApiHandler.sharedInstance.showFollowingVideos(user_id: userID!, device_id: deviceID!, starting_point: startingPoint) { (isSuccess, response) in
-            print("res following videos: ",response!)
             //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12.0))
             if isSuccess {
                 //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12.0))
@@ -393,7 +393,6 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     func btnLayoutDesign(sender:Int) {
         self.startPoint = 0
         if sender == 0 {
-            print("Select 0")
             let userID = UserDefaults.standard.string(forKey: "userID")
             if userID == nil || userID == "" {
                 loginScreenAppear()
@@ -401,8 +400,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
                 followingButton()
             }
         } else {
-            self.relatedButton()
-            getAllVideos(startPoint: "\(startPoint)")
+            relatedButton()
         }
     }
     
@@ -418,12 +416,14 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         self.btnFollowing.layer.shadowRadius = 0
         self.btnFollowing.layer.shadowOpacity = 0
         
-        print("Select 1")
         self.isFollowing = false
+        self.videoCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        if isOtherController == false {
+            getAllVideos(startPoint: "\(startPoint)")
+        }
     }
     
     func followingButton() {
-        print("device key: ",UserDefaults.standard.string(forKey: "deviceKey")!)
         self.btnRelated.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         self.btnFollowing.setTitleColor(UIColor.white, for: .normal)
         self.btnFollowing.layer.shadowColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -436,6 +436,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         self.btnRelated.layer.shadowOpacity = 0
         
         self.isFollowing = true
+        self.videoCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         getFollowingVideos(startPoint: "\(startPoint)")
     }
     
