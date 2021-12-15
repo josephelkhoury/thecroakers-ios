@@ -236,26 +236,23 @@ class countryCodeViewController: UIViewController,UITableViewDelegate,UITableVie
         return countrySectionTitles[section]
     }
     
-    
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         tableView.tintColor = #colorLiteral(red: 0.490213871, green: 0.5138357282, blue: 0.5441090465, alpha: 1)
-        //        tableView.rowHeight = 20.0
-
+        
         return countrySectionTitles
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-            let view = UIView()
-            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            let lbl = UILabel(frame: CGRect(x: 10,y: 2,width: self.view.frame.size.width,height: 40))
-            lbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            lbl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            lbl.text = countrySectionTitles[section]
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        let lbl = UILabel(frame: CGRect(x: 10,y: 2,width: self.view.frame.size.width,height: 30))
+        lbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lbl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        lbl.text = countrySectionTitles[section]
         lbl.font = .boldSystemFont(ofSize: 18)
-            view.addSubview(lbl)
-            
-            return view
+        view.addSubview(lbl)
+        
+        return view
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -297,7 +294,6 @@ class countryCodeViewController: UIViewController,UITableViewDelegate,UITableVie
             NotificationCenter.default.post(name: Notification.Name("GetCountry"), object: self.arrCountry[indexPath.row])
         }
         */
-        
         
         let cKey = countrySectionTitles[indexPath.section]
         if let cValues = countryDictionary[cKey] {

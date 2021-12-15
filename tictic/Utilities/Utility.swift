@@ -148,8 +148,6 @@ class Utility: NSObject {
         
         loader = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), type: .circleStrokeSpin, color: .white, padding: view.frame.width * 0.46)
         
-        print("view.frame.width: ",view.frame.width * 0.46)
-        
         loader.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.6)
 
         backgroundView.addSubview(loader)
@@ -174,7 +172,7 @@ class Utility: NSObject {
         loader.stopAnimating()
         DispatchQueue.main.async {
             if self.backgroundView.viewWithTag(475647) != nil {
-            self.backgroundView.removeFromSuperview()
+                self.backgroundView.removeFromSuperview()
             }
         }
         

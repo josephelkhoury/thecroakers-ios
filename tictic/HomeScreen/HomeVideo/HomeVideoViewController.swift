@@ -247,7 +247,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
                         self.videosMainArr.removeAll()
                     }
                     self.videoResponse(startPoint: startPoint, resMsg: response as! [String : Any])
-                } else {
+                } else if response?.value(forKey: "code") as! NSNumber == 202 {
                     self.relatedButton()
                     self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
                 }
@@ -361,7 +361,14 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
             let videoObj = videoMainMVC(videoID: videoID, videoUserID: "\(videoUserID!)", fb_id: "", description: desc ?? "", videoURL: videoURL ?? "", videoTHUM: "", videoGIF: "", view: "", section: "", sound_id: "", privacy_type: "", allow_likes: "\(allowLikes!)", allow_comments: "\(allowComments!)", allow_duet: "\(allowDuet!)", block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: "", like: "\(like!)", favourite: "", comment_count: "\(commentCount!)", like_count: "\(likeCount!)", followBtn: followBtn ?? "", duetVideoID: "\(duetVidID!)", userID: uid ?? "", first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImgPath  ?? "", role: "", username: userName  ?? "", social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: "\(soundName!)", CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                 self.videosMainArr.append(videoObj)
         }
-        self.videoCollectionView.reloadData()
+        
+        if startPoint == "0" {
+            self.videoCollectionView.reloadDataThenPerform {
+                self.videoCollectionView.scrollToItem(at:IndexPath(row: 0, section: 0), at: .bottom, animated: false)
+            }
+        } else {
+            self.videoCollectionView.reloadData()
+        }
     }
     
     //MARK:- function
@@ -375,10 +382,9 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
                 self.getVideo(videoID: self.video_id)
             }
             else {
-                self.videoCollectionView.performBatchUpdates(nil, completion: {
-                    (result) in
-                    self.videoCollectionView.scrollToItem(at:self.currentIndex!, at: .bottom, animated: false)
-                })
+                self.videoCollectionView.reloadDataThenPerform {
+                    self.videoCollectionView.scrollToItem(at: self.currentIndex!, at: .bottom, animated: false)
+                }
             }
         } else {
             self.videosMainArr = videoArr
@@ -417,7 +423,6 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         self.btnFollowing.layer.shadowOpacity = 0
         
         self.isFollowing = false
-        self.videoCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         if isOtherController == false {
             getAllVideos(startPoint: "\(startPoint)")
         }
@@ -436,7 +441,6 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         self.btnRelated.layer.shadowOpacity = 0
         
         self.isFollowing = true
-        self.videoCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         getFollowingVideos(startPoint: "\(startPoint)")
     }
     
@@ -474,5 +478,26 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
             }
             cell?.pause()
         }
+    }
+}
+
+extension UICollectionView
+{
+    /// Calls reloadsData() on self, and ensures that the given closure is
+    /// called after reloadData() has been completed.
+    ///
+    /// Discussion: reloadData() appears to be asynchronous. i.e. the
+    /// reloading actually happens during the next layout pass. So, doing
+    /// things like scrolling the collectionView immediately after a
+    /// call to reloadData() can cause trouble.
+    ///
+    /// This method uses CATransaction to schedule the closure.
+
+    func reloadDataThenPerform(_ closure: @escaping (() -> Void))
+    {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(closure)
+        self.reloadData()
+        CATransaction.commit()
     }
 }

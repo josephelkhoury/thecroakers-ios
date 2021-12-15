@@ -126,7 +126,6 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
         self.focusView = FocusIndicatorView(frame: .zero)
     }
 
-    
 //    MARK:- GESTURES ON VIEWS
     private func tapGesturesToViews() {
         let flipViewgesture = UITapGestureRecognizer(target: self, action:  #selector(self.flipViewAction))
@@ -328,7 +327,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
        nextLevel.videoConfiguration.maxKeyFrameInterval = 30
        nextLevel.videoConfiguration.profileLevel = AVVideoProfileLevelH264HighAutoLevel
        
-    NextLevel.shared.videoConfiguration.maximumCaptureDuration = CMTimeMakeWithSeconds(videoLengthSec, preferredTimescale: 600)
+        NextLevel.shared.videoConfiguration.maximumCaptureDuration = CMTimeMakeWithSeconds(videoLengthSec, preferredTimescale: 600)
        
        // audio configuration
        nextLevel.audioConfiguration.bitRate = 96000
@@ -370,7 +369,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
     }
     
 //    MARK:- LOAD AUDIO
-    func loadAudio(){
+    func loadAudio() {
         if let url = UserDefaults.standard.string(forKey: "url"), let audioUrl = URL(string: url) {
             
             // then lets create your document folder url
@@ -408,11 +407,14 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
     }
     
     func cameraAudioPermission() {
-        
         if NextLevel.authorizationStatus(forMediaType: AVMediaType.video) == .authorized &&
             NextLevel.authorizationStatus(forMediaType: AVMediaType.audio) == .authorized {
             do {
                 try NextLevel.shared.start()
+            } catch NextLevelError.authorization {
+                print("NextLevel, failed to start camera session - NextLevelError.authorization")
+            } catch NextLevelError.started {
+                print("NextLevel, failed to start camera session - NextLevelError.started")
             } catch {
                 print("NextLevel, failed to start camera session")
             }
@@ -449,6 +451,7 @@ class actionMediaViewController: UIViewController,InternetStatusIndicable,UIActi
             }
         }
     }
+    
     @IBAction func btnDone(_ sender: Any) {
         sessionDoneFunc()
     }

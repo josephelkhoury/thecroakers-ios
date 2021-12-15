@@ -93,9 +93,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         format.color = "#F6F6F6".hexColor
         format.radius = 5
         format.animation = .fade
-        view.startLoading(format: format)
+        AppUtility?.startLoader(view: view)
         
-        print("Search User ID: \(self.otherUserID)")
         self.fetchSuggestedPeopleAPI()
         btnLive.isHidden =  true
         setupDropDowns()
@@ -564,7 +563,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     func getUserDetails() {
         self.userData.removeAll()
         ApiHandler.sharedInstance.showOwnDetail(user_id: self.userID) { (isSuccess, response) in
-            self.view.hideLoading()
+            AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 print("response UserDetails : ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -645,7 +644,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
         
         ApiHandler.sharedInstance.showOwnDetailByName(username: self.isTagName, user_id:uid) { (isSuccess, response) in
-            self.view.hideLoading()
+            AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 print("response UserDetails : ", response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -732,7 +731,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         print("userID: ", self.userID)
         
         ApiHandler.sharedInstance.showOtherUserDetail(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
-            self.view.hideLoading()
+            AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 print("response OtherUserDetails: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {

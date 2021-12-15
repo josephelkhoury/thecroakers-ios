@@ -77,8 +77,6 @@ class newDiscoverTableViewCell: UITableViewCell,UICollectionViewDataSource,UICol
             vc.hidesBottomBarWhenPushed = true
             rootViewController.navigationController?.pushViewController(vc, animated: true)
         }
-        print("videosObj.count",videosObj.count)
-        print(indexPath.row)
     }
     
     //MARK: Segment Control
