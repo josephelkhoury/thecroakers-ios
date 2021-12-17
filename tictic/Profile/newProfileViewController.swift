@@ -37,7 +37,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     @IBOutlet weak var lblBio: UILabel!
     @IBOutlet weak var profileDropDownBtn: UIButton!
     @IBOutlet weak var btnBackOutlet: UIButton!
-  //  @IBOutlet weak var btnChatOutlet: UIButton!
     @IBOutlet weak var btnFollow: UIButton!
     @IBOutlet weak var btnLive: UIButton!
     @IBOutlet weak var OtherUserFollowView: UIView!
@@ -51,7 +50,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     var privateVidArr = [videoMainMVC]()
     var userVidArr = [videoMainMVC]()
     var userData = [userMVC]()
-    var suggestedUsersArr = [suggestionUsersModel]()
+    var suggestedUsersArr = [userMVC]()
     var privacySettingData = [privacySettingMVC]()
     var pushNotiSettingData = [pushNotiSettingMVC]()
     var isOtherUserVisting = false
@@ -63,8 +62,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     var userInfo = [["type":"Following","count":"170"],["type":"Followers","count":"60.1K"],["type":"Likes","count":"5.7M"]]
     var userItem = [["Image":"music tok icon-2","ImageSelected":"music tok icon-5","isSelected":"true"],["Image":"likeVideo","ImageSelected":"music tok icon-6","isSelected":"false"],["Image":"music tok icon-1","ImageSelected":"music tok icon-4","isSelected":"false"]]
     
-  /*  var suggestionArr = [["Image":"music tok icon-2","ImageSelected":"music tok icon-5","isSelected":"true"],["Image":"likeVideo","ImageSelected":"music tok icon-6","isSelected":"false"],["Image":"music tok icon-1","ImageSelected":"music tok icon-4","isSelected":"false"]]*/
- 
     var format = ContentLoaderFormat()
     
     lazy var refresher: UIRefreshControl = {
@@ -111,14 +108,16 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             userItem = [["Image":"music tok icon-2","ImageSelected":"music tok icon-5","isSelected":"true"],["Image":"likeVideo","ImageSelected":"music tok icon-6","isSelected":"false"]]
         }
         suggestionsCollectionView.delegate = self
-        self.btnMessage.setTitle("Message", for: .normal)
-        self.btnMessage.backgroundColor = .white
-        self.btnMessage.setTitleColor(.black, for: .normal)
-        self.btnMessage.layer.borderWidth = 1
-        self.btnMessage.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        btnMessage.setTitle("Message", for: .normal)
+        btnMessage.backgroundColor = .white
+        btnMessage.setTitleColor(.black, for: .normal)
+        btnMessage.layer.borderWidth = 1
+        btnMessage.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
+        btnViewAll.isHidden = true
+        btnSuggestionArrow.isHidden = true
         
         suggestionsCollectionView.dataSource =  self
-        print("count: ",userItem.count)
     }
     
     func refresh() {
@@ -233,8 +232,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         let uid = UserDefaults.standard.string(forKey: "userID")
         if uid == "" || uid == nil{
             loginScreenAppear()
-        }else{
-            if isOtherUserVisting{
+        } else {
+            if isOtherUserVisting {
                 self.profileDropDown.show()
                 return
             }
@@ -262,14 +261,13 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     @IBAction func btnFollowAction(_ sender: Any) {
-        if isOtherUserVisting{
+        if isOtherUserVisting {
             let uid = UserDefaults.standard.string(forKey: "userID")
-            if uid == "" || uid == nil{
+            if uid == "" || uid == nil {
                 loginScreenAppear()
-            }else{
+            } else {
                 self.followUser(rcvrID: self.otherUserID, userID: UserDefaults.standard.string(forKey: "userID")!, ProfileUserFollow: 1)
             }
-         
         } else {
             let vc =  storyboard?.instantiateViewController(withIdentifier: "NewEditProfileViewController") as! NewEditProfileViewController
             vc.userData =  self.userData
@@ -278,7 +276,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     @IBAction func btnSuggArrow(_ sender: Any) {
-        if isOtherUserVisting ==  true{
+        if isOtherUserVisting ==  true {
             if self.isSuggExpended == true {
                 UIView.animate(withDuration: 0.5) {
                     self.btnShowSuggetions.setImage(UIImage(named: "arrowDown"), for: .normal)
@@ -310,32 +308,29 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //MARK:- Delgate Functions
     
     @objc func btnFollowFunc(sender : UIButton) {
-        print(sender.tag)
-        
         let uid = UserDefaults.standard.string(forKey: "userID")
         if uid == "" || uid == nil {
             loginScreenAppear()
         } else {
             followUserFunc(cellNo: sender.tag)
-            if sender.currentTitle == "following" {
-                sender.setTitle("follow", for: .normal)
+            if sender.currentTitle == "Following" {
+                sender.setTitle("Follow", for: .normal)
                 sender.backgroundColor = UIColor(named: "theme")
-                sender.setTitleColor(UIColor(named: "theme"), for: .normal)
                 sender.setTitleColor(.white, for: .normal)
             } else {
-                sender.setTitle("following", for: .normal)
+                sender.setTitle("Following", for: .normal)
                 sender.backgroundColor = .white
                 sender.setTitleColor(.black, for: .normal)
             }
         }
     }
     
-    func followUserFunc(cellNo:Int){
+    func followUserFunc(cellNo:Int) {
         let suggUser = self.suggestedUsersArr[cellNo]
-        let rcvrID = suggUser.id
-        let userID = UserDefaults.standard.string(forKey: "userID")
+        let rcvrID = suggUser.userID
+        let userID = UserDefaults.standard.string(forKey: "userID") ?? ""
         
-        self.followUser(rcvrID: rcvrID!, userID: userID!, ProfileUserFollow: 0)
+        self.followUser(rcvrID: rcvrID, userID: userID, ProfileUserFollow: 0)
     }
     
     
@@ -349,8 +344,19 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     @objc func btnCrossTapped(sender : UIButton) {
-        print(sender.tag)
         self.remove(index: sender.tag)
+    }
+    
+    @objc func btnProfileTapped(sender : UIButton) {
+        if let rootViewController = UIApplication.topViewController() {
+            let storyMain = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
+            vc.isOtherUserVisting = true
+            vc.hidesBottomBarWhenPushed = true
+            let suggUser = self.suggestedUsersArr[sender.tag]
+            vc.otherUserID = suggUser.userID ?? ""
+            rootViewController.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func remove(index: Int) {
@@ -381,8 +387,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "newProfileItemsCVC", for:indexPath) as! newProfileItemsCollectionViewCell
         
-        if collectionView ==  userInfoCollectionView{
-            
+        if collectionView ==  userInfoCollectionView {
             cell.lblCount.text =  self.userInfo[indexPath.row]["count"]
             cell.typeFollowing.text = self.userInfo[indexPath.row]["type"]
             
@@ -392,7 +397,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             else {
                 cell.verticalView.isHidden = false
             }
-            
         } else if collectionView == videosCV {
             let videoObj = videosMainArr[indexPath.row]
             let gifURL = AppUtility?.detectURL(ipString: videoObj.videoGIF)
@@ -404,13 +408,15 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             cell.contentView.layer.cornerRadius = 2
             cell.contentView.layer.masksToBounds = true
             cell.imgUser.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.imgUser.sd_setImage(with: URL(string:(AppUtility?.detectURL(ipString: obj.profile_pic ?? ""))!), placeholderImage: UIImage(named:"videoPlaceholder"))
+            cell.imgUser.sd_setImage(with: URL(string:(AppUtility?.detectURL(ipString: obj.userProfile_pic ?? ""))!), placeholderImage: UIImage(named:"videoPlaceholder"))
             cell.lblName.text = (obj.first_name ?? "") + " " + (obj.last_name ?? "")
             cell.lblDesc.text = obj.username
             cell.btnFollow.tag = indexPath.row
             cell.btnFollow.addTarget(self, action: #selector(btnFollowFunc(sender:)), for: .touchUpInside)
             cell.btnCross.tag = indexPath.row
             cell.btnCross.addTarget(self, action: #selector(btnCrossTapped(sender:)), for: .touchUpInside)
+            cell.btnProfile.tag = indexPath.row
+            cell.btnProfile.addTarget(self, action: #selector(btnProfileTapped(sender:)), for: .touchUpInside)
         } else {
             if indexPath.row == 0 {
                 if self.userItem[indexPath.row]["isSelected"] == "false" {
@@ -458,29 +464,17 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             self.storeSelectedIP = indexPath
         }
         else if collectionView == userInfoCollectionView {
-            print("ip: ",indexPath.row)
-            
             if indexPath.row == 0 {
-                /*if userData[0].following == "0" {
-                    //self.showToast(message: "0 Following", font: .systemFont(ofSize: 12))
-                    return
-                }*/
-                
                 let vc = storyboard?.instantiateViewController(withIdentifier: "MainFFSViewController") as! MainFFSViewController
                 vc.userData = userData
                 vc.SelectedIndex = indexPath.row
-                self.hidesBottomBarWhenPushed = true
+                //self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
-                
             } else if indexPath.row == 1 {
-                /*if userData[0].followers == "0" {
-                    //self.showToast(message: "0 Followers", font: .systemFont(ofSize: 12))
-                    return
-                }*/
                 let vc = storyboard?.instantiateViewController(withIdentifier: "MainFFSViewController") as! MainFFSViewController
                 vc.userData = userData
                 vc.SelectedIndex = indexPath.row
-                self.hidesBottomBarWhenPushed = true
+                //self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 let vc = storyboard?.instantiateViewController(withIdentifier: "ShowLikesPopUpViewController") as! ShowLikesPopUpViewController
@@ -508,19 +502,15 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         self.userItem.insert(obj, at: index)
         
         if index == 0 {
-            print("my vid")
             AppUtility?.startLoader(view: self.view)
             getUserVideos()
             
         } else if index == 1 {
-            print("liked")
             AppUtility?.startLoader(view: self.view)
             getLikedVideos()
         } else {
-            print("private")
             AppUtility?.startLoader(view: self.view)
             getPrivateVideos()
-            
         }
         self.userItemsCollectionView.reloadData()
     }
@@ -555,7 +545,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        print("toppppppp")
     }
     //MARK:- API Handler
     
@@ -1046,11 +1035,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
     }
     // Follow user API
-    func followUser(rcvrID:String,userID:String,ProfileUserFollow:Int){
-        
-        print("Recid: ",rcvrID)
-        print("senderID: ",userID)
-        
+    func followUser(rcvrID:String,userID:String,ProfileUserFollow:Int) {
         AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.followUser(sender_id: userID, receiver_id: rcvrID) { (isSuccess, response) in
             if isSuccess {
@@ -1068,13 +1053,12 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                             }
                     }
                 }
-                    //                    self.fetchSuggestedPeopleAPI()
-                }else {
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     self.showToast(message: (response?.value(forKey: "msg") as? String)!, font: .systemFont(ofSize: 12))
                 }
                 
-            }else {
+            } else {
                 AppUtility?.stopLoader(view: self.view)
                 self.showToast(message: (response?.value(forKey: "msg") as? String)!, font: .systemFont(ofSize: 12))
             }
@@ -1151,8 +1135,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         profileDropDown.selectionAction = { [weak self] (index, item) in
             switch item {
             case "Report":
-                print("selected item: ",item)
-                
                 let alertController = UIAlertController(title: "REPORT", message: "Enter the details of Report", preferredStyle: .alert)
                 
                 alertController.addTextField { (textField : UITextField!) -> Void in
@@ -1185,46 +1167,38 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 self!.present(alertController, animated: true, completion: nil)
                 
             case "Block":
-                print("selected item: ",item)
                 self!.blockUser()
                 
             case "Edit Profile":
-                print("selected item: ",item)
                 let vc = self?.storyboard?.instantiateViewController(withIdentifier: "NewEditProfileViewController") as! NewEditProfileViewController
                  vc.userData = self!.userData
                  vc.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(vc, animated: true)
                 
             case "Favourite":
-                print("selected item: ",item)
                 let vc = self?.storyboard?.instantiateViewController(withIdentifier: "favMainVC") as! favMainViewController
                 vc.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(vc, animated: true)
                 
             case "Setting":
-                print("selected item: ",item)
                 let vc = self?.storyboard?.instantiateViewController(withIdentifier: "NewSettingsPrivacyViewController") as! NewSettingsPrivacyViewController
                 vc.userData = self!.userData
-                  vc.hidesBottomBarWhenPushed = true
+                vc.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(vc, animated: true)
                 
             case "Payout":
-                print("selected item: ",item)
                 let vc = self?.storyboard?.instantiateViewController(withIdentifier: "PayoutViewController") as! PayoutViewController
                 vc.hidesBottomBarWhenPushed = true
                 vc.user = self!.userData
                 self?.navigationController?.pushViewController(vc, animated: true)
                 
             case "Wallet":
-                print("selected item: ",item)
                 let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MyWalletVC") as! MyWalletViewController
                 vc.hidesBottomBarWhenPushed = true
                 vc.userData = self!.userData
                 self?.navigationController?.pushViewController(vc, animated: true)
                 
             case "Logout":
-                print("select item: ",item)
-                
                 self?.tabBarController?.selectedIndex = 0
                 
                 self?.tabBarController?.tabBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -1246,8 +1220,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         AppUtility?.startLoader(view: self.view)
         let uid = UserDefaults.standard.string(forKey: "userID")
         let otherUid = UserDefaults.standard.string(forKey: "otherUserID")
-        
-        print("block uid: \(uid) blockUid: \(otherUid)")
+    
         ApiHandler.sharedInstance.blockUser(user_id: uid!, block_user_id: otherUid!) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
@@ -1266,7 +1239,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //Logout User
     func logoutUserApi() {
         let userID = UserDefaults.standard.string(forKey: "userID")
-        print("user id: ",userID as Any)
         AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.logout(user_id: userID! ) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
@@ -1286,8 +1258,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //Report user func
     func reportUser(reportReason: String) {
         AppUtility?.startLoader(view: self.view)
-        
-        print("report user id: \(otherUserID) userID: \(UserDefaults.standard.string(forKey: "userID")!)")
         
         ApiHandler.sharedInstance.reportUser(user_id: UserDefaults.standard.string(forKey: "userID")!, report_user_id: otherUserID, report_reason_id: "1", description: reportReason) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
@@ -1330,13 +1300,13 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     func fetchSuggestedPeopleAPI() {
         self.suggestedUsersArr.removeAll()
         AppUtility?.startLoader(view: view)
-        ApiHandler.sharedInstance.suggestedPeople(user_id: self.otherUserID) { (isSuccess, response) in
+        ApiHandler.sharedInstance.suggestedPeople(user_id: self.userID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 if  response?.value(forKey: "code") as! NSNumber ==  200 {
                     let msgArr = response?.value(forKey: "msg") as? NSArray
                     for msg in msgArr ?? []{
-                        let msgDict = msg as? NSDictionary
+                        /*let msgDict = msg as? NSDictionary
                         let userDict = msgDict?.value(forKey: "User")
                         let decoder = JSONDecoder()
                         
@@ -1348,7 +1318,28 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                             
                         } catch {
                             print("catch: ",error.localizedDescription)
-                        }
+                        }*/
+                        let msgDict = msg as! NSDictionary
+                        let userObj = msgDict.value(forKey: "User") as! NSDictionary
+                        let userImage = (userObj.value(forKey: "profile_pic") as? String)!
+                        let userName = (userObj.value(forKey: "username") as? String)!
+                        let followers = "\(userObj.value(forKey: "followers_count") ?? "")"
+                        let followings = "\(userObj.value(forKey: "following_count") ?? "")"
+                        let likesCount = "\(userObj.value(forKey: "likes_count") ?? "")"
+                        let videoCount = "\(userObj.value(forKey: "video_count") ?? "")"
+                        let firstName = (userObj.value(forKey: "first_name") as? String)!
+                        let lastName = (userObj.value(forKey: "last_name") as? String)!
+                        let gender = (userObj.value(forKey: "gender") as? String)!
+                        let bio = (userObj.value(forKey: "bio") as? String)!
+                        let dob = (userObj.value(forKey: "dob") as? String)!
+                        let website = (userObj.value(forKey: "website") as? String)!
+                        let wallet = (userObj.value(forKey: "wallet") as? String)!
+                        let paypal = (userObj.value(forKey: "paypal") as? String)!
+                        let userId = (userObj.value(forKey: "id") as? String)!
+                        
+                        let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: "", countryName: "", website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "",wallet:wallet,paypal:paypal)
+                        
+                        self.suggestedUsersArr.append(user)
                     }
                     self.suggestionsCollectionView.reloadData()
                 } else {
@@ -1357,6 +1348,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             }
         }
     }
+    
     //MARK:- Alert
     
     func alertModule(title:String,msg:String){
@@ -1372,8 +1364,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     // MARK:- handleLongPressVideo
     @objc func handleLongPressVideo(gestureReconizer: UILongPressGestureRecognizer) {
-
-        print("longPressed")
         let p = gestureReconizer.location(in: self.videosCV)
         
         if let indexPath : IndexPath = (self.videosCV?.indexPathForItem(at: p)) as IndexPath?{

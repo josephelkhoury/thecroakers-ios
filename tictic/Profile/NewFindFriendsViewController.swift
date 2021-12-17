@@ -10,6 +10,7 @@ import UIKit
 class NewFindFriendsViewController: UIViewController {
 
     @IBOutlet weak var tblFindFriends: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,8 +21,6 @@ class NewFindFriendsViewController: UIViewController {
     @IBAction func backPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
 }
 extension NewFindFriendsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,6 +31,5 @@ extension NewFindFriendsViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "FindFriendsTVC", for: indexPath) as! FindFriendsTVC
         return cell
     }
-    
     
 }

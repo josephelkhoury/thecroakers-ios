@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import SDWebImage
+import XLPagerTabStrip
 
-class NewFollowingViewController: UIViewController {
+class NewFollowingViewController: UIViewController, IndicatorInfoProvider {
     
     //MARK:- Outlets
     
@@ -16,6 +16,8 @@ class NewFollowingViewController: UIViewController {
     var FollowingArr = [[String:Any]]()
     var isOtherUserVisting =  false
     var userData = [userMVC]()
+    var itemInfo:IndicatorInfo = "View"
+    weak var delegate: mainFFSDelegate?
     
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
@@ -23,17 +25,21 @@ class NewFollowingViewController: UIViewController {
 
         tblFollowing.delegate = self
         tblFollowing.dataSource = self
-        self.getFollowingAPI()
+        getFollowingAPI()
+    }
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return itemInfo
     }
     
     //MARK:- API Handler
-    func getFollowingAPI(){
+    func getFollowingAPI() {
         
         AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFollowing(user_id: UserDefaults.standard.string(forKey: "userID")!, other_user_id: userData[0].userID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
-            if isSuccess{
+            if isSuccess {
                 let code = response?.value(forKey: "code") as! NSNumber
                 if code == 200 {
                     let msgArr = response?.value(forKey: "msg") as! NSArray
@@ -53,7 +59,7 @@ class NewFollowingViewController: UIViewController {
         }
     }
 }
-extension NewFollowingViewController: UITableViewDelegate,UITableViewDataSource{
+extension NewFollowingViewController: UITableViewDelegate,UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.FollowingArr.count
@@ -63,24 +69,13 @@ extension NewFollowingViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ffsTVC") as! ffsTVC
         
         let obj = FollowingArr[indexPath.row]
-        let btnFollow = obj["button"] as? String
-        let userImg = obj["profile_pic"] as? String
-        let username = obj["username"] as? String
-        let bio = obj["bio"] as? String
-        cell.btnFollow.layer.borderWidth = 1
-        cell.btnFollow.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        cell.btnFollow.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
-        cell.btnFollow.setTitle("Friend", for: .normal)
-        cell.lblTitle.text = username
-        cell.imgIcon.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        cell.imgIcon.sd_setImage(with: URL(string:(AppUtility?.detectURL(ipString: userImg ?? ""))!), placeholderImage: UIImage(named:"noUserImg"))
-        cell.lblDescription.text = bio
+        cell.configure(user: obj)
+        cell.delegate = delegate
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         guard FollowingArr[indexPath.row]["id"] != nil else { showToast(message: "Null", font: .systemFont(ofSize: 12)); return}
         
         let otherUserID = FollowingArr[indexPath.row]["id"] as! String
@@ -96,5 +91,4 @@ extension NewFollowingViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-    
 }

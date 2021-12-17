@@ -28,17 +28,14 @@ class FFsDetailViewController: UIViewController,IndicatorInfoProvider {
     //MARK:-ViewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         if itemInfo.title == "Following" {
-            print("Followers")
             viewFollowing.isHidden = false
             viewFollowers.isHidden = true
             viewSuggestion.isHidden =  true
         } else if itemInfo.title == "Followers" {
-            print("Following")
             viewFollowing.isHidden = true
             viewFollowers.isHidden = false
             viewSuggestion.isHidden =  true
         } else if itemInfo.title == "Suggestions" {
-            print("Suggestions")
             viewFollowing.isHidden = true
             viewFollowers.isHidden = true
             viewSuggestion.isHidden =  false

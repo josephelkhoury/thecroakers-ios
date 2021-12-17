@@ -4850,7 +4850,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-H9-hBx" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="89" width="337.5" height="39"/>
+                                        <rect key="frame" x="0.0" y="89" width="337.5" height="17"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -5180,7 +5180,7 @@
                                 <rect key="frame" x="20" y="0.0" width="335" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3c-Cd-vYD" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="20" width="335" height="39"/>
+                                        <rect key="frame" x="0.0" y="20" width="335" height="18.5"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
@@ -6428,8 +6428,8 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123.4K" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="v6i-sy-kXk">
-                                                                                    <rect key="frame" x="33.5" y="5" width="53" height="19.5"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="v6i-sy-kXk">
+                                                                                    <rect key="frame" x="55" y="5" width="10.5" height="19.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -6643,12 +6643,18 @@
                                                                                                         </userDefinedRuntimeAttribute>
                                                                                                     </userDefinedRuntimeAttributes>
                                                                                                 </button>
+                                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7z-OQ-p6v">
+                                                                                                    <rect key="frame" x="51.5" y="15" width="70" height="107"/>
+                                                                                                </button>
                                                                                             </subviews>
                                                                                             <color key="backgroundColor" red="0.97246724370000004" green="0.97260326149999998" blue="0.97242432830000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <constraints>
                                                                                                 <constraint firstItem="d7Z-JJ-kQ4" firstAttribute="top" secondItem="3rg-Qw-ook" secondAttribute="top" constant="6" id="0UB-Py-vav"/>
+                                                                                                <constraint firstItem="f7z-OQ-p6v" firstAttribute="trailing" secondItem="UDv-7I-xg8" secondAttribute="trailing" id="Bu7-r5-p33"/>
+                                                                                                <constraint firstItem="f7z-OQ-p6v" firstAttribute="top" secondItem="UDv-7I-xg8" secondAttribute="top" id="FBf-pL-uiH"/>
                                                                                                 <constraint firstItem="13A-u6-PU3" firstAttribute="top" secondItem="hh6-ZP-RQR" secondAttribute="bottom" constant="1.5" id="MeD-fn-CVS"/>
                                                                                                 <constraint firstItem="13A-u6-PU3" firstAttribute="leading" secondItem="hh6-ZP-RQR" secondAttribute="leading" id="ObS-US-Ycr"/>
+                                                                                                <constraint firstItem="f7z-OQ-p6v" firstAttribute="bottom" secondItem="13A-u6-PU3" secondAttribute="bottom" id="PnE-hL-9Y1"/>
                                                                                                 <constraint firstItem="UDv-7I-xg8" firstAttribute="centerY" secondItem="3rg-Qw-ook" secondAttribute="centerY" multiplier="0.6" id="Soz-R3-Bjx"/>
                                                                                                 <constraint firstAttribute="trailing" secondItem="W6Z-Qd-HvQ" secondAttribute="trailing" constant="10" id="VZZ-BP-96P"/>
                                                                                                 <constraint firstAttribute="bottom" secondItem="W6Z-Qd-HvQ" secondAttribute="bottom" constant="10" id="XhZ-QH-ego"/>
@@ -6659,6 +6665,7 @@
                                                                                                 <constraint firstItem="hh6-ZP-RQR" firstAttribute="leading" secondItem="3rg-Qw-ook" secondAttribute="leading" constant="5" id="orK-0G-gFJ"/>
                                                                                                 <constraint firstAttribute="trailing" secondItem="hh6-ZP-RQR" secondAttribute="trailing" constant="5" id="tM9-DY-e3E"/>
                                                                                                 <constraint firstItem="13A-u6-PU3" firstAttribute="trailing" secondItem="hh6-ZP-RQR" secondAttribute="trailing" id="uoQ-AH-xS0"/>
+                                                                                                <constraint firstItem="f7z-OQ-p6v" firstAttribute="leading" secondItem="UDv-7I-xg8" secondAttribute="leading" id="xzW-BA-HzG"/>
                                                                                                 <constraint firstItem="W6Z-Qd-HvQ" firstAttribute="centerX" secondItem="3rg-Qw-ook" secondAttribute="centerX" id="yP3-4a-Ufh"/>
                                                                                             </constraints>
                                                                                         </view>
@@ -6674,6 +6681,7 @@
                                                                                 <connections>
                                                                                     <outlet property="btnCross" destination="d7Z-JJ-kQ4" id="dAq-SZ-bFu"/>
                                                                                     <outlet property="btnFollow" destination="W6Z-Qd-HvQ" id="TN7-Hf-ews"/>
+                                                                                    <outlet property="btnProfile" destination="f7z-OQ-p6v" id="ZUX-cc-cRJ"/>
                                                                                     <outlet property="imgUser" destination="UDv-7I-xg8" id="5eC-W8-mvW"/>
                                                                                     <outlet property="lblDesc" destination="13A-u6-PU3" id="Z5B-Pc-Chr"/>
                                                                                     <outlet property="lblName" destination="hh6-ZP-RQR" id="nRR-nY-pDB"/>
@@ -13693,23 +13701,6 @@
             </objects>
             <point key="canvasLocation" x="10049" y="1693"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="YuM-Wx-BoF">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="0A4-Ey-05Q" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OFR-3z-tpG">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8hQ-w8-TRr" kind="relationship" relationship="rootViewController" id="1P1-Xx-7D8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hfL-FZ-V69" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7711" y="884"/>
-        </scene>
         <!--New Find Friends View Controller-->
         <scene sceneID="LGa-tO-New">
             <objects>
@@ -16045,7 +16036,7 @@
     </scenes>
     <designables>
         <designable name="6eI-dd-7E5">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="95" height="17"/>
         </designable>
         <designable name="78c-0Q-L9T">
             <size key="intrinsicContentSize" width="1500" height="1500"/>
@@ -16054,13 +16045,13 @@
             <size key="intrinsicContentSize" width="150" height="84"/>
         </designable>
         <designable name="EiP-JG-hoN">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
         </designable>
         <designable name="F2W-H9-hBx">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="62.5" height="17"/>
         </designable>
         <designable name="FKv-bv-FPq">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="62.5" height="17"/>
         </designable>
         <designable name="H2M-Gx-k7a">
             <size key="intrinsicContentSize" width="37.5" height="16.5"/>
@@ -16078,25 +16069,22 @@
             <size key="intrinsicContentSize" width="64" height="30"/>
         </designable>
         <designable name="dEU-F0-gpN">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="64.5" height="18.5"/>
         </designable>
         <designable name="dek-49-pB7">
-            <size key="intrinsicContentSize" width="58" height="17"/>
+            <size key="intrinsicContentSize" width="18" height="17"/>
         </designable>
         <designable name="e3c-Cd-vYD">
-            <size key="intrinsicContentSize" width="335" height="39.220703125"/>
-        </designable>
-        <designable name="g8V-F9-x0H">
-            <size key="intrinsicContentSize" width="30" height="34"/>
+            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
         </designable>
         <designable name="gIi-Kh-0ib">
             <size key="intrinsicContentSize" width="50" height="50"/>
         </designable>
         <designable name="gM6-m0-mCm">
-            <size key="intrinsicContentSize" width="58" height="17"/>
+            <size key="intrinsicContentSize" width="18" height="17"/>
         </designable>
         <designable name="hws-AG-qE2">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="66" height="18.5"/>
         </designable>
         <designable name="ivR-Iy-Bml">
             <size key="intrinsicContentSize" width="119" height="18.5"/>
@@ -16105,13 +16093,13 @@
             <size key="intrinsicContentSize" width="26.5" height="18.5"/>
         </designable>
         <designable name="p6A-Lq-p52">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="117.5" height="17"/>
         </designable>
         <designable name="rrU-vZ-3dA">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="88.5" height="17"/>
         </designable>
         <designable name="rxf-cC-L0X">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="66" height="18.5"/>
         </designable>
         <designable name="rzc-30-Z7R">
             <size key="intrinsicContentSize" width="90" height="17"/>

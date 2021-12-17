@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import SDWebImage
+import XLPagerTabStrip
 
-class NewFollowersViewController: UIViewController {
+class NewFollowersViewController: UIViewController, IndicatorInfoProvider {
     
     //MARK:- Outlets
     
@@ -17,6 +17,8 @@ class NewFollowersViewController: UIViewController {
     var followersArr = [[String:Any]]()
     var isOtherUserVisting =  false
     var userData = [userMVC]()
+    var itemInfo:IndicatorInfo = "View"
+    weak var delegate: mainFFSDelegate?
     
     //MARK:- ViewDidLoad
     
@@ -25,12 +27,16 @@ class NewFollowersViewController: UIViewController {
 
         tblFollowers.delegate = self
         tblFollowers.dataSource = self
-        self.getFollowersAPI()
+        getFollowersAPI()
+    }
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return itemInfo
     }
 
-//MARK:- API Handler
+    //MARK:- API Handler
 
-    func getFollowersAPI(){
+    func getFollowersAPI() {
         
         AppUtility?.startLoader(view: self.view)
         
@@ -38,11 +44,11 @@ class NewFollowersViewController: UIViewController {
             
             AppUtility?.stopLoader(view: self.view)
             
-            if isSuccess{
+            if isSuccess {
                 let code = response?.value(forKey: "code") as! NSNumber
-                if code == 200{
+                if code == 200 {
                     let msgArr = response?.value(forKey: "msg") as! NSArray
-                    for objMsg in msgArr{
+                    for objMsg in msgArr {
                         
                         let dict = objMsg as! NSDictionary
                         let followerDict = dict.value(forKey: "FollowerList") as! [String:Any]
@@ -51,37 +57,26 @@ class NewFollowersViewController: UIViewController {
                     }
                     
                     self.tblFollowers.reloadData()
-                }else{
+                } else {
                     print("!200: ",response as Any)
                 }
             }
         }
     }
 }
-extension NewFollowersViewController: UITableViewDelegate,UITableViewDataSource{
+extension NewFollowersViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.followersArr.count
-    }    
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ffsTVC") as! ffsTVC
         
         let obj = followersArr[indexPath.row]
-        let btnFollow = obj["button"] as! String
-        let userImg = obj["profile_pic"] as! String
-        let username = obj["username"] as! String
-        let bio = obj["bio"] as! String
+        cell.configure(user: obj)
+        cell.delegate = delegate
         
-        cell.btnFollow.backgroundColor = .clear
-        cell.btnFollow.layer.cornerRadius = 3
-        cell.btnFollow.layer.borderWidth = 1
-        cell.btnFollow.layer.borderColor = UIColor.gray.cgColor
-        cell.btnFollow.setTitle("Friend", for: .normal)
-        cell.lblTitle.text = username
-        cell.imgIcon.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        cell.imgIcon.sd_setImage(with: URL(string:(AppUtility?.detectURL(ipString: userImg))!), placeholderImage: UIImage(named:"noUserImg"))
-
-        cell.lblDescription.text = bio
         return cell
     }
     
@@ -98,5 +93,4 @@ extension NewFollowersViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-    
 }
