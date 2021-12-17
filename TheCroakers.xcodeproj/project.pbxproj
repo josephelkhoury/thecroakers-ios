@@ -65,25 +65,6 @@
 		5E40DEC5256917500004F0D9 /* privacySettingMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40DEC4256917500004F0D9 /* privacySettingMVC.swift */; };
 		5E40DEC7256919E20004F0D9 /* pushNotiSettingMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40DEC6256919E20004F0D9 /* pushNotiSettingMVC.swift */; };
 		5E42549C24F13CA400322C28 /* previewPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E42549B24F13CA400322C28 /* previewPlayerViewController.swift */; };
-		5E4A2DAD26061BDE00C076B8 /* liverUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9726061BDE00C076B8 /* liverUserCollectionViewCell.swift */; };
-		5E4A2DAE26061BDE00C076B8 /* liveUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9826061BDE00C076B8 /* liveUsersViewController.swift */; };
-		5E4A2DAF26061BDE00C076B8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9926061BDE00C076B8 /* MainViewController.swift */; };
-		5E4A2DB026061BDE00C076B8 /* LiveRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9A26061BDE00C076B8 /* LiveRoomViewController.swift */; };
-		5E4A2DB126061BDE00C076B8 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9B26061BDE00C076B8 /* RoleViewController.swift */; };
-		5E4A2DB226061BDE00C076B8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9C26061BDE00C076B8 /* SettingsViewController.swift */; };
-		5E4A2DB326061BDE00C076B8 /* DimensionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9E26061BDE00C076B8 /* DimensionCell.swift */; };
-		5E4A2DB426061BDE00C076B8 /* VideoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2D9F26061BDE00C076B8 /* VideoSession.swift */; };
-		5E4A2DB526061BDE00C076B8 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA026061BDE00C076B8 /* VideoView.swift */; };
-		5E4A2DB626061BDE00C076B8 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA226061BDE00C076B8 /* StatisticsInfo.swift */; };
-		5E4A2DB726061BDE00C076B8 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA326061BDE00C076B8 /* AgoraExtension.swift */; };
-		5E4A2DB826061BDE00C076B8 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA426061BDE00C076B8 /* FileCenter.swift */; };
-		5E4A2DB926061BDE00C076B8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA526061BDE00C076B8 /* Settings.swift */; };
-		5E4A2DBA26061BDE00C076B8 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA626061BDE00C076B8 /* KeyCenter.swift */; };
-		5E4A2DBB26061BDE00C076B8 /* AGEVideoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA826061BDE00C076B8 /* AGEVideoLayout.swift */; };
-		5E4A2DBC26061BDE00C076B8 /* AGEVideoConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DA926061BDE00C076B8 /* AGEVideoConstraints.swift */; };
-		5E4A2DBD26061BDE00C076B8 /* AGEEventsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DAA26061BDE00C076B8 /* AGEEventsObserver.swift */; };
-		5E4A2DBE26061BDE00C076B8 /* AGEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DAB26061BDE00C076B8 /* AGEView.swift */; };
-		5E4A2DBF26061BDE00C076B8 /* AGEVideoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2DAC26061BDE00C076B8 /* AGEVideoContainer.swift */; };
 		5E4A9AA32552850E000D9D6C /* pushNotiSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A9AA22552850E000D9D6C /* pushNotiSettingsViewController.swift */; };
 		5E53506E2553C0FA009E4EB9 /* privacySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E53506D2553C0FA009E4EB9 /* privacySettingViewController.swift */; };
 		5E5350702553C1D7009E4EB9 /* privacySettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E53506F2553C1D7009E4EB9 /* privacySettingTableViewCell.swift */; };
@@ -238,6 +219,25 @@
 		DCA1410727492ACD004EA1FA /* topicMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1410627492ACD004EA1FA /* topicMVC.swift */; };
 		DCA1410E2749524C004EA1FA /* topicsVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1410D2749524B004EA1FA /* topicsVideoViewController.swift */; };
 		DCA14113274CFA3A004EA1FA /* VideoRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA14112274CFA3A004EA1FA /* VideoRepliesViewController.swift */; };
+		DCBFB8A7276B93A200827D7A /* liverUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB891276B93A200827D7A /* liverUserCollectionViewCell.swift */; };
+		DCBFB8A8276B93A200827D7A /* liveUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB892276B93A200827D7A /* liveUsersViewController.swift */; };
+		DCBFB8A9276B93A200827D7A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB893276B93A200827D7A /* MainViewController.swift */; };
+		DCBFB8AA276B93A200827D7A /* LiveRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB894276B93A200827D7A /* LiveRoomViewController.swift */; };
+		DCBFB8AB276B93A200827D7A /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB895276B93A200827D7A /* RoleViewController.swift */; };
+		DCBFB8AC276B93A200827D7A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB896276B93A200827D7A /* SettingsViewController.swift */; };
+		DCBFB8AD276B93A200827D7A /* DimensionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB898276B93A200827D7A /* DimensionCell.swift */; };
+		DCBFB8AE276B93A200827D7A /* VideoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB899276B93A200827D7A /* VideoSession.swift */; };
+		DCBFB8AF276B93A200827D7A /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB89A276B93A200827D7A /* VideoView.swift */; };
+		DCBFB8B0276B93A200827D7A /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB89C276B93A200827D7A /* StatisticsInfo.swift */; };
+		DCBFB8B1276B93A200827D7A /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB89D276B93A200827D7A /* AgoraExtension.swift */; };
+		DCBFB8B2276B93A200827D7A /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB89E276B93A200827D7A /* FileCenter.swift */; };
+		DCBFB8B3276B93A200827D7A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB89F276B93A200827D7A /* Settings.swift */; };
+		DCBFB8B4276B93A200827D7A /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB8A0276B93A200827D7A /* KeyCenter.swift */; };
+		DCBFB8B5276B93A200827D7A /* AGEVideoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB8A2276B93A200827D7A /* AGEVideoLayout.swift */; };
+		DCBFB8B6276B93A200827D7A /* AGEVideoConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB8A3276B93A200827D7A /* AGEVideoConstraints.swift */; };
+		DCBFB8B7276B93A200827D7A /* AGEEventsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB8A4276B93A200827D7A /* AGEEventsObserver.swift */; };
+		DCBFB8B8276B93A200827D7A /* AGEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB8A5276B93A200827D7A /* AGEView.swift */; };
+		DCBFB8B9276B93A200827D7A /* AGEVideoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFB8A6276B93A200827D7A /* AGEVideoContainer.swift */; };
 		DCC206292763A53D00D26E66 /* logo_animation.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DCC206262763A17400D26E66 /* logo_animation.mp4 */; };
 /* End PBXBuildFile section */
 
@@ -315,25 +315,6 @@
 		5E40DEC4256917500004F0D9 /* privacySettingMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = privacySettingMVC.swift; sourceTree = "<group>"; };
 		5E40DEC6256919E20004F0D9 /* pushNotiSettingMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotiSettingMVC.swift; sourceTree = "<group>"; };
 		5E42549B24F13CA400322C28 /* previewPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewPlayerViewController.swift; sourceTree = "<group>"; };
-		5E4A2D9726061BDE00C076B8 /* liverUserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = liverUserCollectionViewCell.swift; sourceTree = "<group>"; };
-		5E4A2D9826061BDE00C076B8 /* liveUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = liveUsersViewController.swift; sourceTree = "<group>"; };
-		5E4A2D9926061BDE00C076B8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		5E4A2D9A26061BDE00C076B8 /* LiveRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveRoomViewController.swift; sourceTree = "<group>"; };
-		5E4A2D9B26061BDE00C076B8 /* RoleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
-		5E4A2D9C26061BDE00C076B8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		5E4A2D9E26061BDE00C076B8 /* DimensionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimensionCell.swift; sourceTree = "<group>"; };
-		5E4A2D9F26061BDE00C076B8 /* VideoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSession.swift; sourceTree = "<group>"; };
-		5E4A2DA026061BDE00C076B8 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		5E4A2DA226061BDE00C076B8 /* StatisticsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsInfo.swift; sourceTree = "<group>"; };
-		5E4A2DA326061BDE00C076B8 /* AgoraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraExtension.swift; sourceTree = "<group>"; };
-		5E4A2DA426061BDE00C076B8 /* FileCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCenter.swift; sourceTree = "<group>"; };
-		5E4A2DA526061BDE00C076B8 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		5E4A2DA626061BDE00C076B8 /* KeyCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCenter.swift; sourceTree = "<group>"; };
-		5E4A2DA826061BDE00C076B8 /* AGEVideoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoLayout.swift; sourceTree = "<group>"; };
-		5E4A2DA926061BDE00C076B8 /* AGEVideoConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoConstraints.swift; sourceTree = "<group>"; };
-		5E4A2DAA26061BDE00C076B8 /* AGEEventsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEEventsObserver.swift; sourceTree = "<group>"; };
-		5E4A2DAB26061BDE00C076B8 /* AGEView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEView.swift; sourceTree = "<group>"; };
-		5E4A2DAC26061BDE00C076B8 /* AGEVideoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoContainer.swift; sourceTree = "<group>"; };
 		5E4A9AA22552850E000D9D6C /* pushNotiSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotiSettingsViewController.swift; sourceTree = "<group>"; };
 		5E53506D2553C0FA009E4EB9 /* privacySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = privacySettingViewController.swift; sourceTree = "<group>"; };
 		5E53506F2553C1D7009E4EB9 /* privacySettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = privacySettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -511,6 +492,25 @@
 		DCA1410627492ACD004EA1FA /* topicMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topicMVC.swift; sourceTree = "<group>"; };
 		DCA1410D2749524B004EA1FA /* topicsVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topicsVideoViewController.swift; sourceTree = "<group>"; };
 		DCA14112274CFA3A004EA1FA /* VideoRepliesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRepliesViewController.swift; sourceTree = "<group>"; };
+		DCBFB891276B93A200827D7A /* liverUserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = liverUserCollectionViewCell.swift; sourceTree = "<group>"; };
+		DCBFB892276B93A200827D7A /* liveUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = liveUsersViewController.swift; sourceTree = "<group>"; };
+		DCBFB893276B93A200827D7A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DCBFB894276B93A200827D7A /* LiveRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveRoomViewController.swift; sourceTree = "<group>"; };
+		DCBFB895276B93A200827D7A /* RoleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
+		DCBFB896276B93A200827D7A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DCBFB898276B93A200827D7A /* DimensionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimensionCell.swift; sourceTree = "<group>"; };
+		DCBFB899276B93A200827D7A /* VideoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSession.swift; sourceTree = "<group>"; };
+		DCBFB89A276B93A200827D7A /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		DCBFB89C276B93A200827D7A /* StatisticsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsInfo.swift; sourceTree = "<group>"; };
+		DCBFB89D276B93A200827D7A /* AgoraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraExtension.swift; sourceTree = "<group>"; };
+		DCBFB89E276B93A200827D7A /* FileCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCenter.swift; sourceTree = "<group>"; };
+		DCBFB89F276B93A200827D7A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DCBFB8A0276B93A200827D7A /* KeyCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCenter.swift; sourceTree = "<group>"; };
+		DCBFB8A2276B93A200827D7A /* AGEVideoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoLayout.swift; sourceTree = "<group>"; };
+		DCBFB8A3276B93A200827D7A /* AGEVideoConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoConstraints.swift; sourceTree = "<group>"; };
+		DCBFB8A4276B93A200827D7A /* AGEEventsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEEventsObserver.swift; sourceTree = "<group>"; };
+		DCBFB8A5276B93A200827D7A /* AGEView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEView.swift; sourceTree = "<group>"; };
+		DCBFB8A6276B93A200827D7A /* AGEVideoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoContainer.swift; sourceTree = "<group>"; };
 		DCC206262763A17400D26E66 /* logo_animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = logo_animation.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -776,80 +776,6 @@
 				5E37B08E24F61E5D0026B566 /* loader.swift */,
 			);
 			path = loader;
-			sourceTree = "<group>";
-		};
-		5E4A2D9326061BDE00C076B8 /* AgoraWork */ = {
-			isa = PBXGroup;
-			children = (
-				5E4A2D9426061BDE00C076B8 /* ALL_ARCHITECTURE */,
-				5E4A2D9526061BDE00C076B8 /* agoraController */,
-				5E4A2D9D26061BDE00C076B8 /* agoraViews */,
-				5E4A2DA126061BDE00C076B8 /* agoraSupport */,
-				5E4A2DA726061BDE00C076B8 /* video layout */,
-			);
-			path = AgoraWork;
-			sourceTree = "<group>";
-		};
-		5E4A2D9426061BDE00C076B8 /* ALL_ARCHITECTURE */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ALL_ARCHITECTURE;
-			sourceTree = "<group>";
-		};
-		5E4A2D9526061BDE00C076B8 /* agoraController */ = {
-			isa = PBXGroup;
-			children = (
-				5E4A2D9626061BDE00C076B8 /* CVC */,
-				5E4A2D9826061BDE00C076B8 /* liveUsersViewController.swift */,
-				5E4A2D9926061BDE00C076B8 /* MainViewController.swift */,
-				5E4A2D9A26061BDE00C076B8 /* LiveRoomViewController.swift */,
-				5E4A2D9B26061BDE00C076B8 /* RoleViewController.swift */,
-				5E4A2D9C26061BDE00C076B8 /* SettingsViewController.swift */,
-			);
-			path = agoraController;
-			sourceTree = "<group>";
-		};
-		5E4A2D9626061BDE00C076B8 /* CVC */ = {
-			isa = PBXGroup;
-			children = (
-				5E4A2D9726061BDE00C076B8 /* liverUserCollectionViewCell.swift */,
-			);
-			path = CVC;
-			sourceTree = "<group>";
-		};
-		5E4A2D9D26061BDE00C076B8 /* agoraViews */ = {
-			isa = PBXGroup;
-			children = (
-				5E4A2D9E26061BDE00C076B8 /* DimensionCell.swift */,
-				5E4A2D9F26061BDE00C076B8 /* VideoSession.swift */,
-				5E4A2DA026061BDE00C076B8 /* VideoView.swift */,
-			);
-			path = agoraViews;
-			sourceTree = "<group>";
-		};
-		5E4A2DA126061BDE00C076B8 /* agoraSupport */ = {
-			isa = PBXGroup;
-			children = (
-				5E4A2DA226061BDE00C076B8 /* StatisticsInfo.swift */,
-				5E4A2DA326061BDE00C076B8 /* AgoraExtension.swift */,
-				5E4A2DA426061BDE00C076B8 /* FileCenter.swift */,
-				5E4A2DA526061BDE00C076B8 /* Settings.swift */,
-				5E4A2DA626061BDE00C076B8 /* KeyCenter.swift */,
-			);
-			path = agoraSupport;
-			sourceTree = "<group>";
-		};
-		5E4A2DA726061BDE00C076B8 /* video layout */ = {
-			isa = PBXGroup;
-			children = (
-				5E4A2DA826061BDE00C076B8 /* AGEVideoLayout.swift */,
-				5E4A2DA926061BDE00C076B8 /* AGEVideoConstraints.swift */,
-				5E4A2DAA26061BDE00C076B8 /* AGEEventsObserver.swift */,
-				5E4A2DAB26061BDE00C076B8 /* AGEView.swift */,
-				5E4A2DAC26061BDE00C076B8 /* AGEVideoContainer.swift */,
-			);
-			path = "video layout";
 			sourceTree = "<group>";
 		};
 		5E5FAB49253584EB00A21897 /* Profile */ = {
@@ -1317,8 +1243,8 @@
 		AE543C422270361B00E47594 = {
 			isa = PBXGroup;
 			children = (
+				DCBFB88E276B93A200827D7A /* AgoraWork */,
 				042CB03326C7CC6C00625968 /* FilterXIB */,
-				5E4A2D9326061BDE00C076B8 /* AgoraWork */,
 				5EA3E81F252B524400C6C13A /* api */,
 				AEB853CF22A26ADE00607D5E /* TIK TIK.entitlements */,
 				AE11DFAE24AF125C009A10D4 /* AsyncPhotoMediaItem.swift */,
@@ -1462,6 +1388,72 @@
 				DCA14112274CFA3A004EA1FA /* VideoRepliesViewController.swift */,
 			);
 			path = VideoReplies;
+			sourceTree = "<group>";
+		};
+		DCBFB88E276B93A200827D7A /* AgoraWork */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFB88F276B93A200827D7A /* agoraController */,
+				DCBFB897276B93A200827D7A /* agoraViews */,
+				DCBFB89B276B93A200827D7A /* agoraSupport */,
+				DCBFB8A1276B93A200827D7A /* video layout */,
+			);
+			path = AgoraWork;
+			sourceTree = "<group>";
+		};
+		DCBFB88F276B93A200827D7A /* agoraController */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFB890276B93A200827D7A /* CVC */,
+				DCBFB892276B93A200827D7A /* liveUsersViewController.swift */,
+				DCBFB893276B93A200827D7A /* MainViewController.swift */,
+				DCBFB894276B93A200827D7A /* LiveRoomViewController.swift */,
+				DCBFB895276B93A200827D7A /* RoleViewController.swift */,
+				DCBFB896276B93A200827D7A /* SettingsViewController.swift */,
+			);
+			path = agoraController;
+			sourceTree = "<group>";
+		};
+		DCBFB890276B93A200827D7A /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFB891276B93A200827D7A /* liverUserCollectionViewCell.swift */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
+		DCBFB897276B93A200827D7A /* agoraViews */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFB898276B93A200827D7A /* DimensionCell.swift */,
+				DCBFB899276B93A200827D7A /* VideoSession.swift */,
+				DCBFB89A276B93A200827D7A /* VideoView.swift */,
+			);
+			path = agoraViews;
+			sourceTree = "<group>";
+		};
+		DCBFB89B276B93A200827D7A /* agoraSupport */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFB89C276B93A200827D7A /* StatisticsInfo.swift */,
+				DCBFB89D276B93A200827D7A /* AgoraExtension.swift */,
+				DCBFB89E276B93A200827D7A /* FileCenter.swift */,
+				DCBFB89F276B93A200827D7A /* Settings.swift */,
+				DCBFB8A0276B93A200827D7A /* KeyCenter.swift */,
+			);
+			path = agoraSupport;
+			sourceTree = "<group>";
+		};
+		DCBFB8A1276B93A200827D7A /* video layout */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFB8A2276B93A200827D7A /* AGEVideoLayout.swift */,
+				DCBFB8A3276B93A200827D7A /* AGEVideoConstraints.swift */,
+				DCBFB8A4276B93A200827D7A /* AGEEventsObserver.swift */,
+				DCBFB8A5276B93A200827D7A /* AGEView.swift */,
+				DCBFB8A6276B93A200827D7A /* AGEVideoContainer.swift */,
+			);
+			path = "video layout";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1697,14 +1689,12 @@
 				5E5FAB482535834C00A21897 /* CustomImageView.swift in Sources */,
 				5EAC0EA625566AAA00BCDF0F /* objectsCollectionViewCell.swift in Sources */,
 				AE543C7B22704C2500E47594 /* TabbarViewController.swift in Sources */,
-				5E4A2DBF26061BDE00C076B8 /* AGEVideoContainer.swift in Sources */,
 				5E5FAB462535834C00A21897 /* CustomButton.swift in Sources */,
 				5EB698F2254A97D7009DA936 /* termsCondViewController.swift in Sources */,
 				049B43BB269EEF5F003CC82A /* UpdatePasswordViewController.swift in Sources */,
 				5E37B08F24F61E5D0026B566 /* loader.swift in Sources */,
 				625A86FE26660FD5006B49F7 /* MainFFSViewController.swift in Sources */,
 				5E7EFE1124F4D72A00E61DB1 /* cameraViewController.swift in Sources */,
-				5E4A2DAD26061BDE00C076B8 /* liverUserCollectionViewCell.swift in Sources */,
 				AE0B3CEE227ACD6300E0B2B9 /* Comment.swift in Sources */,
 				5E5FAB472535834C00A21897 /* CustomView.swift in Sources */,
 				5E28D29F255D3C4B00CCB1DD /* Open Api.swift in Sources */,
@@ -1717,7 +1707,6 @@
 				AE0B3CF4227B109B00E0B2B9 /* Sound.swift in Sources */,
 				5EAC0EAC2556853300BCDF0F /* searchHashtagsTableViewCell.swift in Sources */,
 				625A86F926660FD5006B49F7 /* ffsTVC.swift in Sources */,
-				5E4A2DBE26061BDE00C076B8 /* AGEView.swift in Sources */,
 				625A870B266611AE006B49F7 /* NewFindFriendsViewController.swift in Sources */,
 				049B43A3269EC9EB003CC82A /* ManageAccountViewController.swift in Sources */,
 				AE0AEED824AB6AFC008340BD /* Follow.swift in Sources */,
@@ -1727,8 +1716,10 @@
 				042CB03826C7CC7B00625968 /* FilterCollectionViewCell.swift in Sources */,
 				5ECC1916255E549500893BF3 /* ConversationViewController.swift in Sources */,
 				5EAC0EAA255682F100BCDF0F /* searchUsersTableViewCell.swift in Sources */,
+				DCBFB8B3276B93A200827D7A /* Settings.swift in Sources */,
 				040A366C263A8E69007210DC /* CoinShareTableViewCell.swift in Sources */,
 				5E2147C52546B73E008C714B /* newDiscoverViewController.swift in Sources */,
+				DCBFB8AF276B93A200827D7A /* VideoView.swift in Sources */,
 				AEAFD3E424ADD20D00D7870C /* Notification.swift in Sources */,
 				5E28ED9B2539CCA7006C7DAA /* userMVC.swift in Sources */,
 				5E6C374D25341F3A00F60718 /* dobViewController.swift in Sources */,
@@ -1741,6 +1732,7 @@
 				5ECC1918255E549500893BF3 /* ImagePreviewViewController.swift in Sources */,
 				5EB0639A25020B9D0012A7FA /* HomeViewController.swift in Sources */,
 				5EC846F12547E6A500BBB0A4 /* Controller.swift in Sources */,
+				DCBFB8AA276B93A200827D7A /* LiveRoomViewController.swift in Sources */,
 				5E881CC525511F42000D5F8A /* requestVerificationViewController.swift in Sources */,
 				04870CB526A05FF500424712 /* QRCodeViewController.swift in Sources */,
 				AEAB7DA0228AB43D00256428 /* Videos.swift in Sources */,
@@ -1751,21 +1743,24 @@
 				5E53506E2553C0FA009E4EB9 /* privacySettingViewController.swift in Sources */,
 				5ECC191A255E549500893BF3 /* newChatViewController.swift in Sources */,
 				5E9784392563EC1A009DF285 /* allSoundsTableViewCell.swift in Sources */,
+				DCBFB8B9276B93A200827D7A /* AGEVideoContainer.swift in Sources */,
 				5E2147CA2546B7E2008C714B /* newDiscoverCollectionViewCell.swift in Sources */,
 				5ED55443255BB4E4003C121F /* countryCodeTableViewCell.swift in Sources */,
 				AE11DFAF24AF125C009A10D4 /* AsyncPhotoMediaItem.swift in Sources */,
 				625A870A266611AE006B49F7 /* FindFriendsTVC.swift in Sources */,
 				04854AB9263BD25700E53D94 /* AddPayoutViewController.swift in Sources */,
-				5E4A2DB926061BDE00C076B8 /* Settings.swift in Sources */,
-				5E4A2DB226061BDE00C076B8 /* SettingsViewController.swift in Sources */,
 				AEF752272282BED200C23370 /* OldDiscoverViewController.swift in Sources */,
 				5EBFE8A925625EF2009EF73A /* soundsCollectionViewCell.swift in Sources */,
 				AE543C77227041E600E47594 /* NotificationViewController.swift in Sources */,
 				04870C6E269FF2D700424712 /* DeleteAccountViewController.swift in Sources */,
+				DCBFB8AB276B93A200827D7A /* RoleViewController.swift in Sources */,
 				5E40DEC3256904070004F0D9 /* popPrivacySettingTableViewCell.swift in Sources */,
+				DCBFB8AE276B93A200827D7A /* VideoSession.swift in Sources */,
 				5E5FAB572535884800A21897 /* newProfileVideosViewController.swift in Sources */,
 				040A3668263A8DD9007210DC /* CoinShareViewController.swift in Sources */,
+				DCBFB8B5276B93A200827D7A /* AGEVideoLayout.swift in Sources */,
 				5ECC191C255E5CAC00893BF3 /* chatDBhandler.swift in Sources */,
+				DCBFB8B6276B93A200827D7A /* AGEVideoConstraints.swift in Sources */,
 				5E772A0A2531B2BD00966AD1 /* newPassViewController.swift in Sources */,
 				5EB7A2822510C4AB00386181 /* commentsMVC.swift in Sources */,
 				AE0B3CF0227B02DB00E0B2B9 /* AddSoundViewController.swift in Sources */,
@@ -1775,13 +1770,11 @@
 				5E9784372563E4B2009DF285 /* allSoundsViewController.swift in Sources */,
 				5E772A0F2531B58E00966AD1 /* Utility.swift in Sources */,
 				5E14DBA02626C13C00CE244B /* duetViewController.swift in Sources */,
-				5E4A2DB526061BDE00C076B8 /* VideoView.swift in Sources */,
 				5EBFE8B22562BAB6009EF73A /* Notifications.swift in Sources */,
 				5E26F772255A6A2C0043AA03 /* reportViewController.swift in Sources */,
 				AE6F458122854E5B003EF953 /* StaticData.swift in Sources */,
 				AEF7522B2282C09100C23370 /* dicoverTableCell.swift in Sources */,
 				5E2C477B24ED492800E41860 /* actionMediaViewController.swift in Sources */,
-				5E4A2DB126061BDE00C076B8 /* RoleViewController.swift in Sources */,
 				5E2147C82546B7C7008C714B /* newDiscoverTableViewCell.swift in Sources */,
 				5ED55445255BB56B003C121F /* countryCodeViewController.swift in Sources */,
 				5E98AB872502577500F156E6 /* privacyViewController.swift in Sources */,
@@ -1797,6 +1790,7 @@
 				DCA140FF2749189A004EA1FA /* topicViewController.swift in Sources */,
 				5EC846F52548355900BBB0A4 /* notificationsMVC.swift in Sources */,
 				AE66E46A2271E24200F7A47C /* homecollCell.swift in Sources */,
+				DCBFB8A7276B93A200827D7A /* liverUserCollectionViewCell.swift in Sources */,
 				DC835F26275514EC00D8B2C9 /* DiscoverViewController.swift in Sources */,
 				AEF7522F2282FBBB00C23370 /* DiscoverVideoViewController.swift in Sources */,
 				5EC846F32548069A00BBB0A4 /* videoDetailMVC.swift in Sources */,
@@ -1805,12 +1799,9 @@
 				5EBFE8A1256259F2009EF73A /* soundsViewController.swift in Sources */,
 				04C541C926BBADE600D63767 /* HomeVideoViewController.swift in Sources */,
 				625A87042666116E006B49F7 /* ShareProfileViewController.swift in Sources */,
-				5E4A2DBC26061BDE00C076B8 /* AGEVideoConstraints.swift in Sources */,
 				5E2FB0C92666293500519E61 /* suggestionUsersModel.swift in Sources */,
 				5EAB63F02567DF62003B54DA /* editProfileViewController.swift in Sources */,
-				5E4A2DB426061BDE00C076B8 /* VideoSession.swift in Sources */,
 				5EBFE8A725625A37009EF73A /* soundsTableViewCell.swift in Sources */,
-				5E4A2DBD26061BDE00C076B8 /* AGEEventsObserver.swift in Sources */,
 				5ED040E8253455FF007BCA3A /* emailLoginViewController.swift in Sources */,
 				AE277736227883C4003695BB /* Home.swift in Sources */,
 				0426C79E26A2D14B00E3C5F6 /* switchAccount.swift in Sources */,
@@ -1818,6 +1809,7 @@
 				5E40DEC5256917500004F0D9 /* privacySettingMVC.swift in Sources */,
 				5ED040ED253489EB007BCA3A /* nameViewController.swift in Sources */,
 				5E5350722553C8CB009E4EB9 /* soundsMVC.swift in Sources */,
+				DCBFB8A9276B93A200827D7A /* MainViewController.swift in Sources */,
 				AE0B3CF2227B0C4300E0B2B9 /* SoundTableViewCell.swift in Sources */,
 				040A36B2263A982B007210DC /* GetAllCoinsCollectionViewCell.swift in Sources */,
 				5E5350702553C1D7009E4EB9 /* privacySettingTableViewCell.swift in Sources */,
@@ -1840,10 +1832,11 @@
 				5E26F770255A6A120043AA03 /* reportTableViewCell.swift in Sources */,
 				625A86FA26660FD5006B49F7 /* NewFollowersViewController.swift in Sources */,
 				5E772A0C2531B33500966AD1 /* loginViewController.swift in Sources */,
-				5E4A2DB826061BDE00C076B8 /* FileCenter.swift in Sources */,
-				5E4A2DBA26061BDE00C076B8 /* KeyCenter.swift in Sources */,
+				DCBFB8B0276B93A200827D7A /* StatisticsInfo.swift in Sources */,
 				5E10CB21250A0FFE0024EE18 /* share2CollectionViewCell.swift in Sources */,
 				5EB595EF2538192B009B3F45 /* passwordViewController.swift in Sources */,
+				DCBFB8B7276B93A200827D7A /* AGEEventsObserver.swift in Sources */,
+				DCBFB8AD276B93A200827D7A /* DimensionCell.swift in Sources */,
 				5E15D0A025062FFD0052E12F /* shareViewController.swift in Sources */,
 				5ED040EA25345ACD007BCA3A /* phoneNoViewController.swift in Sources */,
 				62D48D9C26624CA7007A538C /* NewSettingsPrivacyViewController.swift in Sources */,
@@ -1852,11 +1845,9 @@
 				5EAC0EAE255686E800BCDF0F /* searchSoundTableViewCell.swift in Sources */,
 				5E2147CC2546B839008C714B /* newDiscoverBannerCollectionViewCell.swift in Sources */,
 				0426C75826A14AB200E3C5F6 /* QRData.swift in Sources */,
-				5E4A2DAF26061BDE00C076B8 /* MainViewController.swift in Sources */,
-				5E4A2DB326061BDE00C076B8 /* DimensionCell.swift in Sources */,
 				5E98AB8E2502583F00F156E6 /* privacyOptions.swift in Sources */,
+				DCBFB8B4276B93A200827D7A /* KeyCenter.swift in Sources */,
 				5EAB63EE2567DE17003B54DA /* CustomTextField.swift in Sources */,
-				5E4A2DAE26061BDE00C076B8 /* liveUsersViewController.swift in Sources */,
 				AEF38BB3227C136A00EF7481 /* FavSound.swift in Sources */,
 				04D51D8D26BD5EAC00F27D5E /* HomeVideoCollectionViewCell.swift in Sources */,
 				5E7D7E1924F9383500A91923 /* postViewController.swift in Sources */,
@@ -1865,7 +1856,9 @@
 				AEAB7D9E228AA2EE00256428 /* ProfileCell.swift in Sources */,
 				5E881CC0255116AC000D5F8A /* privacyAndSettingViewController.swift in Sources */,
 				0426C72B26A1489100E3C5F6 /* QRScanViewController.swift in Sources */,
+				DCBFB8B8276B93A200827D7A /* AGEView.swift in Sources */,
 				5ECC1917255E549500893BF3 /* ChatTableViewCell.swift in Sources */,
+				DCBFB8B2276B93A200827D7A /* FileCenter.swift in Sources */,
 				5E6F779025307CBD003E3ED4 /* newLoginViewController.swift in Sources */,
 				04854ABD263BD39000E53D94 /* PayoutViewController.swift in Sources */,
 				5EB1904525CBFCB8000D8A92 /* hashtagsVideoViewController.swift in Sources */,
@@ -1875,24 +1868,23 @@
 				AEF752292282C02500C23370 /* discoverCollectionCell.swift in Sources */,
 				5EBFE8B32562BAB6009EF73A /* TPGAudioPlayer.swift in Sources */,
 				AE0AEED624AB5C15008340BD /* FollowTableViewCell.swift in Sources */,
+				DCBFB8AC276B93A200827D7A /* SettingsViewController.swift in Sources */,
 				5E42549C24F13CA400322C28 /* previewPlayerViewController.swift in Sources */,
 				5E5FAB5A2535910F00A21897 /* User.swift in Sources */,
 				DC0D1656274D381D00AB538B /* countryMVC.swift in Sources */,
-				5E4A2DB626061BDE00C076B8 /* StatisticsInfo.swift in Sources */,
 				625A86FD26660FD5006B49F7 /* NewSuggestionViewController.swift in Sources */,
 				5E40DEC7256919E20004F0D9 /* pushNotiSettingMVC.swift in Sources */,
 				5E1F04E52510C24600A3FD49 /* commentsNewViewController.swift in Sources */,
 				0426C76026A1AFC500E3C5F6 /* SwitchAccountViewController.swift in Sources */,
 				62D48D9426622584007A538C /* ShowLikesPopUpViewController.swift in Sources */,
-				5E4A2DB026061BDE00C076B8 /* LiveRoomViewController.swift in Sources */,
 				5EB7A2802510C42D00386181 /* commentsNewTableViewCell.swift in Sources */,
+				DCBFB8A8276B93A200827D7A /* liveUsersViewController.swift in Sources */,
 				5EB682B92566AF4200D10D96 /* testSoundViewController.swift in Sources */,
 				5E10CB1D2509FF510024EE18 /* testCollectionViewCell.swift in Sources */,
 				5EB595ED25381914009B3F45 /* emailSignupViewController.swift in Sources */,
 				5EA3E821252B526500C6C13A /* ApiHandler.swift in Sources */,
-				5E4A2DB726061BDE00C076B8 /* AgoraExtension.swift in Sources */,
 				5E26F776255A71BC0043AA03 /* reportDetailViewController.swift in Sources */,
-				5E4A2DBB26061BDE00C076B8 /* AGEVideoLayout.swift in Sources */,
+				DCBFB8B1276B93A200827D7A /* AgoraExtension.swift in Sources */,
 				AEF7522D2282C1F100C23370 /* Discover.swift in Sources */,
 				625A87052666116E006B49F7 /* SharePlatformCVC.swift in Sources */,
 				5EB108DA25D139370054B909 /* favWorkingViewController.swift in Sources */,
@@ -2146,6 +2138,195 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.26;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"ContentLoader\"",
+					"-framework",
+					"\"CoreAnimator\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"DSGradientProgressView\"",
+					"-framework",
+					"\"DropDown\"",
+					"-framework",
+					"\"EFInternetIndicator\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FIRAnalyticsConnector\"",
+					"-framework",
+					"\"FLAnimatedImage\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCrashlytics\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"FullMaterialLoader\"",
+					"-framework",
+					"\"GSPlayer\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GTProgressBar\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"IQKeyboardManagerSwift\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JJFloatingActionButton\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"KYShutterButton\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"MDatePickerView\"",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"MarqueeLabel\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"NVActivityIndicatorView\"",
+					"-framework",
+					"\"NextLevel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"PhoneNumberKit\"",
+					"-framework",
+					"\"Player\"",
+					"-framework",
+					"\"PryntTrimmerView\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Regift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SDWebImageWebPCoder\"",
+					"-framework",
+					"\"SKCountryPicker\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SkyFloatingLabelTextField\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"Stevia\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-framework",
+					"\"SwiftyCam\"",
+					"-framework",
+					"\"SwiftyStoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TextFieldEffects\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"XLPagerTabStrip\"",
+					"-framework",
+					"\"YPImagePicker\"",
+					"-framework",
+					"\"iOSDropDown\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"libwebp\"",
+					"-framework",
+					"\"nanopb\"",
+					"-weak_framework",
+					"\"Accelerate\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AdSupport\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"StoreKit\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thecroakers.app;
 				PRODUCT_NAME = TheCroakers;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2240,6 +2421,195 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.26;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"ContentLoader\"",
+					"-framework",
+					"\"CoreAnimator\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"DSGradientProgressView\"",
+					"-framework",
+					"\"DropDown\"",
+					"-framework",
+					"\"EFInternetIndicator\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FIRAnalyticsConnector\"",
+					"-framework",
+					"\"FLAnimatedImage\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCrashlytics\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"FullMaterialLoader\"",
+					"-framework",
+					"\"GSPlayer\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GTProgressBar\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"IQKeyboardManagerSwift\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JJFloatingActionButton\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"KYShutterButton\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"MDatePickerView\"",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"MarqueeLabel\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"NVActivityIndicatorView\"",
+					"-framework",
+					"\"NextLevel\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"PhoneNumberKit\"",
+					"-framework",
+					"\"Player\"",
+					"-framework",
+					"\"PryntTrimmerView\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Regift\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SDWebImageWebPCoder\"",
+					"-framework",
+					"\"SKCountryPicker\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SkyFloatingLabelTextField\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"Stevia\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-framework",
+					"\"SwiftyCam\"",
+					"-framework",
+					"\"SwiftyStoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TextFieldEffects\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"XLPagerTabStrip\"",
+					"-framework",
+					"\"YPImagePicker\"",
+					"-framework",
+					"\"iOSDropDown\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"libwebp\"",
+					"-framework",
+					"\"nanopb\"",
+					"-weak_framework",
+					"\"Accelerate\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AdSupport\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"StoreKit\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thecroakers.app;
 				PRODUCT_NAME = TheCroakers;
 				PROVISIONING_PROFILE_SPECIFIER = "";

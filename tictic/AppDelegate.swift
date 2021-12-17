@@ -14,6 +14,7 @@ import GoogleSignIn
 import FirebaseMessaging
 import FirebaseInstanceID
 import UserNotifications
+import SDWebImage
 
 let NextLevelAlbumTitle = "NextLevel"
 
@@ -143,7 +144,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        
         UserDefaults.standard.set(fcmToken, forKey:"DeviceToken")
         print("fcm firebase token notification: ",fcmToken)
     }
@@ -260,5 +260,8 @@ extension AppDelegate{
         }
         
         completionHandler()
+    }
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
     }
 }

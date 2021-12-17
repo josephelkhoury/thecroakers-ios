@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2846</string>
+	<string>2873</string>
 	<key>FacebookAppID</key>
 	<string>1042008916594737</string>
 	<key>FacebookDisplayName</key>
@@ -50,6 +50,7 @@
 		<string>instagram</string>
 		<string>whatsapp</string>
 		<string>fbauth2</string>
+		<string>fb-messenger-share-api</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

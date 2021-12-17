@@ -53,9 +53,10 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         country_emoji = UserDefaults.standard.string(forKey: "country_emoji") ?? "🌐"
         setCountryFlag()
         
-        getSliderData()
-        getVideosData()
         self.setupView()
+        
+        //getSliderData()
+        getVideosData()
         
         AppUtility?.startLoader(view: self.view)
     }
@@ -64,7 +65,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         self.entityDataArr.removeAll()
         self.sliderArr.removeAll()
         getVideosData()
-        getSliderData()
+        //getSliderData()
         let deadline = DispatchTime.now() + .milliseconds(700)
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             self.refresher.endRefreshing()

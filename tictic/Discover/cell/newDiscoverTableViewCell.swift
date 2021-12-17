@@ -56,7 +56,7 @@ class newDiscoverTableViewCell: UITableViewCell,UICollectionViewDataSource,UICol
         
         let vidObj = videosObj[indexPath.row]
         let gifURL : String = (AppUtility?.detectURL(ipString: vidObj.videoGIF))!
-
+        
         cell.img.sd_imageIndicator = SDWebImageActivityIndicator.gray
         cell.img.sd_setImage(with: URL(string:(gifURL)), placeholderImage: UIImage(named:"videoPlaceholder"))
 

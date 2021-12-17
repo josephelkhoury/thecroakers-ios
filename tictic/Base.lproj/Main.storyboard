@@ -16198,7 +16198,7 @@
         <image name="ic_play_icon" width="21.333333969116211" height="21.333333969116211"/>
         <image name="ic_save_qr" width="20" height="20"/>
         <image name="ic_send" width="32" height="32"/>
-        <image name="ic_share" width="1500" height="1500"/>
+        <image name="ic_share" width="2250" height="2250"/>
         <image name="ic_verify_request" width="26.666666030883789" height="26.666666030883789"/>
         <image name="ic_whoops" width="273.33334350585938" height="273.33334350585938"/>
         <image name="icon-beaty" width="38" height="38"/>

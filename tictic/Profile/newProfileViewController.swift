@@ -81,7 +81,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.userID = UserDefaults.standard.string(forKey: "userID")!
+        self.userID = UserDefaults.standard.string(forKey: "userID") ?? ""
         
         if (userID != "" && (self.otherUserID == "" || userID == self.otherUserID)) {
             self.isOtherUserVisting = false
@@ -252,8 +252,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         navigationController.navigationBar.isHidden =  true
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true, completion: nil)
-        
     }
+    
     @IBAction func profilePicPressed(_ sender: UIButton) {
         /*let vc = storyboard?.instantiateViewController(withIdentifier: "ShareProfileViewController") as! ShareProfileViewController
         vc.modalPresentationStyle = .overCurrentContext
