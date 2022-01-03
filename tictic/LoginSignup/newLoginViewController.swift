@@ -62,6 +62,7 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
 
         }, completion:nil)
     }
+    
     // MARK:- view tap gesture
     func viewTapGesture() {
         let tapGoogleView = UITapGestureRecognizer(target: self, action: #selector(self.googleTouchTapped(_:)))
@@ -176,15 +177,13 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
                             
                         }
                     }
-                    
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     //                    HomeViewController.removeSpinner(spinner: sv)
 
                 }
             })
         }
-        
     }
     
     @objc func siwaTouchTapped(_ sender: UITapGestureRecognizer) {
@@ -228,7 +227,6 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
     
         //    MARK:- Terms & privacy
         @IBAction func privacy(_ sender: Any) {
-            
             let vc = storyboard?.instantiateViewController(withIdentifier: "termsCondVC") as! termsCondViewController
             vc.privacyDoc = true
             vc.modalPresentationStyle = .fullScreen
@@ -237,7 +235,6 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
         }
         
         @IBAction func terms(_ sender: Any) {
-            
             let vc = storyboard?.instantiateViewController(withIdentifier: "termsCondVC") as! termsCondViewController
             vc.privacyDoc = false
             vc.modalPresentationStyle = .fullScreen
@@ -245,12 +242,12 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
 
         }
     
-    func signUpWithSocial(){
+    func signUpWithSocial() {
         
     }
     
     //    MARK:- ALERT MODULE
-    func alertModule(title:String,msg:String){
+    func alertModule(title:String,msg:String) {
         
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         
@@ -555,7 +552,7 @@ extension newLoginViewController: ASAuthorizationControllerDelegate {
             //                    MARK:- JK
         } else {
             //Next time get data from backend
-            print("id: ",appleIDCredential.user)
+            print("id: ", appleIDCredential.user)
             self.signUPType = "apple"
             self.profile_pic = ""
             self.authToken = "\(appleIDCredential.authorizationCode!.base64EncodedString())"

@@ -89,8 +89,10 @@ enum Endpoint : String {
     case changePassword           = "changePassword"
     case DeleteAccount            = "deleteUserAccount"
     case showCountries            = "showCountries"
+    case applyAsCroaker           = "applyAsCroaker"
+    case applyAsPublisher         = "applyAsPublisher"
 }
-class ApiHandler:NSObject{
+class ApiHandler:NSObject {
     var baseApiPath:String!
     
     let fcm = UserDefaults.standard.string(forKey: "DeviceToken") as? String ?? ""
@@ -288,12 +290,9 @@ class ApiHandler:NSObject{
         ]
         var parameters = [String : String]()
         parameters = [
-            
             "phone" : phone,
             "verify": verify,
             // "code"  : code,
-            
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.verifyPhoneNo.rawValue)"
         
@@ -3889,6 +3888,108 @@ class ApiHandler:NSObject{
             "worldwide" : showWorldwide
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showCountries.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-applyAsCroaker
+    func applyAsCroaker(user_id:String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key":API_KEY,
+            "User_Id":user_id,
+            //            "Auth_token" : UserDefaults.standard.string(forKey: "authToken")!
+        ]
+        var parameters = [String : String]()
+        parameters = [
+            "user_id"        : user_id,
+            "device_id"      : device_id
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.applyAsCroaker.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-applyAsPublisher
+    func applyAsPublisher(user_id:String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key":API_KEY,
+            "User_Id":user_id,
+            //            "Auth_token" : UserDefaults.standard.string(forKey: "authToken")!
+        ]
+        var parameters = [String : String]()
+        parameters = [
+            "user_id"        : user_id,
+            "device_id"      : device_id
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.applyAsPublisher.rawValue)"
         
         print(finalUrl)
         print(parameters)

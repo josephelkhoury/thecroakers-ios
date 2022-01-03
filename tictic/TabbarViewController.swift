@@ -29,29 +29,31 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        
         if viewController == tabBarController.viewControllers?[2] {
             
             let userID = UserDefaults.standard.string(forKey: "userID")
-            
-            if userID != "" && userID != nil{
-                return true
-            }else{
+            if userID != "" && userID != nil {
+                var myUser: [User]? {didSet {}}
+                myUser = User.readUserFromArchive()
+                if myUser![0].role == "user" {
+                    upgradeScreenAppear()
+                    return false
+                } else {
+                    return true
+                }
+            } else {
                 newLoginScreenAppear()
                 return false
             }
-            
         } else if (viewController == tabBarController.viewControllers?[3]) {
             let userID = UserDefaults.standard.string(forKey: "userID")
             
-            if (userID != "") && (userID != nil){
+            if (userID != "") && (userID != nil) {
                 return true
-            }else{
-
+            } else {
                 newLoginScreenAppear()
                 return false
             }
-            
         } else {
             return true
         }
@@ -82,32 +84,27 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     
     @objc
     private func didTouchCenterButton(_ sender: AnyObject) {
-        
         if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
-                        
             newLoginScreenAppear()
         } else {
-            //            let vc = ActionViewContoller()
-            //           vc.modalPresentationStyle = .fullScreen
-            //
-            //
-            //            self.present(vc, animated: true, completion: nil)
-            //
-            
-            //            MARK:- JK
-            
-            let vc1 = storyboard?.instantiateViewController(withIdentifier: "actionMediaVC") as! actionMediaViewController
-            UserDefaults.standard.set("", forKey: "url")
-            vc1.modalPresentationStyle = .fullScreen
-            self.present(vc1, animated: true, completion: nil)
+            var myUser: [User]? {didSet {}}
+            myUser = User.readUserFromArchive()
+            if myUser![0].role == "user" {
+                upgradeScreenAppear()
+            }
+            else {
+                let vc1 = storyboard?.instantiateViewController(withIdentifier: "actionMediaVC") as! actionMediaViewController
+                UserDefaults.standard.set("", forKey: "url")
+                vc1.modalPresentationStyle = .fullScreen
+                self.present(vc1, animated: true, completion: nil)
+            }
         }
     }
     
     // Tabbar delegate Method
     
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController){
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let tabBarIndex = tabBarController.selectedIndex
-        
         
         if tabBarIndex == 0 {            
             print("index@0")
@@ -133,7 +130,6 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
             //            self.bgView?.removeFromSuperview()
             
             homeTouchCount = 0
-            
         }
     }
     
@@ -152,34 +148,20 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     
     @objc func handleTouchTabbarCenter(sender : UIButton)
     {
-        /*
-         if let count = self.tabBar.items?.count
-         {
-         let i = floor(Double(count / 2))
-         self.selectedViewController = self.viewControllers?[Int(i)]
-         print("i:- ",i)
-         
-         }
-         */
-        
         if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
-                        
             newLoginScreenAppear()
         } else {
-            
-            
-            //            let vc = ActionViewContoller()
-            //           vc.modalPresentationStyle = .fullScreen
-            //
-            //
-            //            self.present(vc, animated: true, completion: nil)
-            //
-            
-            //            MARK:- JK
-            let vc1 = storyboard?.instantiateViewController(withIdentifier: "actionMediaVC") as! actionMediaViewController
-            UserDefaults.standard.set("", forKey: "url")
-            vc1.modalPresentationStyle = .fullScreen
-            self.present(vc1, animated: true, completion: nil)
+            var myUser: [User]? {didSet {}}
+            myUser = User.readUserFromArchive()
+            if myUser![0].role == "user" {
+                upgradeScreenAppear()
+            }
+            else {
+                let vc1 = storyboard?.instantiateViewController(withIdentifier: "actionMediaVC") as! actionMediaViewController
+                UserDefaults.standard.set("", forKey: "url")
+                vc1.modalPresentationStyle = .fullScreen
+                self.present(vc1, animated: true, completion: nil)
+            }
         }
     }
     
@@ -215,6 +197,14 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     
     func newLoginScreenAppear() {
         let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
+        navController.navigationBar.isHidden = true
+        navController.modalPresentationStyle = .overFullScreen
+
+        self.present(navController, animated: true, completion: nil)
+    }
+    
+    func upgradeScreenAppear() {
+        let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "UpgradeVC"))
         navController.navigationBar.isHidden = true
         navController.modalPresentationStyle = .overFullScreen
 

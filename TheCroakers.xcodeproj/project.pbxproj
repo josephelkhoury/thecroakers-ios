@@ -211,6 +211,7 @@
 		AEFA5DAD249CEA1E00CD7D07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFA5DAC249CEA1D00CD7D07 /* SystemConfiguration.framework */; };
 		DC0D1656274D381D00AB538B /* countryMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D1655274D381D00AB538B /* countryMVC.swift */; };
 		DC4E01802750DD9600FE744E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4E017F2750DD9600FE744E /* StoreKit.framework */; };
+		DC67DF9F2783007200D29C5B /* UpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */; };
 		DC835F26275514EC00D8B2C9 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC835F25275514EA00D8B2C9 /* DiscoverViewController.swift */; };
 		DC917F4D274799F200CA918F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC917F4C274799F200CA918F /* GoogleService-Info.plist */; };
 		DC917F4E274799F200CA918F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC917F4C274799F200CA918F /* GoogleService-Info.plist */; };
@@ -484,6 +485,7 @@
 		CCD3BE5850F5A788C4FC67F9 /* Pods-Moooby.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moooby.debug.xcconfig"; path = "Target Support Files/Pods-Moooby/Pods-Moooby.debug.xcconfig"; sourceTree = "<group>"; };
 		DC0D1655274D381D00AB538B /* countryMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countryMVC.swift; sourceTree = "<group>"; };
 		DC4E017F2750DD9600FE744E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeViewController.swift; sourceTree = "<group>"; };
 		DC835F25275514EA00D8B2C9 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		DC917F4C274799F200CA918F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC917FEB2747E4F900CA918F /* TIK TIK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TIK TIK-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -827,6 +829,7 @@
 				5E772A0B2531B33500966AD1 /* loginViewController.swift */,
 				5E6C374C25341F3A00F60718 /* dobViewController.swift */,
 				5ED040EC253489EB007BCA3A /* nameViewController.swift */,
+				DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */,
 			);
 			path = LoginSignup;
 			sourceTree = "<group>";
@@ -1740,6 +1743,7 @@
 				5ED040E325343E0D007BCA3A /* otpViewController.swift in Sources */,
 				04122D5726D7A0BB001AEC14 /* CustomFile.swift in Sources */,
 				5E5E656E252D8BE700B0B4E3 /* videoMainMVC.swift in Sources */,
+				DC67DF9F2783007200D29C5B /* UpgradeViewController.swift in Sources */,
 				5E53506E2553C0FA009E4EB9 /* privacySettingViewController.swift in Sources */,
 				5ECC191A255E549500893BF3 /* newChatViewController.swift in Sources */,
 				5E9784392563EC1A009DF285 /* allSoundsTableViewCell.swift in Sources */,

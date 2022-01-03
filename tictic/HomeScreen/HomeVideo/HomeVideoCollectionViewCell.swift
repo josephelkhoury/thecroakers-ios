@@ -278,12 +278,19 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
             delegateHomeVideoVC.loginScreenAppear()
         } else {
-            if let rootViewController = UIApplication.topViewController() {
-                let storyMain = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyMain.instantiateViewController(withIdentifier: "actionMediaVC") as! actionMediaViewController
-                vc.arrVideo = self.arrVideo
-                vc.modalPresentationStyle = .overFullScreen
-                rootViewController.navigationController?.present(vc, animated: true, completion: nil)
+            var myUser: [User]? {didSet {}}
+            myUser = User.readUserFromArchive()
+            if myUser![0].role == "user" {
+                delegateHomeVideoVC.upgradeScreenAppear()
+            }
+            else {
+                if let rootViewController = UIApplication.topViewController() {
+                    let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyMain.instantiateViewController(withIdentifier: "actionMediaVC") as! actionMediaViewController
+                    vc.arrVideo = self.arrVideo
+                    vc.modalPresentationStyle = .overFullScreen
+                    rootViewController.navigationController?.present(vc, animated: true, completion: nil)
+                }
             }
         }
     }

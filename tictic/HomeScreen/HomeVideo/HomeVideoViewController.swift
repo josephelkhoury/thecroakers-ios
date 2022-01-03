@@ -454,6 +454,14 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         self.present(navController, animated: true, completion: nil)
     }
     
+    func upgradeScreenAppear() {
+        let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "UpgradeVC"))
+        navController.navigationBar.isHidden = true
+        navController.modalPresentationStyle = .overFullScreen
+
+        self.present(navController, animated: true, completion: nil)
+    }
+    
     @objc func playVisibleVideo() {
         if self.viewIfLoaded?.window != nil {
             let visiblePaths = self.videoCollectionView.indexPathsForVisibleItems

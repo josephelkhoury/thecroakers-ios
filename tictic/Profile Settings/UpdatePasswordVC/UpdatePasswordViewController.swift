@@ -30,12 +30,11 @@ class UpdatePasswordViewController: UIViewController ,UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         
-        
         if OldpassTxtField.text!.count > 3  &&  NewpassTxtField.text!.count  > 3 && ConfirmpassTxtField.text!.count > 3{
             btnChangePassword.backgroundColor = UIColor(named: "theme")
             btnChangePassword.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
             btnChangePassword.isUserInteractionEnabled = true
-        }else{
+        } else {
             btnChangePassword.backgroundColor = #colorLiteral(red: 0.9528577924, green: 0.9529947639, blue: 0.9528278708, alpha: 1)
             btnChangePassword.setTitleColor(#colorLiteral(red: 0.6437677741, green: 0.6631219387, blue: 0.6758852601, alpha: 1), for: .normal)
             btnChangePassword.isUserInteractionEnabled = false
@@ -45,27 +44,27 @@ class UpdatePasswordViewController: UIViewController ,UITextFieldDelegate {
     
     
     @IBAction func btnNextFunc(_ sender: Any) {
-        if self.OldpassTxtField.text!.isEmpty{
+        if self.OldpassTxtField.text!.isEmpty {
             self.showToast(message: "Please enter old password", font: .systemFont(ofSize: 12))
             return
         }
-        if self.NewpassTxtField.text!.isEmpty{
+        if self.NewpassTxtField.text!.isEmpty {
             self.showToast(message: "Please enter new password", font: .systemFont(ofSize: 12))
             return
         }
-        if self.ConfirmpassTxtField.text!.isEmpty{
+        if self.ConfirmpassTxtField.text!.isEmpty {
             self.showToast(message: "Please enter confirm password", font: .systemFont(ofSize: 12))
             return
         }
      
-        if validatePassword(NewpassTxtField.text!) == true{
+        if validatePassword(NewpassTxtField.text!) == true {
             return
         }
         
-        if validatePassword(ConfirmpassTxtField.text!) == true{
+        if validatePassword(ConfirmpassTxtField.text!) == true {
             return
         }
-        if self.NewpassTxtField.text! != self.ConfirmpassTxtField.text!{
+        if self.NewpassTxtField.text! != self.ConfirmpassTxtField.text! {
             self.showToast(message: "Both passwords are not same", font: .systemFont(ofSize: 12))
             return
         }
@@ -79,7 +78,7 @@ class UpdatePasswordViewController: UIViewController ,UITextFieldDelegate {
     
     //MARK:- API Handler
     
-    func UpdatePassword(){
+    func UpdatePassword() {
         self.myUser = User.readUserFromArchive()
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.changePassword(user_id: (self.myUser?[0].id)!, old_password: self.OldpassTxtField.text!,new_password:self.NewpassTxtField.text!) { (isSuccess, response) in
@@ -93,13 +92,11 @@ class UpdatePasswordViewController: UIViewController ,UITextFieldDelegate {
                             break
                         }
                     }
-
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     self.alertModule(title: NSLocalizedString("alert_app_name", comment: ""), msg: response?.value(forKey: "msg") as! String)
-                    
                 }
-            }else{
+            } else {
                 AppUtility?.stopLoader(view: self.view)
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
             }
@@ -108,8 +105,7 @@ class UpdatePasswordViewController: UIViewController ,UITextFieldDelegate {
     
     
     //MARK: Alert View
-
-    func alertModule(title:String,msg:String){
+    func alertModule(title:String,msg:String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: {(alert : UIAlertAction!) in
             alertController.dismiss(animated: true, completion: nil)
@@ -119,6 +115,7 @@ class UpdatePasswordViewController: UIViewController ,UITextFieldDelegate {
         present(alertController, animated: true, completion: nil)
         
     }
+    
     //    MARK:- password regex
     func validatePassword(_ password: String) -> Bool {
         //At least 8 characters
