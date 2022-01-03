@@ -59,7 +59,9 @@ class UpgradeViewController: UIViewController {
     @objc func publisherTouchTapped(_ sender: UITapGestureRecognizer) {
         let userID = UserDefaults.standard.string(forKey: "userID")
         let deviceID = UserDefaults.standard.string(forKey: "deviceID")
+        AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.applyAsPublisher(user_id: userID!, device_id: deviceID!) { (isSuccess, response) in
+            AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 //self.showToast(message: "Loading ...", font: .systemFont(ofSize: 12.0))
                 if response?.value(forKey: "code") as! NSNumber == 200 {

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-var BASE_URL = "http://13.40.124.46/mobileapp_api/"
+var BASE_URL = "https://app.thecroakers.com/mobileapp_api/"
 let API_KEY = "156c4675-9608-4591-1111-00000"
 let profileQRLink = "https://\(BASE_URL)/profile/"
 let API_BASE_URL = BASE_URL+"api/"
@@ -91,6 +91,8 @@ enum Endpoint : String {
     case showCountries            = "showCountries"
     case applyAsCroaker           = "applyAsCroaker"
     case applyAsPublisher         = "applyAsPublisher"
+    case forgotPassword           = "forgotPassword"
+    case changeForgotPassword     = "changeForgotPassword"
 }
 class ApiHandler:NSObject {
     var baseApiPath:String!
@@ -3990,6 +3992,106 @@ class ApiHandler:NSObject {
             "device_id"      : device_id
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.applyAsPublisher.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-applyAsPublisher
+    func forgotPassword(email: String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key":API_KEY,
+        ]
+        var parameters = [String : String]()
+        parameters = [
+            "device_id"      : device_id,
+            "email"          : email
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.forgotPassword.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-applyAsPublisher
+    func changeForgotPassword(email:String, code:String, password:String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key":API_KEY,
+        ]
+        var parameters = [String : String]()
+        parameters = [
+            "device_id"      : device_id,
+            "email"          : email,
+            "code"           : code,
+            "password"       : password
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.changeForgotPassword.rawValue)"
         
         print(finalUrl)
         print(parameters)

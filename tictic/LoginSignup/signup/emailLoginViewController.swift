@@ -58,6 +58,14 @@ class emailLoginViewController: UIViewController {
         }
     }
     
+    @IBAction func btnForgotPasswordAction(_ sender: Any) {
+        let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "ForgotPasswordVC"))
+        navController.navigationBar.isHidden = true
+        navController.modalPresentationStyle = .overFullScreen
+
+        self.present(navController, animated: true, completion: nil)
+    }
+    
 //    MARK:- Login Email API func
     func loginEmail() {
         AppUtility?.startLoader(view: self.view)

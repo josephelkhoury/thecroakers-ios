@@ -212,6 +212,8 @@
 		DC0D1656274D381D00AB538B /* countryMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D1655274D381D00AB538B /* countryMVC.swift */; };
 		DC4E01802750DD9600FE744E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4E017F2750DD9600FE744E /* StoreKit.framework */; };
 		DC67DF9F2783007200D29C5B /* UpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */; };
+		DC67DFA327831BD800D29C5B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67DFA227831BD800D29C5B /* ForgotPasswordViewController.swift */; };
+		DC67DFA727831C0900D29C5B /* EmailTokenVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67DFA627831C0900D29C5B /* EmailTokenVerificationViewController.swift */; };
 		DC835F26275514EC00D8B2C9 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC835F25275514EA00D8B2C9 /* DiscoverViewController.swift */; };
 		DC917F4D274799F200CA918F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC917F4C274799F200CA918F /* GoogleService-Info.plist */; };
 		DC917F4E274799F200CA918F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC917F4C274799F200CA918F /* GoogleService-Info.plist */; };
@@ -486,6 +488,8 @@
 		DC0D1655274D381D00AB538B /* countryMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countryMVC.swift; sourceTree = "<group>"; };
 		DC4E017F2750DD9600FE744E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeViewController.swift; sourceTree = "<group>"; };
+		DC67DFA227831BD800D29C5B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		DC67DFA627831C0900D29C5B /* EmailTokenVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTokenVerificationViewController.swift; sourceTree = "<group>"; };
 		DC835F25275514EA00D8B2C9 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		DC917F4C274799F200CA918F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC917FEB2747E4F900CA918F /* TIK TIK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TIK TIK-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -830,6 +834,8 @@
 				5E6C374C25341F3A00F60718 /* dobViewController.swift */,
 				5ED040EC253489EB007BCA3A /* nameViewController.swift */,
 				DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */,
+				DC67DFA227831BD800D29C5B /* ForgotPasswordViewController.swift */,
+				DC67DFA627831C0900D29C5B /* EmailTokenVerificationViewController.swift */,
 			);
 			path = LoginSignup;
 			sourceTree = "<group>";
@@ -1752,6 +1758,7 @@
 				5ED55443255BB4E4003C121F /* countryCodeTableViewCell.swift in Sources */,
 				AE11DFAF24AF125C009A10D4 /* AsyncPhotoMediaItem.swift in Sources */,
 				625A870A266611AE006B49F7 /* FindFriendsTVC.swift in Sources */,
+				DC67DFA727831C0900D29C5B /* EmailTokenVerificationViewController.swift in Sources */,
 				04854AB9263BD25700E53D94 /* AddPayoutViewController.swift in Sources */,
 				AEF752272282BED200C23370 /* OldDiscoverViewController.swift in Sources */,
 				5EBFE8A925625EF2009EF73A /* soundsCollectionViewCell.swift in Sources */,
@@ -1877,6 +1884,7 @@
 				5E5FAB5A2535910F00A21897 /* User.swift in Sources */,
 				DC0D1656274D381D00AB538B /* countryMVC.swift in Sources */,
 				625A86FD26660FD5006B49F7 /* NewSuggestionViewController.swift in Sources */,
+				DC67DFA327831BD800D29C5B /* ForgotPasswordViewController.swift in Sources */,
 				5E40DEC7256919E20004F0D9 /* pushNotiSettingMVC.swift in Sources */,
 				5E1F04E52510C24600A3FD49 /* commentsNewViewController.swift in Sources */,
 				0426C76026A1AFC500E3C5F6 /* SwitchAccountViewController.swift in Sources */,
