@@ -558,7 +558,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userObj = userObjMsg.value(forKey: "User") as! NSDictionary
-                    let countryObj = userObjMsg.value(forKey: "Country") as! NSDictionary
+                    let countryObj = userObjMsg.value(forKey: "Country") as? NSDictionary
                     
                     let privSettingObj = userObjMsg.value(forKey: "PrivacySetting") as! NSDictionary
                     let pushNotiSettingObj = userObjMsg.value(forKey: "PushNotification") as! NSDictionary
@@ -604,8 +604,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     let userId = (userObj.value(forKey: "id") as? String)!
                     UserDefaults.standard.setValue(wallet, forKey: "wallet")
                     
-                    let countryID = (countryObj.value(forKey: "id") as? String)!
-                    let countryName = (countryObj.value(forKey: "name") as? String)!
+                    let countryID = countryObj?.value(forKey: "id") as? String ?? ""
+                    let countryName = countryObj?.value(forKey: "name") as? String ?? ""
                     
                     let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: countryID, countryName: countryName, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "",wallet:wallet,paypal:paypal)
                     
@@ -639,7 +639,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userObj = userObjMsg.value(forKey: "User") as! NSDictionary
-                    let countryObj = userObjMsg.value(forKey: "Country") as! NSDictionary
+                    let countryObj = userObjMsg.value(forKey: "Country") as? NSDictionary
                     
                     let privSettingObj = userObjMsg.value(forKey: "PrivacySetting") as! NSDictionary
                     let pushNotiSettingObj = userObjMsg.value(forKey: "PushNotification") as! NSDictionary
@@ -686,8 +686,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     UserDefaults.standard.setValue(wallet, forKey: "wallet")
                     self.otherUserID =  userId
                     
-                    let countryID = (countryObj.value(forKey: "id") as? String)!
-                    let countryName = (countryObj.value(forKey: "name") as? String)!
+                    let countryID = countryObj?.value(forKey: "id") as? String ?? ""
+                    let countryName = countryObj?.value(forKey: "name") as? String ?? ""
                     
                     let user = userMVC(userID: userId, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: countryID, countryName: countryName, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "",wallet:wallet,paypal:paypal)
                     
@@ -726,7 +726,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userObj = userObjMsg.value(forKey: "User") as! NSDictionary
-                    let countryObj = userObjMsg.value(forKey: "Country") as! NSDictionary
+                    let countryObj = userObjMsg.value(forKey: "Country") as? NSDictionary
                     
                     let userImage = (userObj.value(forKey: "profile_pic") as? String)!
                     let userName = (userObj.value(forKey: "username") as? String)!
@@ -744,8 +744,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     let wallet = (userObj.value(forKey: "wallet") as? String)!
                     let paypal = (userObj.value(forKey: "paypal") as? String)!
                     
-                    let countryID = (countryObj.value(forKey: "id") as? String)!
-                    let countryName = (countryObj.value(forKey: "name") as? String)!
+                    let countryID = countryObj?.value(forKey: "id") as? String ?? ""
+                    let countryName = countryObj?.value(forKey: "name") as? String ?? ""
                     
                     UserDefaults.standard.setValue(wallet, forKey: "wallet")
                     
@@ -1090,7 +1090,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
         let profilePic = AppUtility?.detectURL(ipString: user.userProfile_pic)
         self.userName.text = "@\(user.username)"
-        self.lblCountry.text = "📍\(user.countryName)"
+        self.lblCountry.text = user.countryName != "" ? "📍\(user.countryName)" : ""
+        
         self.lblBio.text = user.bio
         self.userHeaderName.text = user.first_name+" "+user.last_name
         for img in userImageOutlet {

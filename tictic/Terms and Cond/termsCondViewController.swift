@@ -42,14 +42,14 @@ class termsCondViewController:UIViewController,WKUIDelegate,WKNavigationDelegate
     }
     //MARK:- Switch Action
     func WeblinkView(){
-         if AppUtility!.connected() == false{
+         if AppUtility!.connected() == false {
             return
         }
         
-        var url = URL(string: "https://www.freeprivacypolicy.com/live/63ea2c65-c86a-408a-b12a-35afeec613dd")!
+        var url = URL(string: "https://thecroakers.com/privacy-policy/")!
         
-        if privacyDoc == false{
-         url = URL(string: "https://www.freeprivacypolicy.com/live/63ea2c65-c86a-408a-b12a-35afeec613dd")!
+        if privacyDoc == false {
+         url = URL(string: "https://thecroakers.com/terms-and-conditions/")!
             
             vcTitle.text = "Terms & Conditions"
         }
