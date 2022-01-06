@@ -195,15 +195,15 @@ class postViewController: UIViewController,UITextViewDelegate {
                     let dic = json as! NSDictionary
                     
                     print("response:- ", response)
-                    if (dic["code"] as! NSNumber == 200){
+                    if (dic["code"] as! NSNumber == 200) {
                         print("200")
                         debugPrint("SUCCESS RESPONSE: \(response)")
                         
                         if self.saveV == "1" {
                             self.saveVideoToAlbum(self.videoUrl!) { (err) in
                                 if err != nil {
-                                    print("Unable to save video to album dur to: ",err!)
-                                    self.showToast(message: "Unable to save video to album dur to:", font: .systemFont(ofSize: 12))
+                                    print("Unable to save video to album due to: ",err!)
+                                    self.showToast(message: "Unable to save video to album due to:", font: .systemFont(ofSize: 12))
                                 } else{
                                     print("video saved to gallery")
                                     self.showToast(message: "video saved to gallery", font: .systemFont(ofSize: 12))
@@ -212,8 +212,12 @@ class postViewController: UIViewController,UITextViewDelegate {
                             }
                         }
                         AppUtility?.stopLoader(view: self.view)
-                        print("Dict: ",dic)
-                        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+                        let alertController = UIAlertController(title: dic["title"] as? String, message: dic["msg"] as? String, preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {(alert : UIAlertAction!) in
+                            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+                        })
+                        alertController.addAction(alertAction)
+                        self.present(alertController, animated: true, completion: nil)
                     } else {
                         AppUtility?.stopLoader(view: self.view)
                         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
