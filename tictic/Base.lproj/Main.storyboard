@@ -5387,7 +5387,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBb-XA-yS7">
-                                <rect key="frame" x="24.5" y="70" width="326" height="133.5"/>
+                                <rect key="frame" x="24.5" y="70" width="326" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra7-kP-hSe">
                                         <rect key="frame" x="0.0" y="10" width="145" height="23"/>
@@ -5398,10 +5398,10 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can always change the usename later" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ko6-bA-0xT">
-                                        <rect key="frame" x="0.0" y="53" width="269.5" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum 4 characters. You can always change the usename later" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ko6-bA-0xT">
+                                        <rect key="frame" x="0.0" y="53" width="269.5" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="3cD-4h-xqO"/>
+                                            <constraint firstAttribute="height" constant="50" id="3cD-4h-xqO"/>
                                             <constraint firstAttribute="width" constant="269.5" id="SDj-zc-llg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -5409,7 +5409,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rxf-cC-L0X" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="89" width="326" height="39"/>
+                                        <rect key="frame" x="0.0" y="123" width="326" height="39"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="k4n-jy-uWI"/>
@@ -5436,7 +5436,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="ra7-kP-hSe" firstAttribute="leading" secondItem="ZBb-XA-yS7" secondAttribute="leading" id="7FT-Wv-rGy"/>
-                                    <constraint firstAttribute="height" constant="133.5" id="Fod-gr-lO3"/>
+                                    <constraint firstAttribute="height" constant="180" id="Fod-gr-lO3"/>
                                     <constraint firstItem="ko6-bA-0xT" firstAttribute="leading" secondItem="ra7-kP-hSe" secondAttribute="leading" id="aDl-hI-sTs"/>
                                     <constraint firstItem="ra7-kP-hSe" firstAttribute="top" secondItem="ZBb-XA-yS7" secondAttribute="top" constant="10" id="cE9-E6-rpy"/>
                                     <constraint firstItem="rxf-cC-L0X" firstAttribute="width" secondItem="ZBb-XA-yS7" secondAttribute="width" id="wBT-K6-sMf"/>
@@ -5446,7 +5446,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggb-rq-TwK" userLabel="btnDone">
-                                <rect key="frame" x="24.5" y="208.5" width="326" height="40"/>
+                                <rect key="frame" x="24.5" y="255" width="326" height="40"/>
                                 <color key="backgroundColor" name="theme"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="E3S-Qo-haN"/>
@@ -5795,7 +5795,7 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use 8-20 character from at least 2 catagories: letters,numbers,special characters" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QG6-2p-awX">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use 8-20 character from at least 2 catagories: letters,numbers,special characters" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QG6-2p-awX">
                                         <rect key="frame" x="0.0" y="43" width="269.5" height="50.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="269.5" id="70l-7m-TMB"/>

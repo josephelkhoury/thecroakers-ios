@@ -165,7 +165,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     func fetchingUserDataFunc() {
        // self.userID = UserDefaults.standard.string(forKey: "userID")!  comment:- Arslan
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         if isOtherUserVisting {
             self.btnFollowEdit.setTitle("Follow", for: .normal)

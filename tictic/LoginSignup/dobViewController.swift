@@ -63,14 +63,14 @@ class dobViewController: UIViewController,UITextFieldDelegate {
         print("selectedDate",selectedDate)
         
         self.dob = selectedDate
-        let textCount = self.dob.count
+        /*let textCount = self.dob.count
         if textCount > 0 {
             btnNext.backgroundColor = UIColor(named: "theme")
             btnNext.isUserInteractionEnabled = true
         } else {
             btnNext.backgroundColor = #colorLiteral(red: 0.5750417709, green: 0.5841686726, blue: 0.6059108973, alpha: 1)
             btnNext.isUserInteractionEnabled = false
-        }
+        }*/
         
         NotificationCenter.default.post(name: Notification.Name("dobNoti"), object: selectedDate)
 //        self.UpdatePasswordAPI()
@@ -93,6 +93,8 @@ class dobViewController: UIViewController,UITextFieldDelegate {
             let flag = country.emoji
             countryLabel.text = "\(name) \(flag)"
             self.country_id = country.id
+            btnNext.backgroundColor = UIColor(named: "theme")
+            btnNext.isUserInteractionEnabled = true
         }
     }
     
