@@ -151,7 +151,7 @@ class newProfileVideosViewController: UIViewController,UICollectionViewDelegate,
         }
         
         //        AppUtility?.startLoader(view: self.view)
-        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID, starting_point: "0") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
                 print("response: ",response?.allValues)

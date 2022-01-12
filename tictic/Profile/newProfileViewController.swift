@@ -57,9 +57,10 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     var storeSelectedIP = IndexPath(item: 0, section: 0)
     var isSuggExpended = false
     var indexSelected = 0
+    var startPoint = 0
     var isTagUser = false
     var isTagName = ""
-    var userInfo = [["type":"Following","count":"170"],["type":"Followers","count":"60.1K"],["type":"Likes","count":"5.7M"]]
+    var userInfo = [["type":"Following","count":"0"],["type":"Followers","count":"0"],["type":"Likes","count":"0"]]
     var userItem = [["Image":"music tok icon-2","ImageSelected":"music tok icon-5","isSelected":"true"],["Image":"likeVideo","ImageSelected":"music tok icon-6","isSelected":"false"],["Image":"music tok icon-1","ImageSelected":"music tok icon-4","isSelected":"false"]]
     
     var format = ContentLoaderFormat()
@@ -450,7 +451,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == userItemsCollectionView{
+        if collectionView == userItemsCollectionView {
             
             for i in 0..<self.userItem.count {
                 var obj  = self.userItem[i]
@@ -495,6 +496,27 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == videosCV {
+            //self.pagination(index: indexPath.row)
+        }
+    }
+    
+    func pagination(index:Int) {
+        if self.videosMainArr.count != 0 {
+            if index == videosMainArr.count - 1 {
+                print("Pagination start")
+                self.startPoint+=1
+                print("StartPoint: ",startPoint)
+                if indexSelected == 0 {
+                    self.getUserVideos()
+                } else {
+                    self.getLikedVideos()
+                }
+            }
+        }
+    }
+    
     @objc func StoreSelectedIndex(index:Int) {
         var obj  =  self.userItem[index]
         obj.updateValue("true", forKey: "isSelected")
@@ -504,7 +526,6 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         if index == 0 {
             AppUtility?.startLoader(view: self.view)
             getUserVideos()
-            
         } else if index == 1 {
             AppUtility?.startLoader(view: self.view)
             getLikedVideos()
@@ -514,16 +535,18 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
         self.userItemsCollectionView.reloadData()
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         let index = Int(self.userItemsCollectionView.contentOffset.x) / Int(self.userItemsCollectionView.frame.width)
-        print("index: ",index)
         if index == 0 {
         } else {
         }
         
         let y: CGFloat = scrollView.contentOffset.y
-        print(y)
+        
+        if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            self.pagination(index: videosMainArr.count - 1)
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == userInfoCollectionView{
@@ -546,6 +569,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
     }
+    
     //MARK:- API Handler
     
     // GET USER OWN DETAILS
@@ -769,8 +793,11 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //  GET USERS VIDEOS
     func getUserVideos() {
         print("userID test: ",userID)
-        self.userVidArr.removeAll()
-        self.videosMainArr.removeAll()
+        
+        if self.startPoint == 0 {
+            self.userVidArr.removeAll()
+            self.videosMainArr.removeAll()
+        }
         
         var uid = ""
         let userID = UserDefaults.standard.string(forKey: "userID")
@@ -780,10 +807,9 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             uid = self.otherUserID
         }
         
-        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID, starting_point: "\(self.startPoint)") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
-                print("response: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
                     let userPublicObj = userObjMsg.value(forKey: "public") as! NSArray
@@ -854,7 +880,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 print("height: ",height)
                 self.view.layoutIfNeeded()
                 self.videosCV.reloadData()
-            }else{
+            } else {
                 print("showVideosAgainstUserID API:",response?.value(forKey: "msg") as Any)
             }
         }
@@ -863,8 +889,10 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     // GET LIKED VIDEOS
     func getLikedVideos() {
         print("userID test: ",userID)
-        self.likeVidArr.removeAll()
-        self.videosMainArr.removeAll()
+        if self.startPoint == 0 {
+            self.likeVidArr.removeAll()
+            self.videosMainArr.removeAll()
+        }
         
         var uid = ""
         if otherUserID != "" {
@@ -873,10 +901,9 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             uid = self.userID
         }
 
-        ApiHandler.sharedInstance.showUserLikedVideos(user_id: uid) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showUserLikedVideos(user_id: uid, starting_point: "\(self.startPoint)") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
-            if isSuccess{
-                print("response: ",response?.allValues)
+            if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let likeObjMsg = response?.value(forKey: "msg") as! NSArray
                     
@@ -947,8 +974,11 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //GET PRIVATE VIDEOS
     func getPrivateVideos() {
         print("userID test: ",userID)
-        self.likeVidArr.removeAll()
-        self.videosMainArr.removeAll()
+        
+        if self.startPoint == 0 {
+            self.likeVidArr.removeAll()
+            self.videosMainArr.removeAll()
+        }
         
         var uid = ""
         let userID = UserDefaults.standard.string(forKey: "userID")
@@ -958,7 +988,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
             uid = self.otherUserID
         }
         
-        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID, starting_point: "\(self.startPoint)") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
                 print("response: ",response?.allValues)
@@ -1100,8 +1130,10 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         }
         
         if indexSelected == 0 {
+            self.startPoint = 0
             self.getUserVideos()
         } else {
+            self.startPoint = 0
             self.getLikedVideos()
         }
         
@@ -1352,7 +1384,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     //MARK:- Alert
     
-    func alertModule(title:String,msg:String){
+    func alertModule(title:String,msg:String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: {(alert : UIAlertAction!) in
             alertController.dismiss(animated: true, completion: nil)

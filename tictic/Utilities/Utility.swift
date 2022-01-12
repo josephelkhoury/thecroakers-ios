@@ -142,7 +142,7 @@ class Utility: NSObject {
     }
     
     func startLoader(view: UIView) {
-        backgroundView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        /*backgroundView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         backgroundView.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.6)
         backgroundView.tag = 475647
         
@@ -162,7 +162,7 @@ class Utility: NSObject {
         vc?.isUserInteractionEnabled = false
         backgroundView.isUserInteractionEnabled = false
         view.isUserInteractionEnabled = false
-        UIApplication.shared.keyWindow?.rootViewController?.tabBarController?.tabBar.isUserInteractionEnabled = false
+        UIApplication.shared.keyWindow?.rootViewController?.tabBarController?.tabBar.isUserInteractionEnabled = false*/
     }
     func stopLoader(view: UIView) {
         

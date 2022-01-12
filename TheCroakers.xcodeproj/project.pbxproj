@@ -2076,7 +2076,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2500;
-				DEVELOPMENT_TEAM = XX4BXGD26M;
+				DEVELOPMENT_TEAM = 33Q8URLSK7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2149,7 +2149,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.26;
+				MARKETING_VERSION = 1.27;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2359,7 +2359,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2500;
-				DEVELOPMENT_TEAM = XX4BXGD26M;
+				DEVELOPMENT_TEAM = 33Q8URLSK7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2432,7 +2432,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.26;
+				MARKETING_VERSION = 1.27;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

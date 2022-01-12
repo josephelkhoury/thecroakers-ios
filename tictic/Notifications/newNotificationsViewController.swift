@@ -27,7 +27,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
     
     func getNotifications(startPoint:String) {
         print("userid: ",UserDefaults.standard.string(forKey: "userID")!)
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showAllNotifications(user_id: UserDefaults.standard.string(forKey: "userID")!, starting_point: "\(startPoint)") { (isSuccess, response) in
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -144,7 +144,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     func getVideo(ip:IndexPath) {
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         let obj = notificationsArr[ip.row]
         ApiHandler.sharedInstance.showVideoDetail(user_id: UserDefaults.standard.string(forKey: "userID")!, video_id: obj.video_id) { (isSuccess, response) in
             if isSuccess {
@@ -212,7 +212,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                     print("!200: ",response as Any)
                 }
             } else {
-                AppUtility?.startLoader(view: self.view)
+                //AppUtility?.startLoader(view: self.view)
               /*  let vc = self.storyboard?.instantiateViewController(withIdentifier: "homeFeedVC") as! homeFeedViewController
                 vc.userVideoArr = self.notiVidDataArr
                 vc.indexAt = ip*/

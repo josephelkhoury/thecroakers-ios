@@ -902,14 +902,15 @@ class ApiHandler:NSObject {
         }
     }
     //MARK:-showVideosAgainstUserID
-    func showVideosAgainstUserID(user_id:String, other_user_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+    func showVideosAgainstUserID(user_id:String, other_user_id:String, starting_point:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let headers: HTTPHeaders = [
             "Api-Key": API_KEY
         ]
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
-            "other_user_id"  : other_user_id
+            "other_user_id"  : other_user_id,
+            "starting_point" : starting_point
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showVideosAgainstUserID.rawValue)"
         
@@ -1494,14 +1495,14 @@ class ApiHandler:NSObject {
     }
     
     //MARK:-showUserLikedVideos
-    func showUserLikedVideos(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+    func showUserLikedVideos(user_id:String, starting_point:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let headers: HTTPHeaders = [
             "Api-Key": API_KEY
         ]
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
-            
+            "starting_point" : starting_point
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showUserLikedVideos.rawValue)"
         

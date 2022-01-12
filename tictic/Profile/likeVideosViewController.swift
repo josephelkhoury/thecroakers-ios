@@ -135,7 +135,7 @@ class likeVideosViewController: UIViewController,UICollectionViewDelegate,UIColl
     
 
     
-    func getVideos(){
+    func getVideos() {
         
         //        AppUtility?.stopLoader(view: view)
         
@@ -150,7 +150,7 @@ class likeVideosViewController: UIViewController,UICollectionViewDelegate,UIColl
         }
         
         //        AppUtility?.startLoader(view: self.view)
-        ApiHandler.sharedInstance.showUserLikedVideos(user_id: uid) { (isSuccess, response) in
+        ApiHandler.sharedInstance.showUserLikedVideos(user_id: uid, starting_point: "0") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{
                 print("response: ",response?.allValues)

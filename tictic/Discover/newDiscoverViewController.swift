@@ -58,7 +58,7 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
         //getSliderData()
         getVideosData()
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
     }
     
     @objc func requestData() {
