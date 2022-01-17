@@ -62,6 +62,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     var isTagName = ""
     var userInfo = [["type":"Following","count":"0"],["type":"Followers","count":"0"],["type":"Likes","count":"0"]]
     var userItem = [["Image":"music tok icon-2","ImageSelected":"music tok icon-5","isSelected":"true"],["Image":"likeVideo","ImageSelected":"music tok icon-6","isSelected":"false"],["Image":"music tok icon-1","ImageSelected":"music tok icon-4","isSelected":"false"]]
+    var apiRequest = false
     
     var format = ContentLoaderFormat()
     
@@ -503,15 +504,18 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     func pagination(index:Int) {
-        if self.videosMainArr.count != 0 {
+        if self.videosMainArr.count != 0 && !apiRequest {
             if index == videosMainArr.count - 1 {
                 print("Pagination start")
                 self.startPoint+=1
                 print("StartPoint: ",startPoint)
+                apiRequest = true
                 if indexSelected == 0 {
                     self.getUserVideos()
-                } else {
+                } else if indexSelected == 1 {
                     self.getLikedVideos()
+                } else {
+                    self.getPrivateVideos()
                 }
             }
         }
@@ -522,6 +526,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         obj.updateValue("true", forKey: "isSelected")
         self.userItem.remove(at: index)
         self.userItem.insert(obj, at: index)
+        self.startPoint = 0;
         
         if index == 0 {
             AppUtility?.startLoader(view: self.view)
@@ -809,6 +814,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         
         ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID, starting_point: "\(self.startPoint)") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
+            self.apiRequest = false
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary
@@ -871,7 +877,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                     self.whoopsView.isHidden = true
                 }
                 
-                print("videosMainArr.count: ",self.videosMainArr.count)
+                print("videosMainArr.count: ", self.videosMainArr.count)
                 
                 self.videosCV.reloadData()
                 
@@ -903,6 +909,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
 
         ApiHandler.sharedInstance.showUserLikedVideos(user_id: uid, starting_point: "\(self.startPoint)") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
+            self.apiRequest = false
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let likeObjMsg = response?.value(forKey: "msg") as! NSArray
@@ -976,7 +983,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         print("userID test: ",userID)
         
         if self.startPoint == 0 {
-            self.likeVidArr.removeAll()
+            self.privateVidArr.removeAll()
             self.videosMainArr.removeAll()
         }
         
@@ -990,7 +997,8 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         
         ApiHandler.sharedInstance.showVideosAgainstUserID(user_id: uid, other_user_id: self.otherUserID, starting_point: "\(self.startPoint)") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
-            if isSuccess{
+            self.apiRequest = false
+            if isSuccess {
                 print("response: ",response?.allValues)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     let userObjMsg = response?.value(forKey: "msg") as! NSDictionary

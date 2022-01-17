@@ -19,6 +19,7 @@ class termsCondViewController:UIViewController,WKUIDelegate,WKNavigationDelegate
     @IBOutlet weak var vcTitle: UILabel!
     
     var privacyDoc = true
+    var croakerApplication = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +49,12 @@ class termsCondViewController:UIViewController,WKUIDelegate,WKNavigationDelegate
         
         var url = URL(string: "https://thecroakers.com/privacy-policy/")!
         
-        if privacyDoc == false {
+        if privacyDoc == false && croakerApplication == false {
          url = URL(string: "https://thecroakers.com/terms-and-conditions/")!
-            
             vcTitle.text = "Terms & Conditions"
+        } else {
+            url = URL(string: "https://thecroakers.com/#APPLY")!
+               vcTitle.text = "Apply as a Croaker or Publisher"
         }
 
         self.webViewDisplay.load(URLRequest(url: url))
@@ -71,7 +74,7 @@ class termsCondViewController:UIViewController,WKUIDelegate,WKNavigationDelegate
         self.present(alert, animated: true, completion: nil)
     }
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("Strat to load")
+        print("Start to load")
 //        self.activityIndicator.startAnimating()
         
         AppUtility?.startLoader(view: self.view)

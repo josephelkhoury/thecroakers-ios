@@ -42,7 +42,7 @@ class UpgradeViewController: UIViewController {
     }
     
     @objc func croakerTouchTapped(_ sender: UITapGestureRecognizer) {
-        let userID = UserDefaults.standard.string(forKey: "userID")
+        /*let userID = UserDefaults.standard.string(forKey: "userID")
         let deviceID = UserDefaults.standard.string(forKey: "deviceID")
         ApiHandler.sharedInstance.applyAsCroaker(user_id: userID!, device_id: deviceID!) { (isSuccess, response) in
             if isSuccess {
@@ -53,11 +53,12 @@ class UpgradeViewController: UIViewController {
             } else {
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
             }
-        }
+        }*/
+        openApplicationWebView()
     }
     
     @objc func publisherTouchTapped(_ sender: UITapGestureRecognizer) {
-        let userID = UserDefaults.standard.string(forKey: "userID")
+        /*let userID = UserDefaults.standard.string(forKey: "userID")
         let deviceID = UserDefaults.standard.string(forKey: "deviceID")
         AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.applyAsPublisher(user_id: userID!, device_id: deviceID!) { (isSuccess, response) in
@@ -70,7 +71,15 @@ class UpgradeViewController: UIViewController {
             } else {
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
             }
-        }
+        }*/
+        openApplicationWebView()
+    }
+    
+    func openApplicationWebView() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "termsCondVC") as! termsCondViewController
+        vc.privacyDoc = true
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func btnCross(_ sender: Any) {
