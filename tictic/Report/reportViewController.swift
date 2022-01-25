@@ -61,7 +61,7 @@ class reportViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         reportDataArr.removeAll()
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showReportReasons { (isSuccess, response) in
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200{

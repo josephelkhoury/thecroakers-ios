@@ -116,7 +116,7 @@ class previewPlayerViewController: UIViewController,PlayerDelegate{
         btnPlayImg.isHidden = true
         
         playerView.contentMode = .scaleAspectFill
-        playerView.play(for: url!,filterName:"",filterIndex:0)
+        playerView.play(for: url!)
         
         self.video = AVURLAsset(url: self.url!)
         self.image = video!.videoToUIImage()
@@ -272,9 +272,9 @@ extension previewPlayerViewController:UICollectionViewDataSource,UICollectionVie
             self.originalImage = createFilteredImage(filterName: filterName, image: image)
         }*/
       //  if let video = self.video {
-            playerView.play(for: url!,filterName:filtername,filterIndex:filterIndex)
+            //playerView.play(for: url!,filterName:filtername,filterIndex:filterIndex)
+        playerView.play(for: url!)
       //  }
-        
     }
     
   

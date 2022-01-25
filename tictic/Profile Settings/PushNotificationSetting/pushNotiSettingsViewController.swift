@@ -180,7 +180,7 @@ class pushNotiSettingsViewController: UIViewController {
     
     func getData(){
         self.pushNotiSettingData.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showOwnDetail(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200{
@@ -218,7 +218,7 @@ class pushNotiSettingsViewController: UIViewController {
     }
     
     func pushNotiAPI(){
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         print("comment: ",newComments)
         print("likes: ",newLikes)
         print("newFollowers: ",newFollowers)

@@ -62,7 +62,7 @@ class AddPayoutViewController: UIViewController {
     func AddPayOut(){
         let userID = UserDefaults.standard.string(forKey: "userID")
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.addPayout(user_id:userID!,email:self.tfPaypal.text!){ (isSuccess, response) in
             if isSuccess{

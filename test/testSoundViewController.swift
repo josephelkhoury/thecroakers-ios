@@ -105,7 +105,7 @@ class testSoundViewController: UIViewController,UICollectionViewDelegate,UIColle
 
     func GetAllSounds(){
         soundsDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showSounds(user_id: UserDefaults.standard.string(forKey: "userID")!, starting_point: startingPoint) { (isSuccess, response) in
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200{

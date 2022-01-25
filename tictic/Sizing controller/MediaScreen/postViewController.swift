@@ -208,7 +208,6 @@ class postViewController: UIViewController,UITextViewDelegate {
                                     print("video saved to gallery")
                                     self.showToast(message: "video saved to gallery", font: .systemFont(ofSize: 12))
                                 }
-                                
                             }
                         }
                         AppUtility?.stopLoader(view: self.view)
@@ -436,7 +435,6 @@ class postViewController: UIViewController,UITextViewDelegate {
         boxView.removeFromSuperview()
     }
     
-    
 //    MARK:- BTN HASHTAG AND MENTIONS SETUPS
     @IBAction func btnHashtag(_ sender: UISwitch) {
         
@@ -488,8 +486,7 @@ extension UITextField {
         }
     }
 
-    func addDoneButtonOnKeyboard()
-    {
+    func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .default
 
@@ -503,8 +500,7 @@ extension UITextField {
         self.inputAccessoryView = doneToolbar
     }
 
-    @objc func doneButtonAction()
-    {
+    @objc func doneButtonAction() {
         self.resignFirstResponder()
     }
 }

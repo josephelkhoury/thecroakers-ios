@@ -40,7 +40,7 @@ class DeleteAccountViewController: UIViewController {
     
     func DeleteAccount(){
         self.myUser = User.readUserFromArchive()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.DeleteAccount(user_id: (self.myUser?[0].id)!) { (isSuccess, response) in
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200 {

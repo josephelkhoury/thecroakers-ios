@@ -988,17 +988,20 @@ extension ActionViewContoller: NextLevelVideoDelegate {
 // MARK: - NextLevelPhotoDelegate
 
 extension ActionViewContoller: NextLevelPhotoDelegate {
-    
-    // photo
-    func nextLevel(_ nextLevel: NextLevel, willCapturePhotoWithConfiguration photoConfiguration: NextLevelPhotoConfiguration) {
-    }
-    
-    func nextLevel(_ nextLevel: NextLevel, didCapturePhotoWithConfiguration photoConfiguration: NextLevelPhotoConfiguration) {
-    }
-    
-    func nextLevel(_ nextLevel: NextLevel, didProcessPhotoCaptureWith photoDict: [String : Any]?, photoConfiguration: NextLevelPhotoConfiguration) {
+    func nextLevel(_ nextLevel: NextLevel, output: AVCapturePhotoOutput, willBeginCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, photoConfiguration: NextLevelPhotoConfiguration) {
         
-        if let dictionary = photoDict,
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, output: AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings, photoConfiguration: NextLevelPhotoConfiguration) {
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, output: AVCapturePhotoOutput, didCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings, photoConfiguration: NextLevelPhotoConfiguration) {
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didFinishProcessingPhoto photo: AVCapturePhoto, photoDict: [String : Any], photoConfiguration: NextLevelPhotoConfiguration) {
+        if let dictionary = photoDict as [String : Any]?,
             let photoData = dictionary[NextLevelPhotoJPEGKey] {
             
             PHPhotoLibrary.shared().performChanges({
@@ -1036,19 +1039,10 @@ extension ActionViewContoller: NextLevelPhotoDelegate {
                 
             })
         }
-        
-    }
-    
-    func nextLevel(_ nextLevel: NextLevel, didProcessRawPhotoCaptureWith photoDict: [String : Any]?, photoConfiguration: NextLevelPhotoConfiguration) {
     }
     
     func nextLevelDidCompletePhotoCapture(_ nextLevel: NextLevel) {
     }
-    
-    @available(iOS 11.0, *)
-    func nextLevel(_ nextLevel: NextLevel, didFinishProcessingPhoto photo: AVCapturePhoto) {
-    }
-    
 }
 
 // MARK: - KVO

@@ -121,7 +121,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
     //    MARK:- videos API
     func getVideosAPI() {
         videosDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showFavouriteVideos(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
@@ -147,6 +147,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         let like = "\(videoObj.value(forKey: "like") ?? "")"
                         let allowLikes = videoObj.value(forKey: "allow_likes") as! String
                         let allowComments = videoObj.value(forKey: "allow_comments") as! String
+                        let allowReplies = videoObj.value(forKey: "allow_replies") as! String
                         let videoID = videoObj.value(forKey: "id") as! String
                         let videoDesc = videoObj.value(forKey: "description") as! String
                         let allowDuet = videoObj.value(forKey: "allow_duet") as! String
@@ -172,7 +173,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
                         let countryID = countryObj.value(forKey: "id")
                         let countryName = countryObj.value(forKey: "name")
                         
-                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_replies: allowReplies, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                         
                         self.videosDataArr.append(video)
                     }
@@ -191,7 +192,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
 //    MARK:- sounds API
     func getSoundsDataAPI() {
         soundsDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFavouriteSounds(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
@@ -238,7 +239,7 @@ class favWorkingViewController: UIViewController,IndicatorInfoProvider {
     //    MARK:- HASHTAGS API
     func getHashtagsAPI() {
         hashTagDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFavouriteHashtags(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
@@ -515,7 +516,7 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
     
     //    MARK:- ADD FAV SOUND FUNC
     func addFavSong(soundID:String,btnFav:UIButton){
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.addSoundFavourite(user_id: UserDefaults.standard.string(forKey: "userID")!, sound_id: soundID) { (isSuccess, response) in
             if isSuccess{
                 AppUtility?.stopLoader(view: self.view)
@@ -542,7 +543,7 @@ extension favWorkingViewController:UITableViewDelegate,UITableViewDataSource{
         let cell = self.hashTagTV.cellForRow(at: ip) as! searchHashtagsTableViewCell
         let hashObj = hashTagDataArr[ip.row]
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.addHashtagFavourite(user_id: UserDefaults.standard.string(forKey: "userID")!, hashtag_id: hashObj.id) { (isSuccess, response) in
             

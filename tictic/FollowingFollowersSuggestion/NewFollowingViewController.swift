@@ -35,7 +35,7 @@ class NewFollowingViewController: UIViewController, IndicatorInfoProvider {
     //MARK:- API Handler
     func getFollowingAPI() {
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFollowing(user_id: UserDefaults.standard.string(forKey: "userID")!, other_user_id: userData[0].userID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)

@@ -69,7 +69,7 @@ class reportDetailViewController: UIViewController {
     
     //    MARK:- Report video func
     func reportVideo(reportReason: String){
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.reportVideo(user_id: UserDefaults.standard.string(forKey: "userID")!, video_id: videoID, report_reason_id: reportID, description: reportReason) { (isSuccess, response) in
             if isSuccess{
                 AppUtility?.stopLoader(view: self.view)

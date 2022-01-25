@@ -58,7 +58,7 @@ class CashOutViewController: UIViewController {
     //MARK:-API Handler
     func getCoinValues(){
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
      
         ApiHandler.sharedInstance.showCoinWorth{ (isSuccess, response) in
             if isSuccess{
@@ -93,7 +93,7 @@ class CashOutViewController: UIViewController {
     //MARK:- Get Wallet
 
     func Cash_Out_request(){
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
      
         ApiHandler.sharedInstance.coinWithDrawRequest(user_id:self.userData[0].userID,amount:self.strprice){ (isSuccess, response) in
             if isSuccess{

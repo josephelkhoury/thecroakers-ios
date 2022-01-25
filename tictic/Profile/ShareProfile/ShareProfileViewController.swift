@@ -90,11 +90,11 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
         let shareContent = ShareLinkContent()
         shareContent.contentURL = URL.init(string: self.shareUrl)!//your link
         shareContent.quote = "The Croakers APP"
-        ShareDialog(fromViewController: self, content: shareContent, delegate: self as? SharingDelegate).show()
+        ShareDialog(viewController: self, content: shareContent, delegate: self as? SharingDelegate).show()
     }
     
     func sharer(_ sharer: Sharing, didCompleteWithResults results: [String : Any]) {
-        if sharer.shareContent.pageID != nil {
+        if sharer.shareContent?.pageID != nil {
             print("FBShare: Success")
         }
     }
@@ -162,7 +162,7 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
         //let videoImageUrl = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
         
         //        let  sv = HomeViewController.displaySpinner(onView: self.view)
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: self.shareUrl),
                let urlData = NSData(contentsOf: url) {

@@ -80,7 +80,7 @@ class UpdatePasswordViewController: UIViewController ,UITextFieldDelegate {
     
     func UpdatePassword() {
         self.myUser = User.readUserFromArchive()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.changePassword(user_id: (self.myUser?[0].id)!, old_password: self.OldpassTxtField.text!,new_password:self.NewpassTxtField.text!) { (isSuccess, response) in
             if isSuccess{
                 AppUtility?.stopLoader(view: self.view)

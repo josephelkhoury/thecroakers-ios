@@ -281,7 +281,7 @@ class soundsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     @objc func btnSelectAction(_ sender : UIButton) {
         
         TPGAudioPlayer.sharedInstance().player.pause()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         print("btnSelect Tapped")
         let newObj = favSoundDataArr[sender.tag]
         
@@ -381,7 +381,7 @@ class soundsViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         favSoundDataArr.removeAll()
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         self.lblFetching.isHidden = false
         ApiHandler.sharedInstance.showFavouriteSounds(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             self.lblFetching.isHidden = true
@@ -431,7 +431,7 @@ class soundsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func GetAllSounds(){
         soundsDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         self.lblFetching.isHidden = false
         ApiHandler.sharedInstance.showSounds(user_id: UserDefaults.standard.string(forKey: "userID")!, starting_point: startingPoint) { (isSuccess, response) in
             self.lblFetching.isHidden = true
@@ -496,7 +496,7 @@ class soundsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     //    MARK:- ADD FAV SOUND FUNC API
     func addFavSong(soundID:String,btnFav:UIButton){
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.addSoundFavourite(user_id: UserDefaults.standard.string(forKey: "userID")!, sound_id: soundID) { (isSuccess, response) in
             if isSuccess{
                 AppUtility?.stopLoader(view: self.view)

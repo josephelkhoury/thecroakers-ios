@@ -40,7 +40,7 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
         }
         */
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ChatDBhandler.shared.fetchUserInbox(userID: self.senderID) { (isSuccess, conversation) in
             self.arrConversation.removeAll()
             for key in conversation {

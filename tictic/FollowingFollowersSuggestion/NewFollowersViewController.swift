@@ -38,7 +38,7 @@ class NewFollowersViewController: UIViewController, IndicatorInfoProvider {
 
     func getFollowersAPI() {
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showFollowers(user_id: UserDefaults.standard.string(forKey: "userID")!, other_user_id: userData[0].userID) { (isSuccess, response) in
             

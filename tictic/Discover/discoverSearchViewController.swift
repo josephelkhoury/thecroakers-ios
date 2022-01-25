@@ -157,7 +157,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
     func getUserData(keyword:String,sp:String){
         userDataArr.removeAll()
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.Search(user_id: uid, type: "user", keyword: keyword, starting_point: sp) { (isSuccess, response) in
             if isSuccess{
                 
@@ -211,7 +211,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
     //    MARK:- GET VIDEOS DATA
     func getVideosData(keyword:String,sp:String){
         videosDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.Search(user_id: uid, type: "video", keyword: keyword, starting_point: sp) { (isSuccess, response) in
             if isSuccess{
                 
@@ -236,6 +236,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                         let like = "\(videoObj.value(forKey: "like") ?? "")"
                         let allowLikes = videoObj.value(forKey: "allow_likes") as! String
                         let allowComments = videoObj.value(forKey: "allow_comments") as! String
+                        let allowReplies = videoObj.value(forKey: "allow_replies") as! String
                         let videoID = videoObj.value(forKey: "id") as! String
                         let videoDesc = videoObj.value(forKey: "description") as! String
                         let allowDuet = videoObj.value(forKey: "allow_duet") as! String
@@ -261,7 +262,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                         let countryID = countryObj.value(forKey: "id")
                         let countryName = countryObj.value(forKey: "name")
 
-                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_replies: allowReplies, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                         
                         self.videosDataArr.append(video)
                     }
@@ -282,7 +283,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
     //    MARK:- GET SOUNDS DATA
     func getSoundsData(keyword:String,sp:String) {
         soundsDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.Search(user_id: uid, type: "sound", keyword: keyword, starting_point: sp) { (isSuccess, response) in
             if isSuccess {
                 
@@ -327,7 +328,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
     //    MARK:- GET HASHTAGS DATA
     func getHashtagsData(keyword:String,sp:String) {
         hashTagDataArr.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.Search(user_id: uid, type: "hashtag", keyword: keyword, starting_point: sp) { (isSuccess, response) in
             if isSuccess{
                 
@@ -611,7 +612,7 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
         let cell = self.hashTagTV.cellForRow(at: ip) as! searchHashtagsTableViewCell
         let hashObj = hashTagDataArr[ip.row]
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.addHashtagFavourite(user_id: UserDefaults.standard.string(forKey: "userID")!, hashtag_id: hashObj.id) { (isSuccess, response) in
             
@@ -643,7 +644,7 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
 //    MARK:- SAVE SOUND TO LOCAL FUNC
     func saveSondToLocal(soundObj:soundsMVC){
 
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         UserDefaults.standard.set(soundObj.audioURL, forKey: "url")
         UserDefaults.standard.set(soundObj.name, forKey: "selectedSongName")
@@ -722,7 +723,7 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
     
 //    MARK:- ADD FAV SOUND FUNC
     func addFavSong(soundID:String,btnFav:UIButton){
-        AppUtility?.startLoader(view: self.soundsView)
+        //AppUtility?.startLoader(view: self.soundsView)
         ApiHandler.sharedInstance.addSoundFavourite(user_id: UserDefaults.standard.string(forKey: "userID")!, sound_id: soundID) { (isSuccess, response) in
             if isSuccess{
                 AppUtility?.stopLoader(view: self.soundsView)

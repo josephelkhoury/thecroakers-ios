@@ -1,185 +1,203 @@
 PODS:
-  - AgoraRtcEngine_iOS (3.3.1)
-  - Alamofire (5.4.1)
+  - AgoraRtcEngine_iOS (3.6.1.1)
+  - Alamofire (5.5.0)
   - ContentLoader (1.1.1)
-  - CoreAnimator (2.1.4)
+  - CoreAnimator (2.1.5)
   - DropDown (2.3.13)
   - DSGradientProgressView (1.0.1)
   - EFInternetIndicator (0.4.0):
     - EFInternetIndicator/Interface (= 0.4.0)
   - EFInternetIndicator/Interface (0.4.0):
     - SwiftMessages
-  - FBSDKCoreKit (8.2.0):
-    - FBSDKCoreKit/Basics (= 8.2.0)
-    - FBSDKCoreKit/Core (= 8.2.0)
-  - FBSDKCoreKit/Basics (8.2.0)
-  - FBSDKCoreKit/Core (8.2.0):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (8.2.0):
-    - FBSDKLoginKit/Login (= 8.2.0)
-  - FBSDKLoginKit/Login (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
-  - FBSDKShareKit (8.2.0):
-    - FBSDKShareKit/Share (= 8.2.0)
-  - FBSDKShareKit/Share (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
-  - Firebase (7.4.0):
-    - Firebase/Core (= 7.4.0)
-  - Firebase/Analytics (7.4.0):
+  - FBAEMKit (12.3.1):
+    - FBSDKCoreKit_Basics (= 12.3.1)
+  - FBSDKCoreKit (12.3.1):
+    - FBAEMKit (= 12.3.1)
+    - FBSDKCoreKit_Basics (= 12.3.1)
+  - FBSDKCoreKit_Basics (12.3.1)
+  - FBSDKLoginKit (12.3.1):
+    - FBSDKCoreKit (= 12.3.1)
+  - FBSDKShareKit (12.3.1):
+    - FBSDKCoreKit (= 12.3.1)
+  - Firebase (8.11.0):
+    - Firebase/Core (= 8.11.0)
+  - Firebase/Analytics (8.11.0):
     - Firebase/Core
-  - Firebase/Core (7.4.0):
+  - Firebase/Core (8.11.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 7.4.0)
-  - Firebase/CoreOnly (7.4.0):
-    - FirebaseCore (= 7.4.0)
-  - Firebase/Crashlytics (7.4.0):
+    - FirebaseAnalytics (~> 8.11.0)
+  - Firebase/CoreOnly (8.11.0):
+    - FirebaseCore (= 8.11.0)
+  - Firebase/Crashlytics (8.11.0):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 7.4.0)
-  - FirebaseAnalytics (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleAppMeasurement (= 7.4.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/MethodSwizzler (~> 7.0)
-    - GoogleUtilities/Network (~> 7.0)
-    - "GoogleUtilities/NSData+zlib (~> 7.0)"
-    - nanopb (~> 2.30907.0)
-  - FirebaseAuth (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GTMSessionFetcher/Core (~> 1.4)
-  - FirebaseCore (7.4.0):
-    - FirebaseCoreDiagnostics (~> 7.4)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-  - FirebaseCoreDiagnostics (7.4.0):
-    - GoogleDataTransport (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-    - nanopb (~> 2.30907.0)
-  - FirebaseCrashlytics (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleDataTransport (~> 8.0)
-    - nanopb (~> 2.30907.0)
-    - PromisesObjC (~> 1.2)
-  - FirebaseDatabase (7.4.0):
-    - FirebaseCore (~> 7.0)
+    - FirebaseCrashlytics (~> 8.11.0)
+  - FirebaseAnalytics (8.11.0):
+    - FirebaseAnalytics/AdIdSupport (= 8.11.0)
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAnalytics/AdIdSupport (8.11.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleAppMeasurement (= 8.11.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAuth (8.11.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - FirebaseCore (8.11.0):
+    - FirebaseCoreDiagnostics (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
+  - FirebaseCoreDiagnostics (8.11.0):
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
+    - nanopb (~> 2.30908.0)
+  - FirebaseCrashlytics (8.11.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (~> 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseDatabase (8.11.0):
+    - FirebaseCore (~> 8.0)
     - leveldb-library (~> 1.22)
-  - FirebaseInstallations (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-  - FirebaseMessaging (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstanceID (~> 7.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Reachability (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-  - FirebaseStorage (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - GTMSessionFetcher/Core (~> 1.4)
-  - FLAnimatedImage (1.0.12)
+  - FirebaseInstallations (8.11.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/UserDefaults (~> 7.7)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseMessaging (8.11.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Reachability (~> 7.7)
+    - GoogleUtilities/UserDefaults (~> 7.7)
+    - nanopb (~> 2.30908.0)
+  - FirebaseStorage (8.11.0):
+    - FirebaseCore (~> 8.0)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - FLAnimatedImage (1.0.16)
   - FullMaterialLoader (0.2.3)
-  - GoogleAppMeasurement (7.4.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/MethodSwizzler (~> 7.0)
-    - GoogleUtilities/Network (~> 7.0)
-    - "GoogleUtilities/NSData+zlib (~> 7.0)"
-    - nanopb (~> 2.30907.0)
-  - GoogleDataTransport (8.2.0):
-    - nanopb (~> 2.30907.0)
-  - GoogleUtilities/AppDelegateSwizzler (7.2.0):
+  - GoogleAppMeasurement (8.11.0):
+    - GoogleAppMeasurement/AdIdSupport (= 8.11.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/AdIdSupport (8.11.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.11.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (8.11.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - GoogleDataTransport (9.1.2):
+    - GoogleUtilities/Environment (~> 7.2)
+    - nanopb (~> 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.2.0):
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.2.0):
+  - GoogleUtilities/Environment (7.7.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.7.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.2.0):
+  - GoogleUtilities/MethodSwizzler (7.7.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.2.0):
+  - GoogleUtilities/Network (7.7.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.2.0)"
-  - GoogleUtilities/Reachability (7.2.0):
+  - "GoogleUtilities/NSData+zlib (7.7.0)"
+  - GoogleUtilities/Reachability (7.7.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.2.0):
+  - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
-  - GSPlayer (0.2.18)
-  - GTMSessionFetcher/Core (1.5.0)
+  - GSPlayer (0.2.25)
+  - GTMSessionFetcher/Core (1.7.0)
   - GTProgressBar (0.3.3)
   - iOSDropDown (0.3.4)
-  - IQKeyboardManagerSwift (6.5.6)
+  - IQKeyboardManagerSwift (6.5.9)
   - JJFloatingActionButton (2.5.0)
   - JSQMessagesViewController (7.3.5):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - Kingfisher (6.0.1)
+  - Kingfisher (7.1.2)
   - KYShutterButton (2.0.1)
-  - leveldb-library (1.22)
-  - libwebp (1.2.0):
-    - libwebp/demux (= 1.2.0)
-    - libwebp/mux (= 1.2.0)
-    - libwebp/webp (= 1.2.0)
-  - libwebp/demux (1.2.0):
+  - leveldb-library (1.22.1)
+  - libwebp (1.2.1):
+    - libwebp/demux (= 1.2.1)
+    - libwebp/mux (= 1.2.1)
+    - libwebp/webp (= 1.2.1)
+  - libwebp/demux (1.2.1):
     - libwebp/webp
-  - libwebp/mux (1.2.0):
+  - libwebp/mux (1.2.1):
     - libwebp/demux
-  - libwebp/webp (1.2.0)
-  - lottie-ios (3.1.9)
-  - MarqueeLabel (4.0.5)
+  - libwebp/webp (1.2.1)
+  - lottie-ios (3.3.0)
+  - MarqueeLabel (4.3.0)
   - MDatePickerView (1.2.3)
-  - nanopb (2.30907.0):
-    - nanopb/decode (= 2.30907.0)
-    - nanopb/encode (= 2.30907.0)
-  - nanopb/decode (2.30907.0)
-  - nanopb/encode (2.30907.0)
-  - NextLevel (0.16.4)
+  - nanopb (2.30908.0):
+    - nanopb/decode (= 2.30908.0)
+    - nanopb/encode (= 2.30908.0)
+  - nanopb/decode (2.30908.0)
+  - nanopb/encode (2.30908.0)
+  - NextLevel (0.17.0)
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
-  - ObjectMapper (4.2.0)
   - PhoneNumberKit (3.3.3):
     - PhoneNumberKit/PhoneNumberKitCore (= 3.3.3)
     - PhoneNumberKit/UIKit (= 3.3.3)
   - PhoneNumberKit/PhoneNumberKitCore (3.3.3)
   - PhoneNumberKit/UIKit (3.3.3):
     - PhoneNumberKit/PhoneNumberKitCore
-  - Player (0.13.3)
-  - PromisesObjC (1.2.12)
+  - Player (0.14.0)
+  - PromisesObjC (2.0.0)
   - PryntTrimmerView (4.0.2)
-  - Regift (1.5.0)
-  - SDWebImage (5.10.2):
-    - SDWebImage/Core (= 5.10.2)
-  - SDWebImage/Core (5.10.2)
+  - Regift (1.6.0)
+  - SDWebImage (5.12.2):
+    - SDWebImage/Core (= 5.12.2)
+  - SDWebImage/Core (5.12.2)
   - SDWebImageWebPCoder (0.8.4):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.10)
-  - SKCountryPicker (1.2.9)
+  - SKCountryPicker (1.3.2)
   - SkyFloatingLabelTextField (4.0.0)
   - SnapKit (5.0.1)
   - SteviaLayout (4.7.3)
-  - SwiftMessages (9.0.0):
-    - SwiftMessages/App (= 9.0.0)
-  - SwiftMessages/App (9.0.0)
+  - SwiftMessages (9.0.6):
+    - SwiftMessages/App (= 9.0.6)
+  - SwiftMessages/App (9.0.6)
   - SwiftyCam (4.0.0)
   - SwiftyStoreKit (0.16.1)
   - TextFieldEffects (1.6.0)
   - XLPagerTabStrip (9.0.0)
-  - YPImagePicker (4.4.0):
-    - PryntTrimmerView (~> 4.0.2)
-    - SteviaLayout (~> 4.7.3)
+  - YPImagePicker (5.2.1):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
   - AgoraRtcEngine_iOS
@@ -215,7 +233,6 @@ DEPENDENCIES:
   - MDatePickerView
   - NextLevel
   - NVActivityIndicatorView
-  - ObjectMapper
   - PhoneNumberKit
   - Player
   - Regift
@@ -227,7 +244,7 @@ DEPENDENCIES:
   - SwiftyCam
   - SwiftyStoreKit
   - TextFieldEffects
-  - XLPagerTabStrip (~> 9.0)
+  - XLPagerTabStrip
   - YPImagePicker
 
 SPEC REPOS:
@@ -239,7 +256,9 @@ SPEC REPOS:
     - DropDown
     - DSGradientProgressView
     - EFInternetIndicator
+    - FBAEMKit
     - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - FBSDKLoginKit
     - FBSDKShareKit
     - Firebase
@@ -250,7 +269,6 @@ SPEC REPOS:
     - FirebaseCrashlytics
     - FirebaseDatabase
     - FirebaseInstallations
-    - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseStorage
     - FLAnimatedImage
@@ -276,7 +294,6 @@ SPEC REPOS:
     - nanopb
     - NextLevel
     - NVActivityIndicatorView
-    - ObjectMapper
     - PhoneNumberKit
     - Player
     - PromisesObjC
@@ -296,69 +313,69 @@ SPEC REPOS:
     - YPImagePicker
 
 SPEC CHECKSUMS:
-  AgoraRtcEngine_iOS: 17e55feec1bde14adc30fd9d743332d1e7821b62
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  AgoraRtcEngine_iOS: b95d48918cbe5ed64b496634316291c89864d244
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   ContentLoader: b14db4449065be0fd2b8c77b65ff5e4a0a8c7f86
-  CoreAnimator: 8606ef401a0c4fff922aa8fca70d6e1191f7f746
+  CoreAnimator: 1a3c690a1ccd084ebffdbc508779bbb17c9cbb6e
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DSGradientProgressView: 256d85dc3a92b429ace38617ceb459faec42bb41
   EFInternetIndicator: a6077679e15191889a783a06624390b73e8109dc
-  FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
-  FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
-  FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
-  Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
-  FirebaseAnalytics: adb3c8f02f83d00661cdaac6dbb4d54e9720d1b6
-  FirebaseAuth: d8dba8db90a1705ee2493857047282ca4f6e7598
-  FirebaseCore: 99c06e5a1e8d6952e75cb1f0a6d0b23c0f5ccdcf
-  FirebaseCoreDiagnostics: 3770093ac4f2be4590fa03cfa1d3a6e5602d4557
-  FirebaseCrashlytics: ef6b0947ab6819b5cb335f8c0a7677cd57d544c5
-  FirebaseDatabase: 0a619c887a9565bf4808eba37d2f0ed1d62f62d0
-  FirebaseInstallations: 30646fc9a61c6f4ee3cd7a8b7231721842b40c95
-  FirebaseInstanceID: 46d93d287108246fabbd85371ca27141d2c21ff9
-  FirebaseMessaging: 6112b5cd04e0ff58c4a9920e5e29cf193ea88439
-  FirebaseStorage: e8726dfe21ebe068ccbe8e9c332ea90688eeadae
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FBAEMKit: 98e4afc9f867c6db3d1c0e7e3727d94a630b5f59
+  FBSDKCoreKit: 4f348872eae956c922aca1a13771b9c2d4602088
+  FBSDKCoreKit_Basics: b832439de7a8262ee17495889264e75785af54de
+  FBSDKLoginKit: 4adb764028103621b48dfd601b08b03fe2114cdf
+  FBSDKShareKit: c09900fc885130c009194ef35992cbdcad47fe27
+  Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
+  FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
+  FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
+  FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
+  FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
+  FirebaseCrashlytics: 62268addefae79601057818156e8bc69d71fee41
+  FirebaseDatabase: ff9b4c7bee14d9f561f26c64a28ac083989f03d5
+  FirebaseInstallations: 044eede8a049bce71c4541ee68d6e4364fcbe774
+  FirebaseMessaging: 02e248e8997f71fa8cc9d78e9d49ec1a701ba14a
+  FirebaseStorage: 4d05cb1112ff8822a0f9f5090da8bd6d550602ec
+  FLAnimatedImage: 8f3e854ebf9680b71f0b6e700939687fc4d82b4b
   FullMaterialLoader: e42901936b13600524f590e740ef359b72a4693f
-  GoogleAppMeasurement: 688d7f00e2894d9e13823ed9a028b13b993bc277
-  GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
-  GoogleUtilities: d866834472f1324d080496bc67ab3ce5d0d46027
-  GSPlayer: 068db917bc4321b9310bb9d439794153a568fac8
-  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  GoogleAppMeasurement: aa3cb422fab2b05d2efac543a5720d1a85b9dea5
+  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  GSPlayer: 3b6850a0f26af54967396d637c2e4646dc451013
+  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   GTProgressBar: a480283ecb0ada50de16c71e634892826928f640
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
-  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  Kingfisher: adde87a4f74f6a3845395769354efff593581740
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   KYShutterButton: 794612eedc2ee75114326f7394703f0f49bf0882
-  leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
-  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
-  lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
-  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
+  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
+  MarqueeLabel: 02f5ac8fd6877c94564556cb93fa86c70c08baeb
   MDatePickerView: e26233885de2f13659c6101b3ed265eacf92c078
-  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
-  NextLevel: f84ecba5c546a87e245809e0523ef3a24897323b
+  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  NextLevel: d07859347dd5c058e59bcde2fba90032c0d7aa23
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
-  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   PhoneNumberKit: 4ce83273551c4d2ae10b7361162f4283dd02835f
-  Player: e1889a481f14b3bc4065b62bed304c3de3b47dfe
-  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Player: 37e0acc16ea1495fc241df88fe9f089367513331
+  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
-  Regift: d097afd401021f4f42b102ee125ceeb125a38caf
-  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
+  Regift: a7c1a7e377c60bfc34301d6f532e099e5ae109a8
+  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
-  SKCountryPicker: 7ad1e7dfb482cfb26855e33c2d70dbf1eaf218fe
+  SKCountryPicker: ceff8cfffc0ddde2088f2fcc2d01d1ad530c0b03
   SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
-  SwiftMessages: 55274ca3a239062398603008ed81924cfd1fe798
+  SwiftMessages: f0c7ef4705a570ad6c5e208b611f4333e660ed92
   SwiftyCam: 6e57914771d972fbe508e759dc9d0150a44a93fd
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
-  YPImagePicker: 15aed8bcaa4dad976e11b6114126d731a2f9f3c9
+  YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: c5382ea7a54036df686caf870e5ae48329f39788
+PODFILE CHECKSUM: cf728601121d4be3c284bf07162678ea5fa754f2
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

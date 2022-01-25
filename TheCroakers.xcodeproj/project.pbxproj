@@ -165,8 +165,7 @@
 		62D48D9426622584007A538C /* ShowLikesPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D48D9326622584007A538C /* ShowLikesPopUpViewController.swift */; };
 		62D48D9826622FD9007A538C /* NewEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D48D9726622FD9007A538C /* NewEditProfileViewController.swift */; };
 		62D48D9C26624CA7007A538C /* NewSettingsPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D48D9B26624CA6007A538C /* NewSettingsPrivacyViewController.swift */; };
-		6988554E56A86A9B4924C69B /* Pods_MusicTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8944BEA78B6A1349E72785FF /* Pods_MusicTok.framework */; };
-		86E885C36E4D79BBF06144F9 /* Pods_MusicTok_MusicTokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F49875CF23EA633BBC3F685 /* Pods_MusicTok_MusicTokUITests.framework */; };
+		67BA52DC5440CBF2D8CB1C26 /* Pods_TheCroakers_TheCroakersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6328E05DC58EB2D8491B30CD /* Pods_TheCroakers_TheCroakersUITests.framework */; };
 		97066C612679D94100CF2DA5 /* newEditProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97066C602679D94100CF2DA5 /* newEditProfileDetailViewController.swift */; };
 		AE0AEED424AB5B52008340BD /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AEED324AB5B52008340BD /* FollowingViewController.swift */; };
 		AE0AEED624AB5C15008340BD /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AEED524AB5C15008340BD /* FollowTableViewCell.swift */; };
@@ -209,6 +208,7 @@
 		AEFA5DA9249CEA0600CD7D07 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFA5DA8249CEA0600CD7D07 /* LocalAuthentication.framework */; };
 		AEFA5DAB249CEA1500CD7D07 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFA5DAA249CEA1500CD7D07 /* AuthenticationServices.framework */; };
 		AEFA5DAD249CEA1E00CD7D07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFA5DAC249CEA1D00CD7D07 /* SystemConfiguration.framework */; };
+		BCA9C9C31822CE8AA23424BD /* Pods_TheCroakers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB177FD6448C39B9AC4B8D17 /* Pods_TheCroakers.framework */; };
 		DC0D1656274D381D00AB538B /* countryMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D1655274D381D00AB538B /* countryMVC.swift */; };
 		DC4E01802750DD9600FE744E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4E017F2750DD9600FE744E /* StoreKit.framework */; };
 		DC67DF9F2783007200D29C5B /* UpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */; };
@@ -319,6 +319,7 @@
 		5E40DEC6256919E20004F0D9 /* pushNotiSettingMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotiSettingMVC.swift; sourceTree = "<group>"; };
 		5E42549B24F13CA400322C28 /* previewPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewPlayerViewController.swift; sourceTree = "<group>"; };
 		5E4A9AA22552850E000D9D6C /* pushNotiSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotiSettingsViewController.swift; sourceTree = "<group>"; };
+		5E514A5259239A5F4AD46448 /* Pods-TheCroakers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheCroakers.release.xcconfig"; path = "Target Support Files/Pods-TheCroakers/Pods-TheCroakers.release.xcconfig"; sourceTree = "<group>"; };
 		5E53506D2553C0FA009E4EB9 /* privacySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = privacySettingViewController.swift; sourceTree = "<group>"; };
 		5E53506F2553C1D7009E4EB9 /* privacySettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = privacySettingTableViewCell.swift; sourceTree = "<group>"; };
 		5E5350712553C8CB009E4EB9 /* soundsMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soundsMVC.swift; sourceTree = "<group>"; };
@@ -416,7 +417,6 @@
 		5ED55444255BB56B003C121F /* countryCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countryCodeViewController.swift; sourceTree = "<group>"; };
 		5EEBB69A25CEA69F002DC24B /* favMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favMainViewController.swift; sourceTree = "<group>"; };
 		5EF2254524EE81B600CE3D35 /* size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = size.swift; sourceTree = "<group>"; };
-		5F49875CF23EA633BBC3F685 /* Pods_MusicTok_MusicTokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicTok_MusicTokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		625A86F326660FD4006B49F7 /* ffsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ffsTVC.swift; sourceTree = "<group>"; };
 		625A86F426660FD4006B49F7 /* NewFollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowersViewController.swift; sourceTree = "<group>"; };
 		625A86F526660FD4006B49F7 /* FFsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFsDetailViewController.swift; sourceTree = "<group>"; };
@@ -430,11 +430,14 @@
 		62D48D9326622584007A538C /* ShowLikesPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLikesPopUpViewController.swift; sourceTree = "<group>"; };
 		62D48D9726622FD9007A538C /* NewEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEditProfileViewController.swift; sourceTree = "<group>"; };
 		62D48D9B26624CA6007A538C /* NewSettingsPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSettingsPrivacyViewController.swift; sourceTree = "<group>"; };
+		6328E05DC58EB2D8491B30CD /* Pods_TheCroakers_TheCroakersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheCroakers_TheCroakersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAC47F800DB6BF74D61500D /* Pods-Moooby-MooobyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moooby-MooobyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Moooby-MooobyUITests/Pods-Moooby-MooobyUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8944BEA78B6A1349E72785FF /* Pods_MusicTok.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicTok.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A5D20363D1B927C5BB44A1 /* Pods-TheCroakers-TheCroakersUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheCroakers-TheCroakersUITests.release.xcconfig"; path = "Target Support Files/Pods-TheCroakers-TheCroakersUITests/Pods-TheCroakers-TheCroakersUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8967039BBA1F32DA3B49881C /* Pods-MusicTok.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTok.debug.xcconfig"; path = "Target Support Files/Pods-MusicTok/Pods-MusicTok.debug.xcconfig"; sourceTree = "<group>"; };
+		8E27C93688EFBF0240B955E5 /* Pods-TheCroakers-TheCroakersUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheCroakers-TheCroakersUITests.debug.xcconfig"; path = "Target Support Files/Pods-TheCroakers-TheCroakersUITests/Pods-TheCroakers-TheCroakersUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		97066C602679D94100CF2DA5 /* newEditProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newEditProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A5872FDFADD09824F8AB9F67 /* Pods-Moooby.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moooby.release.xcconfig"; path = "Target Support Files/Pods-Moooby/Pods-Moooby.release.xcconfig"; sourceTree = "<group>"; };
+		AB177FD6448C39B9AC4B8D17 /* Pods_TheCroakers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheCroakers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0AEED324AB5B52008340BD /* FollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
 		AE0AEED524AB5C15008340BD /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
 		AE0AEED724AB6AFC008340BD /* Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follow.swift; sourceTree = "<group>"; };
@@ -518,6 +521,7 @@
 		DCBFB8A5276B93A200827D7A /* AGEView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEView.swift; sourceTree = "<group>"; };
 		DCBFB8A6276B93A200827D7A /* AGEVideoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoContainer.swift; sourceTree = "<group>"; };
 		DCC206262763A17400D26E66 /* logo_animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = logo_animation.mp4; sourceTree = "<group>"; };
+		FCE3A297E6B0C96692358E47 /* Pods-TheCroakers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheCroakers.debug.xcconfig"; path = "Target Support Files/Pods-TheCroakers/Pods-TheCroakers.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -532,7 +536,7 @@
 				AEFA5DA4249CE9CA00CD7D07 /* GoogleSignIn.framework in Frameworks */,
 				AEFA5DA7249CE9FE00CD7D07 /* SafariServices.framework in Frameworks */,
 				AEFA5DA9249CEA0600CD7D07 /* LocalAuthentication.framework in Frameworks */,
-				6988554E56A86A9B4924C69B /* Pods_MusicTok.framework in Frameworks */,
+				BCA9C9C31822CE8AA23424BD /* Pods_TheCroakers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,7 +544,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86E885C36E4D79BBF06144F9 /* Pods_MusicTok_MusicTokUITests.framework in Frameworks */,
+				67BA52DC5440CBF2D8CB1C26 /* Pods_TheCroakers_TheCroakersUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,8 +1206,8 @@
 				AEFA5DA2249CE9CA00CD7D07 /* GoogleSignIn.bundle */,
 				AEFA5DA1249CE9CA00CD7D07 /* GoogleSignIn.framework */,
 				AEFA5DA0249CE9C900CD7D07 /* GoogleSignInDependencies.framework */,
-				8944BEA78B6A1349E72785FF /* Pods_MusicTok.framework */,
-				5F49875CF23EA633BBC3F685 /* Pods_MusicTok_MusicTokUITests.framework */,
+				AB177FD6448C39B9AC4B8D17 /* Pods_TheCroakers.framework */,
+				6328E05DC58EB2D8491B30CD /* Pods_TheCroakers_TheCroakersUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1245,6 +1249,10 @@
 				17F5F34674F4851C03E58252 /* Pods-MusicTok.release.xcconfig */,
 				276662BDE6D48B25B8F9BE23 /* Pods-MusicTok-MusicTokUITests.debug.xcconfig */,
 				CC7B0E3F1868CFEBFE484220 /* Pods-MusicTok-MusicTokUITests.release.xcconfig */,
+				FCE3A297E6B0C96692358E47 /* Pods-TheCroakers.debug.xcconfig */,
+				5E514A5259239A5F4AD46448 /* Pods-TheCroakers.release.xcconfig */,
+				8E27C93688EFBF0240B955E5 /* Pods-TheCroakers-TheCroakersUITests.debug.xcconfig */,
+				83A5D20363D1B927C5BB44A1 /* Pods-TheCroakers-TheCroakersUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1515,7 +1523,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "Joseph El Khoury";
 				TargetAttributes = {
 					AE543C4A2270361B00E47594 = {
@@ -1604,7 +1612,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MusicTok-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-TheCroakers-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1617,15 +1625,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MusicTok-MusicTokUITests/Pods-MusicTok-MusicTokUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheCroakers-TheCroakersUITests/Pods-TheCroakers-TheCroakersUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MusicTok-MusicTokUITests/Pods-MusicTok-MusicTokUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheCroakers-TheCroakersUITests/Pods-TheCroakers-TheCroakersUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MusicTok-MusicTokUITests/Pods-MusicTok-MusicTokUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TheCroakers-TheCroakersUITests/Pods-TheCroakers-TheCroakersUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2EEC43DDFE766F494D099E43 /* [CP] Check Pods Manifest.lock */ = {
@@ -1643,7 +1651,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MusicTok-MusicTokUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-TheCroakers-TheCroakersUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1673,15 +1681,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MusicTok/Pods-MusicTok-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheCroakers/Pods-TheCroakers-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MusicTok/Pods-MusicTok-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheCroakers/Pods-TheCroakers-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MusicTok/Pods-MusicTok-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TheCroakers/Pods-TheCroakers-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1975,6 +1983,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2000,7 +2009,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2036,6 +2045,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2055,7 +2065,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2068,7 +2078,7 @@
 		};
 		AE543C692270361C00E47594 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8967039BBA1F32DA3B49881C /* Pods-MusicTok.debug.xcconfig */;
+			baseConfigurationReference = FCE3A297E6B0C96692358E47 /* Pods-TheCroakers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2077,6 +2087,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2500;
 				DEVELOPMENT_TEAM = 33Q8URLSK7;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2144,7 +2156,7 @@
 					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
 				);
 				INFOPLIST_FILE = tictic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2193,8 +2205,6 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FIRAnalyticsConnector\"",
-					"-framework",
 					"\"FLAnimatedImage\"",
 					"-framework",
 					"\"FirebaseAnalytics\"",
@@ -2210,8 +2220,6 @@
 					"\"FirebaseDatabase\"",
 					"-framework",
 					"\"FirebaseInstallations\"",
-					"-framework",
-					"\"FirebaseInstanceID\"",
 					"-framework",
 					"\"FirebaseMessaging\"",
 					"-framework",
@@ -2260,8 +2268,6 @@
 					"\"NVActivityIndicatorView\"",
 					"-framework",
 					"\"NextLevel\"",
-					"-framework",
-					"\"ObjectMapper\"",
 					"-framework",
 					"\"PhoneNumberKit\"",
 					"-framework",
@@ -2351,7 +2357,7 @@
 		};
 		AE543C6A2270361C00E47594 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17F5F34674F4851C03E58252 /* Pods-MusicTok.release.xcconfig */;
+			baseConfigurationReference = 5E514A5259239A5F4AD46448 /* Pods-TheCroakers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2360,6 +2366,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2500;
 				DEVELOPMENT_TEAM = 33Q8URLSK7;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2427,7 +2435,7 @@
 					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
 				);
 				INFOPLIST_FILE = tictic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2476,8 +2484,6 @@
 					"-framework",
 					"\"FBSDKShareKit\"",
 					"-framework",
-					"\"FIRAnalyticsConnector\"",
-					"-framework",
 					"\"FLAnimatedImage\"",
 					"-framework",
 					"\"FirebaseAnalytics\"",
@@ -2493,8 +2499,6 @@
 					"\"FirebaseDatabase\"",
 					"-framework",
 					"\"FirebaseInstallations\"",
-					"-framework",
-					"\"FirebaseInstanceID\"",
 					"-framework",
 					"\"FirebaseMessaging\"",
 					"-framework",
@@ -2543,8 +2547,6 @@
 					"\"NVActivityIndicatorView\"",
 					"-framework",
 					"\"NextLevel\"",
-					"-framework",
-					"\"ObjectMapper\"",
 					"-framework",
 					"\"PhoneNumberKit\"",
 					"-framework",
@@ -2633,7 +2635,7 @@
 		};
 		AE543C6C2270361C00E47594 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 276662BDE6D48B25B8F9BE23 /* Pods-MusicTok-MusicTokUITests.debug.xcconfig */;
+			baseConfigurationReference = 8E27C93688EFBF0240B955E5 /* Pods-TheCroakers-TheCroakersUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2654,7 +2656,7 @@
 		};
 		AE543C6D2270361C00E47594 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC7B0E3F1868CFEBFE484220 /* Pods-MusicTok-MusicTokUITests.release.xcconfig */;
+			baseConfigurationReference = 83A5D20363D1B927C5BB44A1 /* Pods-TheCroakers-TheCroakersUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

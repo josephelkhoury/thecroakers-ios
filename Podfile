@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '12.0'
 
 target 'TheCroakers' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -31,7 +31,7 @@ target 'TheCroakers' do
   pod "GTProgressBar"
   pod 'SnapKit', '~> 5.0.0'
   pod 'CoreAnimator', '~> 2.1.4'
- # pod 'GTProgressBar'
+  #pod 'GTProgressBar'
   pod "Player"
   pod 'EFInternetIndicator'
   pod 'NVActivityIndicatorView'
@@ -45,7 +45,7 @@ target 'TheCroakers' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod "KYShutterButton"
-  #  pod 'TwitterKit'
+  #pod 'TwitterKit'
   pod 'GSPlayer'
   #pod 'ShimmerSwift'
   pod 'MDatePickerView'
@@ -61,8 +61,8 @@ target 'TheCroakers' do
   pod 'SKCountryPicker'
   #pod 'iOSAudioPlayer'
   pod 'FLAnimatedImage'
-  pod 'loading-buttons-ios'
-  pod 'XLPagerTabStrip', '~> 9.0'
+  #pod 'loading-buttons-ios'
+  pod 'XLPagerTabStrip'
   pod 'AgoraRtcEngine_iOS'
   pod 'SDWebImageWebPCoder'
   target 'TheCroakersUITests' do

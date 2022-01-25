@@ -193,7 +193,7 @@ class privacySettingViewController: UIViewController,UITableViewDelegate,UITable
     func addPrivacy(){
         
         //        print("userid: ",UserDefaults.standard.string(forKey: "userID")!)
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.addPrivacySetting(videos_download: video_download, direct_message: direct_message, duet: duet_videos, liked_videos: video_like, video_comment: comment_video, user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200{
@@ -211,7 +211,7 @@ class privacySettingViewController: UIViewController,UITableViewDelegate,UITable
     
     func getData(){
         self.privacySettingData.removeAll()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showOwnDetail(user_id: UserDefaults.standard.string(forKey: "userID")!) { (isSuccess, response) in
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200{

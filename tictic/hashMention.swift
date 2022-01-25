@@ -34,11 +34,9 @@ class AttrTextView: UITextView {
         setAttrWithName(attrName: "Mention", wordPrefix: "@", color: mentionColor, text: text, font: mentionFont)
         
         // Add tap gesture that calls a function tapRecognized when tapped
-        let tapper = UITapGestureRecognizer(target: self, action: #selector(self.tapRecognized(tapGesture:)))
-        addGestureRecognizer(tapper)
+        //let tapper = UITapGestureRecognizer(target: self, action: #selector(self.tapRecognized(tapGesture:)))
+        //addGestureRecognizer(tapper)
     }
-
-    
     
     private func setAttrWithName(attrName: String, wordPrefix: String, color: UIColor, text: String, font: UIFont) {
         //Words can be separated by either a space or a line break
@@ -55,8 +53,6 @@ class AttrTextView: UITextView {
         }
         self.attributedText = attrString
     }
-    
-    
     
     @objc func tapRecognized(tapGesture: UITapGestureRecognizer) {
         var wordString: String?         // The String value of the word to pass into callback function
@@ -96,14 +92,14 @@ class AttrTextView: UITextView {
          1. The User clicks on the "#" or "@"
          2. The User has not clicked on anything. We already checked whether or not the user clicks on nothing so 1 is the only possibility
         */
-        if wordRange != nil{
+        if wordRange != nil {
             // Get the word. This will not work if the char is "#" or "@" ie, if the user clicked on the # or @ in front of the word
             let wordLocation = offset(from: beginningOfDocument, to: wordRange!.start)
             let wordLength = offset(from: wordRange!.start, to: wordRange!.end)
             let wordAttrRange = NSMakeRange(wordLocation, wordLength)
             word = attributedText.attributedSubstring(from: wordAttrRange)
             wordString = word!.string
-        }else{
+        } else {
             /*
             Because the user has clicked on the @ or # in front of the word, word will be nil as
             tokenizer.rangeEnclosingPosition(charPosition!, with: .word, inDirection: 1) does not work with special characters.
@@ -122,7 +118,7 @@ class AttrTextView: UITextView {
             }
         }
         
-        if let stringToPass = wordString{
+        if let stringToPass = wordString {
             // Runs callback function if word is a Hashtag or Mention
             if isHashtag != nil && callBack != nil {
                 callBack!(stringToPass, wordType.hashtag)

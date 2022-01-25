@@ -104,7 +104,7 @@ class MainFFSViewController: ButtonBarPagerTabStripViewController, mainFFSDelega
     
     // Follow user API
     func followUser(rcvrID:String,userID:String,ProfileUserFollow:Int) {
-        AppUtility?.startLoader(view: view)
+        //AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.followUser(sender_id: userID, receiver_id: rcvrID) { (isSuccess, response) in
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {

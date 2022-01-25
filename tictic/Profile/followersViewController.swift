@@ -39,7 +39,7 @@ class followersViewController: UIViewController {
 
     func getFollowersAPI(){
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         var otherUserID = UserDefaults.standard.string(forKey: "otherUserID")
         

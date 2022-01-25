@@ -92,7 +92,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         format.color = "#F6F6F6".hexColor
         format.radius = 5
         format.animation = .fade
-        AppUtility?.startLoader(view: view)
+        //AppUtility?.startLoader(view: view)
         
         self.fetchSuggestedPeopleAPI()
         btnLive.isHidden =  true
@@ -529,19 +529,19 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         self.startPoint = 0;
         
         if index == 0 {
-            AppUtility?.startLoader(view: self.view)
+            //AppUtility?.startLoader(view: self.view)
             getUserVideos()
         } else if index == 1 {
-            AppUtility?.startLoader(view: self.view)
+            //AppUtility?.startLoader(view: self.view)
             getLikedVideos()
         } else {
-            AppUtility?.startLoader(view: self.view)
+            //AppUtility?.startLoader(view: self.view)
             getPrivateVideos()
         }
         self.userItemsCollectionView.reloadData()
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    /*func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let index = Int(self.userItemsCollectionView.contentOffset.x) / Int(self.userItemsCollectionView.frame.width)
         if index == 0 {
         } else {
@@ -552,7 +552,12 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
             self.pagination(index: videosMainArr.count - 1)
         }
+    }*/
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.pagination(index: videosMainArr.count - 1)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == userInfoCollectionView{
             return CGSize(width: (self.userInfoCollectionView.frame.size.width )/3, height: self.userInfoCollectionView.frame.size.height)
@@ -839,6 +844,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                         let like = "\(videoObj.value(forKey: "like") ?? "")"
                         let allowLikes = videoObj.value(forKey: "allow_likes") as! String
                         let allowComments = videoObj.value(forKey: "allow_comments") as! String
+                        let allowReplies = videoObj.value(forKey: "allow_replies") as! String
                         let videoID = videoObj.value(forKey: "id") as! String
                         let videoDesc = videoObj.value(forKey: "description") as! String
                         let allowDuet = videoObj.value(forKey: "allow_duet") as! String
@@ -864,7 +870,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                         let countryID = countryObj.value(forKey: "id")
                         let countryName = countryObj.value(forKey: "name")
                         
-                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_replies: allowReplies, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                         
                         self.userVidArr.append(video)
                     }
@@ -932,6 +938,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                                 let like = "\(videoObj.value(forKey: "like") ?? "")"
                                 let allowLikes = videoObj.value(forKey: "allow_likes") as! String
                                 let allowComments = videoObj.value(forKey: "allow_comments") as! String
+                                let allowReplies = videoObj.value(forKey: "allow_replies") as! String
                                 let videoID = videoObj.value(forKey: "id") as! String
                                 let videoDesc = videoObj.value(forKey: "description") as! String
                                 let allowDuet = videoObj.value(forKey: "allow_duet") as! String
@@ -952,7 +959,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                                 let countryID = countryObj.value(forKey: "id")
                                 let countryName = countryObj.value(forKey: "name")
                                 
-                                let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName:  "",CDPlayer: "", topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+                                let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_replies: allowReplies, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName:  "",CDPlayer: "", topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                                 
                                 self.likeVidArr.append(video)
                             }
@@ -1022,6 +1029,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                         let like = "\(videoObj.value(forKey: "like") ?? "")"
                         let allowLikes = videoObj.value(forKey: "allow_likes") as! String
                         let allowComments = videoObj.value(forKey: "allow_comments") as! String
+                        let allowReplies = videoObj.value(forKey: "allow_replies") as! String
                         let videoID = videoObj.value(forKey: "id") as! String
                         let videoDesc = videoObj.value(forKey: "description") as! String
                         let allowDuet = videoObj.value(forKey: "allow_duet") as! String
@@ -1047,7 +1055,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                         let countryID = countryObj.value(forKey: "id")
                         let countryName = countryObj.value(forKey: "name")
                         
-                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "\(soundID ?? "")", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_replies: allowReplies, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified ?? "")", soundName: "\(soundName ?? "")",CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                         
                         self.privateVidArr.append(video)
                     }
@@ -1074,7 +1082,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     // Follow user API
     func followUser(rcvrID:String,userID:String,ProfileUserFollow:Int) {
-        AppUtility?.startLoader(view: view)
+        //AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.followUser(sender_id: userID, receiver_id: rcvrID) { (isSuccess, response) in
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
@@ -1258,7 +1266,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     //block User
     func blockUser() {
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         let uid = UserDefaults.standard.string(forKey: "userID")
         let otherUid = UserDefaults.standard.string(forKey: "otherUserID")
     
@@ -1280,7 +1288,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //Logout User
     func logoutUserApi() {
         let userID = UserDefaults.standard.string(forKey: "userID")
-        AppUtility?.startLoader(view: view)
+        //AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.logout(user_id: userID! ) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
@@ -1298,7 +1306,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     
     //Report user func
     func reportUser(reportReason: String) {
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.reportUser(user_id: UserDefaults.standard.string(forKey: "userID")!, report_user_id: otherUserID, report_reason_id: "1", description: reportReason) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
@@ -1319,7 +1327,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     // DELETE VIDEO
     func deleteVideoAPI(indexPath:IndexPath) {
         let videoID = videosMainArr[indexPath.row].videoID
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.deleteVideo(video_id: videoID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
@@ -1340,7 +1348,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     //Fetch Seuggesed user
     func fetchSuggestedPeopleAPI() {
         self.suggestedUsersArr.removeAll()
-        AppUtility?.startLoader(view: view)
+        //AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.suggestedPeople(user_id: self.userID) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {

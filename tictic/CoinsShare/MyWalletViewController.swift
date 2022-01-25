@@ -106,7 +106,7 @@ class MyWalletViewController: UIViewController,UITableViewDataSource,UITableView
     
     func Add_Coin_My_Wallet(coin:String,name:String,price:String,TID:String){
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
      
         ApiHandler.sharedInstance.purchaseCoin(uid: userData[0].userID, coin: coin, title: name, price: price, transaction_id: TID){ (isSuccess, response)  in
             if isSuccess{

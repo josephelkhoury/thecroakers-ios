@@ -118,7 +118,7 @@ class soundsTableViewCell: UITableViewCell,UICollectionViewDataSource,UICollecti
     @objc func btnSelectAction(_ sender : UIButton) {
         
         TPGAudioPlayer.sharedInstance().player.pause()
-        AppUtility?.startLoader(view: self.superview!)
+        //AppUtility?.startLoader(view: self.superview!)
         print("btnSelect Tapped")
         let newObj = soundsObj[sender.tag]
         
@@ -231,7 +231,7 @@ class soundsTableViewCell: UITableViewCell,UICollectionViewDataSource,UICollecti
     
     //    MARK:- ADD FAV SOUND FUNC API
     func addFavSong(soundID:String,btnFav:UIButton){
-        AppUtility?.startLoader(view: self.superview!)
+        //AppUtility?.startLoader(view: self.superview!)
         ApiHandler.sharedInstance.addSoundFavourite(user_id: UserDefaults.standard.string(forKey: "userID")!, sound_id: soundID) { (isSuccess, response) in
             if isSuccess{
                 AppUtility?.stopLoader(view: self.superview!)

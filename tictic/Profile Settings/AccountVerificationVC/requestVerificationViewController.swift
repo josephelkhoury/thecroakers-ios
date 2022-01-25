@@ -38,7 +38,7 @@ class requestVerificationViewController: UIViewController,UIImagePickerControlle
     }
     
     func verificationAPI(){
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
 
         ApiHandler.sharedInstance.userVerificationRequest(user_id: UserDefaults.standard.string(forKey: "userID")!, attachment: ["file_data":self.imgData]) { (isSuccess, response) in
             if isSuccess{

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5QF-VE-4zg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5QF-VE-4zg">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -389,7 +389,7 @@
                                         <color key="backgroundColor" red="0.96079057459999995" green="0.95676058529999997" blue="0.96078544860000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="commentsNewTVC" rowHeight="57" id="o87-6R-NDU" customClass="commentsNewTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="57"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="57"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o87-6R-NDU" id="XjL-QN-DKl">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
@@ -1032,7 +1032,7 @@
                                 <rect key="frame" x="0.0" y="62" width="375" height="605"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="topicTVC" rowHeight="80" id="SiP-eV-ZbQ" userLabel="topicTVC" customClass="topicTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SiP-eV-ZbQ" id="ws1-TD-3fT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -1175,7 +1175,7 @@
                                 <rect key="frame" x="0.0" y="62" width="375" height="605"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="privacyTVC" rowHeight="80" id="IEc-GO-M3c" customClass="privacyTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IEc-GO-M3c" id="lJG-B5-7nD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -2359,7 +2359,7 @@
                                             <constraint firstAttribute="height" constant="128" id="x5d-dB-BaT"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uO0-ht-zuv">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uO0-ht-zuv">
                                         <rect key="frame" x="132.5" y="33" width="110" height="23"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soundsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5Pr-Yt-hhn">
@@ -2586,7 +2586,7 @@
             <objects>
                 <viewController storyboardIdentifier="newNotificationsVC" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="YAm-hz-lq7" customClass="newNotificationsViewController" customModule="TheCroakers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yfW-IJ-A1Q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWs-A9-kWe">
@@ -2598,7 +2598,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell01" rowHeight="80" id="BIb-CL-2xB" customClass="FollowTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BIb-CL-2xB" id="brW-cY-R0F">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -3143,7 +3143,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Bz-Dd-f3h" userLabel="phoneView">
                                                 <rect key="frame" x="0.0" y="0.0" width="311" height="50"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Phone / email / username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="CzU-tK-eu7">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with Email / Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="CzU-tK-eu7">
                                                         <rect key="frame" x="83" y="16.5" width="191.5" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="17" id="FkV-jG-D9J"/>
@@ -3420,7 +3420,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="4Wd-3c-KwD">
-                                        <rect key="frame" x="0.0" y="73" width="326.5" height="307"/>
+                                        <rect key="frame" x="0.0" y="62.5" width="326.5" height="317.5"/>
                                     </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4571,7 +4571,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="privacyAndSettingTableViewCell" rowHeight="45" id="7jU-BI-EhE" customClass="privacyAndSettingTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="45"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="45"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7jU-BI-EhE" id="Huo-PD-gMl">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
@@ -4581,7 +4581,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ckz-Ad-uxy">
-                                                                    <rect key="frame" x="20" y="11.5" width="20" height="22"/>
+                                                                    <rect key="frame" x="20" y="10.5" width="20" height="24"/>
                                                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="MRW-cg-Kt9"/>
@@ -4840,8 +4840,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LcY-DR-syv">
                                 <rect key="frame" x="0.0" y="68" width="375" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYt-SS-0R3">
-                                        <rect key="frame" x="0.0" y="5" width="187.5" height="30"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYt-SS-0R3">
+                                        <rect key="frame" x="0.0" y="5" width="0.0" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Phone">
                                             <color key="titleColor" name="theme"/>
@@ -4851,7 +4851,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJc-UV-aBO">
-                                        <rect key="frame" x="187.5" y="5" width="187.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="5" width="375" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Email">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4866,14 +4866,14 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Sl-UK-L4u" userLabel="phoneBaseLine">
-                                <rect key="frame" x="0.0" y="113" width="187.5" height="2"/>
+                                <rect key="frame" x="0.0" y="113" width="0.0" height="2"/>
                                 <color key="backgroundColor" name="theme"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="KTj-Uw-0kf"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doi-rg-K1A" userLabel="emailBaseLine">
-                                <rect key="frame" x="187.5" y="113" width="187.5" height="2"/>
+                                <rect key="frame" x="375" y="113" width="0.0" height="2"/>
                                 <color key="backgroundColor" name="theme"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="O3U-6y-1t2"/>
@@ -5281,7 +5281,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-H9-hBx" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="89" width="337.5" height="39"/>
+                                        <rect key="frame" x="0.0" y="89" width="337.5" height="17"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -5632,7 +5632,7 @@
                                 <rect key="frame" x="20" y="0.0" width="335" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3c-Cd-vYD" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="20" width="335" height="39"/>
+                                        <rect key="frame" x="0.0" y="20" width="335" height="18.5"/>
                                         <color key="tintColor" red="0.93387877939999997" green="0.64144575599999998" blue="0.2272979617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
@@ -6071,7 +6071,7 @@
                                                         </connections>
                                                     </collectionView>
                                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="w7N-cQ-Sr7">
-                                                        <rect key="frame" x="126.5" y="159" width="122.5" height="28"/>
+                                                        <rect key="frame" x="130" y="161" width="115.5" height="26"/>
                                                     </pageControl>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -6093,7 +6093,7 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newDiscoverTVC" rowHeight="214" id="6cJ-o0-3Fp" customClass="newDiscoverTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="375" height="214"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="214"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6cJ-o0-3Fp" id="kFY-hA-Dhz">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
@@ -6309,7 +6309,7 @@
                                 <rect key="frame" x="0.0" y="62" width="375" height="605"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="privacyAndSettingTVC" rowHeight="80" id="0hr-N1-TWv" customClass="privacyAndSettingTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0hr-N1-TWv" id="MMN-Bh-udD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -6517,7 +6517,7 @@
                                         <rect key="frame" x="0.0" y="124" width="375" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3Q-N4-TWU">
-                                                <rect key="frame" x="17" y="8" width="96.5" height="17"/>
+                                                <rect key="frame" x="17" y="8" width="96" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -6797,7 +6797,7 @@
             <objects>
                 <viewController storyboardIdentifier="newProfileVC" id="4Vg-f3-luC" customClass="newProfileViewController" customModule="TheCroakers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="orM-Qk-h64">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="951"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8K-60-efg">
@@ -7714,7 +7714,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchSoundTVC" rowHeight="80" id="jQt-BS-Ir1" customClass="searchSoundTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jQt-BS-Ir1" id="bnE-O1-n8r">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -7862,7 +7862,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchHashtagsTVC" rowHeight="50" id="jic-97-3pS" customClass="searchHashtagsTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jic-97-3pS" id="DcN-0N-6Mq">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -8125,7 +8125,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchUsersTVC" rowHeight="90" id="Sdm-tZ-y9W" customClass="searchUsersTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sdm-tZ-y9W" id="klK-5p-vbM">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -8341,7 +8341,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reportTVC" rowHeight="49" id="qxI-Xd-fCT" customClass="reportTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="49"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qxI-Xd-fCT" id="ybE-Op-C74">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -8561,7 +8561,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="countryCodeTVC" rowHeight="78" id="h4J-3H-5f4" customClass="countryCodeTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="78"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h4J-3H-5f4" id="uLk-Ha-ZYg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
@@ -8697,7 +8697,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userChatCell" rowHeight="80" id="OFb-hL-OaQ" customClass="ChatTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OFb-hL-OaQ" id="mUA-mj-BDt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -8910,7 +8910,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell1" id="JG6-BH-l1F" customClass="ChatTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="107"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JG6-BH-l1F" id="Xvg-4e-6hO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
@@ -8969,7 +8969,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell2" id="Ngf-Ef-V7m" customClass="ChatTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="135" width="375" height="190"/>
+                                        <rect key="frame" x="0.0" y="151.5" width="375" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ngf-Ef-V7m" id="XDw-fE-LJP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
@@ -9005,7 +9005,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell3" id="hDB-3z-vfL" customClass="ChatTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325" width="375" height="107"/>
+                                        <rect key="frame" x="0.0" y="341.5" width="375" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hDB-3z-vfL" id="QCd-hY-hLS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
@@ -9064,7 +9064,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell4" id="W9w-BS-zdx" customClass="ChatTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="432" width="375" height="190"/>
+                                        <rect key="frame" x="0.0" y="448.5" width="375" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W9w-BS-zdx" id="EtE-ok-YUd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
@@ -9406,7 +9406,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favSoundsTVC" rowHeight="80" id="DMa-Ix-VYz" customClass="favSoundsTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DMa-Ix-VYz" id="rqw-lL-uIU">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -9525,7 +9525,7 @@
                                 <color key="separatorColor" red="0.922031343" green="0.55096179249999999" blue="0.1134601608" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="soundsTVC" rowHeight="296" id="kgk-Kl-x3E" userLabel="soundsTVC" customClass="soundsTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="296"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="296"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kgk-Kl-x3E" id="JOs-xd-MpW">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="296"/>
@@ -9793,7 +9793,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allSoundsTVC" rowHeight="80" id="4yE-gS-IlI" customClass="allSoundsTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4yE-gS-IlI" id="Z9z-zu-FUa">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -10664,7 +10664,7 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="privacySettingTVC" rowHeight="40" id="cbK-eV-MOL" customClass="privacySettingTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="301" height="40"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="301" height="40"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cbK-eV-MOL" id="b8w-cl-jb9">
                                                             <rect key="frame" x="0.0" y="0.0" width="301" height="40"/>
@@ -10770,7 +10770,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchHashtagsTVC" rowHeight="50" id="IcN-cf-7nG" customClass="searchHashtagsTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IcN-cf-7nG" id="37v-e1-CDD">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -10885,7 +10885,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchSoundTVC" rowHeight="80" id="gW2-kG-xqU" customClass="searchSoundTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gW2-kG-xqU" id="saN-c1-UYa">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -11264,7 +11264,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="followTVC" rowHeight="98" id="cSP-Rj-VaS" customClass="followTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cSP-Rj-VaS" id="1iK-ng-SP3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
@@ -11413,7 +11413,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="followTVC" rowHeight="98" id="1Lg-WF-eyj" customClass="followTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Lg-WF-eyj" id="mjq-dj-f5b">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
@@ -12162,7 +12162,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentsNewTVC" rowHeight="60" id="ioJ-se-Lyj" customClass="commentsNewTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="306" height="60"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="306" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ioJ-se-Lyj" id="a94-xN-yfN">
                                             <rect key="frame" x="0.0" y="0.0" width="306" height="60"/>
@@ -12375,7 +12375,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.96852236989999996" green="0.96868795159999999" blue="0.96851199870000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <pickerView key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="YKT-0H-ERG">
-                            <rect key="frame" x="0.0" y="323" width="375" height="200"/>
+                            <rect key="frame" x="0.0" y="345" width="375" height="200"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -12387,7 +12387,7 @@
                             <tableViewSection id="tft-Zo-3IR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="167" id="cW0-9q-6Ok">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="167"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="167"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cW0-9q-6Ok" id="Zw3-ah-T5W">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
@@ -12466,7 +12466,7 @@
                             <tableViewSection id="bYv-qs-1be">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nZq-Zu-97J">
-                                        <rect key="frame" x="0.0" y="251" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="278.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nZq-Zu-97J" id="Avf-AE-WK5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -12940,7 +12940,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CoinShareCell" rowHeight="60" id="fyC-mn-cTr" customClass="CoinShareTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fyC-mn-cTr" id="YpM-p4-RpJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -13760,7 +13760,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ffsTVC" id="lAS-EC-DfE" customClass="ffsTVC" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="68.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="68.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lAS-EC-DfE" id="EJ1-wP-2dc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="68.5"/>
@@ -13892,7 +13892,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ffsTVC" id="eg7-Js-UKH" customClass="ffsTVC" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="66"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eg7-Js-UKH" id="5hq-72-oHY">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
@@ -14029,7 +14029,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ffsTVC" id="VSQ-0X-J9d" customClass="ffsTVC" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="62"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="62"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VSQ-0X-J9d" id="oeZ-Az-ClG">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
@@ -14246,7 +14246,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FindFriendsTVC" id="LKI-iZ-n9H" customClass="FindFriendsTVC" customModule="TheCroakers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="62"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LKI-iZ-n9H" id="eug-I6-Gqx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
@@ -14731,7 +14731,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="privacyAndSettingTableViewCell" rowHeight="45" id="YjV-N2-wcI" customClass="privacyAndSettingTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="45"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="45"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YjV-N2-wcI" id="RQn-v2-4xG">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
@@ -15630,7 +15630,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="switchAccountTableViewCell" rowHeight="75" id="8x5-LD-NW5" customClass="switchAccountTableViewCell" customModule="TheCroakers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="375" height="75"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8x5-LD-NW5" id="Z80-nl-cqi">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -15712,7 +15712,7 @@
             <objects>
                 <viewController storyboardIdentifier="HomeVideoViewController" id="VQa-JW-VwC" customClass="HomeVideoViewController" customModule="TheCroakers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kV6-lj-mvX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AdQ-lq-Ta4">
@@ -16399,7 +16399,7 @@
             <objects>
                 <viewController id="UFd-m5-9os" customClass="DiscoverViewController" customModule="TheCroakers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="flB-GF-HPt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4G-ZT-pzj" userLabel="mainView">
@@ -16488,7 +16488,7 @@
     </scenes>
     <designables>
         <designable name="6eI-dd-7E5">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="95" height="17"/>
         </designable>
         <designable name="78c-0Q-L9T">
             <size key="intrinsicContentSize" width="1500" height="1500"/>
@@ -16497,16 +16497,16 @@
             <size key="intrinsicContentSize" width="150" height="84"/>
         </designable>
         <designable name="EiP-JG-hoN">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
         </designable>
         <designable name="F2W-H9-hBx">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="62.5" height="17"/>
         </designable>
         <designable name="FKv-bv-FPq">
-            <size key="intrinsicContentSize" width="337.5" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="62.5" height="17"/>
         </designable>
         <designable name="H2M-Gx-k7a">
-            <size key="intrinsicContentSize" width="37.5" height="16.5"/>
+            <size key="intrinsicContentSize" width="36" height="17.5"/>
         </designable>
         <designable name="NuG-Va-e4G">
             <size key="intrinsicContentSize" width="163.33333333333334" height="163"/>
@@ -16521,25 +16521,22 @@
             <size key="intrinsicContentSize" width="64" height="30"/>
         </designable>
         <designable name="dEU-F0-gpN">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="64.5" height="18.5"/>
         </designable>
         <designable name="dek-49-pB7">
-            <size key="intrinsicContentSize" width="18" height="17"/>
+            <size key="intrinsicContentSize" width="58" height="17"/>
         </designable>
         <designable name="e3c-Cd-vYD">
-            <size key="intrinsicContentSize" width="335" height="39.220703125"/>
-        </designable>
-        <designable name="g8V-F9-x0H">
-            <size key="intrinsicContentSize" width="30" height="34"/>
+            <size key="intrinsicContentSize" width="34.5" height="18.5"/>
         </designable>
         <designable name="gIi-Kh-0ib">
             <size key="intrinsicContentSize" width="50" height="50"/>
         </designable>
         <designable name="gM6-m0-mCm">
-            <size key="intrinsicContentSize" width="18" height="17"/>
+            <size key="intrinsicContentSize" width="58" height="17"/>
         </designable>
         <designable name="hws-AG-qE2">
-            <size key="intrinsicContentSize" width="345" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="66" height="18.5"/>
         </designable>
         <designable name="ivR-Iy-Bml">
             <size key="intrinsicContentSize" width="119" height="18.5"/>
@@ -16548,13 +16545,13 @@
             <size key="intrinsicContentSize" width="26.5" height="18.5"/>
         </designable>
         <designable name="p6A-Lq-p52">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="117.5" height="17"/>
         </designable>
         <designable name="rrU-vZ-3dA">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="88.5" height="17"/>
         </designable>
         <designable name="rxf-cC-L0X">
-            <size key="intrinsicContentSize" width="326" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="66" height="18.5"/>
         </designable>
         <designable name="rzc-30-Z7R">
             <size key="intrinsicContentSize" width="90" height="17"/>

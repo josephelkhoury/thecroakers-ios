@@ -150,7 +150,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             liked = false
         }
         
-        if post.allow_duet == "0" {
+        if post.allow_replies == "0" {
             replyBtn.isHidden = true;
             replyLbl.isHidden = true;
         } else {
@@ -166,12 +166,19 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             self.playerView.contentMode = .scaleAspectFill
         }
         
-        if self.arrVideo?.main_video_id != "<null>" {
+        if post.main_video_id != "<null>" {
+            musicBtn.isHidden = false
+            sourceRepliesLbl.isHidden = false
             musicBtn.isSelected = true
             sourceRepliesLbl.text = "Original"
-        } else {
+        } else if post.allow_replies == "1" {
+            musicBtn.isHidden = false
+            sourceRepliesLbl.isHidden = false
             musicBtn.isSelected = false
             sourceRepliesLbl.text = "Croaks"
+        } else {
+            musicBtn.isHidden = true
+            sourceRepliesLbl.isHidden = true
         }
         
         self.captionLbl.setText(text: post.description,textColor: .white, withHashtagColor: #colorLiteral(red: 0.7580462098, green: 0.8360280395, blue: 0.4221232533, alpha: 1), andMentionColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), andCallBack: { (strng, type) in
@@ -212,14 +219,14 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
     
     func replay() {
         if !isPlaying {
-            playerView.play(for: URL(string: self.videoURL!) as! URL,filterName:"",filterIndex:0)
+            playerView.play(for: URL(string: self.videoURL!) as! URL)
             play()
         }
     }
     
     func play() {
         musicLbl.holdScrolling = false
-        playerView.play(for: URL(string: self.videoURL!) as! URL,filterName:"",filterIndex:0)
+        playerView.play(for: URL(string: self.videoURL!) as! URL)
         playerView.isHidden = false
         isPlaying = true
     }

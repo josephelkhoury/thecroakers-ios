@@ -21,7 +21,6 @@ class Notifications: NSObject {
     var fb_id:String! = ""
     var Vvalue:String! = ""
     
-    
     init(effected_fb_id: String!, first_name: String!, last_name: String!,profile_pic: String!, v_id: String!, username: String!,type: String!,fb_id: String!,Vvalue: String!) {
         
         self.effected_fb_id = effected_fb_id

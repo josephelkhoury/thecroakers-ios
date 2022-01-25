@@ -84,7 +84,7 @@ class UpdatePhoneNumberViewController: UIViewController {
     func changePhoneNumber(){
         self.myUser = User.readUserFromArchive()
         let phoneNoNew = dialCode + phoneNoTxtField.text!
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.changePhoneNumber(user_id: (self.myUser?[0].id)!, phone: phoneNoNew) { (isSuccess, response) in
             if isSuccess{
                 AppUtility?.stopLoader(view: self.view)

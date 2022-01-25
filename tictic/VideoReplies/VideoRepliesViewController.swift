@@ -58,7 +58,7 @@ class VideoRepliesViewController: UIViewController {
             userID = ""
         }
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.showVideoReplies(user_id: userID!, video_id: video_id, starting_point:starting_point) { (isSuccess, response) in
             
@@ -87,6 +87,7 @@ class VideoRepliesViewController: UIViewController {
                         let like = "\(videoObj.value(forKey: "like") ?? "")"
                         let allowLikes = videoObj.value(forKey: "allow_likes") as! String
                         let allowComments = videoObj.value(forKey: "allow_comments") as! String
+                        let allowReplies = videoObj.value(forKey: "allow_replies") as! String
                         let videoID = videoObj.value(forKey: "id") as! String
                         let videoDesc = videoObj.value(forKey: "description") as! String
                         let allowDuet = videoObj.value(forKey: "allow_duet") as! String
@@ -107,7 +108,7 @@ class VideoRepliesViewController: UIViewController {
                         let countryID = countryObj.value(forKey: "id")
                         let countryName = countryObj.value(forKey: "name")
                     
-                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: "", CDPlayer: "", topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
+                        let video = videoMainMVC(videoID: videoID, videoUserID: "", fb_id: "", description: videoDesc, videoURL: videoUrl, videoTHUM: videoThum, videoGIF: videoGif, view: views, section: "", sound_id: "", privacy_type: "", allow_likes: allowLikes, allow_comments: allowComments, allow_replies: allowReplies, allow_duet: allowDuet, block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: created, like: like, favourite: "", comment_count: videoComments, like_count: videoLikes, followBtn: "", duetVideoID: "\(duetVidID!)", userID: userID, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImg, role: "", username: username, social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: "", CDPlayer: "", topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                         
                         self.videoRepliesArr.append(video)
                         
@@ -135,7 +136,7 @@ class VideoRepliesViewController: UIViewController {
             return
         }
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         
         ApiHandler.sharedInstance.addHashtagFavourite(user_id: uid!, hashtag_id: self.hashtagData["id"] as! String) { (isSuccess, response) in
             

@@ -116,7 +116,7 @@ class CoinShareViewController: UIViewController,UICollectionViewDataSource,UICol
     //MARK:-API Handler
     func getAllCoinsSticker(){
 
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
      
         ApiHandler.sharedInstance.showGifts{ (isSuccess, response) in
             if isSuccess{

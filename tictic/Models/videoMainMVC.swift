@@ -22,6 +22,7 @@ struct videoMainMVC {
     let privacy_type:String
     let allow_likes:String
     let allow_comments:String
+    let allow_replies:String
     let allow_duet:String
     let block:String
     let main_video_id:String

@@ -150,7 +150,7 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
             
             let time = Date().millisecondsSince1970
 
-            AppUtility?.startLoader(view: self.view)
+            //AppUtility?.startLoader(view: self.view)
             ChatDBhandler.shared.sendImage(senderID: senderID, receiverID: receiverID, image: imagedata, seen: false, time: time, type: "pic") { (result, url) in
                 if result == true {
                     print("image sent")

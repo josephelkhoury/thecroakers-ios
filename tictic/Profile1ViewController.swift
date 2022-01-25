@@ -136,8 +136,8 @@ class Profile1ViewController: UIViewController,UICollectionViewDelegate,UICollec
     func getFBUserData(){
         
         let sv = HomeViewController.displaySpinner(onView: self.view)
-        if((AccessToken.current) != nil){
-            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completionHandler: { (connection, result, error) -> Void in
+        if ((AccessToken.current) != nil) {
+            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completion: { (connection, result, error) -> Void in
                 if (error == nil){
                     let dict = result as! [String : AnyObject]
                     print(dict)
@@ -148,7 +148,7 @@ class Profile1ViewController: UIViewController,UICollectionViewDelegate,UICollec
                             
                             self.alertModule(title:"Error", msg:"You cannot login with this facebook account because your facebook is not linked with any email")
                             
-                        }else{
+                        } else {
                             HomeViewController.removeSpinner(spinner: sv)
                             self.email = dict["email"] as? String
                             self.first_name = dict["first_name"] as? String
@@ -165,7 +165,7 @@ class Profile1ViewController: UIViewController,UICollectionViewDelegate,UICollec
                         }
                     }
                     
-                }else{
+                } else {
                     
                     HomeViewController.removeSpinner(spinner: sv)
                     

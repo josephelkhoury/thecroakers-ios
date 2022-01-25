@@ -77,7 +77,7 @@ class termsCondViewController:UIViewController,WKUIDelegate,WKNavigationDelegate
         print("Start to load")
 //        self.activityIndicator.startAnimating()
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("finish to load")

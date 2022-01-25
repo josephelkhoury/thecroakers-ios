@@ -28,6 +28,10 @@ class NewEditProfileViewController: UIViewController {
     }
     
     func setup() {
+        guard userData.count > 0 else {
+            return;
+        }
+        
         let userObj = userData[0]
         let name = (userObj.first_name) + " " + (userObj.last_name)
         self.profileImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -37,6 +41,7 @@ class NewEditProfileViewController: UIViewController {
         self.btnCopyLink.setTitle(BASE_URL+userObj.username, for: .normal)
         self.btnBio.setTitle(userObj.bio, for: .normal)
         self.btnWeb.setTitle(userObj.website, for: .normal)
+        
     }
 
     @IBAction func backPressed(_ sender: UIButton) {

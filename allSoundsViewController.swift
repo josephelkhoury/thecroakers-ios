@@ -136,7 +136,7 @@ class allSoundsViewController: UIViewController,UITableViewDataSource,UITableVie
     @objc func btnSelectAction(_ sender : UIButton) {
         
         TPGAudioPlayer.sharedInstance().player.pause()
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         print("btnSelect Tapped")
         let newObj = soundsDataArr[sender.tag]
         
@@ -217,7 +217,7 @@ class allSoundsViewController: UIViewController,UITableViewDataSource,UITableVie
     }
     func getSounds(){
         
-        AppUtility?.startLoader(view: self.view)
+        //AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.showSoundsAgainstSection(user_id: "0", starting_point: "\(self.startingPoint)", sectionID: self.sectionID) { (isSuccess, response) in
             if isSuccess{
                 if response?.value(forKey: "code") as! NSNumber == 200{

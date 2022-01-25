@@ -140,7 +140,7 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
             
             print("access token fb: ",AccessToken.current!)
             
-            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completionHandler: { (connection, result, error) -> Void in
+            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completion: { (connection, result, error) -> Void in
                 if (error == nil) {
                     let dict = result as! [String : AnyObject]
                     print(dict)

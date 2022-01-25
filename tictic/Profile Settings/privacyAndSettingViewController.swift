@@ -89,7 +89,7 @@ class privacyAndSettingViewController: UIViewController,UITableViewDelegate,UITa
     func logoutUserApi(){
         let userID = UserDefaults.standard.string(forKey: "userID")
         print("user id: ",userID as Any)
-        AppUtility?.startLoader(view: view)
+        //AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.logout(user_id: userID! ) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess{

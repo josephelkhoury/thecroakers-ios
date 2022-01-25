@@ -31,7 +31,7 @@ class NewSuggestionViewController: UIViewController, IndicatorInfoProvider {
     
     func fetchSuggestedPeopleAPI() {
         self.userData.removeAll()
-        AppUtility?.startLoader(view: view)
+        //AppUtility?.startLoader(view: view)
         ApiHandler.sharedInstance.suggestedPeople(user_id: UserDefaults.standard.string(forKey: "userID") ?? "") { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             let code = response?.value(forKey: "code") as! NSNumber

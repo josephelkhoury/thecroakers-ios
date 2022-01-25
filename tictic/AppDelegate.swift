@@ -12,7 +12,6 @@ import FBSDKCoreKit
 import FirebaseCore
 import GoogleSignIn
 import FirebaseMessaging
-import FirebaseInstanceID
 import UserNotifications
 import SDWebImage
 
@@ -76,14 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
         Messaging.messaging().delegate = self
         Messaging.messaging().isAutoInitEnabled = true
         Messaging.messaging().subscribe(toTopic: "topicEventSlotUpdated")
-        InstanceID.instanceID().instanceID { (result, error) in
-            if let error = error {
-                print("Error fetching remote instance ID: \(error)")
-            } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
-                AppUtility?.saveObject(obj: result.token, forKey: "DeviceToken")
-            }
-        }
         
         application.registerForRemoteNotifications()
         
@@ -179,6 +170,13 @@ extension AppDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken as Data
+        Messaging.messaging().token { (token, error) in
+            if let error = error {
+                print("Error fetching remote instance ID: \(error.localizedDescription)")
+            } else if let token = token {
+                print("Token is \(token)")
+            }
+        }
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingMessageInfo) {
