@@ -54,7 +54,6 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                         let notiObj = notificationsMVC(notificationString: notiString, id: notiID, sender_id: sender_id, receiver_id: receiver_id, type: type, video_id: video_id, senderName: senderUserame, senderFirstName: senderFirstName, receiverName: receiverName, senderImg: senderImg)
                         
                         self.notificationsArr.append(notiObj)
-
                     }
                     AppUtility?.stopLoader(view: self.view)
                     self.notificationTblView.reloadData()
@@ -62,7 +61,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                     AppUtility?.stopLoader(view: self.view)
 //                    self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
                     
-                    print("!200",response?.value(forKey: "msg"))
+                    print("!200", response?.value(forKey: "msg"))
                 }
             } else {
                 self.showToast(message: "Failed to load notifications", font: .systemFont(ofSize: 12))
@@ -84,9 +83,11 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         
         cell.folow_name.text = obj.senderName
         cell.folow_username.text = obj.notificationString
-        if(obj.type == "video_like") {
+        if (obj.type == "video_like") {
             cell.foolow_btn_view.alpha = 1
         } else if(obj.type == "video_comment") {
+            cell.foolow_btn_view.alpha = 1
+        } else if(obj.type == "video_updates") {
             cell.foolow_btn_view.alpha = 1
         } else {
             cell.foolow_btn_view.alpha = 0
@@ -109,7 +110,6 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
         cell.btnWatch.addTarget(self, action: #selector(newNotificationsViewController.btnWatchAction(_:)), for:.touchUpInside)
         
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -117,7 +117,6 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         let obj = notificationsArr[indexPath.row]
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
@@ -145,6 +144,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
     
     func getVideo(ip:IndexPath) {
         //AppUtility?.startLoader(view: self.view)
+        self.notiVidDataArr.removeAll()
         let obj = notificationsArr[ip.row]
         ApiHandler.sharedInstance.showVideoDetail(user_id: UserDefaults.standard.string(forKey: "userID")!, video_id: obj.video_id) { (isSuccess, response) in
             if isSuccess {
@@ -158,9 +158,9 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                     let topicDic = resMsg.value(forKey: "Topic") as! NSDictionary
                     let countryDic = resMsg.value(forKey: "Country") as! NSDictionary
                     
-                    print("videoDic: ",videoDic)
-                    print("userDic: ",userDic)
-                    print("soundDic: ",soundDic)
+                    print("videoDic: ", videoDic)
+                    print("userDic: ", userDic)
+                    print("soundDic: ", soundDic)
                     
                     let videoURL = videoDic.value(forKey: "video") as! String
                     let desc = videoDic.value(forKey: "description") as! String
@@ -194,7 +194,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                     
                     let videoObj = videoMainMVC(videoID: videoID, videoUserID: "\(videoUserID!)", fb_id: "", description: desc, videoURL: videoURL, videoTHUM: "", videoGIF: "", view: "", section: "", sound_id: "", privacy_type: "", allow_likes: "\(allowLikes!)", allow_comments: "\(allowComments!)", allow_replies: "\(allowReplies!)",  allow_duet: "\(allowDuet!)", block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: "", like: "", favourite: "", comment_count: "\(commentCount!)", like_count: "\(likeCount!)", followBtn: followBtn, duetVideoID: "\(duetVidID!)", userID: uid, first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImgPath, role: "", username: userName, social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: "\(soundName!)", CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
                     
-                        self.notiVidDataArr.append(videoObj)
+                    self.notiVidDataArr.append(videoObj)
                     
                     print("response@200: ",response!)
                     
@@ -204,7 +204,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                     vc.indexAt = ip*/
                     let vc =  self.storyboard?.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
                     vc.videosMainArr = self.notiVidDataArr
-                    vc.currentIndex = ip
+                    vc.currentIndex = IndexPath.init(row: 0, section: 0)
                     vc.isOtherController =  true
                     vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
@@ -224,10 +224,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            
-            
         }
-        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -242,7 +239,7 @@ class newNotificationsViewController: UIViewController,UITableViewDelegate,UITab
             self.startPoint += 1
             print("StartPoint: ",startPoint)
             self.getNotifications(startPoint: "\(self.startPoint)")
-            print("index@row: ",indexPath.row)
+            print("index@row: ", indexPath.row)
         }
     }
 

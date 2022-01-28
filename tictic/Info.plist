@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2984</string>
+	<string>3004</string>
 	<key>FacebookAppID</key>
 	<string>1042008916594737</string>
 	<key>FacebookDisplayName</key>
@@ -70,6 +70,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Proxima Nova Black.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

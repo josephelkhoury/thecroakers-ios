@@ -121,7 +121,7 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
         let locationInView = longPress.location(in: tblView)
         let indexPath = tblView.indexPathForRow(at: locationInView)!
         
-        let alert = UIAlertController.init(title: "customChat", message: "Are you sure to delete conversation ?", preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "Delete", message: "Are you sure to delete conversation ?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
             print("Cancel")
@@ -133,9 +133,8 @@ class ConversationViewController: UIViewController,UITableViewDelegate,UITableVi
             let rid = self.arrConversation[indexPath.row]["rid"] as? String ?? "rid"
             
             ChatDBhandler.shared.deleteConversation(senderID: self.senderID, receiverID: rid) { (isSuccess) in
-                if isSuccess == true
-                {
-                    print("conversation And chat is deleted: ", indexPath.row)
+                if isSuccess == true {
+                    print("conversation and chat are deleted: ", indexPath.row)
                 }
             }
         }))

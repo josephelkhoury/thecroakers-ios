@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        AppUtility?.getIPAddress()
+        //AppUtility?.getIPAddress()
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -112,12 +112,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
             // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
+            //let userId = user.userID                  // For client-side use only!
+            //let idToken = user.authentication.idToken // Safe to send to the server
+            //let fullName = user.profile.name
+            //let givenName = user.profile.givenName
+            //let familyName = user.profile.familyName
+            //let email = user.profile.email
             // ...
         } else {
             print("\(error.localizedDescription)")
@@ -135,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         UserDefaults.standard.set(fcmToken, forKey:"DeviceToken")
-        print("fcm firebase token notification: ",fcmToken)
+        print("fcm firebase token notification: ", fcmToken)
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!){
@@ -175,6 +175,7 @@ extension AppDelegate {
                 print("Error fetching remote instance ID: \(error.localizedDescription)")
             } else if let token = token {
                 print("Token is \(token)")
+                AppUtility?.addDeviceData()
             }
         }
     }
@@ -204,9 +205,9 @@ extension AppDelegate {
         print(notification.request.content.userInfo)
         
         let type  = notification.request.content.userInfo[AnyHashable("gcm.notification.type")] as? String
-        let request_id  = notification.request.content.userInfo[AnyHashable("gcm.notification.request_id")] as? String
-        let receiver_id  = notification.request.content.userInfo[AnyHashable("gcm.notification.user_id")] as? String
-        let receiver_name  = notification.request.content.userInfo[AnyHashable("gcm.notification.name")] as? String
+        //let request_id  = notification.request.content.userInfo[AnyHashable("gcm.notification.request_id")] as? String
+        //let receiver_id  = notification.request.content.userInfo[AnyHashable("gcm.notification.user_id")] as? String
+        //let receiver_name  = notification.request.content.userInfo[AnyHashable("gcm.notification.name")] as? String
         print(type)
         if type == "single_message" {
             
@@ -236,13 +237,13 @@ extension AppDelegate {
         let userInfo = response.notification.request.content.userInfo as! [String:Any]
         
         let type  = userInfo["type"] as? String
-        let request_id  = userInfo["gcm.notification.request_id"] as? String
-        let receiver_id  = userInfo["gcm.notification.user_id"] as? String
-        let receiver_name  = userInfo["gcm.notification.name"] as? String
+        //let request_id  = userInfo["gcm.notification.request_id"] as? String
+        //let receiver_id  = userInfo["gcm.notification.user_id"] as? String
+        //let receiver_name  = userInfo["gcm.notification.name"] as? String
         print(userInfo)
         if type == "single_message" {
             
-            let storyMain = UIStoryboard(name: "Main", bundle: nil)
+            //let storyMain = UIStoryboard(name: "Main", bundle: nil)
             //            if let rootViewController = UIApplication.topViewController() {
             //                let vc =  storyMain.instantiateViewController(withIdentifier: "newChatViewController") as! newChatViewController
             //                vc.modalPresentationStyle = .overFullScreen

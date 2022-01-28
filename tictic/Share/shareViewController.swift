@@ -146,12 +146,13 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
                 let receiverProfile = (AppUtility?.detectURL(ipString:obj["profile_pic"] as! String))!
                 let receiverName = obj["username"] as! String
                 let time = Date().millisecondsSince1970
-                ChatDBhandler.shared.sendMessage(senderID: senderID, receiverID: receiverID, senderName: senderName, message: self.shareUrl, seen: false, time: time, type: "text") { (isSuccess) in
+                
+                ChatDBhandler.shared.sendMessage(senderID: senderID, receiverID: receiverID, senderName: senderName, message: self.shareUrl, status: "0", timestamp: time, type: "text") { (isSuccess) in
                     if isSuccess == true {
                         self.showToast(message: "Message sent", font: .systemFont(ofSize: 12))
                     }
                 }
-                ChatDBhandler.shared.userChatInbox(senderID: senderID, receiverID: receiverID, image: receiverProfile, name: receiverName, message: self.shareUrl, type: "text", seen: false, timestamp: time, date: "\(time)", status: "1") { (result) in
+                ChatDBhandler.shared.userChatInbox(senderID: senderID, receiverID: receiverID, image: receiverProfile, name: receiverName, message: self.shareUrl, type: "text", seen: false, timestamp: time, status: "1") { (result) in
                     if result == true {
                         ApiHandler.sharedInstance.sendMessageNotification(senderID: senderID, receiverID: receiverID, msg: self.shareUrl, title: senderName) { (isSuccess, response) in
                         }

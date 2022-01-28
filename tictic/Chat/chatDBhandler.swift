@@ -15,23 +15,21 @@ class ChatDBhandler
     static let shared = ChatDBhandler()
     
     //MARK:- send text messages
-    func sendMessages(uid: String, merchantId: String, message: String, seen: Bool, time: Any, type: String, completionHandler: @escaping (_ result: Bool) -> Void)
+    func sendMessages(uid: String, merchantId: String, message: String, seen: Bool, timestamp: Any, type: String, completionHandler: @escaping (_ result: Bool) -> Void)
     {
         let messages  = Database.database().reference().child("messages")
         let fromId = messages.child(uid).child(merchantId).childByAutoId()
-        let value = ["from": "\(merchantId)", "messages": "\(message)", "seen": seen, "time": time, "type": "\(type)"] as [String : Any]
+        let value = ["from": "\(merchantId)", "messages": "\(message)", "seen": seen, "timestamp": timestamp, "type": "\(type)"] as [String : Any]
         fromId.updateChildValues(value) { (error, Ref) in
-            if error != nil
-            {
+            if error != nil {
                 print("error in send message fromId: ", error!.localizedDescription)
                 AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                 completionHandler(false)
             }
             let toId = messages.child(merchantId).child(uid).child("\(fromId.key!)")
-            let value = ["from": "\(merchantId)", "messages": "\(message)", "seen": seen, "time": time, "type": "\(type)"] as [String : Any]
+            let value = ["from": "\(merchantId)", "messages": "\(message)", "seen": seen, "timestamp": timestamp, "type": "\(type)"] as [String : Any]
             toId.updateChildValues(value) { (error, Ref) in
-                if error != nil
-                {
+                if error != nil {
                     print("error in send message toId: ", error!.localizedDescription)
                     AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                     completionHandler(false)
@@ -43,24 +41,22 @@ class ChatDBhandler
     }
     
     //MARK:- send text message
-    func sendMessage(senderID: String, receiverID: String,senderName: String, message: String, seen: Bool, time: Any, type: String, completionHandler: @escaping (_ result: Bool) -> Void)
+    func sendMessage(senderID: String, receiverID: String,senderName: String, message: String, status: String, timestamp: Any, type: String, completionHandler: @escaping (_ result: Bool) -> Void)
     {
         let messages  = Database.database().reference().child("chat")
         let chatOf = messages.child(senderID+"-"+receiverID).childByAutoId()
-        let value = ["chat_id": "\(chatOf.key!)", "text": "\(message)","pic_url":"","sender_id":senderID,"receiver_id":receiverID,"sender_name":senderName ,"seen": seen, "time": time, "type": "\(type)"] as [String : Any]
+        let value = ["chat_id": "\(chatOf.key!)", "text": "\(message)","pic_url":"","sender_id":senderID,"receiver_id":receiverID,"sender_name":senderName ,"status": status, "timestamp": timestamp, "type": "\(type)"] as [String : Any]
         chatOf.updateChildValues(value) { (error, Ref) in
-            if error != nil
-            {
+            if error != nil {
                 print("error in send message fromId: ", error!.localizedDescription)
                 AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                 completionHandler(false)
             }
             
             let toId = messages.child(receiverID+"-"+senderID).child("\(chatOf.key!)")
-            let value = ["chat_id": "\(chatOf.key!)", "text": "\(message)","pic_url":"","sender_id":senderID,"receiver_id":receiverID,"sender_name":senderName ,"seen": seen, "time": time, "type": "\(type)"] as [String : Any]
+            let value = ["chat_id": "\(chatOf.key!)", "text": "\(message)","pic_url":"","sender_id":senderID,"receiver_id":receiverID,"sender_name":senderName ,"status": status, "timestamp": timestamp, "type": "\(type)"] as [String : Any]
             toId.updateChildValues(value) { (error, Ref) in
-                if error != nil
-                {
+                if error != nil {
                     print("error in send message toId: ", error!.localizedDescription)
                     AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                     completionHandler(false)
@@ -113,16 +109,15 @@ class ChatDBhandler
     
    */
     //MARK:- send user-Chat
-    func userChatInbox(senderID: String, receiverID: String, image: String, name: String, message: String, type: String, seen: Bool, timestamp: Any, date:String,status:String,completionHandler: @escaping (_ result: Bool) -> Void)
+    func userChatInbox(senderID: String, receiverID: String, image: String, name: String, message: String, type: String, seen: Bool, timestamp: Any, status:String,completionHandler: @escaping (_ result: Bool) -> Void)
      {
          let Inbox  = Database.database().reference().child("Inbox")
          
          let fromId = Inbox.child(senderID).child(receiverID)
-         let value = ["rid": "\(receiverID)", "pic": "\(image)", "name": "\(name)", "msg": "\(message)", "type": "\(type)", "seen": seen, "timestamp": timestamp,"date": date,"status": status] as [String : Any]
+         let value = ["rid": "\(receiverID)", "pic": "\(image)", "name": "\(name)", "msg": "\(message)", "type": "\(type)", "seen": seen, "timestamp": timestamp, "status": status] as [String : Any]
          
          fromId.updateChildValues(value) { (error, Ref) in
-             if error != nil
-             {
+             if error != nil {
                  print("error in send message fromId: ", error!.localizedDescription)
                 AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                  completionHandler(false)
@@ -137,16 +132,14 @@ class ChatDBhandler
                      
             var myUser: [User]? {didSet {}}
             myUser = User.readUserFromArchive()
-            print("myUser: ",myUser![0].username)
             let senderName = myUser![0].username
             let senderProfile = (AppUtility?.detectURL(ipString: myUser![0].profile_pic))!
             
              let toId = Inbox.child(receiverID).child(senderID)
-             let value = ["rid": "\(senderID)", "pic": "\(senderProfile)", "name": "\(senderName!)", "msg": "\(message)", "type": "\(type)", "seen": seen, "timestamp": timestamp,"date": date,"status": status] as [String : Any]
+             let value = ["rid": "\(senderID)", "pic": "\(senderProfile)", "name": "\(senderName!)", "msg": "\(message)", "type": "\(type)", "seen": seen, "timestamp": timestamp, "status": status] as [String : Any]
              
              toId.updateChildValues(value) { (error, Ref) in
-                 if error != nil
-                 {
+                 if error != nil {
                      print("error in send message toId: ", error!.localizedDescription)
                     AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                      completionHandler(false)
@@ -195,7 +188,7 @@ class ChatDBhandler
     */
     
     //MARK:- send image message
-    func sendImage(senderID: String, receiverID: String, image: Data, seen: Bool, time: Any, type: String, completionHandler: @escaping (_ result: Bool,_ url: String) -> Void)
+    func sendImage(senderID: String, receiverID: String, image: Data, status: String, timestamp: Any, type: String, completionHandler: @escaping (_ result: Bool,_ url: String) -> Void)
     {
 //        AppUtility.shared.showLoader(message: "Please wait...")
         
@@ -204,23 +197,19 @@ class ChatDBhandler
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
         storageRef.putData(image, metadata: metadata) { (storageMetaData, error) in
-            if error != nil
-            {
+            if error != nil {
                 print("error in upload photo: ", error!.localizedDescription)
 //                AppUtility.shared.hideLoader()
                 AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                 completionHandler(false, "")
             }
             storageRef.downloadURL { (url, error) in
-                if error != nil
-                {
+                if error != nil {
                     print("error in download url photo: ", error!.localizedDescription)
 //                    AppUtility.shared.hideLoader()
                     AppUtility!.displayAlert(title: "customChat", message: error!.localizedDescription)
                     completionHandler(false, "")
-                }
-                else
-                {
+                } else {
                     /*
                     self.sendMessage(uid: uid, merchantId: merchantId, message: "\(url!)", seen: seen, time: time, type: type) { (isSuccess) in
                         completionHandler(true, "\(url!)")
@@ -229,11 +218,10 @@ class ChatDBhandler
                     */
                     var myUser: [User]? {didSet {}}
                     myUser = User.readUserFromArchive()
-                    print("myUser: ",myUser![0].username)
                     let senderName = myUser![0].username
                     let senderProfile = (AppUtility?.detectURL(ipString: myUser![0].profile_pic))!
                     
-                    self.sendMessage(senderID: senderID, receiverID: receiverID, senderName: senderName!, message: "\(url!)", seen: seen, time: time, type: type) { (isSuccess) in
+                    self.sendMessage(senderID: senderID, receiverID: receiverID, senderName: senderName!, message: "\(url!)", status: status, timestamp: timestamp, type: type) { (isSuccess) in
                         completionHandler(true, "\(url!)")
 //                         AppUtility.shared.hideLoader()
                     }
@@ -248,8 +236,7 @@ class ChatDBhandler
         let messages = Database.database().reference().child("messages").child(uid).child(merchantId)
         messages.observe(.value, with: { (dataSnapshot) in
             
-            if let dict = dataSnapshot.value as? [String: Any]
-            {
+            if let dict = dataSnapshot.value as? [String: Any] {
                 completionHandler(true, dict)
             }
             
@@ -299,8 +286,7 @@ class ChatDBhandler
     {
         let Chat = Database.database().reference().child("Inbox").child(senderID).child(receiverID)
         Chat.removeValue { (error, dbRef) in
-            if error != nil
-            {
+            if error != nil {
 //                AppUtility.shared.hideLoader()
                 print("Error in remove chat: ", error!.localizedDescription)
                 AppUtility!.displayAlert(title: "The Croakers", message: error!.localizedDescription)
@@ -308,8 +294,7 @@ class ChatDBhandler
             }
             let messages = Database.database().reference().child("chat").child(senderID+"-"+receiverID)
             messages.removeValue { (error, Ref) in
-                if error != nil
-                {
+                if error != nil {
 //                    AppUtility.shared.hideLoader()
                     print("Error in remove chat: ", error!.localizedDescription)
                     AppUtility!.displayAlert(title: "The Croakers", message: error!.localizedDescription)

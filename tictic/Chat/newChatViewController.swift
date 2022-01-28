@@ -104,7 +104,7 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
                 for key in message {
                     let messages = key.value as? [String : Any] ?? [:]
                     self.arrMessages.append(messages)
-                    self.arrMessages.sort(by: { ("\($0["time"]!)") < ("\($1["time"]!)") })
+                    self.arrMessages.sort(by: { ("\($0["timestamp"]!)") < ("\($1["timestamp"]!)") })
                     self.scrollToBottom()
                 }
                 self.tblView.reloadData()
@@ -151,11 +151,11 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
             let time = Date().millisecondsSince1970
 
             //AppUtility?.startLoader(view: self.view)
-            ChatDBhandler.shared.sendImage(senderID: senderID, receiverID: receiverID, image: imagedata, seen: false, time: time, type: "pic") { (result, url) in
+            ChatDBhandler.shared.sendImage(senderID: senderID, receiverID: receiverID, image: imagedata, status: "0", timestamp: time, type: "pic") { (result, url) in
                 if result == true {
                     print("image sent")
 
-                    ChatDBhandler.shared.userChatInbox(senderID: self.senderID, receiverID: self.receiverID, image: self.receiverProfile, name: self.receiverName, message: url, type: "pic", seen: false, timestamp: time, date: "\(time)", status: "1") { (result) in
+                    ChatDBhandler.shared.userChatInbox(senderID: self.senderID, receiverID: self.receiverID, image: self.receiverProfile, name: self.receiverName, message: url, type: "pic", seen: false, timestamp: time, status: "0") { (result) in
                         if result == true {
                             print("user Sent")
                             self.sendMsgNoti()
@@ -277,7 +277,7 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
             print("sender: \(senderID) && receiver: \(receiverID)")
             
             print("self.txtMessage.text: ",self.txtMessage.text!)
-            ChatDBhandler.shared.sendMessage(senderID: senderID, receiverID: receiverID, senderName: self.senderName, message: self.txtMessage.text!, seen: false, time: time, type: "text") { (isSuccess) in
+            ChatDBhandler.shared.sendMessage(senderID: senderID, receiverID: receiverID, senderName: self.senderName, message: self.txtMessage.text!, status: "0", timestamp: time, type: "text") { (isSuccess) in
                 if isSuccess == true{
                     print("Message Sent")
                 }
@@ -293,9 +293,8 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
              }
              }
              */
-            ChatDBhandler.shared.userChatInbox(senderID: self.senderID, receiverID: self.receiverID, image: receiverProfile, name: self.receiverName, message: self.txtMessage.text!, type: "text", seen: false, timestamp: time, date: "\(time)", status: "1") { (result) in
-                if result == true
-                {
+            ChatDBhandler.shared.userChatInbox(senderID: self.senderID, receiverID: self.receiverID, image: receiverProfile, name: self.receiverName, message: self.txtMessage.text!, type: "text", seen: false, timestamp: time, status: "1") { (result) in
+                if result == true {
                     print("user Sent")
                     
                     //                    ChatDBhandler.shared.sendPushNotification(to: self.userToken, title: self.currentUserName, body: "Send an Image")
@@ -329,10 +328,10 @@ class newChatViewController: UIViewController, UIImagePickerControllerDelegate, 
         mainMsgsArr.sort(by: { ("\($0["time"]!)") < ("\($1["time"]!)") })
         */
         
-        let time = (self.arrMessages[indexPath.row]["time"] as? Double)
+        let time = (self.arrMessages[indexPath.row]["timestamp"] as? Double)
         let date = Date(timeIntervalSince1970: (time ?? 0.0)/1000)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yy' 'HH:mm a"
+        dateFormatter.dateFormat = "dd-MM-yy hh:mm a"
         dateFormatter.amSymbol = "am"
         dateFormatter.pmSymbol = "pm"
         let dateString = dateFormatter.string(from: date)

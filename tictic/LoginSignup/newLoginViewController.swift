@@ -350,9 +350,9 @@ extension newLoginViewController:GIDSignInDelegate {
     func checkAlreadyRegistered() {
 //        let userName = first_name+last_name
         let deviceToken = UserDefaults.standard.string(forKey: "deviceKey")
-        print("Authtoken: ",authToken!)
-        print("deviceToken: ",deviceToken!)
-        print("social id: ",socialID)
+        print("Authtoken: ", authToken!)
+        print("deviceToken: ", deviceToken!)
+        print("social id: ", socialID)
         ApiHandler.sharedInstance.alreadySocialRegisteredUserCheck(social_id: socialID, social: signUPType, auth_token: authToken) { (isSuccess, response) in
             if isSuccess {
                 print("response: ",response?.allValues)
