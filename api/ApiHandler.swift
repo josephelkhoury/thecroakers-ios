@@ -12,7 +12,7 @@ import Alamofire
 
 var BASE_URL = "https://app.thecroakers.com/"
 let API_KEY = "156c4675-9608-4591-1111-00000"
-let profileQRLink = "https://\(BASE_URL)/profile/"
+let profileQRLink = BASE_URL+"/profile/"
 let API_BASE_URL = BASE_URL+"api/"
 
 let headers: HTTPHeaders = [
@@ -93,6 +93,8 @@ enum Endpoint : String {
     case applyAsPublisher         = "applyAsPublisher"
     case forgotPassword           = "forgotPassword"
     case changeForgotPassword     = "changeForgotPassword"
+    case generateShareLink        = "generateShareLink"
+    case showShareLink            = "showShareLink"
 }
 class ApiHandler:NSObject {
     var baseApiPath:String!
@@ -4031,7 +4033,7 @@ class ApiHandler:NSObject {
         }
     }
     
-    //MARK:-applyAsPublisher
+    //MARK:-forgotPassword
     func forgotPassword(email: String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let headers: HTTPHeaders = [
             "Api-Key":API_KEY,
@@ -4080,7 +4082,7 @@ class ApiHandler:NSObject {
         }
     }
     
-    //MARK:-applyAsPublisher
+    //MARK:-changeForgotPassword
     func changeForgotPassword(email:String, code:String, password:String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let headers: HTTPHeaders = [
             "Api-Key":API_KEY,
@@ -4093,6 +4095,115 @@ class ApiHandler:NSObject {
             "password"       : password
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.changeForgotPassword.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-generateShareLink
+    func generateShareLink(type:String, entity_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key":API_KEY,
+        ]
+        
+        let user_id = UserDefaults.standard.string(forKey: "userID") ?? ""
+        let device_id = UserDefaults.standard.string(forKey: "deviceID") ?? ""
+        
+        var parameters = [String : String]()
+        parameters = [
+            "user_id"        : user_id,
+            "device_id"      : device_id,
+            "type"           : type,
+            "entity_id"      : entity_id
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.generateShareLink.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-showShareLink
+    func showShareLink(link:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key":API_KEY,
+        ]
+        
+        let user_id = UserDefaults.standard.string(forKey: "userID") ?? ""
+        let device_id = UserDefaults.standard.string(forKey: "deviceID") ?? ""
+        
+        var parameters = [String : String]()
+        parameters = [
+            "user_id"        : user_id,
+            "device_id"      : device_id,
+            "link"           : link,
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.showShareLink.rawValue)"
         
         print(finalUrl)
         print(parameters)

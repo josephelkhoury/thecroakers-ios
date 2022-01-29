@@ -1166,6 +1166,7 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         if isOtherUserVisting == true {
             btnBackOutlet.isHidden = false
             profileDropDown.dataSource = [
+                "Share",
                 "Report",
                 "Block"
             ]
@@ -1217,6 +1218,15 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
                 
             case "Block":
                 self!.blockUser()
+                
+            case "Share":
+                if let rootViewController = UIApplication.topViewController() {
+                    let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyMain.instantiateViewController(withIdentifier: "shareVC") as! shareViewController
+                    vc.otherUserID = self!.otherUserID
+                    vc.modalPresentationStyle = .overFullScreen
+                    rootViewController.navigationController?.present(vc, animated: true, completion: nil)
+                }
                 
             case "Edit Profile":
                 let vc = self?.storyboard?.instantiateViewController(withIdentifier: "NewEditProfileViewController") as! NewEditProfileViewController

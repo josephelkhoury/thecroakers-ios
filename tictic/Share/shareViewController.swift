@@ -35,6 +35,7 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
     var followingList = [[String:Any]]()
     var shareUrl = ""
     var userID = ""
+    var otherUserID = ""
     var arrVideo: videoMainMVC?
     
     override func viewDidLoad() {
@@ -52,14 +53,38 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
             self.heightView.constant = 300
         }
         
-        print("objToShare: ",objToShare[0])
-        print("var currentVideoUrl = ",currentVideoUrl)
-        print("video id = ",videoID)
-        objToShare.removeAll()
-        shareUrl = BASE_URL+"?"+randomString(length: 3)+videoID+randomString(length: 3)
-        objToShare.append(shareUrl)
+        //objToShare.removeAll()
+        //shareUrl = BASE_URL+"?"+randomString(length: 3)+videoID+randomString(length: 3)
+        //objToShare.append(shareUrl)
+        generateShareLink()
         
         NotificationCenter.default.addObserver(self, selector: #selector(shareViewController.dismissVCnoti(notification:)), name: Notification.Name("dismissVCnoti"), object: nil)
+    }
+    
+    func generateShareLink() {
+        var type = ""
+        var entity_id = ""
+        
+        if videoID != "" {
+            type = "video"
+            entity_id = videoID
+        } else if otherUserID != "" {
+            type = "user"
+            entity_id = otherUserID
+        }
+        
+        ApiHandler.sharedInstance.generateShareLink(type: type, entity_id: entity_id) { (isSuccess, response) in
+            if isSuccess {
+                if response?.value(forKey: "code") as! NSNumber == 200 {
+                    
+                    let shareLink = response?.value(forKey: "msg") as! String
+                    
+                    self.objToShare.removeAll()
+                    self.shareUrl = BASE_URL+shareLink
+                    self.objToShare.append(self.shareUrl)
+                }
+            }
+        }
     }
     
     @objc func dismissVCnoti(notification: Notification) {
@@ -72,7 +97,11 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
         } else if collectionView == collectionViewfollowingUser {
             return self.followingList.count
         } else {
-            return share2Arr.count
+            if videoID != "" {
+                return share2Arr.count
+            } else {
+                return 0
+            }
         }
     }
     

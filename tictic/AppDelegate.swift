@@ -83,9 +83,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
         return true
     }
     
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+              return false
+          }
+        
+        let link = components.url?.absoluteString.replacingOccurrences(of: BASE_URL, with: "") ?? ""
+        
+        guard link != "" else {
+            return true
+        }
+        
+        ApiHandler.sharedInstance.showShareLink(link: link) { (isSuccess, response) in
+            if isSuccess {
+                if response?.value(forKey: "code") as! NSNumber == 200 {
+                    
+                    let shareLink = response?.value(forKey: "msg") as! NSDictionary
+                    
+                    let type = shareLink.value(forKey: "type") as! String
+                    let entity_id = shareLink.value(forKey: "entity_id") as! String
+                    
+                    if type == "user" {
+                        if let rootViewController = UIApplication.topViewController() {
+                            let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                            let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
+                            vc.isOtherUserVisting = true
+                            vc.hidesBottomBarWhenPushed = true
+                            vc.otherUserID = entity_id
+                            UserDefaults.standard.set(entity_id, forKey: "otherUserID")
+                            rootViewController.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    } else if type == "video" {
+                        if let rootViewController = UIApplication.topViewController() {
+                            let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                            let vc =  storyMain.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
+                            vc.isOtherController =  true
+                            vc.hidesBottomBarWhenPushed = true
+                            vc.video_id = entity_id
+                            rootViewController.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        
+        return true
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        let handled=ApplicationDelegate.shared.application(
+        let handled = ApplicationDelegate.shared.application(
             app,
             open: url,
             sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,

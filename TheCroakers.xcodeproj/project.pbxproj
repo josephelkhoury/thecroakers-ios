@@ -210,6 +210,7 @@
 		AEFA5DAD249CEA1E00CD7D07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFA5DAC249CEA1D00CD7D07 /* SystemConfiguration.framework */; };
 		BCA9C9C31822CE8AA23424BD /* Pods_TheCroakers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB177FD6448C39B9AC4B8D17 /* Pods_TheCroakers.framework */; };
 		DC0D1656274D381D00AB538B /* countryMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D1655274D381D00AB538B /* countryMVC.swift */; };
+		DC19EE6427A5D1BB00C31274 /* TheCroakers.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = AEB853CF22A26ADE00607D5E /* TheCroakers.entitlements */; };
 		DC4E01802750DD9600FE744E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4E017F2750DD9600FE744E /* StoreKit.framework */; };
 		DC67DF9F2783007200D29C5B /* UpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67DF9E2783007200D29C5B /* UpgradeViewController.swift */; };
 		DC67DFA327831BD800D29C5B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67DFA227831BD800D29C5B /* ForgotPasswordViewController.swift */; };
@@ -469,7 +470,7 @@
 		AEAB7D9F228AB43D00256428 /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
 		AEAC0497229FF0AD003C47D9 /* Profile1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile1ViewController.swift; sourceTree = "<group>"; };
 		AEAFD3E324ADD20D00D7870C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		AEB853CF22A26ADE00607D5E /* TIK TIK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TIK TIK.entitlements"; sourceTree = "<group>"; };
+		AEB853CF22A26ADE00607D5E /* TheCroakers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheCroakers.entitlements; sourceTree = "<group>"; };
 		AEC5E7C222898F4A00D9C59B /* Spinner-1s-200px.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Spinner-1s-200px.gif"; sourceTree = "<group>"; };
 		AEF38BB2227C136A00EF7481 /* FavSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavSound.swift; sourceTree = "<group>"; };
 		AEF752262282BED200C23370 /* OldDiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldDiscoverViewController.swift; sourceTree = "<group>"; };
@@ -1263,7 +1264,7 @@
 				DCBFB88E276B93A200827D7A /* AgoraWork */,
 				042CB03326C7CC6C00625968 /* FilterXIB */,
 				5EA3E81F252B524400C6C13A /* api */,
-				AEB853CF22A26ADE00607D5E /* TIK TIK.entitlements */,
+				AEB853CF22A26ADE00607D5E /* TheCroakers.entitlements */,
 				AE11DFAE24AF125C009A10D4 /* AsyncPhotoMediaItem.swift */,
 				AEAFD3E324ADD20D00D7870C /* Notification.swift */,
 				AE0AEED724AB6AFC008340BD /* Follow.swift */,
@@ -1568,6 +1569,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC19EE6427A5D1BB00C31274 /* TheCroakers.entitlements in Resources */,
 				047CFACB2695C13400F609B4 /* lottieAddUser.json in Resources */,
 				047CFACC2695C13400F609B4 /* 4837-heart.json in Resources */,
 				04A49980268F34B200B612AB /* lottieHeart.json in Resources */,
@@ -2082,7 +2084,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "TIK TIK.entitlements";
+				CODE_SIGN_ENTITLEMENTS = TheCroakers.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2500;
@@ -2161,7 +2163,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.28.2;
+				MARKETING_VERSION = 1.28.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2361,7 +2363,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "TIK TIK.entitlements";
+				CODE_SIGN_ENTITLEMENTS = TheCroakers.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2500;
@@ -2440,7 +2442,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.28.2;
+				MARKETING_VERSION = 1.28.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

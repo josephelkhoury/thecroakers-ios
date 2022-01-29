@@ -4036,14 +4036,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20b-pI-s9j">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="155"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TumbsUp" translatesAutoresizingMaskIntoConstraints="NO" id="mG5-Rd-qFe">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_likes" translatesAutoresizingMaskIntoConstraints="NO" id="mG5-Rd-qFe">
                                                 <rect key="frame" x="0.0" y="10" width="300" height="135"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="135" id="cF3-mt-FEu"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.79617977139999996" green="0.95147317649999996" blue="0.98127204180000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.90196073060000004" green="0.94509804249999996" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="mG5-Rd-qFe" firstAttribute="top" secondItem="20b-pI-s9j" secondAttribute="top" constant="10" id="0b0-dR-tat"/>
                                             <constraint firstAttribute="trailing" secondItem="mG5-Rd-qFe" secondAttribute="trailing" id="Mo1-DC-4ny"/>
@@ -16506,7 +16506,7 @@
             <size key="intrinsicContentSize" width="62.5" height="17"/>
         </designable>
         <designable name="H2M-Gx-k7a">
-            <size key="intrinsicContentSize" width="36" height="17.5"/>
+            <size key="intrinsicContentSize" width="37.5" height="16.5"/>
         </designable>
         <designable name="NuG-Va-e4G">
             <size key="intrinsicContentSize" width="163.33333333333334" height="163"/>
@@ -16582,7 +16582,6 @@
         <image name="9" width="14.333333015441895" height="17.666666030883789"/>
         <image name="App" width="90" height="90"/>
         <image name="Search" width="50" height="50"/>
-        <image name="TumbsUp" width="674" height="399"/>
         <image name="add" width="50" height="50"/>
         <image name="appleLoginIcon" width="28.333333969116211" height="28.666666030883789"/>
         <image name="arrowBack" width="80" height="80"/>
@@ -16634,6 +16633,7 @@
         <image name="ic_help" width="21" height="21"/>
         <image name="ic_like" width="2250" height="2250"/>
         <image name="ic_like_fill" width="2250" height="2250"/>
+        <image name="ic_likes" width="1280" height="720"/>
         <image name="ic_live" width="21.333333969116211" height="21.333333969116211"/>
         <image name="ic_play_icon" width="21.333333969116211" height="21.333333969116211"/>
         <image name="ic_save_qr" width="20" height="20"/>
