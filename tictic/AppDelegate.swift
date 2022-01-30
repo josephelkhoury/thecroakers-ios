@@ -101,7 +101,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     
-                    let shareLink = response?.value(forKey: "msg") as! NSDictionary
+                    let msg = response?.value(forKey: "msg") as! NSDictionary
+                    let shareLink = msg.value(forKey: "ShareLink") as! NSDictionary
                     
                     let type = shareLink.value(forKey: "type") as! String
                     let entity_id = shareLink.value(forKey: "entity_id") as! String

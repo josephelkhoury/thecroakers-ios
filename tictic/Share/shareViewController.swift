@@ -56,12 +56,11 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
         //objToShare.removeAll()
         //shareUrl = BASE_URL+"?"+randomString(length: 3)+videoID+randomString(length: 3)
         //objToShare.append(shareUrl)
-        generateShareLink()
         
         NotificationCenter.default.addObserver(self, selector: #selector(shareViewController.dismissVCnoti(notification:)), name: Notification.Name("dismissVCnoti"), object: nil)
     }
     
-    func generateShareLink() {
+    func generateShareLink(collectionView: UICollectionView, indexPath: IndexPath) {
         var type = ""
         var entity_id = ""
         
@@ -82,6 +81,7 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
                     self.objToShare.removeAll()
                     self.shareUrl = BASE_URL+shareLink
                     self.objToShare.append(self.shareUrl)
+                    self.shareLink(collectionView: collectionView, indexPath: indexPath)
                 }
             }
         }
@@ -129,8 +129,51 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == share1CV {
+        if collectionView == share1CV || collectionView == collectionViewfollowingUser {
+            generateShareLink(collectionView: collectionView, indexPath: indexPath)
+        } else {
+            switch share2Arr[indexPath.row] {
+        
+            case "saveVideo":
+                print("saveVideo Tap")
+                let fileUrl = URL.init(fileURLWithPath: (AppUtility?.detectURL(ipString: currentVideoUrl))!)
+                AppUtility?.startLoader(view: self.view)
+                getVideoDownloadURL()
+            case "report":
+                if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
+                    
+                    let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
+                    navController.navigationBar.isHidden = true
+                    navController.modalPresentationStyle = .overFullScreen
+                    self.present(navController, animated: true, completion: nil)
+                    
+                } else {
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "reportVC") as! reportViewController
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.videoID = self.videoID
+                    present(vc, animated: true, completion: nil)
+                }
             
+            case "addFav":
+                if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
+                    
+                    let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
+                    navController.navigationBar.isHidden = true
+                    navController.modalPresentationStyle = .overFullScreen
+                    self.present(navController, animated: true, completion: nil)
+                    
+                } else {
+                    self.addFavAPI()
+                }
+
+            default:
+                print("default")
+            }
+        }
+    }
+    
+    func shareLink(collectionView: UICollectionView, indexPath: IndexPath) {
+        if collectionView == share1CV {
             switch share1Arr[indexPath.row] {
             
             case "copy":
@@ -187,108 +230,6 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
                         }
                     }
                 }
-            }
-        } else {
-            switch share2Arr[indexPath.row] {
-        
-            case "saveVideo":
-                print("saveVideo Tap")
-                let fileUrl = URL.init(fileURLWithPath: (AppUtility?.detectURL(ipString: currentVideoUrl))!)
-                AppUtility?.startLoader(view: self.view)
-                getVideoDownloadURL()
-            
-            case "report":
-                /*
-                 //                alertModule(title: "Report", msg: "Report is under review")
-                 if(UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil){
-                 
-                 //                    self.alertModule(title:"MusicTok", msg: "Please login from Profile to Report")
-                 let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
-                 navController.navigationBar.isHidden = true
-                 navController.modalPresentationStyle = .overFullScreen
-                 
-                 self.present(navController, animated: true, completion: nil)
-                 
-                 }
-                 else
-                 {
-                 let alertController = UIAlertController(title: "REPORT", message: "Enter the details of Report", preferredStyle: .alert)
-                 
-                 alertController.addTextField { (textField : UITextField!) -> Void in
-                 textField.placeholder = "Report Title"
-                 }
-                 
-                 let reportAction = UIAlertAction(title: "Report", style: .default, handler: { alert -> Void in
-                 let firstTextField = alertController.textFields![0] as UITextField
-                 let secondTextField = alertController.textFields![1] as UITextField
-                 
-                 print("fst txt: ",firstTextField)
-                 print("scnd txt: ",secondTextField.text)
-                 
-                 guard let text = secondTextField.text, !text.isEmpty else {
-                 self.alertModule(title: "Invalid Information", msg: "Please fill the reason section")
-                 return
-                 }
-                 self.reportVideo(reportReason: text)
-                 })
-                 
-                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil )
-                 
-                 alertController.addTextField { (textField : UITextField!) -> Void in
-                 textField.placeholder = "Reason"
-                 }
-                 
-                 
-                 alertController.addAction(cancelAction)
-                 alertController.addAction(reportAction)
-                 
-                 self.present(alertController, animated: true, completion: nil)
-                 
-                 }
-                 */
-                
-                if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
-                    
-                    let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
-                    navController.navigationBar.isHidden = true
-                    navController.modalPresentationStyle = .overFullScreen
-                    self.present(navController, animated: true, completion: nil)
-                    
-                } else {
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "reportVC") as! reportViewController
-                    vc.modalPresentationStyle = .overFullScreen
-                    vc.videoID = self.videoID
-                    present(vc, animated: true, completion: nil)
-                }
-            
-            case "addFav":
-                if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
-                    
-                    let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
-                    navController.navigationBar.isHidden = true
-                    navController.modalPresentationStyle = .overFullScreen
-                    self.present(navController, animated: true, completion: nil)
-                    
-                } else {
-                    self.addFavAPI()
-                }
-            
-            /*case "duet":
-                if (UserDefaults.standard.string(forKey: "userID") == "" || UserDefaults.standard.string(forKey: "userID") == nil) {
-                    
-                    let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "newLoginVC"))
-                    navController.navigationBar.isHidden = true
-                    navController.modalPresentationStyle = .overFullScreen
-                    self.present(navController, animated: true, completion: nil)
-                } else {
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "actionMediaVC") as! actionMediaViewController
-                    vc.main_video_id = self.videoID
-                    vc.modalPresentationStyle = .overFullScreen
-                    present(vc, animated: true, completion: nil)
-                }*/
-           
-            default:
-                print("default")
             }
         }
     }
