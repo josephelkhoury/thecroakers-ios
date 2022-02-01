@@ -307,7 +307,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     }
 
     //MARK:- API Response
-    func videoResponse(startPoint:String,resMsg:[String:Any]) {
+    func videoResponse(startPoint:String, resMsg:[String:Any]) {
         var resArray = [[String:Any]]()
         
         if resMsg["msg"] is Dictionary<AnyHashable,Any> {

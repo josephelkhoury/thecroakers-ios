@@ -96,11 +96,10 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
     @objc func fbTouchTapped(_ sender: UITapGestureRecognizer) {
         let fbLoginManager : LoginManager = LoginManager()
         fbLoginManager.logIn(permissions: ["email"], from: self) { (result, error) in
-            if (error == nil){
+            if (error == nil) {
                 let fbloginresult : LoginManagerLoginResult = result!
                 if fbloginresult.grantedPermissions != nil {
-                    if(fbloginresult.grantedPermissions.contains("email"))
-                    {
+                    if (fbloginresult.grantedPermissions.contains("email")) {
                         self.getFBUserData()
                     }
                 }
@@ -136,24 +135,20 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
         
         //        let sv = HomeViewController.displaySpinner(onView: self.view)
         AppUtility?.startLoader(view: view)
-        if((AccessToken.current) != nil) {
+        if ((AccessToken.current) != nil) {
             
-            print("access token fb: ",AccessToken.current!)
+            print("access token fb: ", AccessToken.current!)
             
-            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completion: { (connection, result, error) -> Void in
+            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil) {
                     let dict = result as! [String : AnyObject]
                     print(dict)
                     if let dict = result as? [String : AnyObject]{
-                        if(dict["email"] as? String == nil || dict["id"] as? String == nil || dict["email"] as? String == "" || dict["id"] as? String == "" ){
-                            
-                            //                            HomeViewController.removeSpinner(spinner: sv)
+                        if (dict["email"] as? String == nil || dict["id"] as? String == nil || dict["email"] as? String == "" || dict["id"] as? String == "" ) {
                             AppUtility?.stopLoader(view: self.view)
-                            
                             self.alertModule(title:"Error", msg:"You cannot login with this facebook account because your facebook is not linked with any email")
                             
                         } else {
-                            
                             //                            MARK:- FB DATA
                             //                            HomeViewController.removeSpinner(spinner: sv)
                             AppUtility?.stopLoader(view: self.view)
@@ -167,27 +162,19 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
                             self.socialID = dict["id"] as? String
                             self.authToken = AccessToken.current?.tokenString
                             
-                            print("email: ",dict["email"] as? String)
-                            
-                            
-                            print("email: \(self.email), name: \(self.my_id)")
-                            
                             self.signUPType = "facebook"
                             self.checkAlreadyRegistered()
-                            
                         }
                     }
                 } else {
                     AppUtility?.stopLoader(view: self.view)
                     //                    HomeViewController.removeSpinner(spinner: sv)
-
                 }
             })
         }
     }
     
     @objc func siwaTouchTapped(_ sender: UITapGestureRecognizer) {
-        
         self.setupAppleIDCredentialObserver()
         let appleSignInRequest = ASAuthorizationAppleIDProvider().createRequest()
         appleSignInRequest.requestedScopes = [.fullName, .email]

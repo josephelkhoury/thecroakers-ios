@@ -3647,8 +3647,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISc-jY-peg">
                                 <rect key="frame" x="20" y="70" width="326.5" height="150"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter for 4 digit Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaA-HD-dJN">
-                                        <rect key="frame" x="0.0" y="0.0" width="176" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 digits code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaA-HD-dJN">
+                                        <rect key="frame" x="0.0" y="0.0" width="186" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="kkC-mY-ww4"/>
                                         </constraints>
@@ -16506,7 +16506,7 @@
             <size key="intrinsicContentSize" width="62.5" height="17"/>
         </designable>
         <designable name="H2M-Gx-k7a">
-            <size key="intrinsicContentSize" width="37.5" height="16.5"/>
+            <size key="intrinsicContentSize" width="36" height="17.5"/>
         </designable>
         <designable name="NuG-Va-e4G">
             <size key="intrinsicContentSize" width="163.33333333333334" height="163"/>

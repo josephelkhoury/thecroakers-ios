@@ -279,11 +279,11 @@ class shareViewController: UIViewController,UICollectionViewDataSource,UICollect
         let shareContent = ShareLinkContent()
         shareContent.contentURL = URL.init(string: self.shareUrl)!
         shareContent.quote = "The Croakers App"
-        ShareDialog(viewController: self, content: shareContent, delegate: self as? SharingDelegate).show()
+        ShareDialog(fromViewController: self, content: shareContent, delegate: self as? SharingDelegate).show()
     }
     
     func sharer(_ sharer: Sharing, didCompleteWithResults results: [String : Any]) {
-        if sharer.shareContent?.pageID != nil {
+        if sharer.shareContent.pageID != nil {
             print("FBShare: Success")
         }
     }

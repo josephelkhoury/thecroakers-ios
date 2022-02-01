@@ -16,12 +16,18 @@ class otpViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var btnNext: UIButton!
     var isupdate = false
     var phoneNo = ""
+    var email = ""
     var otp = ""
     var myUser:[User]? {didSet{}}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sendOnNoLbl.text = "Your code was sent  to \(phoneNo)"
+        if email != "" {
+            sendOnNoLbl.text = "Your code was sent to \(email)"
+        } else {
+            sendOnNoLbl.text = "Your code was sent to \(phoneNo)"
+        }
         otpSetup()
         otpTextField.addTarget(self, action: #selector(otpViewController.textFieldDidChange(_:)), for: .editingChanged)
         btnNext.backgroundColor = #colorLiteral(red: 0.9528577924, green: 0.9529947639, blue: 0.9528278708, alpha: 1)
@@ -34,11 +40,11 @@ class otpViewController: UIViewController,UITextFieldDelegate {
         let textCount = otpTextField.text?.count
         
         print("change textCount: ",textCount!)
-        if textCount! > 3{
+        if textCount! > 3 {
             btnNext.backgroundColor = UIColor(named: "theme")
             btnNext.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
             btnNext.isUserInteractionEnabled = true
-        }else{
+        } else {
             btnNext.backgroundColor = #colorLiteral(red: 0.9528577924, green: 0.9529947639, blue: 0.9528278708, alpha: 1)
             btnNext.setTitleColor(#colorLiteral(red: 0.6437677741, green: 0.6631219387, blue: 0.6758852601, alpha: 1), for: .normal)
             btnNext.isUserInteractionEnabled = false
@@ -51,104 +57,118 @@ class otpViewController: UIViewController,UITextFieldDelegate {
         
         otpTextField.configure()
         otpTextField.didEnterLastDigit = { [weak self] code in
-            print("otp code: ",self!.otpTextField.text)
-            
             self?.otp = self!.otpTextField.text!
         }
-        
     }
     
     @IBAction func btnNextAction(_ sender: Any) {
-        verifyOTPfunc()
+        if email != "" {
+            callApiCodeVerification(isVerify: "1")
+        } else {
+            verifyOTPfunc()
+        }
     }
     @IBAction func btnResenOTP(_ sender: Any) {
-        if isupdate == true{
+        if isupdate == true {
             changePhoneNumber()
-        }else{
+        } else if email != "" {
+            callApiCodeVerification(isVerify: "0")
+        } else {
             verifyPhoneFunc()
         }
-        
     }
+    
     @IBAction func btnBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
-    func verifyOTPfunc(){
+    func callApiCodeVerification(isVerify: String) {
+        AppUtility?.startLoader(view: self.view)
+        ApiHandler.sharedInstance.verifyRegisterEmailCode(email: email, code: otp) { (isSuccess, response) in
+            AppUtility?.stopLoader(view: self.view)
+            if isSuccess {
+                if response?.value(forKey: "code") as! NSNumber == 200 {
+                    if isVerify == "1" {
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "passwordVC") as! passwordViewController
+                        vc.email = self.email
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
+                }
+            } else {
+                self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
+            }
+        }
+    }
+    
+    func verifyOTPfunc() {
         let phoneNoNew = phoneNo.trimmingCharacters(in: .whitespaces)
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.verifyOTP(phone: phoneNoNew, verify: "1", code: otp) { (isSuccess, response) in
-            if isSuccess{
+            if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     AppUtility?.stopLoader(view: self.view)
                     self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
-                    if self.isupdate == true{
+                    if self.isupdate == true {
                        self.EditProfile()
-                    }else{
-                        self.registerPhoneCeck()
+                    } else {
+                        self.registerPhoneCheck()
                     }
-                  
-                    
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
-
                 }
-            }else{
+            } else {
                 AppUtility?.stopLoader(view: self.view)
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
             }
         }
     }
     
-    func verifyPhoneFunc(){
+    func verifyPhoneFunc() {
         let phoneNoNew = phoneNo.trimmingCharacters(in: .whitespaces)
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.verifyPhoneNo(phone: phoneNoNew, verify: "0") { (isSuccess, response) in
-            if isSuccess{
+            if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     AppUtility?.stopLoader(view: self.view)
                     self.alertModule(title: NSLocalizedString("alert_app_name", comment: ""), msg: response?.value(forKey: "msg") as! String )
                     self.otpTextField.text?.removeAll()
-                    
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     self.alertModule(title: NSLocalizedString("alert_app_name", comment: ""), msg: response?.value(forKey: "msg") as! String)
-                    
                 }
-            }else{
+            } else {
                 AppUtility?.stopLoader(view: self.view)
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
             }
         }
     }
     
-    
-    func changePhoneNumber(){
+    func changePhoneNumber() {
         self.myUser = User.readUserFromArchive()
         let phoneNoNew = phoneNo.trimmingCharacters(in: .whitespaces)
         AppUtility?.startLoader(view: self.view)
         ApiHandler.sharedInstance.changePhoneNumber(user_id: (self.myUser?[0].id)!, phone: phoneNoNew) { (isSuccess, response) in
-            if isSuccess{
+            if isSuccess {
                 AppUtility?.stopLoader(view: self.view)
                 if response?.value(forKey: "code") as! NSNumber == 200 {
-                   
                     self.alertModule(title: NSLocalizedString("alert_app_name", comment: ""), msg: response?.value(forKey: "msg") as! String )
                     self.otpTextField.text?.removeAll()
-                    
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
                     self.alertModule(title: NSLocalizedString("alert_app_name", comment: ""), msg: response?.value(forKey: "msg") as! String)
-                    
                 }
-            }else{
+            } else {
                 AppUtility?.stopLoader(view: self.view)
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
             }
         }
     }
 
-    
-    func EditProfile(){
+    func EditProfile() {
         self.myUser = User.readUserFromArchive()
         AppUtility?.startLoader(view: self.view)
         
@@ -225,11 +245,7 @@ class otpViewController: UIViewController,UITextFieldDelegate {
                         }
 
                     }
-                    
-                    
-                    
-                    
-                }else{
+                } else {
                     self.showToast(message: "Unable To Update", font: .systemFont(ofSize: 12))
                     print("!200: ",response as Any)
                 }
@@ -237,7 +253,7 @@ class otpViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
-    func registerPhoneCeck(){
+    func registerPhoneCheck() {
         
         let phoneNoNew = phoneNo.trimmingCharacters(in: .whitespaces)
         AppUtility?.startLoader(view: self.view)
@@ -306,14 +322,14 @@ class otpViewController: UIViewController,UITextFieldDelegate {
                     user.video_comment = userObj.value(forKey: "video_comment") as? String
                     user.videos_download = userObj.value(forKey: "videos_download") as? String
                     
-                    if User.saveUserToArchive(user: [user]){
+                    if User.saveUserToArchive(user: [user]) {
 //                        self.navigationController?.popToRootViewController(animated: true)
 //                        NotificationCenter.default.post(name: Notification.Name("dismissVCnoti"), object: nil)
                         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                     }
                     self.otpTextField.text?.removeAll()
                     
-                }else{
+                } else {
                     AppUtility?.stopLoader(view: self.view)
 
                     
@@ -338,19 +354,16 @@ class otpViewController: UIViewController,UITextFieldDelegate {
                    
                     self.present(alert, animated: true, completion: nil)
                     //if user not registered
-                    
-                    
                 }
-            }else{
+            } else {
                 AppUtility?.stopLoader(view: self.view)
                 self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
             }
         }
     }
-
     
     //    MARK:- ALERT MODULE
-    func alertModule(title:String,msg:String){
+    func alertModule(title:String,msg:String) {
         
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         

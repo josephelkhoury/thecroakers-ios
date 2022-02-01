@@ -95,6 +95,7 @@ enum Endpoint : String {
     case changeForgotPassword     = "changeForgotPassword"
     case generateShareLink        = "generateShareLink"
     case showShareLink            = "showShareLink"
+    case verifyRegisterEmailCode  = "verifyRegisterEmailCode"
 }
 class ApiHandler:NSObject {
     var baseApiPath:String!
@@ -343,12 +344,9 @@ class ApiHandler:NSObject {
         ]
         var parameters = [String : String]()
         parameters = [
-            
             "phone" : phone,
             "verify": verify,
             "code"  : code
-            
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.verifyPhoneNo.rawValue)"
         
@@ -4204,6 +4202,59 @@ class ApiHandler:NSObject {
             "link"           : link,
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showShareLink.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-verifyRegisterEmailCode
+    func verifyRegisterEmailCode(email:String, code:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key":API_KEY,
+        ]
+        
+        let device_id = UserDefaults.standard.string(forKey: "deviceID") ?? ""
+        
+        var parameters = [String : String]()
+        parameters = [
+            "device_id"        : device_id,
+            "email"            : email,
+            "code"             : code,
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.verifyRegisterEmailCode.rawValue)"
         
         print(finalUrl)
         print(parameters)

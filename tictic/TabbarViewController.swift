@@ -26,6 +26,53 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
         UITabBar.appearance().barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
         self.addCenterButtonNew(withImage: UIImage(named: "33")!, highlightImage: UIImage(named: "33")!)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(openShareLink), name: Notification.Name("openShareLink"), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        openShareLink()
+    }
+    
+    @objc func openShareLink() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        if delegate.shareLink != "" {
+            ApiHandler.sharedInstance.showShareLink(link: delegate.shareLink!) { (isSuccess, response) in
+                delegate.shareLink = ""
+                if isSuccess {
+                    if response?.value(forKey: "code") as! NSNumber == 200 {
+                        
+                        let msg = response?.value(forKey: "msg") as! NSDictionary
+                        let shareLink = msg.value(forKey: "ShareLink") as! NSDictionary
+                        
+                        let type = shareLink.value(forKey: "type") as! String
+                        let entity_id = shareLink.value(forKey: "entity_id") as! String
+                        
+                        if type == "user" {
+                            if let rootViewController = UIApplication.topViewController() {
+                                let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                                let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
+                                vc.isOtherUserVisting = true
+                                vc.hidesBottomBarWhenPushed = true
+                                vc.otherUserID = entity_id
+                                UserDefaults.standard.set(entity_id, forKey: "otherUserID")
+                                rootViewController.navigationController?.pushViewController(vc, animated: true)
+                            }
+                        } else if type == "video" {
+                            if let rootViewController = UIApplication.topViewController() {
+                                let storyMain = UIStoryboard(name: "Main", bundle: nil)
+                                let vc =  storyMain.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
+                                vc.isOtherController =  true
+                                vc.hidesBottomBarWhenPushed = true
+                                vc.video_id = entity_id
+                                rootViewController.navigationController?.pushViewController(vc, animated: true)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -62,9 +109,6 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.bringSubviewToFront(self.tabBar)
-        //        MARK:- JK
-        
-        //        self.addCenterButton()
     }
     
     // Add Custom video making button in tabbar

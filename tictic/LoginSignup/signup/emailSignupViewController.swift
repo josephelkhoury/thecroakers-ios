@@ -45,10 +45,21 @@ class emailSignupViewController: UIViewController,UITextFieldDelegate {
         if AppUtility?.isEmail(email) == false {
             showToast(message: "Invalid Email", font: .systemFont(ofSize: 12))
         } else {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "passwordVC") as! passwordViewController
-            vc.email = email
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+            AppUtility?.startLoader(view: self.view)
+            ApiHandler.sharedInstance.verifyRegisterEmailCode(email: email, code: "") { (isSuccess, response) in
+                AppUtility?.stopLoader(view: self.view)
+                if isSuccess {
+                    if response?.value(forKey: "code") as! NSNumber == 200 {
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! otpViewController
+                        vc.email = self.email
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12))
+                    }
+                } else {
+                    self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
+                }
+            }
         }
     }
     

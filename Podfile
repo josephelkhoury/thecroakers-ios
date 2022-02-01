@@ -41,9 +41,11 @@ target 'TheCroakers' do
   #pod "XLPagerTabStrip"
   #pod 'SmoothPicker'
   #pod 'FacebookShare'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
+  pod 'FacebookSDK'
+  pod 'FacebookSDK/LoginKit'
+  pod 'FacebookSDK/ShareKit'
+  pod 'FacebookSDK/PlacesKit'
+  pod 'FBSDKMessengerShareKit'
   pod "KYShutterButton"
   #pod 'TwitterKit'
   pod 'GSPlayer'

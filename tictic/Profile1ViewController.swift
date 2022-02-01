@@ -98,13 +98,13 @@ class Profile1ViewController: UIViewController,UICollectionViewDelegate,UICollec
         UIApplication.shared.statusBarStyle = .default
         
         
-        if(UserDefaults.standard.string(forKey: "uid") == ""){
+        if (UserDefaults.standard.string(forKey: "uid") == "") {
             
             self.inner_view.alpha = 1
             self.profile_name.text = "Profile"
            
             
-        }else{
+        } else {
             self.inner_view.alpha = 0
            
              self.profile_name.text = "Profile"
@@ -113,41 +113,32 @@ class Profile1ViewController: UIViewController,UICollectionViewDelegate,UICollec
     }
     
     // Facebook Login
-    
     @IBAction func FBLogin(_ sender: Any) {
-        
         let fbLoginManager : LoginManager = LoginManager()
         fbLoginManager.logIn(permissions: ["email"], from: self) { (result, error) in
-            if (error == nil){
+            if (error == nil) {
                 let fbloginresult : LoginManagerLoginResult = result!
                 if fbloginresult.grantedPermissions != nil {
-                    if(fbloginresult.grantedPermissions.contains("email"))
-                    {
+                    if(fbloginresult.grantedPermissions.contains("email")) {
                         self.getFBUserData()
-                        
-                        
                     }
                 }
             }
         }
-        
     }
     
-    func getFBUserData(){
-        
+    func getFBUserData() {
         let sv = HomeViewController.displaySpinner(onView: self.view)
         if ((AccessToken.current) != nil) {
-            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completion: { (connection, result, error) -> Void in
-                if (error == nil){
+            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil) {
                     let dict = result as! [String : AnyObject]
                     print(dict)
-                    if let dict = result as? [String : AnyObject]{
-                        if(dict["email"] as? String == nil || dict["id"] as? String == nil || dict["email"] as? String == "" || dict["id"] as? String == "" ){
-                            
+                    if let dict = result as? [String : AnyObject] {
+                        if(dict["email"] as? String == nil || dict["id"] as? String == nil || dict["email"] as? String == "" || dict["id"] as? String == "" ) {
                             HomeViewController.removeSpinner(spinner: sv)
                             
                             self.alertModule(title:"Error", msg:"You cannot login with this facebook account because your facebook is not linked with any email")
-                            
                         } else {
                             HomeViewController.removeSpinner(spinner: sv)
                             self.email = dict["email"] as? String
@@ -161,23 +152,17 @@ class Profile1ViewController: UIViewController,UICollectionViewDelegate,UICollec
                             self.signUPType = "facebook"
                             
                             self.SignUpApi()
-                            
                         }
                     }
-                    
                 } else {
-                    
                     HomeViewController.removeSpinner(spinner: sv)
-                    
-                    
                 }
             })
         }
-        
     }
     
     // get All videos api
-    func getAllVideos(){
+    func getAllVideos() {
         
         let url : String = self.appDelegate.baseUrl!+self.appDelegate.showMyAllVideos!
         let  sv = HomeViewController.displaySpinner(onView: self.view)

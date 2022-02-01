@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
     var downloadFile:String? = "downloadFile"
     var getNotifications:String? = "getNotifications"
     var uploadMultipartVideo:String? = "uploadVideo"
+    var shareLink:String? = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -97,39 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
             return true
         }
         
-        ApiHandler.sharedInstance.showShareLink(link: link) { (isSuccess, response) in
-            if isSuccess {
-                if response?.value(forKey: "code") as! NSNumber == 200 {
-                    
-                    let msg = response?.value(forKey: "msg") as! NSDictionary
-                    let shareLink = msg.value(forKey: "ShareLink") as! NSDictionary
-                    
-                    let type = shareLink.value(forKey: "type") as! String
-                    let entity_id = shareLink.value(forKey: "entity_id") as! String
-                    
-                    if type == "user" {
-                        if let rootViewController = UIApplication.topViewController() {
-                            let storyMain = UIStoryboard(name: "Main", bundle: nil)
-                            let vc = storyMain.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
-                            vc.isOtherUserVisting = true
-                            vc.hidesBottomBarWhenPushed = true
-                            vc.otherUserID = entity_id
-                            UserDefaults.standard.set(entity_id, forKey: "otherUserID")
-                            rootViewController.navigationController?.pushViewController(vc, animated: true)
-                        }
-                    } else if type == "video" {
-                        if let rootViewController = UIApplication.topViewController() {
-                            let storyMain = UIStoryboard(name: "Main", bundle: nil)
-                            let vc =  storyMain.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
-                            vc.isOtherController =  true
-                            vc.hidesBottomBarWhenPushed = true
-                            vc.video_id = entity_id
-                            rootViewController.navigationController?.pushViewController(vc, animated: true)
-                        }
-                    }
-                }
-            }
-        }
+        shareLink = link
+        
+        NotificationCenter.default.post(name: Notification.Name("openShareLink"), object: nil, userInfo: nil)
         
         return true
     }

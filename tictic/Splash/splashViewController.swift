@@ -51,14 +51,15 @@ class splashViewController: UIViewController {
     }
     
     @objc func playerItemDidReachEnd(notification: Notification) {
-        if dataLoaded == true {
+        /*if dataLoaded == true {
             pushToHome()
         }
         else {
             let p: AVPlayerItem = notification.object as! AVPlayerItem
             p.seek(to: .zero) { (success) in
             }
-        }
+        }*/
+        pushToHome()
     }
     
     //MARK:- API CALLS
@@ -161,12 +162,12 @@ class splashViewController: UIViewController {
                     
                     print("response@200: ",response!)
                   
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    /*DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.getAllVideos(relatedVideo:self.videosRelatedArr,isVideoEmpty:false)
-                    }
+                    }*/
                 } else {
                    print("response 201: ",response!)
-                   self.getAllVideos(relatedVideo:self.videosRelatedArr,isVideoEmpty:false)
+                   //self.getAllVideos(relatedVideo:self.videosRelatedArr,isVideoEmpty:false)
                  //   self.showToast(message: response?.value(forKey: "msg") as! String, font: .systemFont(ofSize: 12.0))
                   /*   ApiHandler.sharedInstance.showDeviceDetails(key: uid) { (isSuccess, response) in
                         if isSuccess{
@@ -194,7 +195,6 @@ class splashViewController: UIViewController {
                 }
             } else {
                 self.showToast(message: err, font: .systemFont(ofSize: 12))
-
                 print("Something went wrong in API registerDevice: ",response!)
             }
         }

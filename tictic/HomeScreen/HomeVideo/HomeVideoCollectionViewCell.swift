@@ -166,7 +166,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
             self.playerView.contentMode = .scaleAspectFill
         }
         
-        if post.main_video_id != "<null>" {
+        if post.main_video_id != "<null>" && post.main_video_id != "0" {
             musicBtn.isHidden = false
             sourceRepliesLbl.isHidden = false
             musicBtn.isSelected = true
@@ -399,7 +399,7 @@ class HomeVideoCollectionViewCell: UICollectionViewCell {
         if let rootViewController = UIApplication.topViewController() {
             let storyMain = UIStoryboard(name: "Main", bundle: nil)
             
-            if self.arrVideo?.main_video_id != "<null>" {
+            if self.arrVideo?.main_video_id != "<null>" && self.arrVideo?.main_video_id != "0" {
                 let vc = storyMain.instantiateViewController(withIdentifier: "HomeVideoViewController") as! HomeVideoViewController
                 vc.video_id = self.arrVideo!.main_video_id
                 vc.currentIndex = IndexPath.init(index: 0)
