@@ -141,12 +141,12 @@ class postViewController: UIViewController,UITextViewDelegate {
             des = ""
         }
         
-        print("cmnt",cmnt)
+        /*print("cmnt",cmnt)
         print("allwDuet",allwDuet)
         print("prv",prv)
         print("des",des)
         print("hashtags",hashtags)
-        print("mentions",mentions)
+        print("mentions",mentions)*/
         
         let parameter :[String:Any]? = ["user_id"       : UserDefaults.standard.string(forKey: "userID")!,
                                         "sound_id"      : 0,
@@ -161,15 +161,15 @@ class postViewController: UIViewController,UITextViewDelegate {
                                         "country_id"    : self.country_id
         ]
         
-        let uidString = UserDefaults.standard.string(forKey: "userID")!
-        let soundIDString = "null"
+        //let uidString = UserDefaults.standard.string(forKey: "userID")!
+        //let soundIDString = "null"
         
         print(url)
         print(parameter!)
         let headers: HTTPHeaders = [
             "Api-Key":API_KEY
         ]
-        let serializer = DataResponseSerializer(emptyResponseCodes: Set([200, 204, 205]))
+        //let serializer = DataResponseSerializer(emptyResponseCodes: Set([200, 204, 205]))
         AF.upload(multipartFormData: { MultipartFormData in
             
             if (!JSONSerialization.isValidJSONObject(parameter)) {
@@ -190,7 +190,7 @@ class postViewController: UIViewController,UITextViewDelegate {
                 switch response.result {
                     
                 case .success(let value):
-                    print("progress: ", Progress.current())
+                    //print("progress: ", Progress.current())
                     let json = value
                     let dic = json as! NSDictionary
                     
@@ -202,11 +202,11 @@ class postViewController: UIViewController,UITextViewDelegate {
                         if self.saveV == "1" {
                             self.saveVideoToAlbum(self.videoUrl!) { (err) in
                                 if err != nil {
-                                    print("Unable to save video to album due to: ",err!)
-                                    self.showToast(message: "Unable to save video to album due to:", font: .systemFont(ofSize: 12))
+                                    print("Unable to save video to album due to: ", err!)
+                                    self.showToast(message: "Unable to save video.", font: .systemFont(ofSize: 12))
                                 } else{
                                     print("video saved to gallery")
-                                    self.showToast(message: "video saved to gallery", font: .systemFont(ofSize: 12))
+                                    self.showToast(message: "Video saved to gallery.", font: .systemFont(ofSize: 12))
                                 }
                             }
                         }
@@ -224,11 +224,11 @@ class postViewController: UIViewController,UITextViewDelegate {
                     }
                 case .failure(let error):
                     AppUtility?.stopLoader(view: self.view)
-                    self.showToast(message: error.localizedDescription, font: .systemFont(ofSize: 12))
+                    self.showToast(message: "An error has occurred, please try again.", font: .systemFont(ofSize: 12))
                     print("\n\n===========Error===========")
                     print("Error Code: \(error._code)")
                     print("Error Messsage: \(error.localizedDescription)")
-                    if let data = response.data, let str = String(data: data, encoding: String.Encoding.utf8){
+                    if let data = response.data, let str = String(data: data, encoding: String.Encoding.utf8) {
                         print("Server Error: " + str)
                     }
                     debugPrint(error as Any)
@@ -280,7 +280,6 @@ class postViewController: UIViewController,UITextViewDelegate {
     }
     
     //    MARK:- ViewWillAppear
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

@@ -1269,9 +1269,9 @@ extension actionMediaViewController {
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { [unowned picker] items, _ in
             if let video = items.singleVideo {
-                print("video.fromCamera: ",video.fromCamera)
-                print("video.thumbnail: ",video.thumbnail)
-                print("video.url: ",video.url)
+                print("video.fromCamera: ", video.fromCamera)
+                print("video.thumbnail: ", video.thumbnail)
+                print("video.url: ", video.url)
             }
             picker.dismiss(animated: true) {
                 let vc =  self.storyboard?.instantiateViewController(withIdentifier: "previewPlayerVC") as! previewPlayerViewController

@@ -279,7 +279,7 @@ class Utility: NSObject {
     //    MARK:- validate username
     func validateUsername(str: String) -> Bool
     {
-        let RegEx = "\\w{4,14}"
+        let RegEx = "\\w{4,20}"
         let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
         return Test.evaluate(with: str)
     }
@@ -287,23 +287,16 @@ class Utility: NSObject {
     //MARK:- Validation Text
     func hasValidText(_ text:String?) -> Bool
     {
-        if let data = text
-        {
+        if let data = text {
             let str = data.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            if str.count>0
-            {
+            if str.count > 0 {
                 return true
-            }
-            else
-            {
+            } else {
                 return false
             }
-        }
-        else
-        {
+        } else {
             return false
         }
-        
     }
     
     //MARK:- Validation Atleast 1 special schracter or number

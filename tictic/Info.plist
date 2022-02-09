@@ -48,9 +48,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3050</string>
+	<string>3138</string>
 	<key>FacebookAppID</key>
 	<string>1042008916594737</string>
+	<key>FacebookClientToken</key>
+	<string>7921940f4c6360e9d3f68a237ad6147d</string>
 	<key>FacebookDisplayName</key>
 	<string>TheCroakers</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -70,7 +72,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>"ThCroakers" Would Like to Access the Camera. This lets you share,record videos and save video to your camera Roll.</string>
+	<string>"ThCroakers" would Like to Access the Camera. This lets you share,record videos and save video to your camera Roll.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>"TheCroakers" Would liike to Access the Microphone To record audio, allow us to access Microphone.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

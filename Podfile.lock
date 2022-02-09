@@ -1,5 +1,4 @@
 PODS:
-  - AgoraRtcEngine_iOS (3.6.1.1)
   - Alamofire (5.5.0)
   - ContentLoader (1.1.1)
   - CoreAnimator (2.1.5)
@@ -9,42 +8,6 @@ PODS:
     - EFInternetIndicator/Interface (= 0.4.0)
   - EFInternetIndicator/Interface (0.4.0):
     - SwiftMessages
-  - FacebookSDK (5.15.1):
-    - FacebookSDK/CoreKit (= 5.15.1)
-    - FacebookSDK/MarketingKit (= 5.15.1)
-  - FacebookSDK/CoreKit (5.15.1):
-    - FBSDKCoreKit (~> 5.0)
-  - FacebookSDK/LoginKit (5.15.1):
-    - FacebookSDK/CoreKit
-    - FBSDKLoginKit (~> 5.0)
-  - FacebookSDK/MarketingKit (5.15.1):
-    - FacebookSDK/CoreKit
-    - FBSDKMarketingKit (~> 5.0)
-  - FacebookSDK/PlacesKit (5.15.1):
-    - FacebookSDK/CoreKit
-    - FBSDKPlacesKit (~> 5.0)
-  - FacebookSDK/ShareKit (5.15.1):
-    - FacebookSDK/CoreKit
-    - FBSDKShareKit (~> 5.0)
-  - FBSDKCoreKit (5.15.1):
-    - FBSDKCoreKit/Basics (= 5.15.1)
-    - FBSDKCoreKit/Core (= 5.15.1)
-  - FBSDKCoreKit/Basics (5.15.1)
-  - FBSDKCoreKit/Core (5.15.1):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.15.1):
-    - FBSDKLoginKit/Login (= 5.15.1)
-  - FBSDKLoginKit/Login (5.15.1):
-    - FBSDKCoreKit (~> 5.0)
-  - FBSDKMarketingKit (5.14.0):
-    - FBSDKCoreKit (~> 5.5)
-  - FBSDKMessengerShareKit (1.3.2)
-  - FBSDKPlacesKit (5.15.0):
-    - FBSDKCoreKit (~> 5.0)
-  - FBSDKShareKit (5.15.1):
-    - FBSDKShareKit/Share (= 5.15.1)
-  - FBSDKShareKit/Share (5.15.1):
-    - FBSDKCoreKit (~> 5.0)
   - Firebase (8.11.0):
     - Firebase/Core (= 8.11.0)
   - Firebase/Analytics (8.11.0):
@@ -204,9 +167,9 @@ PODS:
   - PromisesObjC (2.0.0)
   - PryntTrimmerView (4.0.2)
   - Regift (1.6.0)
-  - SDWebImage (5.12.2):
-    - SDWebImage/Core (= 5.12.2)
-  - SDWebImage/Core (5.12.2)
+  - SDWebImage (5.12.3):
+    - SDWebImage/Core (= 5.12.3)
+  - SDWebImage/Core (5.12.3)
   - SDWebImageWebPCoder (0.8.4):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.10)
@@ -226,18 +189,12 @@ PODS:
     - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
-  - AgoraRtcEngine_iOS
   - Alamofire
   - ContentLoader
   - CoreAnimator (~> 2.1.4)
   - DropDown
   - DSGradientProgressView
   - EFInternetIndicator
-  - FacebookSDK
-  - FacebookSDK/LoginKit
-  - FacebookSDK/PlacesKit
-  - FacebookSDK/ShareKit
-  - FBSDKMessengerShareKit
   - Firebase
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -277,20 +234,12 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AgoraRtcEngine_iOS
     - Alamofire
     - ContentLoader
     - CoreAnimator
     - DropDown
     - DSGradientProgressView
     - EFInternetIndicator
-    - FacebookSDK
-    - FBSDKCoreKit
-    - FBSDKLoginKit
-    - FBSDKMarketingKit
-    - FBSDKMessengerShareKit
-    - FBSDKPlacesKit
-    - FBSDKShareKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -343,20 +292,12 @@ SPEC REPOS:
     - YPImagePicker
 
 SPEC CHECKSUMS:
-  AgoraRtcEngine_iOS: b95d48918cbe5ed64b496634316291c89864d244
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   ContentLoader: b14db4449065be0fd2b8c77b65ff5e4a0a8c7f86
   CoreAnimator: 1a3c690a1ccd084ebffdbc508779bbb17c9cbb6e
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DSGradientProgressView: 256d85dc3a92b429ace38617ceb459faec42bb41
   EFInternetIndicator: a6077679e15191889a783a06624390b73e8109dc
-  FacebookSDK: 40811aca4741187ac7e6b175f261edee4edfc58a
-  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
-  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
-  FBSDKMarketingKit: b9dd220b38cc613c71d3eb626cd60bc8e938fbb4
-  FBSDKMessengerShareKit: bdd14265f5845e6d1c95a128ab33705a68ca1c21
-  FBSDKPlacesKit: 26d4033cb8cc8640f1e0eadb3635e7dd29c4d073
-  FBSDKShareKit: 259737eab3cc807087374553abdf588b3096ba55
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
   FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
@@ -395,7 +336,7 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   Regift: a7c1a7e377c60bfc34301d6f532e099e5ae109a8
-  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
+  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
   SKCountryPicker: ceff8cfffc0ddde2088f2fcc2d01d1ad530c0b03
   SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
@@ -408,6 +349,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: be10af064de058ddfa64a00cd3d73f8389d06215
+PODFILE CHECKSUM: 7ba056b3a7bc2de3ae06062387dce0d71469c6bf
 
 COCOAPODS: 1.11.2

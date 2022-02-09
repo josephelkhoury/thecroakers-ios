@@ -15,7 +15,7 @@ import MarqueeLabel
 import Photos
 import NVActivityIndicatorView
 
-class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSourcePrefetching,UIGestureRecognizerDelegate{
+class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSourcePrefetching,UIGestureRecognizerDelegate {
     
     @IBOutlet weak var collectionview: UICollectionView!
     
@@ -23,10 +23,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     @IBOutlet weak var texe_view: UIView!
     
-    
     @IBOutlet weak var tableview: UITableView!
-    
-    
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -38,16 +35,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     @IBOutlet weak var btn_foryou: UIButton!
     
-    
     @IBOutlet weak var txt_comment: UITextField!
-    
     
     var index:Int! = 0
     var video_id:String! = "0"
     var video_type:String! = "for you"
     
     var avplayer:AVPlayer?
-    
     
     
     var friends_array:NSMutableArray = []
@@ -57,7 +51,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var sound_array:NSMutableArray = []
     
     private var indexOfCellBeforeDragging = 0
-    
     
     @IBOutlet weak var testView: UIView!
     
@@ -70,11 +63,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         UserDefaults.standard.set("0", forKey: "sid")
         
-        if(UserDefaults.standard.string(forKey: "uid") == nil){
-            
+        if (UserDefaults.standard.string(forKey: "uid") == nil) {
             UserDefaults.standard.set("", forKey: "uid")
         }
-        
         
         self.showAllVideos()
         

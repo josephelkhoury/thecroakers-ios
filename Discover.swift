@@ -1,9 +1,6 @@
-
-
 import UIKit
 
     struct ItemVideo {
-        
         var video:String! = ""
         var thum:String! = ""
         var liked:String! = "0"
@@ -15,15 +12,10 @@ import UIKit
         var sound_name:String! = ""
         var v_id:String! = "0"
         var u_id:String! = "0"
-        
     }
+
     class Discover: NSObject {
-        
-        
         var name:String! = ""
-        
         var listOfProducts = [ItemVideo]()
-        
-        
 }
 

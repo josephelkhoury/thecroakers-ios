@@ -12,6 +12,7 @@ import SDWebImage
 import FBSDKLoginKit
 import GoogleSignIn
 import AuthenticationServices
+import FirebaseAuth
 import NVActivityIndicatorView
 
 @available(iOS 13.0, *)
@@ -139,7 +140,7 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
             
             print("access token fb: ", AccessToken.current!)
             
-            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completionHandler: { (connection, result, error) -> Void in
+            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email,age_range"]).start(completion: { (connection, result, error) -> Void in
                 if (error == nil) {
                     let dict = result as! [String : AnyObject]
                     print(dict)
@@ -147,7 +148,6 @@ class newLoginViewController: UIViewController, UITabBarControllerDelegate {
                         if (dict["email"] as? String == nil || dict["id"] as? String == nil || dict["email"] as? String == "" || dict["id"] as? String == "" ) {
                             AppUtility?.stopLoader(view: self.view)
                             self.alertModule(title:"Error", msg:"You cannot login with this facebook account because your facebook is not linked with any email")
-                            
                         } else {
                             //                            MARK:- FB DATA
                             //                            HomeViewController.removeSpinner(spinner: sv)
@@ -548,6 +548,9 @@ extension newLoginViewController: ASAuthorizationControllerDelegate {
             UserDefaults.standard.set(self.my_id, forKey: "uid")
             
             checkAlreadyRegistered()
+            
+            Auth.auth().signIn(withCustomToken: "") { user, error in
+            }
         }
     }
     

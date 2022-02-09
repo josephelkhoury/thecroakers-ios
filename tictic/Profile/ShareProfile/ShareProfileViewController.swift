@@ -90,11 +90,11 @@ extension ShareProfileViewController: UICollectionViewDelegate, UICollectionView
         let shareContent = ShareLinkContent()
         shareContent.contentURL = URL.init(string: self.shareUrl)!//your link
         shareContent.quote = "The Croakers APP"
-        ShareDialog(fromViewController: self, content: shareContent, delegate: self as? SharingDelegate).show()
+        ShareDialog(viewController: self, content: shareContent, delegate: self as? SharingDelegate).show()
     }
     
     func sharer(_ sharer: Sharing, didCompleteWithResults results: [String : Any]) {
-        if sharer.shareContent.pageID != nil {
+        if sharer.shareContent?.pageID != nil {
             print("FBShare: Success")
         }
     }

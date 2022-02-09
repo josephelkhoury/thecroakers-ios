@@ -11,7 +11,8 @@ import SDWebImage
 
 class NewEditProfileViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var btnName: UIButton!
+    @IBOutlet weak var btnFirstname: UIButton!
+    @IBOutlet weak var btnLastname: UIButton!
     @IBOutlet weak var btnUsername: UIButton!
     @IBOutlet weak var btnCopyLink: UIButton!
     @IBOutlet weak var btnBio: UIButton!
@@ -33,10 +34,10 @@ class NewEditProfileViewController: UIViewController {
         }
         
         let userObj = userData[0]
-        let name = (userObj.first_name) + " " + (userObj.last_name)
         self.profileImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
         self.profileImage.sd_setImage(with: URL(string:(AppUtility?.detectURL(ipString: userObj.userProfile_pic))!), placeholderImage: UIImage(named:"noUserImg"))
-        self.btnName.setTitle(name, for: .normal)
+        self.btnFirstname.setTitle(userObj.first_name, for: .normal)
+        self.btnLastname.setTitle(userObj.last_name, for: .normal)
         self.btnUsername.setTitle(userObj.username, for: .normal)
         self.btnCopyLink.setTitle(BASE_URL+userObj.username, for: .normal)
         self.btnBio.setTitle(userObj.bio, for: .normal)
@@ -48,16 +49,23 @@ class NewEditProfileViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnNameAction(_ sender: Any) {
+    @IBAction func btnFirstNameAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
         vc.type = 0
         vc.userData = self.userData
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func btnUsernameAction(_ sender: Any) {
+    @IBAction func btnLastNameAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
         vc.type = 1
+        vc.userData = self.userData
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func btnUsernameAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
+        vc.type = 2
         vc.userData = self.userData
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -67,14 +75,14 @@ class NewEditProfileViewController: UIViewController {
     
     @IBAction func btnBioAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
-        vc.type = 2
+        vc.type = 3
         vc.userData = self.userData
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnWebAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "newEditProfileDetailViewController") as! newEditProfileDetailViewController
-        vc.type = 3
+        vc.type = 4
         vc.userData = self.userData
         navigationController?.pushViewController(vc, animated: true)
     }

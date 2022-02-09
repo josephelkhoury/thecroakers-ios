@@ -10,6 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import FBSDKCoreKit
 import FirebaseCore
+import FacebookCore
 import GoogleSignIn
 import FirebaseMessaging
 import UserNotifications
@@ -18,7 +19,7 @@ import SDWebImage
 let NextLevelAlbumTitle = "NextLevel"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
@@ -52,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate,UNUserNo
     var shareLink:String? = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        FBSDKCoreKit.ApplicationDelegate.shared.application(application,didFinishLaunchingWithOptions: launchOptions)
         
         let bundleIdentifier =  Bundle.main.bundleIdentifier
         StaticData.obj.BundleIdentifer = bundleIdentifier!

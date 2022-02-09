@@ -9,7 +9,6 @@
 import UIKit
 import EFInternetIndicator
 
-
 class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
     //MARK:- Outlets
@@ -122,9 +121,9 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     }
     
     @IBAction func btnLiveUsers(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "liveUsersVC") as! liveUsersViewController
+        /*let vc = storyboard?.instantiateViewController(withIdentifier: "liveUsersVC") as! liveUsersViewController
         vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)*/
     }
     //MARK: collectionView
     
@@ -360,7 +359,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
             let countryName = countryDic.value(forKey: "name")
        
             let videoObj = videoMainMVC(videoID: videoID, videoUserID: "\(videoUserID!)", fb_id: "", description: desc ?? "", videoURL: videoURL ?? "", videoTHUM: "", videoGIF: "", view: "", section: "", sound_id: "", privacy_type: "", allow_likes: "\(allowLikes!)", allow_comments: "\(allowComments!)", allow_replies: "\(allowReplies!)", allow_duet: "\(allowDuet!)", block: "", main_video_id: "\(main_video_id!)", duet_video_id: "", old_video_id: "", created: "", like: "\(like!)", favourite: "", comment_count: "\(commentCount!)", like_count: "\(likeCount!)", followBtn: followBtn ?? "", duetVideoID: "\(duetVidID!)", userID: uid ?? "", first_name: "", last_name: "", gender: "", bio: "", website: "", dob: "", social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImgPath  ?? "", role: "", username: userName  ?? "", social: "", device_token: "", videoCount: "", verified: "\(verified!)", soundName: "\(soundName!)", CDPlayer: cdPlayer, topicID: "\(topicID!)", topicName: "\(topicName!)", countryID: "\(countryID!)", countryName: "\(countryName!)")
-                self.videosMainArr.append(videoObj)
+            self.videosMainArr.append(videoObj)
         }
         
         if startPoint == "0" {

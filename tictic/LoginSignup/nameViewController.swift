@@ -94,7 +94,7 @@ class nameViewController: UIViewController,UITextFieldDelegate {
         print("username: ",username)
         
         guard (AppUtility?.validateUsername(str: username)) == true else {
-            self.showToast(message: "Invalid Username", font: .systemFont(ofSize: 12))
+            self.showToast(message: "Username must be between 4 and 20 characters.", font: .systemFont(ofSize: 12))
             return
             
         }

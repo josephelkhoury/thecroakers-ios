@@ -247,12 +247,12 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
     }
     
     @IBAction func btnLive(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainViewController
+        /*let vc = storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainViewController
         vc.userData = self.userData
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.navigationBar.isHidden =  true
         navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true, completion: nil)
+        self.present(navigationController, animated: true, completion: nil)*/
     }
     
     @IBAction func profilePicPressed(_ sender: UIButton) {
@@ -1321,15 +1321,13 @@ class newProfileViewController:UIViewController,UICollectionViewDataSource,UICol
         ApiHandler.sharedInstance.reportUser(user_id: UserDefaults.standard.string(forKey: "userID")!, report_user_id: otherUserID, report_reason_id: "1", description: reportReason) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
-                
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     self.showToast(message: "Report Under Review", font: .systemFont(ofSize: 12))
-                }else{
+                } else {
                     print("reportUser API:",response?.value(forKey: "msg") as Any)
                 }
             } else {
                 print("reportUser API:",response?.value(forKey: "msg") as Any)
-                
             }
         }
     }

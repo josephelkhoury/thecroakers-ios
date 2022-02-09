@@ -14,7 +14,11 @@ struct commentNew {
     let comment:String
     let imgName:String
     let time:String
-    let like:String
-    let like_count:String
+    var like:String
+    var like_count:String
     let vidID:String
+    let commentID:String
+    let repliesCount:String
+    var repliesArr:[commentNew]?
+    var expanded:Bool
 }

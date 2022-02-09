@@ -96,6 +96,8 @@ enum Endpoint : String {
     case generateShareLink        = "generateShareLink"
     case showShareLink            = "showShareLink"
     case verifyRegisterEmailCode  = "verifyRegisterEmailCode"
+    case likeComment              = "likeComment"
+    case deleteComment            = "deleteComment"
 }
 class ApiHandler:NSObject {
     var baseApiPath:String!
@@ -1659,8 +1661,18 @@ class ApiHandler:NSObject {
             "Api-Key": API_KEY
         ]
         var parameters = [String : String]()
+        
+        var uid = ""
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        if userID != "" && userID != nil {
+            uid = userID!
+        } else {
+            uid = ""
+        }
+        
         parameters = [
-            "video_id"    : video_id
+            "video_id"    : video_id,
+            "user_id"     : uid
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showVideoComments.rawValue)"
         
@@ -1701,16 +1713,17 @@ class ApiHandler:NSObject {
         }
     }
     //MARK:- postCommentOnVideo
-    func postCommentOnVideo(user_id:String,comment:String,video_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?,_ err:String)->Void){
+    func postCommentOnVideo(user_id:String, comment:String, video_id:String, comment_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?,_ err:String)->Void){
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.postCommentOnVideo.rawValue)"
         let headers: HTTPHeaders = [
             "Api-Key": API_KEY
         ]
         var parameters = [String : String]()
         parameters = [
-            "video_id"    : video_id,
+            "video_id"   : video_id,
             "comment"    : comment,
-            "user_id"    : user_id
+            "user_id"    : user_id,
+            "comment_id" : comment_id
         ]
         print(finalUrl)
         print(parameters)
@@ -4255,6 +4268,122 @@ class ApiHandler:NSObject {
             "code"             : code,
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.verifyRegisterEmailCode.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-LikeComment
+    func likeComment(comment_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key": API_KEY
+        ]
+        var parameters = [String : String]()
+        
+        var uid = ""
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        if userID != "" && userID != nil {
+            uid = userID!
+        } else {
+            uid = ""
+        }
+        
+        parameters = [
+            "user_id"        : uid,
+            "comment_id"     : comment_id,
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.likeComment.rawValue)"
+        
+        print(finalUrl)
+        print(parameters)
+        AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response.result)
+            
+            switch response.result {
+            
+            case .success(_):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            case .failure(let error):
+                if let json = response.value
+                {
+                    do {
+                        let dict = json as? NSDictionary
+                        print(dict)
+                        completionHandler(true, dict)
+                        
+                    } catch {
+                        completionHandler(false, nil)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    //MARK:-DeleteComment
+    func deleteComment(comment_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+        let headers: HTTPHeaders = [
+            "Api-Key": API_KEY
+        ]
+        var parameters = [String : String]()
+        
+        var uid = ""
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        if userID != "" && userID != nil {
+            uid = userID!
+        } else {
+            uid = ""
+        }
+        
+        parameters = [
+            "user_id"        : uid,
+            "comment_id"     : comment_id,
+        ]
+        let finalUrl = "\(self.baseApiPath!)\(Endpoint.deleteComment.rawValue)"
         
         print(finalUrl)
         print(parameters)

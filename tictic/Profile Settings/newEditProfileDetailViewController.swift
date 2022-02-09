@@ -27,23 +27,30 @@ class newEditProfileDetailViewController: UIViewController,UITextFieldDelegate {
         
         self.setBottomBorder()
         self.setup()
-        // Do any additional setup after loading the view.
     }
     
     func setup() {
         let userObj = userData[0]
         switch type {
         case 0:
-            print("Name")
-            self.txtField.text = userObj.first_name + " " + userObj.last_name
+            print("Firstname")
+            self.lblTitle.text = "Firstname"
+            self.txtField.text = userObj.first_name
         case 1:
-            print("Username")
-            self.txtField.text = userObj.username
+            print("Lastname")
+            self.lblTitle.text = "Lastname"
+            self.txtField.text = userObj.last_name
         case 2:
-            print("Bio")
-            self.txtField.text = userObj.bio
+            print("Username")
+            self.lblTitle.text = "Username"
+            self.txtField.text = userObj.username
         case 3:
+            print("Bio")
+            self.lblTitle.text = "Bio"
+            self.txtField.text = userObj.bio
+        case 4:
             print("Web")
+            self.lblTitle.text = "Website"
             self.txtField.text = userObj.website
         default:
             print("default")
@@ -70,8 +77,8 @@ class newEditProfileDetailViewController: UIViewController,UITextFieldDelegate {
         
         var username = userObj.username
         var firstName = userObj.first_name
-        var userPhone = userObj.userPhone
-        let lastName = ""
+        var lastName = userObj.last_name
+        let userPhone = userObj.userPhone
         let userID = UserDefaults.standard.string(forKey: "userID")!
         var web = userObj.website
         var bio = userObj.bio
@@ -79,25 +86,22 @@ class newEditProfileDetailViewController: UIViewController,UITextFieldDelegate {
         
         switch type {
         case 0:
-            print("Name")
-            /*guard (AppUtility?.validateUsername(str: txtField.text!)) == true else {
-                self.showToast(message: "Invalid Name", font: .systemFont(ofSize: 12))
-                return
-            }*/
-
+            print("Firstname")
             firstName = txtField.text!
         case 1:
+            print("Lastname")
+            lastName = txtField.text!
+        case 2:
             print("Username")
             guard (AppUtility?.validateUsername(str: txtField.text!)) == true else {
-                self.showToast(message: "Invalid Username", font: .systemFont(ofSize: 12))
+                self.showToast(message: "Username must be between 4 and 20 characters.", font: .systemFont(ofSize: 12))
                 return
             }
-
             username = txtField.text!
-        case 2:
+        case 3:
             print("Bio")
             bio = txtField.text!
-        case 3:
+        case 4:
             print("web")
             web = txtField.text!
         default:

@@ -41,11 +41,10 @@ target 'TheCroakers' do
   #pod "XLPagerTabStrip"
   #pod 'SmoothPicker'
   #pod 'FacebookShare'
-  pod 'FacebookSDK'
-  pod 'FacebookSDK/LoginKit'
-  pod 'FacebookSDK/ShareKit'
-  pod 'FacebookSDK/PlacesKit'
-  pod 'FBSDKMessengerShareKit'
+  #pod 'FacebookSDK'
+  #pod 'FacebookSDK/LoginKit'
+  #pod 'FacebookSDK/ShareKit'
+  #pod 'FBSDKMessengerShareKit'
   pod "KYShutterButton"
   #pod 'TwitterKit'
   pod 'GSPlayer'
@@ -65,7 +64,7 @@ target 'TheCroakers' do
   pod 'FLAnimatedImage'
   #pod 'loading-buttons-ios'
   pod 'XLPagerTabStrip'
-  pod 'AgoraRtcEngine_iOS'
+  #pod 'AgoraRtcEngine_iOS'
   pod 'SDWebImageWebPCoder'
   target 'TheCroakersUITests' do
     # Pods for testing
