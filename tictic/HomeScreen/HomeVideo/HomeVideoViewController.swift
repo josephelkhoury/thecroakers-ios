@@ -278,7 +278,7 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
         }
     }
     
-    func likeVideo(uid:String,videoID:String) {
+    func likeVideo(uid:String, videoID:String) {
         ApiHandler.sharedInstance.likeVideo(user_id: uid, video_id: videoID) { (isSuccess, response) in
        
             if isSuccess {
@@ -292,7 +292,13 @@ class HomeVideoViewController: UIViewController,videoLikeDelegate,UICollectionVi
     }
     
     func getVideo(videoID:String) {
-        ApiHandler.sharedInstance.showVideoDetail(user_id: UserDefaults.standard.string(forKey: "userID")!, video_id: videoID) { (isSuccess, response) in
+        var userID = UserDefaults.standard.string(forKey: "userID")
+        
+        if userID == "" || userID == nil {
+            userID = ""
+        }
+        
+        ApiHandler.sharedInstance.showVideoDetail(user_id: userID!, video_id: videoID) { (isSuccess, response) in
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {
                     self.videoResponse(startPoint: "0", resMsg: response as! [String : Any])
