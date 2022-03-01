@@ -27,15 +27,12 @@ class NewSettingsPrivacyViewController: UIViewController {
     
     var arrLogin = [["name":"Log Out","image":"iconLogout"]]
     
-    
     var userData = [userMVC]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.userData[0].first_name)
         tblPrivacy.delegate = self
         tblPrivacy.dataSource = self
-
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
@@ -217,10 +214,9 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
         default:
             switch indexPath.row {
             case 0:
-                
                 print("logout")
-                 let alertController = UIAlertController(title: NSLocalizedString("alert_app_name", comment: ""), message: "Would you like to LOGOUT?", preferredStyle: .alert)
-                 let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                let alertController = UIAlertController(title: NSLocalizedString("alert_app_name", comment: ""), message: "Would you like to LOGOUT?", preferredStyle: .alert)
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
                      self.tabBarController?.selectedIndex = 0
                      self.tabBarController?.tabBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                      self.tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
@@ -250,7 +246,7 @@ extension NewSettingsPrivacyViewController: UITableViewDelegate, UITableViewData
         let userID = UserDefaults.standard.string(forKey: "userID")
         print("user id: ",userID as Any)
         //AppUtility?.startLoader(view: view)
-        ApiHandler.sharedInstance.logout(user_id: userID! ) { (isSuccess, response) in
+        ApiHandler.sharedInstance.logout(user_id: userID!) { (isSuccess, response) in
             AppUtility?.stopLoader(view: self.view)
             if isSuccess {
                 if response?.value(forKey: "code") as! NSNumber == 200 {

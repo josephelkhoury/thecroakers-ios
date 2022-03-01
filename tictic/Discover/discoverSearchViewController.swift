@@ -169,7 +169,7 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                         let userObj = userObject as! NSDictionary
                         
                         let user = userObj.value(forKey: "User") as! NSDictionary
-                        let countryObj = userObj.value(forKey: "Country") as! NSDictionary
+                        let countryObj = userObjMsg.value(forKey: "Country") as? NSDictionary
                         
                         let userID = (user.value(forKey: "id") as? String)!
                         let userImage = (user.value(forKey: "profile_pic") as? String)!
@@ -187,8 +187,8 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                         let wallet = (user.value(forKey: "wallet") as? String)!
                         let paypal = (userObj.value(forKey: "paypal") as? String) ?? ""
                         
-                        let countryID = (countryObj.value(forKey: "id") as? String)!
-                        let countryName = (countryObj.value(forKey: "name") as? String)!
+                        let countryID = countryObj?.value(forKey: "id") as? String ?? ""
+                        let countryName = countryObj?.value(forKey: "name") as? String ?? ""
 
                         let obj = userMVC(userID: userID, first_name: firstName, last_name: lastName, gender: gender, bio: bio, countryID: countryID, countryName: countryName, website: website, dob: dob, social_id: "", userEmail: "", userPhone: "", password: "", userProfile_pic: userImage, role: "", username: userName, social: "", device_token: "", videoCount: videoCount, likesCount: likesCount, followers: followers, following: followings, followBtn: "", wallet: wallet, paypal: paypal)
                         
@@ -343,12 +343,12 @@ class discoverSearchViewController: UIViewController,UISearchBarDelegate {
                         
                         let id = hashtag.value(forKey: "id") as! String
                         let name = hashtag.value(forKey: "name") as! String
-                        let image = hashtag.value(forKey: "image") as! String
+                        let image = hashtag.value(forKey: "image") as? String
                         let featured = hashtag.value(forKey: "featured") as? NSNumber
                         let views = hashtag.value(forKey: "views") as? NSNumber
                         let favourite = hashtag.value(forKey: "favourite") as? NSNumber
                         
-                        let obj = hashTagMVC(id: id, name: name, image: image, featured: "\(featured ?? 0)", views: "\(views ?? 0)", favourite: "\(favourite ?? 0)")
+                        let obj = hashTagMVC(id: id, name: name, image: "\(image ?? "")", featured: "\(featured ?? 0)", views: "\(views ?? 0)", favourite: "\(favourite ?? 0)")
                         
                         self.hashTagDataArr.append(obj)
                     }
@@ -533,15 +533,15 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
             let otherUserID = obj.userID
             let userID = UserDefaults.standard.string(forKey: "userID")
             
-            if userID == nil || userID == ""{
-                loginScreenAppear()
-            } else {
-                let vc = storyboard?.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
-                vc.isOtherUserVisting = true
-                vc.hidesBottomBarWhenPushed = true
-                vc.otherUserID = otherUserID
-                navigationController?.pushViewController(vc, animated: true)
-            }
+            //if userID == nil || userID == ""{
+            //    loginScreenAppear()
+            //} else {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "newProfileVC") as!  newProfileViewController
+            vc.isOtherUserVisting = true
+            vc.hidesBottomBarWhenPushed = true
+            vc.otherUserID = otherUserID
+            navigationController?.pushViewController(vc, animated: true)
+            //}
             
         } else if tableView == soundsTV {
             let obj = soundsDataArr[indexPath.row]
@@ -591,9 +591,9 @@ extension discoverSearchViewController: UITableViewDelegate,UITableViewDataSourc
         
         let uid = UserDefaults.standard.string(forKey: "userID")
         
-        if uid == "" || uid == nil{
+        if uid == "" || uid == nil {
             loginScreenAppear()
-        }else{
+        } else {
 //            saveSondToLocal(soundObj: obj)
         }
         

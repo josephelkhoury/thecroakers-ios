@@ -14,9 +14,21 @@ var BASE_URL = "https://app.thecroakers.com/"
 let API_KEY = "156c4675-9608-4591-1111-00000"
 let profileQRLink = BASE_URL+"/profile/"
 let API_BASE_URL = BASE_URL+"api/"
+let deviceType = "iOS"
+var fcm = UserDefaults.standard.string(forKey: "DeviceToken") ?? ""
+var ip = UserDefaults.standard.string(forKey: "ipAddress") ?? ""
+var appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+var userID = UserDefaults.standard.string(forKey: "userID") ?? ""
+var authToken = UserDefaults.standard.string(forKey: "authToken") ?? ""
 
-let headers: HTTPHeaders = [
-    "Api-Key":API_KEY
+var headers: HTTPHeaders = [
+    "Api-Key": API_KEY,
+    "User-Id": userID,
+    "Auth-Token": authToken,
+    /*"device"       : deviceType,
+    "version"      : appVersion,
+    "ip"           : ip,
+    "device_token" : fcm*/
 ]
 
 private let SharedInstance = ApiHandler()
@@ -101,13 +113,24 @@ enum Endpoint : String {
 }
 class ApiHandler:NSObject {
     var baseApiPath:String!
-    
-    let fcm = UserDefaults.standard.string(forKey: "DeviceToken") as? String ?? ""
-    let ip = UserDefaults.standard.string(forKey: "ipAddress") as? String ?? ""
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
-    let deviceType = "iOS"
 
     class var sharedInstance : ApiHandler {
+        fcm = UserDefaults.standard.string(forKey: "DeviceToken") ?? ""
+        ip = UserDefaults.standard.string(forKey: "ipAddress") ?? ""
+        appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        userID = UserDefaults.standard.string(forKey: "userID") ?? ""
+        authToken = UserDefaults.standard.string(forKey: "authToken") ?? ""
+
+        headers = [
+            "Api-Key": API_KEY,
+            "User-Id": userID,
+            "Auth-Token": authToken,
+            /*"device"       : deviceType,
+            "version"      : appVersion,
+            "ip"           : ip,
+            "device_token" : fcm*/
+        ]
+
         return SharedInstance
     }
     
@@ -116,11 +139,8 @@ class ApiHandler:NSObject {
     }
     
     //MARK:Register
-    func registerSocialUser(dob:String,country_id:String,username:String,email:String,social_id:String ,social:String,first_name:String,last_name:String,auth_token:String,device_token:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
+    func registerSocialUser(dob:String,country_id:String,username:String,email:String,social_id:String ,social:String,first_name:String,last_name:String,auth_token:String,device_token:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void) {
+
         var parameters = [String : String]()
         parameters = [
             "dob"         : dob,
@@ -150,6 +170,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -176,10 +197,7 @@ class ApiHandler:NSObject {
     }
     
     func alreadySocialRegisteredUserCheck(social_id:String,social:String,auth_token:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             //            "dob"         : dob,
@@ -210,6 +228,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -235,21 +254,13 @@ class ApiHandler:NSObject {
         }
     }
     
-    
-    
     //MARK:- Login
     func login(email:String,password:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            "User_Id":"",
-            "Auth_token" : ""
-        ]
+        
         var parameters = [String : String]()
         parameters = [
-            
             "email"   : email,
             "password": password,
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.login.rawValue)"
         
@@ -266,6 +277,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -292,9 +304,7 @@ class ApiHandler:NSObject {
     
     //MARK:- Verify Phone number
     func verifyPhoneNo(phone:String,verify:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "phone" : phone,
@@ -316,6 +326,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -341,9 +352,7 @@ class ApiHandler:NSObject {
     }
     //OTP VERIFY
     func verifyOTP(phone:String,verify:String,code:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "phone" : phone,
@@ -365,6 +374,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -391,9 +401,7 @@ class ApiHandler:NSObject {
     
     //register Phone no check
     func registerPhoneCheck(phone:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "phone"         : phone
@@ -413,6 +421,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -439,9 +448,7 @@ class ApiHandler:NSObject {
     }
     //MARK:- register Phone
     func registerPhone(phone:String,dob:String,username:String,country_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "dob": dob,
@@ -464,6 +471,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -490,9 +498,7 @@ class ApiHandler:NSObject {
     }
     //    MARK:- Register With EMAIL
     func registerEmail(email:String,password:String,dob:String,username:String,country_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "dob": dob,
@@ -516,6 +522,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -543,9 +550,7 @@ class ApiHandler:NSObject {
     
     //    MARK:- login with EMAIL
     func loginEmail(email:String,password:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "email"         : email,
@@ -566,6 +571,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -594,9 +600,7 @@ class ApiHandler:NSObject {
     //MARK:- Add Device Data
     
     func addDeviceData(user_id:String,device:String,version:String,ip:String,device_token:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"      : user_id,
@@ -604,7 +608,6 @@ class ApiHandler:NSObject {
             "version"      : version,
             "ip"           : ip,
             "device_token" : device_token,
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.addDeviceData.rawValue)"
         
@@ -621,6 +624,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -648,9 +652,7 @@ class ApiHandler:NSObject {
     //MARK:- registerDevice
     
     func registerDevice(key:String,completionHandler:@escaping( _ err:String,_ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "key":key
@@ -671,6 +673,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler("",true, dict)
                         
                     } catch {
@@ -697,13 +700,10 @@ class ApiHandler:NSObject {
     //MARK:- showDeviceDetails
     
     func showDeviceDetails(key:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "key"      : key
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showDeviceDetail.rawValue)"
         
@@ -720,6 +720,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -748,10 +749,7 @@ class ApiHandler:NSObject {
     
     //    IN POST VIEW CONTROLLER CODE MULTIPART
     func postVideo(User_id :String ,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            "User-Id":User_id
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.postVideo.rawValue)"
         
         print(finalUrl)
@@ -766,6 +764,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -794,16 +793,6 @@ class ApiHandler:NSObject {
     //MARK:-showRelatedVideos
     func showRelatedVideos(device_id:String,user_id:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
     
-        let headers: HTTPHeaders = [
-            "Api-Key"      : API_KEY,
-            "user-id"      : user_id,
-            "device"       : deviceType,
-            "version"      : appVersion,
-            "ip"           : ip,
-            "device_token" : fcm,
-            "Auth-Token"   : ""
-            
-        ]
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
@@ -812,12 +801,12 @@ class ApiHandler:NSObject {
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showRelatedVideos.rawValue)"
         
-        print("finalURL",finalUrl)
+        print("finalURL", finalUrl)
         print(parameters)
         print(headers)
         AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default
                    , headers: headers).responseJSON { (response) in
-                    print("response: related vid",response.value)
+                    print("response: related vid", response.value)
                     
                     switch response.result {
                     
@@ -827,6 +816,7 @@ class ApiHandler:NSObject {
                             do {
                                 let dict = json as? NSDictionary
                                 print(dict)
+                                self.parseResponse(response: dict)
                                 completionHandler(true, dict)
                                 
                             } catch {
@@ -853,17 +843,12 @@ class ApiHandler:NSObject {
     }
     //MARK:-showFollowingVideos
     func showFollowingVideos(user_id:String,device_id:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            "User_Id":user_id,
-            //            "Auth_token" : UserDefaults.standard.string(forKey: "authToken")!
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
             "device_id"      : device_id,
             "starting_point" : starting_point
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showFollowingVideos.rawValue)"
         
@@ -880,6 +865,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -905,9 +891,7 @@ class ApiHandler:NSObject {
     }
     //MARK:-showVideosAgainstUserID
     func showVideosAgainstUserID(user_id:String, other_user_id:String, starting_point:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
@@ -929,6 +913,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -955,9 +940,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showOtherUserDetail
     func showOtherUserDetail(user_id:String,other_user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
@@ -978,6 +961,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1003,9 +987,7 @@ class ApiHandler:NSObject {
     }
     //MARK:-showOwnDetail
     func showOwnDetail(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id
@@ -1025,6 +1007,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1052,9 +1035,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showOwnDetail
     func showOwnDetailByName(username:String,user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "username" : username,
@@ -1076,6 +1057,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1102,9 +1084,7 @@ class ApiHandler:NSObject {
     
     //MARK:-LikeVideo
     func likeVideo(user_id:String,video_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
@@ -1125,6 +1105,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1151,9 +1132,7 @@ class ApiHandler:NSObject {
     
     //MARK:-WatchVideo
     func watchVideo(device_id:String,user_id:String,video_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "device_id"        : device_id,
@@ -1175,6 +1154,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                        // print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1201,15 +1181,11 @@ class ApiHandler:NSObject {
     
     //MARK:-showSounds
     func showSounds(user_id:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"          : user_id,
             "starting_point"   : starting_point,
-            
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showSounds.rawValue)"
         
@@ -1226,6 +1202,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1252,9 +1229,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showTopics
     func showTopics(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"          : user_id
@@ -1274,6 +1249,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1300,9 +1276,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showFeaturedHashtags
     func showFeaturedHashtags(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"          : user_id
@@ -1322,6 +1296,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1348,15 +1323,11 @@ class ApiHandler:NSObject {
     
     //MARK:-addSoundFavourite
     func addSoundFavourite(user_id:String,sound_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
             "sound_id"   : sound_id,
-            
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.addSoundFavourite.rawValue)"
         
@@ -1373,6 +1344,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1400,9 +1372,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showSounds
     func showSoundsAgainstSection(user_id:String,starting_point:String,sectionID:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"          : user_id,
@@ -1424,6 +1394,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1449,9 +1420,7 @@ class ApiHandler:NSObject {
     }
     //MARK:-showFavouriteSounds
     func showFavouriteSounds(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
@@ -1472,6 +1441,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1498,9 +1468,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showUserLikedVideos
     func showUserLikedVideos(user_id:String, starting_point:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
@@ -1521,6 +1489,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1548,9 +1517,7 @@ class ApiHandler:NSObject {
     
     //MARK:-followUser
     func followUser(sender_id:String,receiver_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "sender_id"    : sender_id,
@@ -1572,6 +1539,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1601,9 +1569,7 @@ class ApiHandler:NSObject {
     
     func showDiscoverySections(section:String, country_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showDiscoverySections.rawValue)"
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-        ]
+        
         var parameters = [String : String]()
         
         var uid = ""
@@ -1631,6 +1597,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1657,9 +1624,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showVideoComments
     func showVideoComments(video_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         
         var uid = ""
@@ -1689,6 +1654,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1715,9 +1681,7 @@ class ApiHandler:NSObject {
     //MARK:- postCommentOnVideo
     func postCommentOnVideo(user_id:String, comment:String, video_id:String, comment_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?,_ err:String)->Void){
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.postCommentOnVideo.rawValue)"
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "video_id"   : video_id,
@@ -1738,6 +1702,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict, "")
                         
                     } catch {
@@ -1763,12 +1728,8 @@ class ApiHandler:NSObject {
     }
     
     //MARK:- editProfile
-    func editProfile(username:String,user_id:String,first_name:String,last_name:String,gender:String,website:String,bio:String,phone:String ,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
+    func editProfile(username:String,user_id:String,first_name:String,last_name:String,gender:String,website:String,bio:String,phone:String ,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void) {
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.editProfile.rawValue)"
-        
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
         
         var parameteres = [String:String]()
         parameteres = [
@@ -1793,6 +1754,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1818,9 +1780,7 @@ class ApiHandler:NSObject {
     }
     //MARK:- showFollowers
     func showFollowers(user_id:String,other_user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"          : user_id,
@@ -1841,6 +1801,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1867,9 +1828,7 @@ class ApiHandler:NSObject {
     
     //MARK:- ShowFollowing
     func showFollowing(user_id:String,other_user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"          : user_id,
@@ -1890,6 +1849,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1916,9 +1876,7 @@ class ApiHandler:NSObject {
     
     //MARK:- showVideosAgainstHashtag
     func showVideosAgainstHashtag(user_id:String,hashtag:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
@@ -1940,6 +1898,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -1967,9 +1926,7 @@ class ApiHandler:NSObject {
     
     //MARK:- showVideosAgainstTopic
     func showVideosAgainstTopic(user_id:String,topic:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
@@ -1991,6 +1948,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2018,9 +1976,7 @@ class ApiHandler:NSObject {
     //MARK:- sendMessageNotification
     
     func sendMessageNotification(senderID:String,receiverID:String,msg:String,title:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "sender_id": senderID,
@@ -2043,6 +1999,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2069,9 +2026,7 @@ class ApiHandler:NSObject {
     
     //MARK:- Add User Image
     func addUserImage(user_id:String,profile_pic:Any,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : Any]()
         parameters = [
             "user_id"    : user_id,
@@ -2092,6 +2047,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2119,9 +2075,7 @@ class ApiHandler:NSObject {
     //MARK:- admin/deleteVideo
     
     func deleteVideo(video_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "video_id"    : video_id
@@ -2141,6 +2095,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2166,9 +2121,7 @@ class ApiHandler:NSObject {
     }
     //MARK:- Search
     func Search(user_id:String,type:String,keyword:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
@@ -2191,6 +2144,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2216,9 +2170,7 @@ class ApiHandler:NSObject {
     }
     //MARK:- showVideoDetail
     func showVideoDetail(user_id:String,video_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
@@ -2239,6 +2191,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2265,9 +2218,7 @@ class ApiHandler:NSObject {
     
     //MARK:- showAllNotifications
     func showAllNotifications(user_id:String,starting_point:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id":user_id,
@@ -2289,6 +2240,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2315,14 +2267,11 @@ class ApiHandler:NSObject {
     
     //MARK:- userVerificationRequest
     func userVerificationRequest(user_id:String,attachment:Any,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : Any]()
         parameters = [
             "user_id"      : user_id,
             "attachment"   : attachment
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.userVerificationRequest.rawValue)"
         
@@ -2339,6 +2288,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2365,9 +2315,7 @@ class ApiHandler:NSObject {
     
     //MARK:- downloadVideo
     func downloadVideo(video_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key" : API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "video_id" : video_id
@@ -2387,6 +2335,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2413,9 +2362,7 @@ class ApiHandler:NSObject {
     
     //MARK:- deleteWaterMarkVideo
     func deleteWaterMarkVideo(video_url:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "video_url" : video_url
@@ -2435,6 +2382,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2460,9 +2408,7 @@ class ApiHandler:NSObject {
     }
     //MARK:- showAppSlider
     func showAppSlider(section: String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "section": section
@@ -2483,6 +2429,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2509,11 +2456,7 @@ class ApiHandler:NSObject {
     
     //MARK:- logout
     func logout(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            "User_Id":user_id
-            //            "Auth_token" : UserDefaults.standard.string(forKey: "authToken")!
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.logout.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -2521,6 +2464,7 @@ class ApiHandler:NSObject {
         ]
         print(finalUrl)
         print(parameters)
+        print(headers)
         AF.request(URL.init(string: finalUrl)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             print(response.result)
             
@@ -2532,6 +2476,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        //self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2559,17 +2504,12 @@ class ApiHandler:NSObject {
     //MARK:- showVideosAgainstSound
     
     func showVideosAgainstSound(sound_id:String,starting_point:String,device_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
         
         var parameters = [String : String]()
         parameters = [
             "sound_id"   : sound_id,
             "sound_id"   : starting_point,
             "device_id"  : device_id,
-            
-            
         ]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showVideosAgainstSound.rawValue)"
         print(finalUrl)
@@ -2586,6 +2526,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2612,14 +2553,10 @@ class ApiHandler:NSObject {
     
     //MARK:-showReportReasons
     func showReportReasons(completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
         
         var parameters = [String : String]()
         parameters = [
             "":""
-            
         ]
         
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showReportReasons.rawValue)"
@@ -2635,6 +2572,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2661,9 +2599,7 @@ class ApiHandler:NSObject {
     
     //MARK:-reportVideo
     func reportVideo(user_id:String,video_id:String,report_reason_id:String,description:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.reportVideo.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -2671,7 +2607,6 @@ class ApiHandler:NSObject {
             "video_id"          : video_id,
             "report_reason_id"  : report_reason_id,
             "description"       : description,
-            
         ]
         print(finalUrl)
         print(parameters)
@@ -2688,6 +2623,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2714,9 +2650,7 @@ class ApiHandler:NSObject {
     
     //MARK:- Block User
     func blockUser(user_id:String,block_user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.blockUser.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -2738,6 +2672,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2763,9 +2698,7 @@ class ApiHandler:NSObject {
     }
     //MARK:- NotInterestedVideo
     func NotInterestedVideo(video_id:String,user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.NotInterestedVideo.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -2787,6 +2720,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2813,16 +2747,12 @@ class ApiHandler:NSObject {
     
     //MARK:- addVideoFavourite
     func addVideoFavourite(video_id:String,user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+       
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.addVideoFavourite.rawValue)"
         var parameters = [String : String]()
         parameters = [
             "video_id"   : video_id,
             "user_id"    : user_id,
-            
-            
         ]
         print(finalUrl)
         print(parameters)
@@ -2839,6 +2769,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2866,9 +2797,7 @@ class ApiHandler:NSObject {
     
     //MARK:- showFavouriteVideos
     func showFavouriteVideos(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showFavouriteVideos.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -2889,6 +2818,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2915,9 +2845,7 @@ class ApiHandler:NSObject {
     
     //MARK:- updatePushNotificationSettings
     func updatePushNotificationSettings(user_id:String,comments:String,new_followers:String,mentions:String,likes:String,direct_messages:String,video_updates:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.updatePushNotificationSettings.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -2944,6 +2872,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -2970,9 +2899,7 @@ class ApiHandler:NSObject {
     
     //MARK:- addHashtagFavourite
     func addHashtagFavourite(user_id:String,hashtag_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.addHashtagFavourite.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -2994,6 +2921,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3018,12 +2946,9 @@ class ApiHandler:NSObject {
         }
     }
     
-    
     //MARK:- addTopicFavourite
     func addTopicFavourite(user_id:String,topic_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.addTopicFavourite.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -3045,6 +2970,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3071,14 +2997,11 @@ class ApiHandler:NSObject {
     
     //MARK:- showFavouriteHashtags
     func showFavouriteHashtags(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.showFavouriteHashtags.rawValue)"
         var parameters = [String : String]()
         parameters = [
             "user_id"       : user_id,
-            
         ]
         print(finalUrl)
         print(parameters)
@@ -3095,6 +3018,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3121,9 +3045,7 @@ class ApiHandler:NSObject {
     
     //MARK:- reportUser
     func reportUser(user_id:String,report_user_id:String,report_reason_id:String,description:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.reportUser.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -3131,7 +3053,6 @@ class ApiHandler:NSObject {
             "report_user_id"   : report_user_id,
             "report_reason_id" : report_reason_id,
             "description"      : description
-            
         ]
         print(finalUrl)
         print(parameters)
@@ -3148,6 +3069,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3174,9 +3096,7 @@ class ApiHandler:NSObject {
     
     //MARK:- addPrivacySetting
     func addPrivacySetting(videos_download:String,direct_message:String,duet:String,liked_videos:String,video_comment:String,user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.addPrivacySetting.rawValue)"
         var parameters = [String : String]()
         parameters = [
@@ -3186,8 +3106,6 @@ class ApiHandler:NSObject {
             "liked_videos"    : liked_videos,
             "video_comment"   : video_comment,
             "user_id"         : user_id,
-            
-            
         ]
         print(finalUrl)
         print(parameters)
@@ -3204,6 +3122,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3233,10 +3152,6 @@ class ApiHandler:NSObject {
         
         //        self.ldr.activityStartAnimating()
         
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
         var parameters = [String : String]()
         parameters = [
             "keyword": "",
@@ -3271,6 +3186,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict, obj)
                         
                     } catch {
@@ -3296,17 +3212,9 @@ class ApiHandler:NSObject {
         }
     }
     
-    
-    
-    
-    
     //MARK:- Coins Purchase
     func purchaseCoin(uid:String,coin:String, title:String, price:String,transaction_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
         var parameters = [String : String]()
         parameters = [
             "user_id":uid,
@@ -3324,11 +3232,9 @@ class ApiHandler:NSObject {
             print(response.result)
             
             let obj = try? JSONDecoder().decode(Hashtag.self, from: response.data!)
-            
-            
+                  
             print(obj?.code)
             print(obj?.msg)
-            
             
             
             switch response.result {
@@ -3340,6 +3246,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3367,10 +3274,6 @@ class ApiHandler:NSObject {
     
     func showCoinWorth(completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
         var parameters = [String : Any]()
         parameters = ["":""]
         let finalUrl = "\(self.baseApiPath!)\(Endpoint.coinWorth.rawValue)"
@@ -3382,11 +3285,8 @@ class ApiHandler:NSObject {
             
             let obj = try? JSONDecoder().decode(Hashtag.self, from: response.data!)
             
-            
             print(obj?.code)
             print(obj?.msg)
-            
-            
             
             switch response.result {
             
@@ -3397,6 +3297,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3424,10 +3325,6 @@ class ApiHandler:NSObject {
     
     func coinWithDrawRequest(user_id:String,amount:Int,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
         var parameters = [String : Any]()
         
         parameters = ["user_id":user_id,
@@ -3451,6 +3348,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict )
                         
                     } catch {
@@ -3478,10 +3376,6 @@ class ApiHandler:NSObject {
     
     func addPayout(user_id:String,email:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
         var parameters = [String : Any]()
         
         parameters = ["user_id":user_id,
@@ -3505,6 +3399,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3532,10 +3427,6 @@ class ApiHandler:NSObject {
     
     func sendGifts(sender_id:String,receiver_id:String,gift_id:String,gift_count:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
         var parameters = [String : Any]()
         
         parameters = ["sender_id":sender_id,
@@ -3562,6 +3453,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3589,10 +3481,6 @@ class ApiHandler:NSObject {
     
     func showGifts(completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
         
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
         var parameters = [String : Any]()
         
         parameters = ["":""]
@@ -3615,6 +3503,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3642,10 +3531,7 @@ class ApiHandler:NSObject {
     
     //MARK:Suggested
     func suggestedPeople(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"         : user_id
@@ -3665,6 +3551,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict as Any)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3692,10 +3579,7 @@ class ApiHandler:NSObject {
     
     //MARK:ChangePhonenumber
     func changePhoneNumber(user_id:String,phone:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY
-            
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"         : user_id,
@@ -3717,6 +3601,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict as Any)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3744,9 +3629,7 @@ class ApiHandler:NSObject {
     
     //MARK:- Update Password
     func changePassword(user_id:String,old_password:String,new_password:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"         : user_id,
@@ -3768,6 +3651,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3795,9 +3679,7 @@ class ApiHandler:NSObject {
     
     //MARK:- Delete Account
     func DeleteAccount(user_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"         : user_id,
@@ -3817,6 +3699,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3843,9 +3726,7 @@ class ApiHandler:NSObject {
     
     //MARK:- showVideoReplies
     func showVideoReplies(user_id:String, video_id:String, starting_point:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"    : user_id,
@@ -3867,6 +3748,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3893,11 +3775,7 @@ class ApiHandler:NSObject {
     
     //MARK:-showCountries
     func showCountries(user_id:String, showWorldwide:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            "User_Id":user_id,
-            //            "Auth_token" : UserDefaults.standard.string(forKey: "authToken")!
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id" : user_id,
@@ -3918,6 +3796,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3944,11 +3823,7 @@ class ApiHandler:NSObject {
     
     //MARK:-applyAsCroaker
     func applyAsCroaker(user_id:String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            "User_Id":user_id,
-            //            "Auth_token" : UserDefaults.standard.string(forKey: "authToken")!
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
@@ -3969,6 +3844,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -3995,11 +3871,7 @@ class ApiHandler:NSObject {
     
     //MARK:-applyAsPublisher
     func applyAsPublisher(user_id:String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-            "User_Id":user_id,
-            //            "Auth_token" : UserDefaults.standard.string(forKey: "authToken")!
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "user_id"        : user_id,
@@ -4020,6 +3892,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4046,9 +3919,7 @@ class ApiHandler:NSObject {
     
     //MARK:-forgotPassword
     func forgotPassword(email: String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "device_id"      : device_id,
@@ -4069,6 +3940,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4095,9 +3967,7 @@ class ApiHandler:NSObject {
     
     //MARK:-changeForgotPassword
     func changeForgotPassword(email:String, code:String, password:String, device_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-        ]
+        
         var parameters = [String : String]()
         parameters = [
             "device_id"      : device_id,
@@ -4120,6 +3990,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4146,9 +4017,6 @@ class ApiHandler:NSObject {
     
     //MARK:-generateShareLink
     func generateShareLink(type:String, entity_id:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-        ]
         
         let user_id = UserDefaults.standard.string(forKey: "userID") ?? ""
         let device_id = UserDefaults.standard.string(forKey: "deviceID") ?? ""
@@ -4175,6 +4043,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4201,9 +4070,6 @@ class ApiHandler:NSObject {
     
     //MARK:-showShareLink
     func showShareLink(link:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-        ]
         
         let user_id = UserDefaults.standard.string(forKey: "userID") ?? ""
         let device_id = UserDefaults.standard.string(forKey: "deviceID") ?? ""
@@ -4229,6 +4095,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4255,9 +4122,6 @@ class ApiHandler:NSObject {
     
     //MARK:-verifyRegisterEmailCode
     func verifyRegisterEmailCode(email:String, code:String, completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key":API_KEY,
-        ]
         
         let device_id = UserDefaults.standard.string(forKey: "deviceID") ?? ""
         
@@ -4282,6 +4146,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4308,9 +4173,7 @@ class ApiHandler:NSObject {
     
     //MARK:-LikeComment
     func likeComment(comment_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         
         var uid = ""
@@ -4340,6 +4203,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4366,9 +4230,7 @@ class ApiHandler:NSObject {
     
     //MARK:-DeleteComment
     func deleteComment(comment_id:String,completionHandler:@escaping( _ result:Bool, _ responseObject:NSDictionary?)->Void){
-        let headers: HTTPHeaders = [
-            "Api-Key": API_KEY
-        ]
+        
         var parameters = [String : String]()
         
         var uid = ""
@@ -4398,6 +4260,7 @@ class ApiHandler:NSObject {
                     do {
                         let dict = json as? NSDictionary
                         print(dict)
+                        self.parseResponse(response: dict)
                         completionHandler(true, dict)
                         
                     } catch {
@@ -4427,6 +4290,35 @@ class ApiHandler:NSObject {
             sessionDataTask.forEach { $0.cancel() }
             uploadData.forEach { $0.cancel() }
             downloadData.forEach { $0.cancel() }
+        }
+    }
+    
+    func parseResponse(response: NSDictionary?) {
+        print("response is ", response)
+        if response?.value(forKey: "code") as! NSNumber == 501 {
+            let alertController = UIAlertController(title: NSLocalizedString("alert_app_name", comment: ""), message: response?.value(forKey: "msg") as? String, preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "Logout", style: .default) { (action:UIAlertAction!) in
+                var myUser: [User]? {didSet {}}
+                myUser = User.readUserFromArchive()
+                myUser?.removeAll()
+                UserDefaults.standard.set("", forKey: "userID")
+            }
+            alertController.addAction(OKAction)
+            UIApplication.shared.delegate?.window??.rootViewController?.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func logoutUserApi() {
+        ApiHandler.sharedInstance.logout(user_id: userID) { (isSuccess, response) in
+            if isSuccess {
+                if response?.value(forKey: "code") as! NSNumber == 200 {
+                    print(response?.value(forKey: "msg") as Any)
+                } else {
+                    print("logout API:",response?.value(forKey: "msg") as! String)
+                }
+            } else {
+                print("logout API:",response?.value(forKey: "msg") as Any)
+            }
         }
     }
 }

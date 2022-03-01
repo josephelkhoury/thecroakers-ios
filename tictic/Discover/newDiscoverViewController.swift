@@ -132,6 +132,10 @@ class newDiscoverViewController: UIViewController ,UICollectionViewDelegate,UICo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row < entityDataArr.count else {
+            return;
+        }
+        
         let obj = entityDataArr[indexPath.row]
         
         if section == "0" {

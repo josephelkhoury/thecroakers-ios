@@ -10,8 +10,6 @@ import UIKit
 
 class SwitchAccountViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
    
-    
-
     //MARK:- Outlets
     @IBOutlet weak var viewCustom: UIView!
     @IBOutlet weak var tbl: UITableView!
